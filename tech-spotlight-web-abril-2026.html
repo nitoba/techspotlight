@@ -894,24 +894,38 @@ kbd {
       <div class="sidebar-item" onclick="goTo(5)" id="si-5">
         <span class="sidebar-icon">🌐</span> landing-page.astro
       </div>
-
-      <div class="sidebar-divider"></div>
-      <div class="sidebar-header">Lightning</div>
-
       <div class="sidebar-item" onclick="goTo(6)" id="si-6">
         <span class="sidebar-icon">⚡</span> mcp-procedures.sql
+      </div>
+      <div class="sidebar-item" onclick="goTo(7)" id="si-7">
+        <span class="sidebar-icon">📊</span> painel-gestao.ts
+      </div>
+      <div class="sidebar-item" onclick="goTo(8)" id="si-8">
+        <span class="sidebar-icon">🔐</span> auth-session.ts
+      </div>
+      <div class="sidebar-item" onclick="goTo(9)" id="si-9">
+        <span class="sidebar-icon">📋</span> forms-dinamicos.ts
+      </div>
+      <div class="sidebar-item" onclick="goTo(10)" id="si-10">
+        <span class="sidebar-icon">📄</span> relatorios.ts
+      </div>
+      <div class="sidebar-item" onclick="goTo(11)" id="si-11">
+        <span class="sidebar-icon">⚙️</span> infra.ts
+      </div>
+      <div class="sidebar-item" onclick="goTo(12)" id="si-12">
+        <span class="sidebar-icon">🎨</span> ui-fixes.ts
       </div>
 
       <div class="sidebar-divider"></div>
       <div class="sidebar-header">Wrap-up</div>
 
-      <div class="sidebar-item" onclick="goTo(7)" id="si-7">
+      <div class="sidebar-item" onclick="goTo(13)" id="si-13">
         <span class="sidebar-icon">🏆</span> wins.log
       </div>
-      <div class="sidebar-item" onclick="goTo(8)" id="si-8">
+      <div class="sidebar-item" onclick="goTo(14)" id="si-14">
         <span class="sidebar-icon">🗺️</span> roadmap.todo
       </div>
-      <div class="sidebar-item" onclick="goTo(9)" id="si-9">
+      <div class="sidebar-item" onclick="goTo(15)" id="si-15">
         <span class="sidebar-icon">👋</span> exit.ts
       </div>
     </div>
@@ -1511,8 +1525,686 @@ kbd {
       </div>
     </div>
 
-    <!-- ─── SLIDE 7: WINS ─── -->
+    <!-- ─── SLIDE 7: PAINEL DE GESTÃO ─── -->
     <div class="slide" id="slide-7">
+      <div class="slide-title">// sprint 97/98 — Painel de Gestão</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-purple">📊 feature</span>
+        <span class="badge badge-green">#11748 #11786 #11809</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">painel-gestao.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Dashboard do <span>Gestor</span> — Suporte ao Mobile</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">❌ problema</div>
+            <div style="font-size:16px; color:var(--text2); line-height:1.7">
+              O app Mobile precisava consumir dados do Painel de Gestão, mas os endpoints existentes eram voltados apenas para a Web — sem filtros otimizados, sem dados de etapas vigentes e sem nome da certificadora.
+            </div>
+          </div>
+
+          <div class="card card-accent-purple">
+            <div class="section-label" style="color:var(--purple)">✓ solução</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:16px; color:var(--text2)">
+              <div style="display:flex; gap:8px; align-items:flex-start">
+                <span style="color:var(--purple); font-family:var(--font-mono)">→</span>
+                <span><strong style="color:var(--text)">#11748</strong> — Novo endpoint dedicado para Mobile: produtores atendidos, atendimentos executados, diagnósticos concluídos e estados atendidos</span>
+              </div>
+              <div style="display:flex; gap:8px; align-items:flex-start">
+                <span style="color:var(--purple); font-family:var(--font-mono)">→</span>
+                <span><strong style="color:var(--text)">#11786</strong> — Filtro de etapas vigentes (baseado na data atual) + retorno do período (data inicial/final) de cada etapa</span>
+              </div>
+              <div style="display:flex; gap:8px; align-items:flex-start">
+                <span style="color:var(--purple); font-family:var(--font-mono)">→</span>
+                <span><strong style="color:var(--text)">#11809</strong> — Nome da certificadora no resumo do gestor, usando <code style="color:var(--amber); background:var(--bg4); padding:1px 6px; border-radius:3px">certificadoraId</code> como parâmetro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block" style="height:fit-content">
+          <div class="code-block-header">📊 dashboard-gestor.controller.ts</div>
+          <div class="code-body">
+            <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15</div>
+            <div class="code-lines">
+              <span class="cmt">// Novo endpoint — Mobile</span><br>
+              <span class="kw">@Get</span>(<span class="str">'dados-gerais/mobile'</span>)<br>
+              <span class="fn">getDadosGeraisMobile</span>(<br>
+              &nbsp;&nbsp;<span class="prop">@Query</span>() filters: {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">etapa</span>?: <span class="prop">number</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">periodo</span>?: <span class="prop">string</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">tipoAtendimento</span>?: <span class="prop">string</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">tecnicoId</span>?: <span class="prop">number</span><br>
+              &nbsp;&nbsp;}<br>
+              ) {<br>
+              &nbsp;&nbsp;<span class="kw">return</span> {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">produtoresAtendidos</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">diagnosticosConcluidos</span>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">estadosAtendidos</span><br>
+              &nbsp;&nbsp;}<br>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 8: AUTENTICAÇÃO E SESSÃO ─── -->
+    <div class="slide" id="slide-8">
+      <div class="slide-title">// sprint 97/98 — Autenticação e Sessão</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-blue">🔐 feature + fix + refactor</span>
+        <span class="badge badge-green">#11781 #11794 #11887</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">auth-session.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Autenticação e <span>Sessão</span> — UX e Segurança</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- #11781 -->
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">#11781 — Reload automático após deploy</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Após novo deploy, assets JS em cache ficavam desatualizados e geravam <strong style="color:var(--text)">erros em branco</strong> para o usuário. Agora o sistema detecta a nova versão e <strong style="color:var(--text)">força reload automático</strong> — sem intervenção do usuário.
+            </div>
+            <div class="flow" style="font-size:13px">
+              <div class="flow-step" style="padding:6px 12px">Novo deploy</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">Detecta hash diferente</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px; border-color:var(--teal); color:var(--teal)">Auto-reload</div>
+            </div>
+          </div>
+
+          <!-- #11794 -->
+          <div class="card card-accent-blue">
+            <div class="section-label" style="color:var(--blue)">#11794 — Redirecionamento para URL original após login</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Usuário que acessava <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">/pagina-x</code> sem autenticação era jogado na home após login. Agora o <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">AuthGuard</code> salva a rota original via <code style="color:var(--teal); background:var(--bg4); padding:2px 8px; border-radius:3px">returnUrl</code> e redireciona de volta.
+            </div>
+            <div class="flow" style="font-size:13px">
+              <div class="flow-step" style="padding:6px 12px">/pagina-x</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">AuthGuard salva URL</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">/login?returnUrl=</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px; border-color:var(--teal); color:var(--teal)">/pagina-x ✓</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- #11887 — destaque principal -->
+          <div class="card card-accent-purple">
+            <div class="section-label" style="color:var(--purple)">#11887 — Isolamento de sessão Agrotrace ↔ CMS</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Agrotrace e CMS compartilhavam o <strong style="color:var(--text)">mesmo cookie de autenticação</strong>. Fazer logout em um sistema derrubava a sessão do outro. Refactor completo para cookies independentes — Mobile continua via <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">Authorization: Bearer</code>.
+            </div>
+
+            <div style="display:flex; gap:16px; margin-bottom:12px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--coral); margin-bottom:6px; font-weight:700">❌ ANTES</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="err">cookie: auth_token</span><br>
+                  <span class="cmt">// compartilhado!</span><br>
+                  <span class="cmt">// logout CMS → mata Agrotrace</span>
+                </div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-bottom:6px; font-weight:700">✓ DEPOIS</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="ok">cookie: agrotrace</span><br>
+                  <span class="ok">cookie: cms</span><br>
+                  <span class="ok">header: Bearer (mobile)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tag-list">
+              <span class="chip">cookies independentes</span>
+              <span class="chip">interceptadores HTTP</span>
+              <span class="chip">localStorage isolado</span>
+              <span class="chip">mobile inalterado</span>
+            </div>
+          </div>
+
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">🔐 auth-guard.service.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12</div>
+              <div class="code-lines">
+                <span class="cmt">// returnUrl → redireciona após login</span><br>
+                <span class="kw">canActivate</span>(route, state) {<br>
+                &nbsp;&nbsp;<span class="kw">if</span> (!<span class="prop">this</span>.<span class="fn">isAuthenticated</span>()) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">const</span> <span class="prop">returnUrl</span> =<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state.<span class="prop">url</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">this</span>.<span class="prop">router</span>.<span class="fn">navigate</span>(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="str">'/login'</span>],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="prop">queryParams</span>: { returnUrl } }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="num">false</span><br>
+                &nbsp;&nbsp;}<br>
+                }
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 9: FORMULÁRIOS DINÂMICOS ─── -->
+    <div class="slide" id="slide-9">
+      <div class="slide-title">// sprint 97/98 — Formulários Dinâmicos</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-teal">📋 feature + fix</span>
+        <span class="badge badge-green">#11796 #11734 #11746 #11904 #11906</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">forms-dinamicos.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Formulários <span>Dinâmicos</span> — Novo tipo de pergunta + Laudos</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- #11796 destaque -->
+          <div class="card card-accent-teal">
+            <div class="section-label" style="color:var(--teal)">#11796 — Novo tipo de pergunta: Anexo</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Produtores agora podem fazer <strong style="color:var(--text)">upload de documentos</strong> (PDF, DOCX, XLS, etc.) diretamente como resposta a uma pergunta. O CMS permite configurar <strong style="color:var(--text)">quantidade mínima/máxima</strong> de arquivos e <strong style="color:var(--text)">tamanho máximo</strong> por arquivo (default: 10 MB). O botão de upload trava automaticamente ao atingir o limite.
+            </div>
+            <div class="flow" style="font-size:13px">
+              <div class="flow-step" style="padding:6px 12px">CMS configura limites</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">Produtor abre formulário</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">Upload de arquivos</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px; border-color:var(--teal); color:var(--teal)">Salvo no blob</div>
+            </div>
+          </div>
+
+          <!-- Laudos Biodiesel -->
+          <div class="card card-accent-amber">
+            <div class="section-label" style="color:var(--amber)">Laudos Biodiesel — Duas novas opções</div>
+            <div style="display:flex; gap:16px; margin-top:4px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--amber); margin-bottom:6px; font-weight:700">#11746 — "Imprimir"</div>
+                <div style="font-size:14px; color:var(--text2); line-height:1.6">
+                  Campos podem ser marcados para <strong style="color:var(--text)">controlar o que aparece na impressão</strong> do laudo. Visibilidade granular por campo.
+                </div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--amber); margin-bottom:6px; font-weight:700">#11734 — "Possui Validação"</div>
+                <div style="font-size:14px; color:var(--text2); line-height:1.6">
+                  Campos recebem <strong style="color:var(--text)">expressão de validação</strong> e mensagem de erro customizada, configurável via CMS.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Correções -->
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">Correções de UX</div>
+            <div style="display:flex; flex-direction:column; gap:10px; font-size:15px; color:var(--text2); margin-top:4px">
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700; min-width:60px">#11904</span>
+                <div>
+                  <strong style="color:var(--text)">Exclusão de imagem única bloqueada</strong> — lógica de validação impedia remover quando havia apenas 1 imagem. Condição corrigida.
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700; min-width:60px">#11906</span>
+                <div>
+                  <strong style="color:var(--text)">Lightbox sem botão de fechar</strong> — modal de visualização de imagem não tinha botão <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">x</code>, forçando uso de <kbd>Esc</kbd>. Adicionado botão acessível inclusive no mobile.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">📋 pergunta-anexo.config.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14</div>
+              <div class="code-lines">
+                <span class="kw">interface</span> <span class="fn">PerguntaAnexo</span> {<br>
+                &nbsp;&nbsp;<span class="prop">tipo</span>: <span class="str">'anexo'</span><br>
+                &nbsp;&nbsp;<span class="prop">minArquivos</span>: <span class="num">1</span><br>
+                &nbsp;&nbsp;<span class="prop">maxArquivos</span>: <span class="num">5</span><br>
+                &nbsp;&nbsp;<span class="prop">maxTamanhoMB</span>: <span class="num">10</span><br>
+                &nbsp;&nbsp;<span class="prop">extensoes</span>: [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'.pdf'</span>, <span class="str">'.docx'</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'.xls'</span>, <span class="str">'.xlsx'</span><br>
+                &nbsp;&nbsp;]<br>
+                }<br><br>
+                <span class="cmt">// Botão trava ao atingir maxArquivos</span><br>
+                <span class="kw">get</span> <span class="fn">podeAnexar</span>() {<br>
+                &nbsp;&nbsp;<span class="kw">return</span> <span class="prop">this</span>.<span class="prop">files</span>.<span class="prop">length</span> &lt; <span class="prop">this</span>.<span class="prop">maxArquivos</span><br>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">🔧 laudo-biodiesel.config.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11</div>
+              <div class="code-lines">
+                <span class="kw">interface</span> <span class="fn">CampoBiodiesel</span> {<br>
+                &nbsp;&nbsp;<span class="prop">label</span>: <span class="prop">string</span><br>
+                &nbsp;&nbsp;<span class="prop">valor</span>: <span class="prop">unknown</span><br><br>
+                &nbsp;&nbsp;<span class="cmt">// #11746 — novo</span><br>
+                &nbsp;&nbsp;<span class="ok">imprimir</span>: <span class="prop">boolean</span><br><br>
+                &nbsp;&nbsp;<span class="cmt">// #11734 — novo</span><br>
+                &nbsp;&nbsp;<span class="ok">possuiValidacao</span>: <span class="prop">boolean</span><br>
+                &nbsp;&nbsp;<span class="ok">expressaoValidacao</span>?: <span class="prop">string</span><br>
+                &nbsp;&nbsp;<span class="ok">mensagemErro</span>?: <span class="prop">string</span><br>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 10: RELATÓRIOS E EXPORTAÇÕES ─── -->
+    <div class="slide" id="slide-10">
+      <div class="slide-title">// sprint 97/98 — Relatórios e Exportações</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-amber">📄 feature + fix</span>
+        <span class="badge badge-green">#11742 #11807 #11647 #11947 #11950 #11967 #11927</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">relatorios.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Relatórios e <span>Exportações</span> — Ciclo completo</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- Segurança -->
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">#11807 — Tokens fixos expostos no PDF</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:10px">
+              Relatórios Jasper incluíam <strong style="color:var(--text)">URL e QRCode de anexos com tokens fixos de acesso</strong>, expondo credenciais no PDF gerado. Removidos completamente.
+            </div>
+            <div style="display:flex; gap:16px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:8px 12px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--coral); margin-bottom:4px; font-weight:700">ANTES</div>
+                <div style="font-family:var(--font-mono); font-size:12px; color:var(--text2); line-height:1.7">
+                  <span class="err">URL: blob.core/...?sig=TOKEN</span><br>
+                  <span class="err">QRCode: [token exposto]</span>
+                </div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:8px 12px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-bottom:4px; font-weight:700">DEPOIS</div>
+                <div style="font-family:var(--font-mono); font-size:12px; color:var(--text2); line-height:1.7">
+                  <span class="ok">URL: removida</span><br>
+                  <span class="ok">QRCode: removido</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Novas features -->
+          <div class="card card-accent-teal">
+            <div class="section-label" style="color:var(--teal)">Melhorias em Relatórios</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:15px; color:var(--text2); margin-top:4px">
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--teal); font-family:var(--font-mono); font-weight:700; min-width:60px">#11742</span>
+                <span>Relatório Expocacer agora exporta Word em <strong style="color:var(--text)">orientação paisagem</strong> (horizontal)</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--teal); font-family:var(--font-mono); font-weight:700; min-width:60px">#11647</span>
+                <span>Dados de <strong style="color:var(--text)">APP</strong> (Preserv. Permanente) e <strong style="color:var(--text)">RL</strong> (Reserva Legal) do CAR-Sicar incluídos no relatório 3S</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--teal); font-family:var(--font-mono); font-weight:700; min-width:60px">#11950</span>
+                <span>Template HTML estático para <strong style="color:var(--text)">Relatório de Atend. Técnico</strong> — dark/light, 100% offline, marcadores dinâmicos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fixes -->
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">Correções Jasper</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:15px; color:var(--text2); margin-top:4px">
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700; min-width:60px">#11947</span>
+                <div>Title Case falhava com múltiplos espaços:<br>
+                  <code style="color:var(--coral); background:var(--bg4); padding:2px 8px; border-radius:3px">.split(" ")</code> → <code style="color:var(--teal); background:var(--bg4); padding:2px 8px; border-radius:3px">.split("\\s+")</code>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700; min-width:60px">#11967</span>
+                <span>Relatório de Diagnóstico — <strong style="color:var(--text)">Grupos MT e MT(COFCO)</strong>: falha na geração + textos de Apresentação e Conclusão atualizados</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- Exportações CMS -->
+          <div class="card card-accent-amber">
+            <div class="section-label" style="color:var(--amber)">#11927 — Melhorias no fluxo de Exportações (CMS)</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:10px">
+              Quatro ajustes que simplificam o cadastro e eliminam fricção:
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:var(--text2)">
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--amber); font-family:var(--font-mono); font-weight:700">1.</span>
+                <span>"Título do Relatório" <strong style="color:var(--text)">deixou de ser obrigatório</strong></span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--amber); font-family:var(--font-mono); font-weight:700">2.</span>
+                <span>Sincronização de parâmetros <strong style="color:var(--text)">não preenche</strong> "Label Alternativa" automaticamente</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--amber); font-family:var(--font-mono); font-weight:700">3.</span>
+                <span>Cor default de campos sincronizados = <strong style="color:var(--text)">branca</strong> (Excel gerado legível — sem texto preto sobre fundo preto)</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--amber); font-family:var(--font-mono); font-weight:700">4.</span>
+                <span>Ao criar nova exportação, sincronização de parâmetros e campos é <strong style="color:var(--text)">executada automaticamente</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code block RAT template -->
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">📄 rat-report.template.html — #11950</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
+              <div class="code-lines">
+                <span class="cmt">&lt;!-- Template 100% offline --&gt;</span><br>
+                <span class="cmt">&lt;!-- Suporta dark/light mode --&gt;</span><br><br>
+                <span class="kw">&lt;meta</span> <span class="prop">name</span>=<span class="str">"color-scheme"</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">content</span>=<span class="str">"light dark"</span><span class="kw">&gt;</span><br><br>
+                <span class="cmt">&lt;!-- Marcadores dinâmicos --&gt;</span><br>
+                <span class="tag">{{DATA_INICIO}}</span> → data inicial<br>
+                <span class="tag">{{DATA_FIM}}</span> &nbsp;&nbsp;→ data final<br>
+                <span class="tag">{{FOLDER}}</span> &nbsp;&nbsp;&nbsp;→ pasta de anexos<br>
+                <span class="tag">{{FILES}}</span> &nbsp;&nbsp;&nbsp;&nbsp;→ lista de arquivos<br><br>
+                <span class="cmt">&lt;!-- Substituídos no build do ZIP --&gt;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 11: INFRAESTRUTURA ─── -->
+    <div class="slide" id="slide-11">
+      <div class="slide-title">// sprint 97/98 — Infraestrutura e Confiabilidade</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-coral">⚙️ fix + refactor</span>
+        <span class="badge badge-green">#11882 #11933</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">infra.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Infraestrutura e <span>Confiabilidade</span> — Dois incidentes resolvidos</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+
+        <!-- #11882 -->
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">#11882 — Fix SAS Token de Anexos (Azure Blob)</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              UUIDs com hífens geravam <strong style="color:var(--text)">tokens SAS inválidos</strong> no Azure Blob Storage, quebrando <strong style="color:var(--text)">todos os anexos no mobile</strong>. Web, Mobile e DevOps trabalharam em paralelo e resolveram no mesmo dia.
+            </div>
+
+            <div style="display:flex; gap:16px; margin-bottom:12px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--coral); margin-bottom:6px; font-weight:700">ANTES — path inválido</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="err">uuid: a1b2c3d4-e5f6-7890</span><br>
+                  <span class="err">path: /a1b2c3d4-e5f6-7890/</span><br>
+                  <span class="cmt">// SAS token → 403 Forbidden</span>
+                </div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-bottom:6px; font-weight:700">DEPOIS — UUID sanitizado</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="ok">uuid: a1b2c3d4e5f67890</span><br>
+                  <span class="ok">path: /a1b2c3d4e5f67890/</span><br>
+                  <span class="cmt">// SAS token → 200 OK ✓</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow" style="font-size:13px">
+              <div class="flow-step" style="padding:6px 12px">UUID recebido</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">.replace(/-/g, '')</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px">Monta path limpo</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="padding:6px 12px; border-color:var(--teal); color:var(--teal)">SAS válido ✓</div>
+            </div>
+          </div>
+
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">🔧 sas-token.service.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
+              <div class="code-lines">
+                <span class="kw">function</span> <span class="fn">getSasUrl</span>(uuid: <span class="prop">string</span>) {<br>
+                &nbsp;&nbsp;<span class="cmt">// Sanitiza UUID antes do path</span><br>
+                &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">cleanId</span> = uuid<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;.<span class="fn">replace</span>(<span class="str">/-/g</span>, <span class="str">''</span>)<br><br>
+                &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">blobPath</span> =<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">`${container}/${cleanId}`</span><br><br>
+                &nbsp;&nbsp;<span class="kw">return</span> <span class="fn">generateSasToken</span>(blobPath)<br>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- #11933 -->
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="card card-accent-blue">
+            <div class="section-label" style="color:var(--blue)">#11933 — Migração de upload: memoryStorage → diskStorage</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Upload de arquivo de <strong style="color:var(--text)">150 MB</strong> causou crash por OOM — o Multer carregava o <strong style="color:var(--text)">arquivo inteiro na RAM</strong> do servidor NestJS. Endpoints migrados para <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">diskStorage</code> com diretório temporário. Arquivos deletados via <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">try/finally</code> para garantir cleanup mesmo em caso de erro.
+            </div>
+
+            <div style="display:flex; gap:16px; margin-bottom:12px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--coral); margin-bottom:6px; font-weight:700">ANTES — memoryStorage</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="err">arquivo → buffer na RAM</span><br>
+                  <span class="err">150MB → heap overflow</span><br>
+                  <span class="cmt">// servidor crash 💥</span>
+                </div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-bottom:6px; font-weight:700">DEPOIS — diskStorage</div>
+                <div style="font-family:var(--font-mono); font-size:13px; color:var(--text2); line-height:1.8">
+                  <span class="ok">arquivo → disco tmpdir()</span><br>
+                  <span class="ok">stream → Azure Blob</span><br>
+                  <span class="cmt">// finally { unlink(tmp) }</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; text-align:center">
+                <div style="font-size:28px; font-weight:700; font-family:var(--font-mono); color:var(--coral)">150MB</div>
+                <div style="font-size:12px; color:var(--text3)">causava crash</div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; text-align:center; display:flex; align-items:center; justify-content:center">
+                <div style="font-size:20px; color:var(--text3)">→</div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; text-align:center">
+                <div style="font-size:28px; font-weight:700; font-family:var(--font-mono); color:var(--teal)">∞</div>
+                <div style="font-size:12px; color:var(--text3)">sem limite de RAM</div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; text-align:center">
+                <div style="font-size:28px; font-weight:700; font-family:var(--font-mono); color:var(--teal)">0</div>
+                <div style="font-size:12px; color:var(--text3)">arquivos orphans</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">🔧 upload.service.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16</div>
+              <div class="code-lines">
+                <span class="cmt">// Antes — arquivo inteiro na RAM</span><br>
+                <span class="err">multer({ storage: memoryStorage() })</span><br><br>
+                <span class="cmt">// Depois — disco temporário + cleanup</span><br>
+                <span class="ok">multer({ storage: diskStorage({</span><br>
+                <span class="ok">&nbsp;&nbsp;destination: tmpdir()</span><br>
+                <span class="ok">})})</span><br><br>
+                <span class="kw">async</span> <span class="fn">uploadToBlob</span>(file) {<br>
+                &nbsp;&nbsp;<span class="kw">try</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">await</span> <span class="fn">streamToBlob</span>(file.<span class="prop">path</span>)<br>
+                &nbsp;&nbsp;} <span class="kw">finally</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// Sempre limpa o arquivo temp</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">unlinkSync</span>(file.<span class="prop">path</span>)<br>
+                &nbsp;&nbsp;}<br>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 12: UI/UX E CORREÇÕES ─── -->
+    <div class="slide" id="slide-12">
+      <div class="slide-title">// sprint 97/98 — UI/UX e Correções</div>
+      <div class="flex-row mb-8">
+        <span class="badge badge-blue">🎨 fix + feature</span>
+        <span class="badge badge-green">#11763 #11909 #11932 #11885 #11840 #11707 #11872</span>
+        <span style="font-size:14px; color:var(--text3); font-family:var(--font-mono)">ui-fixes.ts</span>
+      </div>
+      <div class="slide-heading" style="font-size:28px; margin-bottom:20px">Perfil do Produtor, <span>UI/UX</span> e Correções</div>
+
+      <div class="grid-2" style="gap:16px; flex:1">
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <!-- Carrossel destaque -->
+          <div class="card card-accent-blue">
+            <div class="section-label" style="color:var(--blue)">#11909 — Gráficos de conformidade → Carrossel navegável</div>
+            <div style="font-size:15px; color:var(--text2); line-height:1.7; margin-bottom:12px">
+              Gráficos de conformidade <strong style="color:var(--text)">extrapolavam a largura da tela</strong> e o último ficava cortado. Migrado para <code style="color:var(--amber); background:var(--bg4); padding:2px 8px; border-radius:3px">p-carousel</code> do PrimeNG com breakpoints responsivos.
+            </div>
+            <div style="display:flex; gap:12px">
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px; text-align:center">
+                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--blue)">4</div>
+                <div style="font-size:12px; color:var(--text3)">itens desktop</div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px; text-align:center">
+                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--blue)">2</div>
+                <div style="font-size:12px; color:var(--text3)">itens tablet</div>
+              </div>
+              <div style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px; text-align:center">
+                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--blue)">1</div>
+                <div style="font-size:12px; color:var(--text3)">item mobile</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark mode + responsividade -->
+          <div class="card card-accent-purple">
+            <div class="section-label" style="color:var(--purple)">Melhorias visuais no Perfil do Produtor</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:15px; color:var(--text2); margin-top:4px">
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--purple); font-family:var(--font-mono); font-weight:700; min-width:60px">#11763</span>
+                <span><strong style="color:var(--text)">Suporte a Dark Mode na Home</strong> — quadros da tela inicial que não estavam adaptados ao tema escuro agora renderizam corretamente em ambos os modos</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start">
+                <span style="color:var(--purple); font-family:var(--font-mono); font-weight:700; min-width:60px">#11932</span>
+                <span><strong style="color:var(--text)">Responsividade do Perfil Público</strong> — ajustes nos gráficos dos temas para adaptar em telas menores sem quebra de layout</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block" style="height:fit-content">
+            <div class="code-block-header">🎨 conformidade-carousel.component.ts</div>
+            <div class="code-body">
+              <div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</div>
+              <div class="code-lines">
+                <span class="cmt">// Antes — overflow cortava o último</span><br>
+                <span class="err">&lt;div class="flex-row"&gt; ...gráficos&lt;/div&gt;</span><br><br>
+                <span class="cmt">// Depois — carrossel responsivo</span><br>
+                <span class="ok">&lt;p-carousel [value]="graficos"</span><br>
+                <span class="ok">&nbsp;&nbsp;[numVisible]="4"</span><br>
+                <span class="ok">&nbsp;&nbsp;[numScroll]="1"</span><br>
+                <span class="ok">&nbsp;&nbsp;[responsiveOptions]="breakpoints"&gt;</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px">
+
+          <div class="card card-accent-coral">
+            <div class="section-label" style="color:var(--coral)">Bugs de produção corrigidos</div>
+            <div style="display:flex; flex-direction:column; gap:10px; font-size:15px; color:var(--text2); margin-top:4px">
+
+              <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px">
+                  <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700">#11885</span>
+                  <strong style="color:var(--text)">CAR duplicando em novo cadastro</strong>
+                </div>
+                <div style="font-size:14px; color:var(--text3); line-height:1.6">
+                  Ao registrar uma nova propriedade, o CAR era duplicado no banco. Bug de produção identificado e corrigido na lógica de persistência.
+                </div>
+              </div>
+
+              <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px">
+                  <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700">#11840</span>
+                  <strong style="color:var(--text)">Consolidação em lote bloqueando indevidamente</strong>
+                </div>
+                <div style="font-size:14px; color:var(--text3); line-height:1.6">
+                  Propriedades com atendimentos não-diagnóstico na safra de destino eram bloqueadas incorretamente. Lógica de validação corrigida para considerar apenas diagnósticos.
+                </div>
+              </div>
+
+              <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px">
+                  <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700">#11707</span>
+                  <strong style="color:var(--text)">Ranking de importância repetido na Home</strong>
+                </div>
+                <div style="font-size:14px; color:var(--text3); line-height:1.6">
+                  Tela inicial do perfil do produtor exibia o detalhe de importância do ranking múltiplas vezes. Query de agregação corrigida.
+                </div>
+              </div>
+
+              <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:10px 14px">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:6px">
+                  <span style="color:var(--coral); font-family:var(--font-mono); font-weight:700">#11872</span>
+                  <strong style="color:var(--text)">Tooltip do gráfico mostrando percentual</strong>
+                </div>
+                <div style="font-size:14px; color:var(--text3); line-height:1.6">
+                  Tooltip agora exibe o <strong style="color:var(--text2)">total de respostas</strong> ao invés de percentual ao passar o mouse sobre o gráfico da Home.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SLIDE 13: WINS ─── -->
+    <div class="slide" id="slide-13">
       <div class="slide-title">// wins.log</div>
       <div class="slide-heading">Engineering <span>Wins</span></div>
 
@@ -1555,8 +2247,8 @@ kbd {
       </div>
     </div>
 
-    <!-- ─── SLIDE 8: ROADMAP ─── -->
-    <div class="slide" id="slide-8">
+    <!-- ─── SLIDE 14: ROADMAP ─── -->
+    <div class="slide" id="slide-14">
       <div class="slide-title">// roadmap.todo</div>
       <div class="slide-heading">Próximas <span>prioridades</span></div>
 
@@ -1607,8 +2299,8 @@ kbd {
       </div>
     </div>
 
-    <!-- ─── SLIDE 9: EXIT ─── -->
-    <div class="slide" id="slide-9">
+    <!-- ─── SLIDE 15: EXIT ─── -->
+    <div class="slide" id="slide-15">
       <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:24px">
         <div style="font-family:var(--font-mono); font-size:14px; color:var(--text3); letter-spacing:0.15em; text-transform:uppercase">// exit.ts</div>
 
@@ -1646,7 +2338,7 @@ kbd {
 <div class="nav-controls">
   <button class="nav-btn" onclick="prev()">← prev</button>
   <div class="nav-dots" id="navDots"></div>
-  <span class="slide-counter" id="slideCounter">1 / 10</span>
+  <span class="slide-counter" id="slideCounter">1 / 16</span>
   <button class="nav-btn" onclick="next()">next →</button>
 </div>
 
@@ -1786,7 +2478,9 @@ let cur = 0;
 const labels = [
   'README.md','agenda.ts','stats.json',
   'ext-integration.ts','health-dashboard.ts','landing-page.astro',
-  'mcp-procedures.sql','wins.log','roadmap.todo','exit.ts'
+  'mcp-procedures.sql','painel-gestao.ts','auth-session.ts','forms-dinamicos.ts',
+  'relatorios.ts','infra.ts','ui-fixes.ts',
+  'wins.log','roadmap.todo','exit.ts'
 ];
 
 // Build tabs
@@ -1794,7 +2488,7 @@ const tabsBar = document.getElementById('tabsBar');
 labels.forEach((l, i) => {
   const t = document.createElement('div');
   t.className = 'tab-item' + (i === 0 ? ' active' : '');
-  const icons = ['📋','📊','📅','🔐','📡','🌐','⚡','🏆','🗺️','👋'];
+  const icons = ['📋','📊','📅','🔐','📡','🌐','⚡','📊','🔐','📋','📄','⚙️','🎨','🏆','🗺️','👋'];
   t.innerHTML = `<span class="tab-icon">${icons[i]}</span>${l}`;
   t.onclick = () => goTo(i);
   t.id = 'tab-' + i;
