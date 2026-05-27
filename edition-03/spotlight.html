@@ -1770,12 +1770,9 @@
           <div class="sidebar-header">Wrap-up</div>
 
           <div class="sidebar-item" onclick="goTo(10)" id="si-10">
-            <span class="sidebar-icon">🏆</span> wins.log
-          </div>
-          <div class="sidebar-item" onclick="goTo(11)" id="si-11">
             <span class="sidebar-icon">🗺️</span> roadmap.todo
           </div>
-          <div class="sidebar-item" onclick="goTo(12)" id="si-12">
+          <div class="sidebar-item" onclick="goTo(11)" id="si-11">
             <span class="sidebar-icon">👋</span> exit.ts
           </div>
         </div>
@@ -2019,27 +2016,12 @@
                 </div>
               </div>
             </div>
-            <div class="tl-item">
-              <div class="tl-line">
-                <div class="tl-dot" style="background: var(--green)"></div>
-                <div class="tl-connector"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-time">19:00 – 21:00 · Ronaldo · 2min</div>
-                <div style="display: flex; align-items: center; gap: 8px">
-                  <span class="badge badge-green">Wins</span>
-                  <span style="font-size: 16px; color: var(--text)"
-                    >3 conquistas do período</span
-                  >
-                </div>
-              </div>
-            </div>
             <div class="tl-item" style="padding-bottom: 0">
               <div class="tl-line">
                 <div class="tl-dot" style="background: var(--text3)"></div>
               </div>
               <div class="tl-body">
-                <div class="tl-time">21:00 – 23:00 · Ronaldo · 2min</div>
+                <div class="tl-time">19:00 – 21:00 · Ronaldo · 2min</div>
                 <div style="display: flex; align-items: center; gap: 8px">
                   <span
                     class="badge"
@@ -3533,130 +3515,8 @@
           </div>
         </div>
 
-        <!-- ─── SLIDE 10: WINS ─── -->
+        <!-- ─── SLIDE 10: ROADMAP ─── -->
         <div class="slide" id="slide-10">
-          <div class="slide-title">// wins.log — 2 min ⏱</div>
-          <div class="slide-heading">Engineering <span>Wins</span></div>
-
-          <div class="grid-3" style="flex: 1">
-            <div class="win-card" style="border-left: 3px solid var(--purple)">
-              <div
-                class="flex-row"
-                style="justify-content: space-between; align-items: center"
-              >
-                <div class="win-icon">🤝</div>
-                <span
-                  class="badge badge-red"
-                  style="font-size: 11px; padding: 2px 8px"
-                  >#12020</span
-                >
-              </div>
-              <div class="win-who" style="color: var(--purple)">
-                TRIO · RONALDO + BRUNO + THIELSON
-              </div>
-              <div class="win-text">
-                Rate limit do Resend resolvido em trio. Bug ia derrubar campanha
-                de comunicação em massa real — investigação e fix colaborativos
-                numa única chamada.
-              </div>
-            </div>
-
-            <div class="win-card" style="border-left: 3px solid var(--blue)">
-              <div
-                class="flex-row"
-                style="justify-content: space-between; align-items: center"
-              >
-                <div class="win-icon">🚀</div>
-                <span
-                  class="badge badge-blue"
-                  style="font-size: 11px; padding: 2px 8px"
-                  >app do zero</span
-                >
-              </div>
-              <div class="win-who" style="color: var(--blue)">BRUNO</div>
-              <div class="win-text">
-                <strong style="color: var(--text)"
-                  >ATER Digital nasceu do zero</strong
-                >
-                em poucas semanas: RAG Python, API NestJS/Drizzle, Web React,
-                agente Mastra AI e WhatsApp via Evolution+Typebot — entregue com
-                deploy K8s em 3 ambientes (renomeação
-                <code
-                  style="
-                    font-family: var(--font-mono);
-                    font-size: 12px;
-                    color: var(--amber);
-                  "
-                  >agro-assistant → ATER-DIGITAL</code
-                >
-                com zero downtime) e
-                <strong style="color: var(--text)">597 testes unitários</strong>
-                em 13 módulos.
-              </div>
-            </div>
-
-            <div class="win-card" style="border-left: 3px solid var(--teal)">
-              <div
-                class="flex-row"
-                style="justify-content: space-between; align-items: center"
-              >
-                <div class="win-icon">⚡</div>
-                <span
-                  class="badge badge-teal"
-                  style="font-size: 11px; padding: 2px 8px"
-                  >produtividade & performance</span
-                >
-              </div>
-              <div class="win-who" style="color: var(--teal)">THIELSON</div>
-              <div class="win-text">
-                Skills
-                <code
-                  style="
-                    font-family: var(--font-mono);
-                    font-size: 13px;
-                    color: var(--amber);
-                  "
-                  >agro-add-crud</code
-                >
-                orquestrando
-                <code
-                  style="
-                    font-family: var(--font-mono);
-                    font-size: 12px;
-                    color: var(--text2);
-                  "
-                  >create-form</code
-                >,
-                <code
-                  style="
-                    font-family: var(--font-mono);
-                    font-size: 12px;
-                    color: var(--text2);
-                  "
-                  >create-list</code
-                >
-                e
-                <code
-                  style="
-                    font-family: var(--font-mono);
-                    font-size: 12px;
-                    color: var(--text2);
-                  "
-                  >add-navigation</code
-                >
-                aceleraram as 4 migrações Checkmilk (#12156–#12159). Em
-                paralelo,
-                <strong style="color: var(--text)"
-                  >Respostas Automáticas saíram de 100+ chamadas para 1</strong
-                >
-                no carregamento (#12029).
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ─── SLIDE 11: ROADMAP ─── -->
-        <div class="slide" id="slide-11">
           <div class="slide-title">
             // roadmap.todo — Edition #04 (04/05 a 22/05) — 2 min ⏱
           </div>
@@ -3823,8 +3683,8 @@
           </div>
         </div>
 
-        <!-- ─── SLIDE 12: EXIT ─── -->
-        <div class="slide" id="slide-12">
+        <!-- ─── SLIDE 11: EXIT ─── -->
+        <div class="slide" id="slide-11">
           <div
             style="
               flex: 1;
@@ -4837,7 +4697,6 @@
         "agro-orchestrator.agent.ts",
         "overview-thielson.md",
         "overview-ronaldo.md",
-        "wins.log",
         "roadmap.todo",
         "exit.ts",
       ];
@@ -4855,7 +4714,6 @@
         "⚡",
         "📸",
         "📸",
-        "🏆",
         "🗺️",
         "👋",
       ];
