@@ -646,6 +646,128 @@
         color: var(--text2);
       }
 
+      .auth-brief-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .auth-brief-card {
+        padding: 18px 20px;
+      }
+
+      .auth-brief-card .section-label {
+        margin-bottom: 12px;
+      }
+
+      .auth-problem-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .auth-lead {
+        display: flex;
+        align-items: center;
+        min-height: 92px;
+        padding: 14px 16px;
+        border-radius: var(--radius);
+        background: rgba(251, 146, 60, 0.08);
+        border: 1px solid rgba(251, 146, 60, 0.22);
+        color: var(--text);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .auth-detail-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .auth-detail-item,
+      .auth-delivery-item,
+      .auth-stage {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(33, 38, 45, 0.62);
+      }
+
+      .auth-detail-item {
+        padding: 10px 12px;
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .auth-detail-item strong,
+      .auth-stage strong {
+        color: var(--text);
+      }
+
+      .auth-delivery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .auth-delivery-item {
+        padding: 10px 12px;
+      }
+
+      .auth-delivery-title {
+        margin-bottom: 4px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .auth-delivery-copy {
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .auth-stage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .auth-stage {
+        padding: 12px 14px;
+      }
+
+      .auth-stage-label {
+        margin-bottom: 6px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .auth-stage-copy {
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .auth-stage-note {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: var(--radius);
+        background: rgba(52, 211, 153, 0.08);
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
       .flow {
         display: flex;
         align-items: center;
@@ -2730,7 +2852,7 @@
             <span class="badge badge-purple">MFA</span>
             <span
               style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
-              >better-auth.guard.ts</span
+              >better-auth.bridge.ts</span
             >
           </div>
           <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
@@ -2738,36 +2860,71 @@
           </div>
 
           <div class="grid-2" style="gap: 16px; flex: 1">
-            <div style="display: flex; flex-direction: column; gap: 10px">
-              <div class="card card-accent-coral" style="padding: 12px 16px">
+            <div class="auth-brief-stack">
+              <div class="card card-accent-coral auth-brief-card">
                 <div class="section-label" style="color: var(--coral)">❌ problema</div>
-                <div style="font-size: 13px; color: var(--text2); line-height: 1.5">
-                  O fluxo antigo de autenticação precisava evoluir sem quebrar o uso atual.
-                  O desafio era introduzir uma base nova, com MFA, TOTP, ativação de conta,
-                  compatibilidade com fluxos legados e segurança no momento mais sensível:
-                  antes da emissão do token completo.
+                <div class="auth-problem-grid">
+                  <div class="auth-lead">Modernizar autenticação sem quebrar clientes em produção.</div>
+                  <div class="auth-detail-list">
+                    <div class="auth-detail-item"><strong>Web/CMS:</strong> evoluir para sessão por cookie com Better Auth.</div>
+                    <div class="auth-detail-item"><strong>Mobile:</strong> manter JWT no JSON e endpoints atuais.</div>
+                    <div class="auth-detail-item"><strong>Risco:</strong> não emitir acesso completo antes do MFA.</div>
+                  </div>
                 </div>
               </div>
 
-              <div class="card card-accent-blue" style="padding: 12px 16px">
+              <div class="card card-accent-blue auth-brief-card">
                 <div class="section-label" style="color: var(--blue)">✓ o que entregamos</div>
-                <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--text2);">
-                  <div>→ <strong>#11404</strong> Estrutura base do Better-Auth com tabelas core</div>
-                  <div>→ Entidades <code>account</code>, <code>session</code>, <code>user</code> e <code>verification</code></div>
-                  <div>→ Auth V2 integrado ao módulo principal de autenticação</div>
-                  <div>→ Tokens parciais para login pendente de MFA</div>
-                  <div>→ Fluxos MFA Email/Google/TOTP com UI modernizada</div>
-                  <div>→ Locks transacionais para senha e ativação de conta</div>
-                  <div>→ Ajustes em guards, decorators, apikeys e endpoints de validação</div>
+                <div class="auth-delivery-grid">
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Better Auth</div>
+                    <div class="auth-delivery-copy">Tabelas de sessão, verificação e duplo fator.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Bridges</div>
+                    <div class="auth-delivery-copy">Auth V2 consolidado sem quebrar contratos legados.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Web/CMS</div>
+                    <div class="auth-delivery-copy">Sessão moderna por cookie e trusted origins.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Mobile</div>
+                    <div class="auth-delivery-copy">Tokens JSON preservados no fluxo atual.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Token parcial</div>
+                    <div class="auth-delivery-copy">Bloqueia acesso completo antes do MFA.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">MFA</div>
+                    <div class="auth-delivery-copy">Email e TOTP/Google com UI compartilhada.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Reset</div>
+                    <div class="auth-delivery-copy">Fluxo Better Auth com cookies por ambiente.</div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Arquitetura</div>
+                    <div class="auth-delivery-copy">Guards, extractors e services reorganizados.</div>
+                  </div>
                 </div>
               </div>
 
-              <div class="card card-accent-teal" style="padding: 12px 16px">
+              <div class="card card-accent-teal auth-brief-card">
                 <div class="section-label" style="color: var(--teal)">🎯 destaque técnico</div>
-                <div style="font-size: 13px; color: var(--text2); line-height: 1.5">
-                  O ponto central é impedir que um usuário receba acesso completo antes de
-                  concluir a verificação. O token parcial carrega apenas o estado necessário
-                  para terminar o MFA; só depois disso o fluxo emite o token final.
+                <div class="auth-stage-grid">
+                  <div class="auth-stage">
+                    <div class="auth-stage-label">antes do MFA</div>
+                    <div class="auth-stage-copy"><strong>Credenciais válidas</strong>, mas ainda sem acesso completo.</div>
+                  </div>
+                  <div class="auth-stage">
+                    <div class="auth-stage-label">depois do MFA</div>
+                    <div class="auth-stage-copy"><strong>Acesso liberado</strong> conforme a plataforma.</div>
+                  </div>
+                </div>
+                <div class="auth-stage-note">
+                  Web/CMS recebem sessão Better Auth por cookie. Mobile mantém tokens no JSON.
                 </div>
               </div>
             </div>
@@ -2781,15 +2938,17 @@
                   </div>
                   <div class="code-lines">
                     <span class="cmt">// login com MFA</span><br />
-                    <span class="kw">const</span> user = <span class="kw">await</span> auth.<span class="fn">validatePassword</span>(email, password)<br />
-                    <span class="kw">if</span> (user.<span class="prop">mfaRequired</span>) {<br />
+                    <span class="kw">const</span> login = <span class="kw">await</span> auth.<span class="fn">validateCredentials</span>(email, password)<br />
+                    <span class="kw">if</span> (login.<span class="prop">mfaRequired</span>) {<br />
                     &nbsp;&nbsp;<span class="kw">return</span> auth.<span class="fn">issuePartialToken</span>({<br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">userId</span>: user.id,<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">userId</span>: login.user.id,<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">mfaRequired</span>: <span class="kw">true</span><br />
                     &nbsp;&nbsp;})<br />
                     }<br /><br />
                     <span class="kw">const</span> verified = <span class="kw">await</span> auth.<span class="fn">verifyMfa</span>(partialToken, code)<br />
-                    <span class="kw">return</span> auth.<span class="fn">issueAccessToken</span>(verified.user)
+                    <span class="kw">return</span> auth.<span class="fn">completeAccess</span>(verified, platform)<br />
+                    <span class="cmt">// WEB/CMS: cookie de sessão</span><br />
+                    <span class="cmt">// MOBILE: tokens no JSON</span>
                   </div>
                 </div>
               </div>
@@ -2800,9 +2959,9 @@
                 <span class="chip">MFA</span>
                 <span class="chip">TOTP</span>
                 <span class="chip">partial token</span>
-                <span class="chip">JWT guard</span>
-                <span class="chip">PrimeNG</span>
-                <span class="chip">transações</span>
+                <span class="chip">session cookie</span>
+                <span class="chip">Mobile compatível</span>
+                <span class="chip">bridges legadas</span>
               </div>
             </div>
           </div>
