@@ -88,14 +88,14 @@ body {
 
 /* ── GRID ── */
 .grid-container {
-  max-width: 960px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
   flex: 1;
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -103,7 +103,7 @@ body {
 .card {
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 1.5rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   display: flex;
@@ -252,6 +252,27 @@ span.btn-disabled {
   color: rgba(255,255,255,0.85);
   gap: 16px;
 }
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .header {
+    padding: 2.25rem 1rem 1.75rem;
+  }
+  .grid-container {
+    padding: 1.5rem 1rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card-actions {
+    flex-direction: column;
+  }
+}
 </style>
 </head>
 <body>
@@ -267,17 +288,31 @@ span.btn-disabled {
 <div class="grid-container">
   <div class="grid">
 
+    <!-- Edition #05 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-edition">#05</span>
+        <span class="card-status next">Próxima</span>
+      </div>
+      <div class="card-date">03/07/2026</div>
+      <div class="card-period">Período: <code>01/06 – 02/07/2026</code></div>
+      <div class="card-actions">
+        <a href="edition-05/spotlight.html" class="btn-spotlight">▶ Abrir Spotlight</a>
+        <a href="edition-05/cards.html" class="btn-cards">📋 Ver Cards</a>
+      </div>
+    </div>
+
     <!-- Edition #04 -->
-    <div class="card upcoming">
+    <div class="card">
       <div class="card-header">
         <span class="card-edition">#04</span>
-        <span class="card-status next">Planejada</span>
+        <span class="card-status done">Apresentado</span>
       </div>
-      <div class="card-date">22/05/2026</div>
-      <div class="card-period">Período: <code>04/05 – 22/05/2026</code></div>
+      <div class="card-date">29/05/2026</div>
+      <div class="card-period">Período: <code>04/05 – 28/05/2026</code></div>
       <div class="card-actions">
-        <span class="btn-disabled">▶ Em breve</span>
-        <span class="btn-disabled">📋 Em breve</span>
+        <a href="edition-04/spotlight.html" class="btn-spotlight">▶ Abrir Spotlight</a>
+        <a href="edition-04/cards.html" class="btn-cards">📋 Ver Cards</a>
       </div>
     </div>
 
@@ -285,7 +320,7 @@ span.btn-disabled {
     <div class="card">
       <div class="card-header">
         <span class="card-edition">#03</span>
-        <span class="card-status next">Próxima</span>
+        <span class="card-status done">Apresentado</span>
       </div>
       <div class="card-date">08/05/2026</div>
       <div class="card-period">Período: <code>06/04 – 30/04/2026</code></div>
@@ -328,8 +363,7 @@ span.btn-disabled {
 
 <div class="footer">
   <div class="footer-keys">
-    <div class="key-hint"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> Ir para edição</div>
-    <div class="key-hint" style="opacity:0.5"><kbd>4</kbd> Edition #04 (em breve)</div>
+    <div class="key-hint"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><kbd>5</kbd> Ir para edição</div>
     <div class="key-hint"><kbd>←</kbd><kbd>→</kbd> Navegar slides</div>
     <div class="key-hint"><kbd>Esc</kbd> Fechar modal</div>
   </div>
@@ -346,6 +380,8 @@ document.addEventListener('keydown', e => {
   if (e.key === '1') window.location.href = 'edition-01/spotlight.html';
   if (e.key === '2') window.location.href = 'edition-02/spotlight.html';
   if (e.key === '3') window.location.href = 'edition-03/spotlight.html';
+  if (e.key === '4') window.location.href = 'edition-04/spotlight.html';
+  if (e.key === '5') window.location.href = 'edition-05/spotlight.html';
 });
 </script>
 

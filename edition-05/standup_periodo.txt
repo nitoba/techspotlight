@@ -1,0 +1,1207 @@
+================================================================================
+TECH SPOTLIGHT #05 — STANDUPS DO PERIODO
+Periodo: 01/06 - 02/07/2026
+Apresentacao: 03/07/2026
+================================================================================
+
+Standup (01/06/2026)
+--------------------------------------------------------------------------------
+
+📆 (Start of week meeting)
+
+
+RONALDO
+📌 agrotrace-v3
+
+🚧 In Progress:
+➜ #12502 - feat(api): padronizar relatórios HTML/PDF com cabeçalho e rodapé
+    ➜ Implementação da padronização de relatórios HTML/PDF com cabeçalho e rodapé.
+    ➜ Adição da funcionalidade de geração de PDF para o extrato de respostas do perfil.
+    ➜ Inclusão de cabeçalho com logo da certificadora e rodapé com 'Agrotrace'.
+    ➜ Desenvolvimento de uma 'skill' local para futuros relatórios.
+    ➜ Criação de um serviço base reutilizável para a geração de relatórios.
+    ➜ Suporte a Puppeteer para a geração de PDFs.
+
+☎️ Com Brenda, dúvidas sobre certificação de produtores.
+☎️ Com Iohan, sobre Relatórios Perfis e Fechamento da sprint
+☎️ Com Thielson, alinhando atividades
+☎️ Com Iohan, sobre Importações Agrotrace
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done: 
+➜ #12454 - Erro para salvar grupo em novo cadastro
+      ➜  Alterado modelo de ia para um ainda ativo e adicionado varaivel de ambiente para centralizar definição de modelo
+➜ #12492 - [FEAT] Registrar aborto no fluxo de parto PEC 
+      ➜  adicionado tipo de parto Normal ou Aborto
+➜ #12240 - Prazo por pergunta - Questionário
+➜ #12440 - Análise de IA - Anexos - Atendimentos
+➜ Melhorado skill de migrations para criar tabela com 'CREATE IF NOT EXISTS'
+
+🚧 (In Progress):
+➜ #12127 - [FEAT] Cadastro de múltiplos proprietários com participação percentual por propriedade
+      ➜ (progresso feito) Alterado o backend, adicionado nova tabela e arquivos de back
+      ➜ Alterando front, adicionando cadastro no form
+
+☎️ Com Iohan problemas na auditoria de IA (modelo gemini-2.0-flash descontinuado)
+☎️ Com Ronaldo alinhando atividades
+
+
+
+BRUNO
+📆 (Apresentação Ater Digital - Diretoria)
+
+📌 ATER-DIGITAL
+
+🚧 (In Progress):
+➜ OpenAPI Schema
+    ➜ Atualização do arquivo apps/web/openapi.json para refletir novas rotas do web
+➜ Assinaturas na Carteira
+    ➜ Correção para listar programas de serviço atribuídos na carteira do usuário, incluindo ajustes nos repositórios, DTOs e componente de UI wallet-list.tsx
+➜ Bootstrap de Programas Patrocinados
+    ➜ Ajustes no bootstrap de programas patrocinados para parceiros, com correções nos casos de teste e no módulo partner.module.ts
+➜ Chaves de Geração Ad-hoc de Missão
+    ➜ Refatoração para reutilizar chaves de geração ad‑hoc em missões, com atualização dos testes correspondentes
+➜ Onboarding de Fazenda via WhatsApp
+    ➜ Implementação de pré‑preenchimento da localização da fazenda no onboarding, criação de DTOs, componentes de seleção (farm-location-picker.tsx), serviço de geolocalização (geo.ts) e testes associados
+    ➜ Cobertura de testes de coordenadas de link de setup no controlador n8n-context.controller
+➜ Validação de Horário de Agendamento
+    ➜ Validação do slot exato de agendamento, incluindo ajustes no repositório em memória e no caso de uso book-appointment.use-case.ts
+➜ Técnico
+    ➜ Inclusão do CREA em factories de teste e atualização de helpers de teste
+    ➜ Ajuste de URL de redirecionamento de reset de senha para fallback no caso de uso create-technician-admin.use-case.ts
+
+☎️ Com Elias finalizando apresentação e corrigindo bugs do Ater Digital
+
+
+
+
+Standup (02/06/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12504 - Cadastro Via planilha de importação
+    ➜ Foi realizada uma reestruturação da funcionalidade de importação de produtores e propriedades.
+    ➜ A implementação agora utiliza um processo de 'staging' e 'procedure' para gerenciar a importação, indicando um trabalho significativo na arquitetura e lógica de dados.
+    ➜ Obs.: Além da correção na importação foi trabalhado a performance, alterando o tempo de importação de 27 Minutos para 5 segundos.
+
+☎️ Com Iohan, Revisão Agrotrace - Funcionamentos  (periodo da tarde)
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done: 
+➜ Tela de Comunicação com Produtores
+      ➜  Finalizados novos controles de acompanhamento das entregas
+            ➜  ampliadas métricas de status no dashboard e nos detalhes
+            ➜  adicionados filtros por status das entregas
+            ➜  melhorada a visualização das entregas por comunicação e por produtor
+      ➜  Implementado controle operacional das entregas
+            ➜  adicionados novos status para o fluxo de comunicação
+            ➜  criada opção de cancelar entregas pendentes e entregas com falhas
+            ➜  adicionados modais de detalhes e cancelamento por entrega
+➜ #12127 - [FEAT] Cadastro de múltiplos proprietários com participação percentual por propriedade
+      ➜ Alterando front, adicionando cadastro no form
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Implementação do Mapa Rural Público
+    ➜ Infraestrutura e API
+        ➜ Exposição de endpoint público, implementação de cache de payloads e geração de cliente API via OpenAPI.
+        ➜ Adição de token de acesso assinado e normalização de camadas GeoJSON de ruralshape.
+    ➜ Interface Web
+        ➜ Criação da página de mapa rural público e integração com o novo cliente de API.
+➜ Redesign do Calendário de Missões
+    ➜ Interface Administrativa
+        ➜ Atualização do painel de visualização e templates de agendamento de missões.
+➜ Gestão de Consultas e Triagem
+    ➜ Triagem e Roteamento
+        ➜ Exposição do detalhamento de pontuação de triagem e implementação de obrigatoriedade de evidências objetivas para roteamento sênior.
+    ➜ Gestão de Técnicos
+        ➜ Modelagem de afiliações operacionais e atualização dos contratos e DTOs de técnicos.
+➜ Ajustes de Conformidade e Documentação
+    ➜ Consentimento e Revisão
+        ➜ Ajuste na revogação de consentimento de acesso patrocinado e registro de estabilização das fases 1, 2 e 3.
+    ➜ Documentação Técnica
+        ➜ Elaboração dos planos de implementação e design para o mapa rural público.
+
+🚧 (In Progress):
+➜ Verificação Global de RAG
+    ➜ Sistema de RAG
+        ➜ Restauração de verificações globais de consistência e ajustes nos serviços de leitura e cache contextual.
+
+☎️ Com Elias sobre dúvidas de execução de sub-workflow no n8n
+☎️ Com Lucas sobre adicionar variavel de ambiente na Azure
+
+
+
+Standup (03/06/2026)
+--------------------------------------------------------------------------------
+📆 (Planning Web)
+
+RONALDO
+
+  📌 Agrotrace
+
+🚧 In Progress:
+  ➜ #12529 - Padronizar importação de produtores/propriedades no fluxo genérico e mover normalização para o banco
+      ➜ Correção do build de produção (Dockerfile.prod) — deploy estava quebrando
+      ➜ Alinhada a versão do pnpm com o packageManager do projeto  (causa real da falha no install)
+      ➜ Tratados os erros de SecretsUsedInArgOrEnv e corrigido um bug de continuação de linha no bloco de variáveis do Redis
+      ➜ Extraída toda a lógica de normalização (CPF/CNPJ, máscara, nome, CAR, coordenadas) e de resolução de localidade para uma biblioteca de stored functions/procedures reutilizáveis no banco
+      ➜ A procedure principal passou a apenas orquestrar o processo, ficando muito mais enxuta e legível
+      ➜ Obs.: objetivo é desacoplar da API — adicionar uma coluna nova na importação deixa de exigir alteração/deploy da API, passando a ser apenas configuração + procedure
+
+☎️ Com Bruno e Thielson sobre tela de comunicação, ideia de template perguntas do form dinâmico e alinhamento do Ater Digital
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done: 
+➜ Tela de Comunicação com Produtores
+      ➜  Refinado o acompanhamento das comunicações
+            ➜  adicionada atualização manual dos dados nos modais de detalhes
+            ➜  melhorado controle de estado ao recarregar entregas e produtores
+            ➜  ajustada visualização dos detalhes das entregas
+      ➜  Evoluído o fluxo de reenvio e navegação
+            ➜  implementado reenvio a partir dos detalhes da comunicação e do produtor
+            ➜  adicionada navegação considerando a origem da comunicação
+            ➜  refinados componentes de reenvio e seleção de produtores
+➜ #12514 - [FIX] Erro de null ao abrir a aba Hortaliças no Cadastro de Propriedade (corrigido)
+➜ #12489 - Não mostra os itens de resposta do perfil (corrigido)
+
+☎️ Com Ronaldo e Bruno apresentado melhorias na tela de comunicação
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Exibição de Avatares de Técnicos
+    ➜ Gestão de Assinaturas
+        ➜ Implementada a exibição de avatares dos técnicos na tabela de assinaturas, incluindo ajustes no DTO, repositório Drizzle e ViewModel.
+➜ Melhorias em Inputs de Formulários
+    ➜ Componentes de UI
+        ➜ Refatoração dos componentes de input de telefone e documentos, com atualização das máscaras de validação e melhorias nos componentes de UI (combobox, input-group).
+➜ Gestão de Membros de Grupos
+    ➜ Administração de Grupos
+        ➜ Implementada a funcionalidade de remoção de membros de grupos e regra de negócio para garantir apenas um âncora por grupo.
+➜ Consentimento de Acesso a Dados
+    ➜ Gestão de Parceiros
+        ➜ Ajustado o fluxo de consentimento de acesso a dados para ser liderado pelo produtor, com atualizações nos casos de uso e formulários de compliance.
+➜ Escopo de Acesso Patrocinado
+    ➜ Gestão de Parceiros
+        ➜ Melhorias no escopo de acesso patrocinado e implementação da funcionalidade de remoção de fornecedores monitorados, incluindo ajustes na API e nos repositórios de link de fornecedores.
+
+☎️ Com Thielson e Ronaldo sobre tela de comunicação, ideia de template perguntas do form dinâmico e alinhamento do Ater Digital
+
+
+
+Standup (05/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+
+  📌 Agrotrace
+
+🚧 In Progress:
+  ➜ #12529 - Padronizar importação de produtores/propriedades no fluxo genérico e mover normalização para o banco
+      ➜ Padronização da importação de produtor/propriedade no fluxo genérico (mesmo padrão das demais importações), removendo controller, serviço e tela dedicados
+      ➜ Persistência do campo "atividade" na importação (resolve-or-create + vínculo com a propriedade)
+      ➜ Feedback de CAR inválido movido para o banco, mantendo o retorno para a tela
+      ➜ Obs.: testes de ponta a ponta — build da API e do web ok, migrations aplicadas em MySQL real e paridade de validação de CPF/CNPJ verificada; identificada e corrigida uma armadilha de collation que quebrava a validação de documentos
+
+☎️ Com Gustavo, sobre procedure de diagnóstico calculando errada para uma propriedade específica
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Ajustes de Interface e UX
+    ➜ Triage e Atribuições
+        ➜ Corrigidos labels dos filtros de seleção em pending-assignments.tsx e triage-queue.tsx.
+        ➜ Refinados estados de exibição na fila de triagem administrativa e na tela de atribuições pendentes.
+    ➜ Experiência Mobile
+        ➜ Ajustados estados de interface para técnicos e produtores, incluindo dashboards e filas de triagem em technician/index.tsx e producer/index.tsx.
+    ➜ Conformidade de Parceiros
+        ➜ Refinados estados de conformidade de fornecedores, incluindo badges e tabelas em partner-semaforo-badge.tsx e partner-supplier-compliance-table.tsx.
+    ➜ Padronização de Copy e UI
+        ➜ Revisão geral de textos e cópias em diversos componentes, incluindo agronomic-profile-form.tsx, auth-hero.tsx, sidebar.tsx e fluxos de onboarding e consentimento.
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done: 
+➜ #12517 - Cadastro de Motivo de atendimento
+      ➜  Adicionado tela de cadastro de motivo de status de atendimento com permissões
+
+🚧 (In Progress):
+➜ #12047 - Enviar Alertas - Gestão de Projetos
+      ➜ Adicionando suporte para enviar analies inteligentes via whatsapp
+
+
+
+
+
+Standup (08/06/2026)
+--------------------------------------------------------------------------------
+📆 Start of week meeting
+
+RONALDO
+
+  📌 Agrotrace
+
+  🚧 In Progress:
+  ➜ #12529 - [REFACTOR] Padronizar importação de produtores/propriedades no fluxo genérico e mover normalização para o banco
+      ➜ Back-end: refatoração do serviço de execução (importacao-execucao) para o fluxo genérico — normalização baseada na configuração de campos + procedure por importação, removendo a dependência do serviço dedicado de   propriedade/produtor
+      ➜ Front-end (web): criação da tela genérica de importação (ImportacaoGeralComponent) — listagem das importações disponíveis, download da planilha modelo, parâmetros dinâmicos, upload e execução, exibindo resumo do processamento, linhas com problema e CARs não salvos
+      ➜ CMS: ajuste no formulário de configuração de importação (config-importacao-form)
+      ➜ Banco: sincronização de schema da tabela importacao (coluna referencia_exibicao)
+
+☎️ Com Thielson sobre duvidas da atividade de comunicção com tecnicos
+☎️ Com Thielson e Iohan sobre alterações na tela de cadastro de certificadora
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ #12521 - Reorganizar tela de cadastro da certificadora
+      ➜  Reorganizada a tela de cadastro da certificadora no CMS
+            ➜  cadastro separado em abas para melhorar a navegação
+            ➜  criada aba de registro da certificadora
+            ➜  ajustados layout e estilos do formulário
+
+☎️ Com Ronaldo sobre duvidas da atividade de comunicção com tecnicos
+☎️ Com Ronaldo e Iohan sobre alterações na tela de cadastro de certificadora
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12518 - Login automático
+    ➜ Login automático
+        ➜ Implementado serviço auto-program-selection para seleção automática de programa e resolução de URL de retorno.
+        ➜ Refatorado LoginComponent para usar o fluxo automático.
+        ➜ Atualizados componentes MFA (Email e Google) para usar URLs resolvidas.
+        ➜ Extendida ProgramSelectionService com lógica de redirecionamento por certificadora.
+        ➜ Adicionados testes unitários cobrindo seleção automática e resolução de URLs.
+        ➜ Arquivos modificados: .../components/mfa-email/mfa-email.component.ts, .../components/mfa-google/mfa-google.component.ts, .../_common/services/auto-program-selection.ts, .../_common/services/program-selection.service.ts, .../view/pages/login/dynamic/login.component.ts
+---
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ AbacatePay
+    ➜ Runbook – criado documento de operações (docs/runbooks/b2b-billing-abacatepay.md).
+    ➜ Implementação – adicionados plano de implementação, brainstorm e atualização de gateway para AbacatePay.
+    ➜ Eventos de pagamento – implementado processamento de eventos de pagamento e geração de boletos (services, providers, testes).
+➜ Relatório de Reconciliação
+    ➜ Implementado export report de reconciliação de faturamento (use‑case, testes, módulo partner).
+➜ Gestão de Faturas B2B
+    ➜ Adicionada funcionalidade para enviar links de pagamento de fatura.
+    ➜ Implementada página pública de pagamento de fatura e simplificada cópia de pagamento.
+➜ Gestão de Contas de Cobrança
+    ➜ Criados recursos para gerenciar contas de cobrança de parceiros, incluindo schema de fatura, criação/atualização de contas e migrações de banco.
+➜ UI de Ações de Fatura
+    ➜ Colapsado ações de fatura em menu na interface admin.
+
+
+
+
+Standup (09/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12529 - [REFACTOR] Padronizar importação de produtores/propriedades no fluxo genérico e mover normalização para o banco
+    ➜ CMS - Configuração de Importação:
+        ➜ O campo 'Nome dos parâmetros' agora é um dropdown com os mesmos itens da exportação.
+        ➜ A aba 'Certificadoras' habilita/desabilita junto com a opção 'Exibir para todas as certificadoras' (espelha Permissões).
+        ➜ Nova tela CRUD de 'Categorias de Importação' (lista + formulário com NOME e dois toggles).
+        ➜ Picklists de certificadoras/permissões no formulário da categoria quando 'Exibir para todas' está desmarcado.
+        ➜ Rota e item de menu 'Categorias' adicionados sob 'Importações'.
+    ➜ Web - Importação Genérica:
+        ➜ Parâmetros (safraId, estadoId, tecnicoId, etc.) são renderizados dinamicamente por nome, utilizando dropdowns dedicados, similar aos filtros de relatório.
+        ➜ Implementado histórico de importações da importação selecionada (todas da certificadora) com detalhe por execução e filtro de linhas por status.
+        ➜ Tabela do histórico segue o padrão visual do sistema; dropdown de itens por página inline na paginação.
+        ➜ A seção de CARs não salvos foi removida, pois não se encaixa no fluxo dinâmico.
+        ➜ A listagem de importações agora respeita a visibilidade da categoria por certificadora e por permissão do usuário.
+    ➜ API:
+        ➜ Desenvolvidos endpoints para histórico de execução (lista paginada + detalhe com linhas).
+        ➜ ImportacaoCategoria agora possui relacionamento ManyToMany com certificadoras e permissões.
+        ➜ Migrations incluídas para seed de permissão do menu (MASTER) e tabelas de junção importacao_categoria_certificadora / importacao_categoria_permissao.
+
+☎️ Com Thielson, sobre melhorias na comunicção e envio de relatórios via comunicações agendadas para os produtores e envio de consumições com pendencias para tecnicos (#12047)
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Sistema de Faturamento
+    ➜ Implementação de integração com AbacatePay SDK e tratamento de webhooks para estados de pagamento em partner-billing-webhook.controller.ts e abacatepay.client.ts
+    ➜ Ajustes nas mensagens de entrega de faturas e templates de e-mail em partner-invoice-delivery-message.service.ts e partner-invoice-payment.hbs
+➜ Configuração de Infraestrutura
+    ➜ Atualização de variáveis de ambiente de deploy em configmap.yaml para ambientes dev e prod
+➜ Documentação de API
+    ➜ Atualização da especificação OpenAPI em apps/web/openapi.json
+
+
+☎️ Com Elias sobre subir o Agrotrace no ambiente local e uso de Cron Jobs na API do Agrotrace
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ Melhorias na feat de comunicação
+      ➜  Evoluído o fluxo de comunicação com produtores
+            ➜  melhorado a consulta de dados dos produtores para trazer apenas o necessário
+            ➜  refinados modais de detalhes, entregas e reenvio
+      ➜  Reorganizado o modelo de destinatários da comunicação
+            ➜  generalizada a estrutura de destinatários e entregas (destinatario podem ser tecnicos, produtores, propriedades ou gestores)
+            ➜  ajustados envios de e-mail e WhatsApp para o novo modelo
+            ➜  atualizados models e estrutura de banco da comunicação
+
+🚧 InProgress:
+➜ Melhorias na feat de comunicação
+      ➜  Adicionando envio de relatórios na comunicação
+
+
+☎️ Com Ronaldo sobre melhorias na comunicção e envio de relatórios via comunicações agendadas para os produtores e envio de consumições com pendencias para tecnicos (#12047) 
+
+
+
+
+Standup (10/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12553 - Ordenação - Pagina diagnostico
+    ➜ Funcionalidades Principais Implementadas:
+        ➜ A funcionalidade de ordenação foi implementada para corrigir a comparação de itens numéricos que eram tratados como texto no SQL, fazendo com que '15.2' aparecesse antes de '2.1'.
+        ➜ A solução foi aplicada nas telas de Diagnóstico e Plano de Ação.
+    ➜ Melhorias Técnicas:
+        ➜ Foi desenvolvido um comparador natural no frontend que quebra os prefixos por '.' e compara os segmentos como números, utilizando o mesmo campo exibido (item ou ordem).
+
+☎️ Com Iohan, sobre demandas Aprosoja e sobre form dinâmico
+☎️ Com Elias, sobre abertura de PRs no repositório agrotrace
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12516 - Ajuste agrupamento formulário
+    ➜ Agrupamento de Formulários
+        ➜ Renomeada a rota “Histórico de Links” para “Histórico de Envios” no menu de navegação, com atualização das traduções (EN, ES, PT) e breadcrumb.
+        ➜ Ajustados os rótulos dos grupos de formulário na navbar para refletir o novo agrupamento, garantindo consistência visual.
+
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ (sem card) - Melhorias no backend de billing
+    ➜ Billing Backend
+        ➜ Documentada a operação de fechamento do AbacatePay.
+        ➜ Implementada a exibição de detalhes de entrega e pagamento nos endpoints de parceiros.
+        ➜ Corrigidos fluxos: revisão de pagamentos anulados, consistência de status de faturas públicas, prevenção de regressão na reconciliação de faturas pagas, retentativa de webhooks falhos, restrição de entrega de faturas a tentativas pagáveis, idempotência na criação de pagamentos AbacatePay e exibição de vencimento de boleto.
+➜ (sem card) - Ajustes na interface de faturas e layout
+    ➜ Interface de Faturas (Web)
+        ➜ Simplificado o layout da página inicial do produtor.
+        ➜ Divididas as colunas de pagamento nas telas de fatura.
+        ➜ Substituído o seletor de período por um picker mensal.
+        ➜ Ajustada a exibição do vencimento de boleto nos invoices públicos.
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ #12548 - Mudanças no cadastro de Descrição de atendimento PEC
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Comunicação manual com relatório e anexo
+            ➜  adicionada configuração de relatório na criação de comunicação manual
+            ➜  implementada geração do arquivo de relatório e vínculo como anexo público ao destinatário
+            ➜  incluído link do anexo nos canais configurados e preservada a rastreabilidade da geração
+      ➜  Implementando comunicação agendada sem relatório (possibilidade de gerar comunicações automáticas e recorrentes)
+
+☎️ Com Matheus sobre alterações no cadastro de descrição de atendimento PEC
+
+
+
+
+Standup (11/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12563 - [FEAT] Bloco repetível vinculado à pergunta do formulário dinâmico
+    ➜ Implementação de suporte a grupos de perguntas repetíveis em formulários dinâmicos, permitindo que uma pergunta numérica controle a quantidade de repetições de um conjunto de perguntas associadas (CITROS). Inclui criação de entidades, serviços, migrações de banco e interface administrativa para configuração.
+    ➜ FormBlocoRepetivel (API): Nova entidade que representa o grupo repetível, vinculado a uma pergunta controladora, com limite máximo e coleção de perguntas filhas.
+    ➜ FormBlocoRepetivelPergunta (API): Nova entidade que mapeia perguntas dentro de um grupo repetível, com ordem, obrigatoriedade e limites de quantidade/tamanho.
+    ➜ FormBlocoRepetivelResposta (API): Nova entidade que armazena as respostas do grupo repetível, vinculada ao atendimento e à resposta controladora.
+    ➜ FormPergunta (API): Adicionada relação com formBlocosRepetiveis para suporte ao grupo repetível.
+    ➜ FormResposta (API): Adicionado campo formBlocoRepetivelRespostaId para vincular respostas ao grupo.
+    ➜ FormPerguntaFormComponent (CMS): Interface para configuração do grupo repetível com nome, limite máximo e seleção de perguntas filhas.
+    ➜ FormDinamicoPerguntaComponent (Web): Renderização e lógica de sincronização das perguntas repetíveis baseadas na resposta numérica.
+    ➜ Procedimentos SQL: Atualizados getFormDinamicoByToken e getFormPerguntaProc para incluir dados dos blocos repetíveis.
+    ➜ Adição de triggers de auditoria para as novas tabelas de blocos repetíveis.
+
+☎️ Com Iohan, Alinhamento perguntas de bloco repetível - Forms
+☎️ Com Thielson, sobre progresso nas melhorias de comunicação
+☎️ Com Bruno, sobre alinhamento de tasks do Agrotrace e backup do banco de dados
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ #12564 - Erro ao editar endereço de propriedade com foto (corrigido)
+➜ #12571 - Flag na rota de animais
+      ➜ Adicionado flag no findAll para possibilitar filtro para animais do pec que nao possuem propriedade (semen de animais)
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Ajustes na comunicação manual com relatório e anexo
+            ➜  melhorada a configuração de relatórios com filtros dinâmicos
+            ➜  ajustada a visibilidade das ações de relatório nas telas de template e nova comunicação
+            ➜  refinado o modal de configuração de relatório e integração com os campos dinâmicos
+      ➜  (progresso feito) Comunicação agendada sem relatório
+            ➜  criada estrutura para cadastro e gestão de agendamentos de comunicação com produtores
+            ➜  implementado suporte a execução única, diária, semanal e mensal, gerando comunicações normais a cada execução
+      ➜  Implementando comunicação agendada com relatório e anexo
+
+☎️ Com Ronaldo sobre progresso nas melhorias de comunicação
+☎️ Com Matheus filtro no pec animal 
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12515 - [FEAT] Novo procedimento "Atualizar Ranking" na tela de Procedimentos
+    ➜ Procedimento de Ranking
+        ➜ Implementada funcionalidade de atualização manual de ranking, incluindo controller, service e componente de interface, além da migration 781203506842-addAtualizarRankingProcedimento.
+➜ #12035 - Verificar a coluna preenchimento na tela de diagnostico
+    ➜ Diagnóstico de Atendimento
+        ➜ Ajustado o cálculo de preenchimento para utilizar o ranking geral de atendimentos, corrigindo a lógica em atendimento.service.ts e ranking-atendimento.service.ts.
+
+
+☎️ Com Brenda sobre novo design da home do Agrotrace
+☎️ Com Ronaldo sobre alinhamento de tasks do Agrotrace e backup do banco de dados
+
+
+
+Standup (15/06/2026)
+--------------------------------------------------------------------------------
+📆 (Start of week meeting)
+
+ RONALDO
+  📌 AGROTRACE
+
+  🚧 In Progress:
+  ➜ #12575 - Compartilhamento de formulário dinâmico
+    ➜ Novo módulo FormFormularioCompartilhamento na API: entity, service (BaseServiceCrud), controller e migration (tabela form_formulario_compartilhamento + tabela de auditoria) 
+    ➜ Componente Angular de compartilhamento (form + list) integrado ao FormFormulario, com a ação de compartilhar no resource-list
+    ➜ Models e service de FormFormularioCompartilhamento adicionados na web-common
+
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Configuração de Painel Administrativo Executivo
+    ➜ Dashboard Administrativo
+        ➜ Implementação do endpoint de dashboard, modelagem de leitura e integração com a interface web.
+        ➜ Criação de view model para o dashboard e refinamento do layout da página administrativa.
+    ➜ Configurações de Comunicação
+        ➜ Desenvolvimento da página de configurações de comunicação, incluindo persistência de dados via Drizzle e exposição de API.
+        ➜ Implementação de controles para notificações operacionais, testes de envio via WhatsApp e uso de templates de e-mail para testes.
+        ➜ Refinamento da verificação de configurações e geração de clientes de API para o frontend.
+
+☎️ Com Elias e Ricardo sobre adições ao Ater Digital
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Comunicação agendada com relatório e anexo
+            ➜  adicionada configuração de relatório no cadastro de agendamentos
+            ➜  vinculados os campos de relatório ao agendamento e à comunicação gerada pela execução
+            ➜  ajustada a configuração e resolução dos parâmetros dinâmicos dos relatórios agendados
+      ➜  (progresso feito) Limpeza e expiração de anexos de relatório
+            ➜  implementado fluxo para remover anexos expirados mantendo os registros de auditoria
+            ➜  adicionados controles de remoção, tentativas e status dos anexos vinculados à comunicação
+            ➜  ajustada a visualização de relatórios expirados ou removidos no detalhe da comunicação sem manter link ativo
+      ➜  (progresso feito) Histórico operacional e auditoria de agendamentos
+            ➜  criada consulta paginada das execuções por agendamento
+            ➜  enriquecidos os status de execução para diferenciar sucesso, falha e sucesso parcial
+            ➜  adicionada visão das comunicações geradas, falhas registradas e relatórios vinculados às execuções
+
+
+Standup (16/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12575 - [FEAT] Compartilhamento de formulário dinâmico entre certificadoras
+    ➜ dashboard dinâmico agora considera formulários compartilhados. Ajustei form-formulario.service.ts, a procedure getFormRespostasCharts (+migration AlterProcedureGetFormRespostasChartsCompartilhamento) e o filtro filtro-dashboard-formulario.component.ts.
+
+➜ #12577 - RELATÓRIO PERCENTUAL DOS PERFIS - Biodiesel Soja
+    ➜ comecei o fix da divergência nos percentuais. Adicionei o inner join safra_propriedade em getPerfilDesempenho e criei a migration que aplica o mesmo join na procedure getEstatisticaPerfilRespostas (conta a resposta só quando a propriedade está vinculada à safra da resposta).
+
+☎️ Com Gustavo, Organizar os PRs + Dificuldade em pipeline
+☎️ Com Thayse, saber o motivo de vários cadastros de Pessoas que foram desativadas diretamente no banco
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Implementação de Alertas Fitossanitários Regionais
+    ➜ Infraestrutura e Contratos
+        ➜ Adicionados contratos de alertas fitossanitários e esquemas de subscrição (migration 0087_serious_bedlam.sql).
+        ➜ Documentado plano de implementação e pesquisa sobre alertas regionais de pragas.
+    ➜ Entrega e Auditoria de Alertas
+        ➜ Implementada auditoria de entregas de alertas fitossanitários (migration 0088_flawless_gideon.sql) e lógica de enriquecimento/anonimização de alertas para vizinhos.
+    ➜ Dashboard Administrativo
+        ➜ Expandidas as métricas do dashboard executivo com novos DTOs e atualização da view model no frontend.
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12554 - Filtro de pergunta - Tela - Operações > Diagnóstico
+      ➜  Adicionado filtro de perguntas no formulário de diagnóstico semelhante ao que ja existe na tela de cadastro de questionarios
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Escala, retentativas e controle de processamento
+            ➜  implementada retentativa manual de execuções de agendamento pelo histórico operacional
+            ➜  adicionada rastreabilidade entre execução original e nova tentativa
+            ➜  ajustado o processamento de execuções com relatório/anexo para melhor controle operacional
+      ➜  (progresso feito) Suporte aos tipos de relatório da comunicação
+            ➜  centralizado o fluxo de geração de arquivos de relatório para comunicação
+            ➜  limitado o suporte aos tipos de relatório exportação, Jasper e API
+            ➜  melhorado o tratamento de geração de anexos e retorno de arquivos para relatórios configurados
+      ➜  (progresso feito) Ajustes na comunicação agendada
+            ➜  adicionados filtros por certificadora nos endpoints e services de agendamento
+            ➜  corrigidos gatilhos de auditoria das execuções de agendamento
+            ➜  refinada a tela de agendamentos e integração com os dados da certificadora
+
+
+Standup (17/06/2026)
+--------------------------------------------------------------------------------
+📆 (Planing Web)
+
+RONALDO
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12607 - [FEAT] Criar aba Balanço no Dashboard Carbono
+    ➜ Implementação do componente Carbono Balanço com lógica de agregação para indicadores.
+    ➜ Criação de HTML e SCSS para o componente Carbono Balanço, incluindo design responsivo.
+    ➜ Adição de funcionalidade para filtrar indicadores por safras e construir visualizações detalhadas.
+    ➜ Integração do Carbono Balanço no componente Carbono Unificado, adicionando uma nova aba para métricas de balanço.
+    ➜ Atualização de roteamento e dependências de serviço para suportar o novo componente.
+
+☎️ Com Gustavo, resolvendo conflitos em fechamento de sprint
+☎️ Com Ricardo, erro na exportação em geojson de um croqui
+☎️ Com Débora, alinhando sobre o dashboard do Carbono
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Ajustes visuais e de usabilidade nas telas de comunicação
+            ➜  refinada a tela de listagem de agendamentos e ações relacionadas
+            ➜  ajustados estilos e organização visual dos modais de detalhes, entregas e reenvio
+            ➜  melhorada a apresentação das ações de relatório nas telas de templates e nova comunicação
+      ➜  (progresso feito) Melhorias no formulário de agendamento
+            ➜  reorganizada a estrutura HTML do formulário de agendamento
+            ➜  ajustada a formatação e espaçamento dos campos
+            ➜  refinados estilos para melhorar a leitura e manutenção da tela
+      ➜  Corrigindo problemas no envio de relatorio no agendamento
+
+
+BRUNO
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Alertas Fitossanitários Regionais
+    ➜ Pipeline de Alertas e Riscos
+        ➜ Implementei o motor de pontuação de risco fitossanitário regional e o serviço de enriquecimento de alertas com referências curadas.
+        ➜ Adicionei regras de compatibilidade de culturas com persistência via Drizzle (migration 0089_sudden_khan.sql) e script de seed.
+        ➜ Automatizei a criação de avisos de conformidade a partir de alertas regionais via scheduler.
+    ➜ Insights e Monitoramento
+        ➜ Adicionei insights agregados de risco fitossanitário para parceiros, incluindo novos endpoints de API e view models.
+        ➜ Implementei a interface de monitoramento de alertas fitossanitários e otimizei a visualização da caixa de entrada de revisão técnica.
+    ➜ Estabilização e Refinamento
+        ➜ Reforcei o repositório de regras fitossanitárias e estabilizei fluxos de E2E, incluindo ajustes em payloads de eventos de missão.
+        ➜ Atualizei documentação de runbooks e configurações de infraestrutura Kubernetes para o rollout dos alertas.
+    ➜ Experiência do Usuário
+        ➜ Implementei melhorias na experiência do usuário e otimização de performance com atualização do openapi.json
+
+
+
+
+Standup (18/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12607 - [FEAT] Criar aba Balanço no Dashboard Carbono
+    ➜ Funcionalidades Principais Implementadas:
+        ➜ Implementação da lógica para cartões executivos no componente Carbono Balanco.
+        ➜ Implementação de gráficos de barras horizontais no componente Carbono Balanco.
+    ➜ Correções Implementadas:
+        ➜ Correção para remover prefixos redundantes dos nomes dos indicadores em BALANCO_INDICADORES.
+
+☎️ Com Débora validando e alterado layout do dashboard
+☎️ Com Carlos, alinhando demandas do agrotrace na parte do Carbono com o compartilhamento do formulário e no Citros com o Grupo de Perguntas repetível
+☎️ Com Carlos e Thielson, validando cadastros do PEC 
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Integração de Autenticação V2
+        ➜ Implementação da estrutura base do Better-Auth, incluindo a criação de entidades (account, session, user, verification) e configuração do módulo de autenticação.
+        ➜ Adição de migration 1781802518146-createBetterAuthCoreTables.ts para persistência das tabelas core e atualização do jwt-auth.guard.ts.
+
+---
+
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Documentação de Refatoração de Missões
+    ➜ Planejamento de Refatoração Phygital
+        ➜ Elaboração de documentação técnica detalhando o plano de refatoração das missões e a abordagem phygital (docs/2026-06-18-missoes-refatoracao-phygital.md).
+
+☎️ Com Ricardo sobre email usado no Agrotrace
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ Agendamento e Comunicação com anexo
+      ➜  (progresso feito) Mensageria para comunicação manual com relatório
+            ➜  aplicado processamento em segundo plano para comunicação manual com relatório/anexo
+            ➜  ajustado o fluxo para evitar espera longa do usuário durante a geração de relatórios por produtor
+            ➜  preservada a criação da comunicação, destinatários, anexos, entregas e rastreabilidade do fluxo atual
+      ➜  (progresso feito) Melhorias no tratamento de anexos da comunicação
+            ➜  reforçada a exibição de anexos nos detalhes da comunicação, entregas e produtor
+            ➜  criada organização visual para diferenciar anexos disponíveis, expirados, removidos ou com falha
+            ➜  ajustado carregamento dos detalhes para melhorar estados de loading e evitar consultas duplicadas
+      ➜  (progresso feito) Ajustes na geração de relatórios
+            ➜  melhorado o tratamento de erros na geração de arquivos de relatório
+            ➜  refinado o gerenciamento de parâmetros usados na geração dos anexos
+            ➜  ajustada a integração entre serviço de exportação de arquivos e geração de relatórios da comunicação
+      ➜  (progresso feito) Refinamentos nas telas de comunicação
+            ➜  melhorados estados visuais e mensagens de carregamento nos componentes de detalhes
+            ➜  ajustada a apresentação de informações de comunicação e anexos nas listagens e modais
+            ➜  refinado o formulário e a listagem de agendamentos para manter consistência com o fluxo de anexos
+
+☎️ Com Ronaldo e Carlos, sobre telas de cadastro do PEC
+
+
+Standup (19/06/2026)
+--------------------------------------------------------------------------------
+📆 Spotilight DevOps+Design
+
+
+RONALDO
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12412 - Criação de relatório de evolução - Agroplus
+    ➜ Estudando procedures de ranqueamento por pontuação e nível de importância para ver como aplicar para acompanhamento
+    ➜ Criando novas procedures para ranquear o acompanhamento levando em consideração os as respostas já em diagnóstico
+
+☎️ Com Gustavo, enviando PR para master
+☎️ Com Thayse, sobre funcionalidades do Grupo Repetível (Citros) e ajustes no Biodiesel-Soja
+☎️ Com Carlos, sobre novas features e ferramenta de relatório
+☎️ Com Bruno, sobre logs suspeitos na landing page
+☎️ Com Matheus, sobre tabelas do formulario compartilhado, Agrotrace
+☎️ Com Thielson, alinhando sobre o processo de comunicação com o produtor (enviando relatórios)
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12615 - Adicionar novo campos na entidade Pessoa
+
+☎️ Com Matheus sobre tabelas de financeiro no pec
+☎️ Com Ronaldo sobre feat de comunicação
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Sistema de Autenticação V2
+        ➜ Implementação do fluxo de recuperação de senha com AuthV2PasswordResetService e AuthV2PasswordResetEmailService.
+        ➜ Consolidação dos endpoints de autenticação sob o prefixo /auth e atualização do AuthV2BridgeController para suporte a domínios de cookie específicos e tokens MFA.
+        ➜ Refatoração do gerenciamento de sessões substituindo JWT legado por Better Auth, incluindo a criação da migration 1781879885732-migrateLegacyUsersToBetterAuth.ts.
+        ➜ Atualização dos guards (JwtAuthGuard, SseAuthGuard) para suporte híbrido entre sessões Better Auth e tokens legados, além da integração do bridge de login para WEB e CMS.
+
+☎️ Com Ronaldo sobre logs suspeitos na landing page
+☎️ Com Lucas sobre adição de variáveis de ambiente, logs suspeitos e webhooks em ambiente de Dev com VPN
+☎️ Com Brenda sobre design e dúvidas do design do Ater Digital
+
+
+
+
+Standup (22/06/2026)
+--------------------------------------------------------------------------------
+📆 (Start of week meeting)
+
+RONALDO
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+    ➜ Criado novas procedures:  procAtualizaRankinAC e procAtualizaRankingDG espelhando na procedure de diagnóstico, porém considerando também os acompanhamentos
+
+☎️ Com Gustavo, Ajuste em planilha de sucesso do 3S
+☎️ Com Thielson, sobre problemas no cadastro de pessoa no checkmilk
+☎️ Com Matheus, sobre compartilhamento do formulário dinâmico 
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12635 - [FEAT] Implementar gestão de tipos e lançamentos financeiros
+    ➜ Criada estrutura de gestão financeira
+        ➜ adicionados módulos, entidades, services, controllers, migrations e permissões
+        ➜ adicionados models e services no web-common
+    ➜ Implementadas telas e formulários no Web
+        ➜ criada listagem e cadastro de tipos e lançamentos financeiros
+        ➜ adicionados dropdowns necessários para o lançamento
+
+📌 Checkmilk
+
+✅ Done:
+➜ #12614 - Cadastro Pessoa - Checkmilk
+    ➜ Corrigido erro no parse query no backend que impedia de verificar se usuario com o mesmo login existia
+    ➜ Implementada no front fallback para que caso existe um usuario com o mesmo login (cpf) mas n esteja vinculado à certificadora logada seja perguntado ao usuario se deseja vincular, dessa forma nao vai ser criado um usuario/produtor novo, mas sim adicionado esse usuario/produtor ja existente à certificadora logada
+
+☎️ Com Matheus sobre tabelas de financeiro
+☎️ Com Ronaldo sobre problemas no cadastro de pessoa no checkmilk
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Módulo de Autenticação V2
+        ➜ Implementação do novo módulo de autenticação com suporte a reset de senha, autenticação de dois fatores (2FA) e integração de bridge para mobile.
+        ➜ Criação de entidades, serviços de MFA, controladores de bridge e configuração de e-mails de notificação.
+        ➜ Inclusão da migration 1782135376826-addBetterAuthTwoFactor.ts e documentação técnica do fluxo 2FA.
+    ➜ Gestão de Sessão e Segurança
+        ➜ Refinamento do gerenciamento de sessões com suporte a cookies entre subdomínios e logout independente por plataforma.
+        ➜ Ajustes nos guards de rota para permitir sessões compartilhadas do CMS sem seleção obrigatória de programa.
+        ➜ Otimização do fluxo de reset de senha com limpeza de parâmetros de query legados.
+
+
+
+Standup (23/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12649 - [FIX] Corrigir fluxo de permissões e definição de senha no cadastro de usuários
+    ➜ Atualizações no fluxo de cadastro de usuários para validar o usuarioId e implementar funcionalidades de gerenciamento de senha (envio de definição de senha e alteração como master).
+    ➜ No UsuarioFormComponent (web e cms), foram adicionados botões para 'Enviar definição de senha' e 'Alterar senha (Master)' com validações de permissão.
+    ➜ Implementada filtragem de permissões no PicklistPermissaoComponent para ocultar valores específicos com base no perfil do usuário.
+    ➜ No AuthService, foi adicionado o método sendPasswordCreationEmail para enviar e-mails de definição de senha.
+    ➜ No PermissaoService, adicionada validação obrigatória do usuarioId no método getSelectItem, lançando BadRequestException se não for fornecido.
+    ➜ Melhoria na segurança ao filtrar permissões visíveis dinamicamente.
+    ➜ Correção de validação de campos obrigatórios no fluxo de cadastro.
+
+☎️ Com Thielson, sobre atividades envolvendo o form dinamico
+☎️ Com Elias, sobre dúvida em novas rotas da API 
+☎️ Com Gustavo, ajuste em criação de usuario + relatorio checkmilk
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Melhoria de Autenticação
+        ➜ Modularização dos fluxos de login e MFA, criação dos serviços AuthV2LoginFlowService, AuthV2MfaFlowService, AuthV2CookieService e refatoração do AuthV2OtpBridgeService.
+        ➜ Implementação completa da ponte mobile de dois fatores, incluindo atualização do auth-mfa.service, auth.controller e documentação autenticacao-mobile-2fa-better-auth.md.
+        ➜ Redirecionamento de sessões compartilhadas do CMS após login, ajuste nos guards de rota pública.
+
+☎️ Com Elias sobre dúvidas relacionadas ao 2FA usado no app mobile do Agrotrace
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ #12592 - Possibilidade de movimentar ordem das perguntas referenciadas
+      ➜  Adicionada ordenação das perguntas associadas aos itens de resposta
+      ➜  Ajustado cadastro para permitir reorganizar a ordem das perguntas referenciadas
+      ➜  Atualizadas procedures e estrutura de banco para manter a ordem definida
+
+➜ #12627 - Unidade de Medida - Form Dinamico
+      ➜  Adicionada configuração de unidades de medida por pergunta
+      ➜  Criado controle para exibir todas as unidades ou restringir unidades específicas
+      ➜  Ajustado fluxo de resposta para filtrar unidades conforme a configuração da pergunta
+
+🚧 In Progress:
+➜ #12628 - Pergunta com resposta fixa - Form Dinâmico
+      ➜  (progresso feito) Adicionado novo campo respostaPadrao na tabela form_pergunta
+
+☎️ Com sobre atividades envolvendo o form dinamico
+
+
+
+Standup (24/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12634 - ESTRUTURA DO FORMULÁRIO DINÂMICO - Perguntas do relatório fora de ordem
+    ➜ Ajustando e testando ordem das perguntas no relatório. Com dificuldade ainda em perguntas condicionais pois não pertencem à estrutura
+
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+    ➜ Alterado funções no banco para dar suporte ao acompanhamento: "fnGetMedalha", "fnMedalhaPorImportancia", "fnMedalhaPorImportanciaPorSubprotocolo"
+
+☎️ Com Gustavo, sobre versão do jasper + redefinição de senha de usuário
+☎️ Com Lucas, sobre configurando ambiente para acessar DEV (versão anterior estava muito lento)
+☎️ Com Elias, dúvidas sobre o grupo repetível no formulário dinâmico
+☎️ Com Matheus, sobre download do jasper
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ #12631 - Pergunta fora de agrupadores - Form Dinâmico
+      ➜  Adicionado suporte para perguntas fora de agrupadores no preenchimento e validação
+      ➜  Ajustado agrupador geral para exibir perguntas soltas no formulário
+      ➜  Atualizados fluxos de atendimento, validação e estrutura transformada do form dinâmico
+
+➜ #12628 - Pergunta com resposta fixa - Form Dinâmico
+      ➜  Implementada resposta padrão configurável no cadastro da pergunta
+      ➜  Ajustado preenchimento do formulário para iniciar com a resposta padrão editável
+      ➜  Atualizada exibição da resposta padrão na estrutura e seleção de perguntas
+
+
+BRUNO
+
+ agrotrace-v3
+
+ Done:
+➜ #11404 - Implementar - Better-Auth
+    ➜ Autenticação
+        ➜ Implementei a migração de TOTP com bridge de autenticação
+        ➜ Adicionei verificação de MFA do Google com tratamento de cookies legados
+        ➜ Melhorei a verificação de MFA e o tratamento de sessão com melhor gerenciamento de erros
+    ➜ CMS
+        ➜ Reabri a configuração do autenticador ao alternar a ativação
+        ➜ Melhorei a modal de configuração do autenticador
+
+ (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Autenticação
+        ➜ Trabalhando na migração de 2FA de apps autenticadores como o Google Authenticator
+
+
+Standup (25/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌Agrotrace
+
+✅ Done:
+➜ #12634 - ESTRUTURA DO FORMULÁRIO DINÂMICO - Perguntas do relatório fora de ordem
+    ➜ Correções Implementadas:
+        ➜ A procedure SQL getFormDinamicoEstrutura foi modificada para corrigir a ordem das perguntas do relatório.
+    ➜ Melhorias Técnicas:
+        ➜ Otimização da lógica de consulta na procedure getFormDinamicoEstrutura para incluir campos adicionais.
+        ➜ Joins atualizados para garantir que apenas registros não desativados sejam selecionados.
+        ➜ Adição de um novo arquivo de migração para gerenciar a criação e remoção da procedure atualizada no banco de dados.
+
+☎️ Com Gustavo, Publicação de procedures
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅﻿ Done:
+➜ Agendamento e Comunicação com anexo
+      ➜  Adicionado título opcional aos templates de comunicação e fluxos relacionados
+      ➜  Ajustadas telas de comunicação, agendamentos e nova comunicação para usar o novo campo
+      ➜  Melhorada a identificação visual do tipo de relatório na tela de exportações
+➜ # 12661 - Corrigido edição de respostas padrão no form pergunta no cms
+
+☎️ Com Gustavo sobre problemas no pipeline
+☎️ Com Thayse sobre correções no form-dinamico
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Autenticação e MFA
+        ➜ Implementação do fluxo de configuração de TOTP para Google Authenticator, incluindo geração de QR Code e códigos de backup em AuthV2TotpBridgeService e MfaGoogleComponent.
+        ➜ Refinamento da lógica de MFA na CertificadoraService e ajuste no GlobalExceptionFilter para tratamento de erros de API.
+        ➜ Limpeza de código legado com a remoção do AuthV2TotpMigrationService e documentação associada para otimizar o processo de autenticação.
+
+
+
+Standup (26/06/2026)
+--------------------------------------------------------------------------------
+📆 Spotlight mobile
+
+RONALDO
+📌 Chekmilk
+
+🚧 In Progress:
+➜ #12634 - Deixar relatorio de form dinamico dinamico
+      
+Foram iniciadas as alterações na API do Checkmilk:
+criação da migration Postgres get_form_dinamico_resposta(json);
+novo endpoint GET /form-resposta/rel-resposta-atendimento;
+método no service para consultar a função;
+DTO de retorno;
+serviço inicial para gerar Excel com colunas dinâmicas.
+
+      
+A função foi aplicada e testada em banco com dados reais, retornando atendimentos e respostas.
+No front, foi iniciado o ajuste para trocar Jasper pela API, mantendo a tela existente.
+
+☎️ Com Thielson e Bruno alinhando atividades
+☎️ Com Gustavo, verificando ajustes em relatorio de form dinamico do CheckMilk
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12677 - Reaproveitamento de respostas entre diagnósticos
+      ➜  (progresso feito) Configuração de reaproveitamento no CMS
+            ➜  adicionado controle Reaproveitável nos níveis do diagnóstico
+            ➜  ajustada a persistência da configuração por entidade
+      ➜  (progresso feito) Tela de reaproveitamento em Operações > Diagnóstico
+            ➜  criada ação para iniciar o reaproveitamento de respostas entre diagnósticos
+            ➜  adicionados campos de origem, destino, propriedades e nova data do atendimento
+      ➜  (progresso feito) Processo backend de reaproveitamento
+            ➜  criado endpoint para reaproveitar respostas entre diagnósticos
+            ➜  aplicada a cópia apenas das respostas elegíveis para as propriedades selecionadas
+
+☎️ Com Ronaldo alinhando atividades
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Fluxo de Autenticação MFA
+        ➜ Implementação de suporte a tokens parciais e persistência de estado de login pendente no local storage
+        ➜ Refatoração da lógica de verificação MFA, extração de helpers (shouldHandleLoginWithMfa) e adição de testes unitários
+        ➜ Modernização da UI dos componentes de MFA (Choice, Email, Google) utilizando Tailwind CSS e PrimeNG p-inputotp
+        ➜ Adição de funcionalidade de cancelamento em diálogos MFA e integração de busca de certificadoras após verificação
+    ➜ Serviços de Credenciais e Ativação
+        ➜ Integração do AuthV2PasswordCredentialService para unificar fluxos de senha e ativação de conta com locks transacionais
+    ➜ Configurações e Localização
+        ➜ Ajuste no language.interceptor.ts para correção do prefixo de armazenamento e suporte a idioma do navegador
+        ➜ Implementação de suporte a localização no auth-v2.config e lógica de remoção de dados TOTP no usuario.service
+
+☎️ Com Thielson e Ronaldo alinhando as atividades do time
+
+
+
+Standup (29/06/2026)
+--------------------------------------------------------------------------------
+📆 (Start of week meeting)
+
+RONALDO
+📌 Checkmilk
+
+📌 CHECKMILK
+
+🚧 In Progress:
+➜ #12679 - Acrescentar filtro de formulário no relatório de form dinâmico
+          
+Adicionado dropdown de Formulário como novo filtro na tela de relatório de respostas
+Ajustado serviço para consumir a API interna no lugar do Jasper Server
+Adicionado alterado e desenvolvido novo relatório dinâmico na api para dar suporte à essa atividade
+
+
+
+BRUNO
+
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Fluxo de Autenticação e MFA
+        ➜ Implementação de melhorias no fluxo de MFA, incluindo normalização de opções baseadas no e-mail do usuário e sincronização de flags legadas do Google MFA.
+        ➜ Adição de verificações de status TOTP para o contexto de certificadora, integração de novos endpoints de validação e atualização da interface de login e setup utilizando o componente PrimeNG p-password.
+        ➜ Reforço da segurança no fluxo de login com a implementação da flag mfaRequired em tokens parciais, bloqueando a geração de tokens de acesso total até a conclusão da verificação MFA e restringindo o uso de cookies de desafio.
+
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12677 - Reaproveitamento de respostas entre diagnósticos
+      ➜  (progresso feito) Reaproveitamento de respostas entre safras
+            ➜  criada procedure para executar o reaproveitamento de respostas entre diagnósticos
+            ➜  adicionada migration para registrar a nova rotina no banco
+            ➜  ajustado o serviço backend para usar o novo fluxo de reaproveitamento
+      ➜  (progresso feito) Ajustes na tela de reaproveitamento
+            ➜  refinado o formulário de origem, destino, propriedades e nova data do atendimento
+            ➜  ajustada a integração do frontend com o contrato atualizado do reaproveitamento
+
+
+Standup (30/06/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Chekmilk
+
+✅ Done:
+➜ #12679 - Filtro Relatório Formulário Dinâmico
+       
+Adicionado dropdown para seleção de formulário no relatório dinâmico
+Ajuste na procedure de geração dos dados do formulário dinâmico ("get_form_dinamico_resposta")
+
+🚧 In Progress:
+➜ #12678 - Relatório de Respostas de Formulário Dinâmico
+       
+Criado service de geração do relatório (rel-respostas-atendimento)
+Adicionados DTOs de resposta e migration com procedure de consulta
+Atualizados controller e módulo do form-resposta para expor o endpoint
+
+☎️ Com Thielson, sobre desempenho da procedure de reaproveitamento de resposta, e sobre melhorias na feat de reaproveitamento
+
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12677 - Reaproveitamento de respostas entre diagnósticos
+      ➜  (progresso feito) Melhorias na rotina de reaproveitamento e Correção de erros
+            ➜  corrigido erros e otimizado desempenho da procedure de reaproveitamento de respostas entre safras
+            ➜  ajustado o tratamento de status dos atendimentos no processo
+            ➜  ajustado picklist de propriedade para melhorar layout e corrigir erro de seleção de varias propriedades
+      ➜  (progresso feito) Tratamento de respostas ignoradas
+            ➜  adicionados motivos detalhados para respostas não reaproveitadas
+            ➜  ajustado o fluxo para identificar respostas duplicadas, existentes ou sem correspondência
+      ➜  (progresso feito) Ajustes de validação e ranking
+            ➜  removida validação duplicada de safra no reaproveitamento
+            ➜  atualizado o cálculo de ranking para lidar com múltiplos atendimentos
+
+☎️ Com Ronaldo sobre desempenho da procedure de reaproveitamento de resposta, e sobre melhorias na feat de reaproveitamento
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #11404 - Implementar - Better-Auth
+    ➜ Refatoração de Autenticação
+        ➜ Centralização dos componentes de MFA (mfa-choice, mfa-email, mfa-google) na biblioteca web-common, utilizando signals e reactive forms
+        ➜ Migração dos botões nativos para PrimeNG p-button nos fluxos de MFA, ajustando estilização e eventos de clique
+        ➜ Consolidação do módulo auth-v2 dentro do módulo principal de autenticação, renomeando entidades, serviços e tokens de injeção de dependência para o padrão better-auth
+        ➜ Ajuste de caminhos de importação, resolução de assets de e-mail e limpeza de testes obsoletos em toda a base de código
+
+☎️ Com Lucas sobre aplicação do Cloudflare One e IBS OPS Tools
+
+
+
+Standup (01/07/2026)
+--------------------------------------------------------------------------------
+RONALDO
+📌 Chekmilk
+
+✅ Done:
+➜ #12678 - Relatório de Respostas de Formulário Dinâmico
+       
+Ajuste procedure "get_form_dinamico_resposta" para suportar a parte dinâmica
+
+📌Agrotrace
+🚧 In Progress:
+
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+       
+Criando novas procedures para calculo Acomp/Diag: "procAtualizaRankingAC", "procAtualizaRankingDG"
+Alterando funções: "fnGetMedalha", "fnMedalhaPorImportanciaPorSubprotocolo"
+
+☎️ Com Bruno, sobre ajustes na implemetação de better-auth e apikeys
+☎️ Com Gustavo, verificando pipelines (Agrotrace/Checkmilk)
+☎️ Com Matheus, sobre relatórios do Checkmilk
+☎️ Com Elias, sobre alteração no /auth do agrotrace
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #11404 - Implementar - Better-Auth
+    ➜ Autenticação e Segurança
+        ➜ Estruturação do módulo de autenticação seguindo DDD, movendo serviços para a camada de aplicação e componentes de infraestrutura para a camada de apresentação.
+        ➜ Implementação de serviços especializados como AuthenticatedUserFactoryService, BetterAuthSessionService, ExternalTokenAuthService e MfaDecisionService para centralizar a lógica de autenticação.
+        ➜ Criação de tabelas de auditoria e triggers no banco de dados para monitorar operações de usuário, sessão e verificação, registrando metadados de conexão.
+        ➜ Refatoração de componentes de login e comunicação, incluindo a extração de lógica de tokens e ajuste de decoradores e imports.
+        ➜ Correção nas relations de usuario no login para o mobile
+
+☎️ Com Ronaldo sobre ajustes na implemetação de better-auth e apikeys
+☎️ Com Brenda sobre design do Ater Digital
+☎️ Com Lucas sobre problemas no CI do Agrotrace
+☎️ Com Elias sobre correção nas relations de usuario no login
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12677 - Reaproveitamento de respostas entre diagnósticos
+      ➜   Adicionada opção para reutilizar os técnicos da origem ou informar técnico de destino ( justada a procedure, migration, serviço backend e tela de reaproveitamento para o novo comportamento )
