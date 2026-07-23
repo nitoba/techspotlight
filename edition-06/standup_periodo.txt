@@ -1,0 +1,978 @@
+================================================================================
+TECH SPOTLIGHT #05 — STANDUPS DO PERIODO
+Periodo: 01/06 - 02/07/2026
+Apresentacao: 03/07/2026
+================================================================================
+
+
+
+Standup (06/07/2026)
+--------------------------------------------------------------------------------
+📆 Planning Web
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12717 - [FIX] Corrigir persistência e layout das perguntas em grupo repetível
+    ➜ Adição do campo 'Prazo' ao componente que-pergunta-importancia-form.
+    ➜ Implementação de soft delete para perguntas.
+    ➜ Ajuste no layout do dropdown de perguntas.
+
+🚧 In Progress:
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+    ➜ Validando o formulário, testando pontuações, verificando os diferentes níveis de agrupamentos se os calculos estão ok (Questionário, Tema, Subtema, Importância)
+
+☎️ Com Thayse, sobre itens excluídos no banco (bloco repetível)
+☎️ Com Gustavo, acesso ao email do mobile (sharepoint Cargil)
+☎️ Com Bruno, sobre dúvidas sobre formação de perguntas e erro no reenvio de links
+☎️ Com Thielson, testando reaproveitamento de respostas dos questionários e alinhando comunicação com técnico
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12702 - Formatação pergunta tipo expressão
+    ➜ Formatação de Pergunta
+        ➜ Implementado parsing de moeda e máscara para perguntas do tipo expressão, incluindo normalização de valores e suporte a múltiplos formatos.
+        ➜ Adicionado helper de formatação internacionalizada e integração ao componente dinâmico de pergunta.
+        ➜ Melhorias de aceitação LGPD com fallback e estados de carregamento.
+        ➜ Criados testes unitários e de snapshot para validar lógica de parsing, formatação e máscara.
+
+☎️ Com Ronaldo sobre dúvidas sobre formação de perguntas e erro no reenvio de links
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12677 - Reaproveitamento de respostas entre diagnósticos
+      ➜  Ajustada a regra para reaproveitamento entre mesmo protocolo em safras diferentes
+      ➜  Incluído nome do produtor no retorno do processo de reaproveitamento
+      ➜ Ajustado layout de picklist de propriedade, tabela de resultado de reaproveitado e cadastro importancia de pergunta
+
+🚧 In Progress:
+➜ #12047 - Comunicação Técnico
+      ➜  (progresso feito) Nova comunicação para técnicos
+            ➜  criada tela para listagem, criação e detalhes da comunicação com técnicos
+            ➜  adicionados endpoints e serviços para envio e consulta das comunicações
+            ➜  criado componente de seleção de técnicos e entrada no menu de Operações
+
+☎️ Com Ronaldo testando reaproveitamento de respostas dos questionários e alinhando comunicação com técnico
+
+
+
+
+
+
+📆 Tech Spotlight - Web
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+    ➜ Alterado a procedure procAtualizaRanking para orquestrar o calculo do ranking entre procAtualizaRankingAC e procAtualizaRankingDG
+    ➜ Alterado calculo da medalha, agora considerando o acompanhamento também
+
+☎️ Com Gustavo, ajustes em cards da web
+
+
+
+
+BRUNO
+📌 Agrotrace
+
+✅ Done:
+➜ Implementação de Fluxo de Autenticação e MFA
+    ➜ Gestão de Autenticação
+        ➜ Implementado fluxo de reset de TOTP e desativação de Google MFA, incluindo lógica de backend para limpeza de dados e atualização do formulário de usuário no CMS.
+        ➜ Adicionada validação de certificadoraModulo no envio de e-mails com QR Code e ajuste no payload da API de autenticação.
+
+☎️ Com Brenda sobre design do Ater Digital 
+
+
+
+
+THIELSON
+
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12047 - Comunicação Técnico
+      ➜  (progresso feito) Agendamento de comunicação para técnicos
+            ➜  criada tela de listagem e formulário de agendamentos para comunicação com técnicos
+            ➜  adicionadas rotas para criar, editar e consultar agendamentos de técnicos
+            ➜  ajustado o fluxo para selecionar todos os técnicos ou destinatários específicos
+      ➜  (progresso feito) Adequação dos destinatários no backend
+            ➜  generalizado o vínculo de agendamentos para trabalhar com produtores ou técnicos
+            ➜  criada estrutura de destinatários por tipo, com migration e auditoria
+            ➜  ajustados serviços e modelos para salvar, listar e executar agendamentos por tipo de destinatário
+
+
+
+📆 (Start of week meeting)
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12644 - [FEAT] Procedures e funções para ranqueamento de Acompanhamentos
+    ➜ Gerando migrations das procedures implementadas:
+        ➜ Criação da procedure procAtualizaRankingAC 
+        ➜ Criação da procedure procAtualizaRankingDG 
+        ➜ Alteração da procedure procAtualizaRanking 
+        ➜ Alteração da função fnGetMedalha 
+
+🚧 In Progress:
+➜ #12412 - Criação de relatório de evolução - Agroplus
+    ➜ Inicio da formatação dos gráficos
+
+
+☎️ Com Thielson, sobre alterações no ranking importancia
+☎️ Com Iohan, sobre demandas de Ranking por importância para 2 protocolos na mesma certificadora
+☎️ Com Gustavo, sobre erros no pipeline do Agrotrace
+
+
+
+BRUNO
+📌 Agrotrace
+
+🚧 (In Progress):
+➜ #12731 - API Keys por certificadora para integrações externas (better-auth)
+    ➜ Gerenciamento de API Keys
+        ➜ Implementado suporte a data de expiração nas chaves de API, incluindo cálculo em segundos e persistência no backend (better-auth-api-key.service.ts).
+        ➜ Reestruturado o módulo de API keys: controller e service movidos para camadas de apresentação e infraestrutura, remoção do módulo redundante.
+        ➜ Criado schema e migrations (1783347348167-addBetterAuthApiKey.ts, 64473193-addBetterAuthOrganizationProjection.ts) para as tabelas auth_chave_api e relacionamentos com organizações.
+        ➜ Desenvolvidos serviços backend para ciclo de vida da chave (criar, listar, revogar) e guard de integração externa.
+        ➜ Adicionados componentes frontend no CMS (certificadora-api-key-form.component., certificadora-api-keys.component.) com campo de expiração e validações.
+        ➜ Atualizados testes unitários para cobrir novo campo de expiração e nova estrutura de módulos.
+
+☎️ Com Brenda sobre atualizações no design do Ater Digital
+
+
+
+THIELSON
+📆 Follow up Checkmilk
+
+📌 Agrotrace
+
+✅ Done:
+➜ #12740 - Cadastro matricial da Forma de Cálculo do Ranking
+      ➜  Implementado salvamento em lote da forma de cálculo do ranking
+      ➜  Ajustada a tela para edição matricial por importância e medalha
+      ➜  Melhorada a gestão da importância de ranking por subprotocolo
+
+🚧 In Progress:
+➜ #12738 - Adicionar coluna Protocolo na configuração de Forma de Cálculo do Ranking
+      ➜  (progresso feito) Associação de protocolo na configuração de ranking
+            ➜  adicionada coluna de protocolo na configuração de importância do ranking
+            ➜  ajustado cadastro para selecionar protocolo e filtrar importâncias relacionadas
+            ➜  atualizados entidade, model, dropdown e migration para persistir o vínculo com protocolo
+      ➜  (progresso feito) Mapeando as procedures de ranking para incluir a verificação por protocolo
+            ➜  analisando procAtualizaRanking, procAtualizaRankingDG e procAtualizaRankingAC
+            ➜  levantando ajustes necessários em getCountMedalha, fnCalculaMedalharPorImportancia e views relacionadas
+
+☎️ Com Ronaldo sobre alterações no ranking importancia
+☎️ Com Matheus sobre migração pec no agrotrace (o que foi implementado)
+
+
+
+
+Standup (07/07/2026)
+--------------------------------------------------------------------------------
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12762 - [FEAT] Adicionar certificadora_id à tabela form_bloco_repetivel_resposta
+    ➜ O campo certificadoraId foi adicionado ao modelo FormBlocoRepetivelResposta e à entidade correspondente no banco de dados.
+    ➜ Populado o campo novo para integridade de referencia, e inclusão de triggers para garantir que não quebre nada no mobile enquanto não é implementado esse campo
+
+🚧 In Progress:
+➜ #12752 - [FIX] Relatório "Respostas de Atendimento API" não respeita soft delete de Safra
+    ➜ A correção para o relatório "Respostas de Atendimento API" foi iniciada e implementada.
+    ➜ Foi realizada uma atualização na procedure getFormDinamicoResposta para incluir validações de registros ativos, adicionando cláusulas AND desativado_em IS NULL em INNER JOIN de tabelas como form_formulario, safra, form_pergunta e form_tipo_pergunta.
+
+☎️ Com Thielson, sobre alterações nas procedures, relacionado à alteraçoes no ranking importância
+☎️ Com Thielson, testando novo cadastro de ranking importancia
+☎️ Com Bruno, sobre status da feature de apikey no Agrotrace
+☎️ Com Elias, sobre /form-bloco-repetivel-resposta
+☎️ Com Thayse, sobre safra desativada saindo em relatório
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12738 - Adicionar coluna Protocolo na configuração de Forma de Cálculo do Ranking
+      ➜  Finalizada a associação de protocolo na configuração de ranking
+      ➜  Alteradas as procedures, functions e views necessárias para considerar o protocolo no cálculo
+      ➜  Ajustadas rotinas de ranking por diagnóstico, acompanhamento e importância para usar o vínculo com protocolo
+
+➜ #12740 - Cadastro matricial da Forma de Cálculo do Ranking
+      ➜  Corrigida a integração entre configurações de ranking da certificadora e subprotocolo
+      ➜  Melhorado o salvamento em lote com transação e tratamento dos pares afetados
+      ➜  Ajustados fluxos de remoção/restauração e atualização da grade matricial
+
+☎️ Com Ronaldo sobre alterações nas procedures, relacionado à alteraçoes no ranking importância
+☎️ Com Ronaldo testando novo cadastro de ranking importancia
+☎️ Com Thayse sobre registro de tipo de atendimento no cms
+
+
+
+BRUNO
+📌 agrotrace
+
+✅ Done:
+➜ Implementação de API Keys por certificadora para integrações externas
+    ➜ Autenticação e Autorização: implementado x-api-key authentication e scoping, incluindo suporte a GET requests para rotas não certificadora
+    ➜ Gerenciamento de Chaves: adicionado endpoints para reativar e deletar chaves API, com atualizações nos componentes de exibição e gerenciamento de chaves
+    ➜ Sincronização de Usuários: implementada sincronização entre usuários legados e better-auth, com revogação de sessões para usuários inativos
+
+🚧 (In Progress):
+➜ #12731 - [FEAT] API Keys por certificadora para integrações externas (better-auth)
+    ➜ Refatoração e Otimização: substituição do serviço de verificação de better-auth por consulta direta ao banco de dados, com melhorias de desempenho e redução de dependências externas
+➜ Design de Chaves de API Globais
+    ➜ Gerenciamento de Chaves Globais: estruturação da nova funcionalidade de chaves de API globais no CMS, incluindo definição de escopos, prefixo 'global_' e regras de acesso para usuários master/IBS
+
+☎️ Com Brenda sobre ajustes no design do Ater Digital
+☎️ Com Ronaldo sobre status da feature de apikey no Agrotrace
+
+
+
+
+Standup (08/07/2026)
+--------------------------------------------------------------------------------
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12777 - [FEAT] Adicionar certificadora_id nas tabelas form_bloco_repetivel e form_bloco_repetivel_pergunta
+    ➜ Funcionalidades Principais Implementadas:
+        ➜ Adição do campo certificadoraId nas entidades FormBlocoRepetivel e FormBlocoRepetivelPergunta.
+
+☎️ Com Elias, validando a alteração do Bloco Repetível no form dinâmico
+☎️ Com Thielson, sobre problemas com tabelas temporarias na procedure de atualizar ranking de atendimento
+☎️ Com Thayse, sobre cadastro de distritos no sistema   (caso necessário identifiquei uma base nacional do IBGE)
+☎️ Com Iohan, algumas demandas do Agrotrace
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ #12731 - [FEAT] API Keys por certificadora para integrações externas (better-auth)
+    ➜ Gerenciamento de API Keys
+        ➜ Implementado gerenciamento global de API Keys com infraestrutura de autorização, escopo e mapeamento
+        ➜ Adicionado testes para interceptor de API Key e remoção de restrições de parâmetros de rota
+    ➜ Seleção de Certificadora
+        ➜ Implementada lógica de seleção robusta para certificadoras
+
+🚧 (In Progress):
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Desenvolvimento
+        ➜ Está sendo feito um estudo do escopo e levantamento de requisitos, construindo PRD do projeto
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ Correção de tabelas temporárias nas procedures de ranking de atendimento
+      ➜  Ajustadas procedures de ranking para tratar múltiplos atendimentos sem depender de tabela temporária
+      ➜  Atualizado o fluxo para usar FIND_IN_SET e GROUP_CONCAT nos ids de atendimento
+      ➜  Ajustada a rotina de reaproveitamento para recalcular ranking com os atendimentos afetados
+
+🚧 In Progress:
+➜ #12047 - Comunicação Técnico
+      ➜  (progresso feito) Refatoração dos destinatários da comunicação
+            ➜  criados resolvers para tratar públicos de produtor e técnico no envio manual e agendado
+            ➜  ajustado o vínculo de destinatários para suportar pessoa ou propriedade por tipo de destinatário
+            ➜  atualizada migration e auditoria dos destinatários de comunicação e agendamento
+      ➜  (progresso feito) Ajustes no fluxo de relatório e fila
+            ➜  generalizado o tratamento de parâmetros de relatório por tipo de destinatário
+            ➜  ajustado processamento em fila para considerar quantidade de destinatários e regra do relatório
+
+☎️ Com Iohan sobre problema na importação de protocolo
+☎️ Com Ronaldo sobre problemas com tabelas temporarias na procedure de atualizar rankind de atendimento
+☎️ Com Elias sobre rota de batch no pec-parto
+
+
+
+
+Standup (09/07/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12784 - Validar regra de associação de produtor/propriedade no agendamento
+    ➜ Funcionalidades Principais Implementadas:
+        ➜ Foi implementada uma nova funcionalidade no banco de dados para criar uma trigger 'atendimento_AFTER_INSERT'.
+        ➜ Esta trigger tem como objetivo associar o técnico e a propriedade no agendamento.
+
+☎️ Com Thielson, sobre alterações na configs de ranking por protocolo
+☎️ Com Ricardo, Iohan e Brenda, sobre processo de onboarding no Agrotrace
+☎️ Com Iohan, sobre configuração dos níveis de importância e alteração das configs de medalha por Protocolo
+☎️ Com Brenda, sobre o design de telas para o autocadastro
+☎️ Com Thayse, sobre associação de propriedades ao técnico (automáticamente num agendamento) e query para atualizar o vinculo dos técnicos com a propriedade
+
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12047 - Comunicação Técnico
+      ➜  (progresso feito) Modo de alerta para comunicação com técnicos
+            ➜  adicionado fluxo de alerta de atendimentos para comunicações técnicas
+            ➜  ajustados formulário, envio manual e agendamento para trabalhar com o novo modo
+            ➜  criada rotina para buscar dados de atendimento usados nos alertas técnicos
+      ➜  (progresso feito) Ajustes finais de integração e interface
+            ➜  adicionado tipoDestinatario nos serviços de comunicação e relatório
+            ➜  refinados campos de dados do alerta técnico e estilos da listagem de comunicação com técnicos
+
+☎️ Com Elias sobre duvidas sobre pec-parto
+☎️ Com Ronaldo sobre alterações na configs de ranking por protocolo
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #12730 - [FEAT] Painel de sessões ativas no CMS com visualização e revogação de sessões (better-auth)
+    ➜ Gestão de sessões ativas
+        ➜ Implementada tela de sessões ativas no CMS com listagem e botão de revogação.
+        ➜ Criado guard de admin role para proteger endpoints.
+        ➜ Expostos endpoints REST para listar, revogar e obter contratos de sessões.
+        ➜ Adicionados DTOs e schemas para sessões admin.
+        ➜ Escritos testes unitários e de integração para serviços, guards e controllers.
+        ➜ Atualizada configuração do Better Auth com novos campos de schema.
+
+📌 ATER-DIGITAL
+
+✅ Done:
+➜ Configuração de domínio de cookie para autenticação
+        ➜ Adicionada variável de ambiente AUTH_COOKIE_DOMAIN ao schema.
+        ➜ Atualizado better-auth.config.ts para usar domínio configurável.
+        ➜ Modificados manifests e ingress para mapear proxy‑cookie‑domain.
+
+📌 EditalFit
+
+🚧 (In Progress):
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Arquitetura e Fundação
+        ➜ Concluído scaffold do monorepo (Turborepo + pnpm) com pacotes de domínio e ADRs.
+        ➜ Evoluídos specs de autenticação, multitenancy e planejamento operacional.
+        ➜ Iniciada fundação Better Auth com testes de compatibilidade.
+        ➜ Implementada configuração de ambiente tipada com Zod e EnvService.
+        ➜ Ajustado tooling de formatação e aliases de path.
+
+
+Standup (10/07/2026)
+--------------------------------------------------------------------------------
+📆 Tech Spotlight - Design/DevOps
+
+
+
+RONALDO
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12412 - Criação de relatório de evolução - Agroplus
+    ➜ Adicionado percentual de evolução entre atendimentos no gráfico de tendência dos pilares (LAG no SQL + delta no rótulo das barras)
+    ➜ Criada nova página "Evolução dos Indicadores" (Socioambientais e Construções Rurais) com comparativo Diagnóstico x Acompanhamento por indicador
+    ➜ Ajustada legibilidade dos gráficos (barras horizontais) e página registrada no relatório book principal
+
+☎️ Com Thielson, sobre indicadores visuais de tipo de relatório na exportação e duvidas sobre a data de agendamento de relatório
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12047 - Comunicação Técnico
+      ➜  Ajustadas variáveis de templates por tipo de destinatário 
+      ➜  Refinado o fluxo de alerta técnico e campos de agendamento usados na comunicação
+      ➜  Refinado o fluxo de comunicação usando relatório para tecnicos
+      ➜  Melhorada a identificação visual dos tipos de relatório na exportação
+
+🚧 In Progress:
+➜ #12783 - Configuração de ranking de medalhas por protocolo na aba Ranking do programa
+      ➜  (progresso feito) Configuração de ranking por protocolo
+            ➜  adicionado seletor de protocolo na aba Ranking do programa
+            ➜  ajustado carregamento e persistência da configuração conforme o protocolo selecionado
+            ➜  criada migration para vincular configuração de ranking ao protocolo
+      ➜  Avaliando as alterações necessárias nas procedures de ranking
+
+☎️ Com Ronaldo sobre indicadores visuais de tipo de relatório na exportação e duvidas sobre a data de agendamento de relatório
+
+
+BRUNO
+📌 Agrotrace
+
+✅ Done:
+➜ #12730 - [FEAT] Painel de sessões ativas no CMS com visualização e revogação de sessões (better-auth)
+    ➜ Gestão de Autenticação e Sessões
+        ➜ Atualizei AuthenticatedUserFactoryService para suportar roles delimitadas por vírgula e reconhecimento de master role.
+        ➜ Refatorei AdminSessionsService para revogação local de sessões e implementei getCurrentSessionIdFromHeaders para resolução via headers da Better Auth.
+        ➜ Ajustei BetterAuthAdminRoleGuard para validar o status isMaster do usuário.
+    ➜ Interface do CMS
+        ➜ Atualizei SessoesAtivasComponent com PrimeNG DatePicker, formatação de tempo relativo via day.js e melhorias no layout.
+
+🚧 (In Progress):
+➜ #12732 - [FEAT] Login sem senha via Magic Link e Email OTP com prazo de expiração (better-auth)
+
+📌 EditalFit
+
+🚧 (In Progress):
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Desenvolvimento de Fundação de Auth
+        ➜ Implementei adapter TypeORM interno para better-auth com suporte a TypeORM 1.0.x.
+        ➜ Desenvolvi camada de persistência de auth com entidades e migration.
+        ➜ Integrei módulo NestJS com body parser customizado e validei ambiente via EnvModule.
+    ➜ Persistência e Transação
+        ➜ Criei Owned Transaction API com suporte a REQUIRED, REQUIRES_NEW e propagação por savepoint.
+        ➜ Implementei PersistenceContext com isolamento HTTP e non-HTTP.
+
+
+
+
+
+Standup (13/07/2026)
+--------------------------------------------------------------------------------
+📆 (Start of week meeting)
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12412 - Criação de relatório de evolução - Agroplus
+    ➜ Ajustado plano de ação para considerar os acompanhamentos também
+    ➜ Finalizado o relatório (aguardar validação do usuário)
+
+☎️ Com Brenda, feedback banner inicial tela pra auto cadastro
+☎️ Com Thielson, sobre problemas na importação e duplicidade de dispositivos e alinhando atividades
+☎️ Com Gustavo, sobre QR code evolution api
+☎️ Com Carlos, sobre erro no /form-bloco-repetivel-pergunta/count
+
+
+
+BRUNO
+📌 agrotrace-v3
+
+🚧 (In Progress):
+➜ #12732 - [FEAT] Login sem senha via Magic Link e Email OTP com prazo de expiração (better-auth)
+    ➜ Autenticação Passwordless
+        ➜ Implementação completa do fluxo de autenticação sem senha, incluindo endpoints para contexto, verificação de OTP e Magic Link
+        ➜ Orquestração de MFA (TOTP e Email) e integração com Redis para gerenciamento de estados, filas de disparo e limites de taxa
+        ➜ Configuração de templates de e-mail, eventos de auditoria e validação de segurança (crypto primitives e input validation)
+    ➜ Testes e Infraestrutura
+        ➜ Configuração de ambientes de teste integrados (Redis/MySQL) e melhorias na resiliência de serviços de dados (AI-Data) e validação de CAR
+
+📌 edital-fit
+
+✅ Done:
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Fundação do Frontend Angular
+        ➜ Implementação do Design System com tokens normativos, tipografia self-hosted e sistema de ícones Lucide
+        ➜ Desenvolvimento de primitivas UI (ef-button, ef-input, etc.) com Signal Form Field Adapter e layout responsivo
+        ➜ Configuração de Zoneless router, Remote State contract e testes de browser (Vitest/Playwright)
+    ➜ Persistence Foundation e Tooling
+        ➜ Finalização da camada de persistência com validação de PRD-00C e migração de lint/formatação para oxlint/oxfmt
+
+
+
+THIELSON
+📆 Follow up - Checkmilk
+
+📌 Agrotrace
+
+✅ Done:
+➜ #12804 - Envios Dispositivo - Duplicidade
+➜ Importação de protocolo
+      ➜  Melhorado o processo de importação com logs mais detalhados
+      ➜  Ajustado tratamento de erros e cache de preview na importação de protocolo
+
+🚧 In Progress:
+➜ #12783 - Configuração de ranking de medalhas por protocolo na aba Ranking do programa
+      ➜  (progresso feito) Ajustes nas rotinas de ranking por protocolo
+            ➜  alteradas functions e procedures para considerar configuração de ranking por protocolo
+            ➜  ajustadas rotinas de ranking por diagnóstico, acompanhamento e pontuação
+            ➜  corrigido trigger da configuração de ranking para evitar problema com subquery retornando múltiplos registros
+      ➜  (progresso feito) Refinamentos na configuração de ranking
+            ➜  filtrados protocolos inativos na view de importância do ranking
+            ➜  melhoradas opções de consulta no serviço de importância do ranking
+
+☎️ Com Ronaldo sobre problemas na importação e duplicidade de dispositivos e alinhando atividades
+☎️ Com Iohan e Carlos sobre problemas na importação e duplicidade de dispositivos
+
+
+
+
+Standup (14/07/2026)
+--------------------------------------------------------------------------------
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12810 - Erro em pergunta Boolean - Informações da Propriedade
+    ➜ Adicionado suporte a campos do tipo checkbox no formulário dinâmico de informações da propriedade.
+    ➜ Atualização de propriedade-info-dynamic-form.component.html para renderização condicional de p-checkbox.
+    ➜ Modificações em propriedade-info-dynamic-form.component.ts para importar CheckboxModule, ajustar tipos de dados, implementar lógica de inicialização e transformação de valores de checkbox, e adaptar validações.
+    ➜ Adição de estilos em propriedade-info-dynamic-form.component.scss.
+    ➜ Renomeação de propriedades em propriedade-info.service.ts.
+    ➜ Refatoração do tipo FieldFormData para usar FormGroup e padronização de nomes de propriedades.
+
+➜ #12782 - Ajustar mensagem de confirmação de desativação de opção de resposta - Perfil
+    ➜ Atualização do texto de confirmação para remoção de opção de resposta no perfil de cadastro.
+
+☎️ Com Thayse, sobre demanda de correção passada pela Débora
+☎️ Com Thielson, analisando procedures, views, functions e relatórios do jasper relacionados ao protocolo em Certificadora_configuracao
+☎️ Com Thielson, problemas de duplicidade de dispositivos e alinhando atividades
+☎️ Com WEB e iohan investigando erro de login mobile e analisando logs erros e possíveis correções
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12804 - Envios Dispositivo - Duplicidade
+      ➜ Corrgido logica de upsert no service de dispositivo
+➜ #12825 - [FIX] Tornar o campo genero opcional na API para não quebrar o envio de dados do aplicativo
+
+🚧 In Progress:
+➜ #12783 - Configuração de ranking de medalhas por protocolo na aba Ranking do programa
+      ➜  (progresso feito) Ajustes nas rotinas de ranking por protocolo
+            ➜  Finalizado alterações nas procedures, views e functions, relacionados à adição do novo relacionamento com protocolo na tabela de certificadora_configuracao
+      ➜ Adicionando novo relacionamento com protocolo na tabela certificadora_categoria, para permitir nomes diferentes de medalhas para cada protocolo
+
+☎️ Com Ronaldo analisando procedures, views, functions e relatórios do jasper relacionados ao protocolo em certificadora_configuracao
+☎️ Com Ronaldo problemas de duplicidade de dispositivos e alinhando atividades
+☎️ Com WEB e iohan investigando erro de login mobile e analisando logs erros e possíveis correções
+
+
+BRUNO
+📌 agrotrace
+
+🚧 (In Progress):
+➜ #12732 - [FEAT] Login sem senha via Magic Link e Email OTP com prazo de expiração (better-auth)
+    ➜ Fluxo de Autenticação Passwordless
+        ➜ Implementação de autenticação via Magic Link e OTP com Better Auth, incluindo serviços de bridge e fila para processamento assíncrono.
+        ➜ Desenvolvimento de persistência de estado para recuperação de sessão e resolução de permissões por contexto.
+        ➜ Configuração de segurança com normalização de proxies e sanitização de URLs de retorno.
+    ➜ Interface e Experiência do Usuário
+        ➜ Redesign da interface de seleção de contexto e integração de MFA com validação de tentativas.
+    ➜ Infraestrutura e Segurança
+        ➜ Ajustes no RedisCacheService e otimização de comandos Lua no PasswordlessRateLimitService.
+
+📌 edital-fit
+
+✅ Done:
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Arquitetura e Documentação
+        ➜ Revisão das especificações PRD-01 e PRD-02; criação das ADR-0006 (magic link boundary) e ADR-0007 (tenancy context).
+    ➜ Frontend e UI Primitives
+        ➜ Refatoração de componentes com externalização de estilos em variants e criação da utilidade merge-classes.ts.
+        ➜ Atualização de regras de lint-structure e validação de contrato de componentes via Zard CLI.
+
+☎️ Com Thielson, Ronaldo e Iohan investigando logs de errors da api do Agrotrace (atualizar resposta, login, sessões)
+
+
+
+
+Standup (15/07/2026)
+--------------------------------------------------------------------------------
+📆 (Planing Web)
+
+
+RONALDO
+
+📌 Agrotrace
+
+✅ Done:
+➜ #12810 - Erro em pergunta Boolean - Informações da Propriedade (refatoração após feedback da Thayse)
+    ➜ Aprimoramento do layout e validações do formulário dinâmico de informações da propriedade.
+    ➜ Substituição de checkbox por botão de seleção e ajuste de validações relacionadas (igual ao mobile)
+
+☎️ Com Gustavo, sobre alteração de coluna na tabela pessoa (genero)
+☎️ Com Thayse, sobre melhoria na pergunta do tipo Boolean
+☎️ Com Brenda, sobre design do auto Cadastro (agrônomo)
+
+
+
+
+THIELSON
+
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12783 - Configuração de ranking de medalhas por protocolo na aba Ranking do programa
+      ➜  (progresso feito) Evolução da configuração de ranking por protocolo
+            ➜  adicionado vínculo de protocolo na categoria da certificadora
+            ➜  ajustados cadastro, serviço e modelo compartilhado para manter a configuração por protocolo
+      ➜  (progresso feito) Ajustes nas rotinas e consultas de ranking
+            ➜  atualizadas procedures, functions e views para considerar o protocolo nas categorias e cálculos de ranking
+            ➜  incluídas migrations de atualização com scripts de reversão das rotinas alteradas
+      ➜  (progresso feito) Refatoração das telas de ranking
+            ➜  ajustados componentes de ranking para buscar e reutilizar a configuração conforme o protocolo selecionado
+            ➜  centralizada a lógica de configuração e cálculo percentual por categoria
+
+
+BRUNO
+
+📌 Agrotrace
+
+🚧 (In Progress):
+➜ #12732 - [FEAT] Login sem senha via Magic Link e Email OTP com prazo de expiração (better-auth)
+    ➜ Passwordless Login
+        ➜ Implementado fluxo completo de Magic Link com persistência de estado e recuperação após refresh; adicionada política de expiração, rate‑limit por IP/e‑mail e validação de User‑Agent.
+        ➜ Criado adapter SMTP Google (google-smtp-magic-link.adapter.ts) e camada de porta/política para envio seguro de links.
+    ➜ Session Management
+        ➜ Introduzidas sessões pareadas, recuperação de tentativas, registro autoritário e esquema seguro de pares (application‑session‑pair.entity.ts).
+        ➜ Adicionados repositórios de tentativa de rotação, registro de logout e verificação estrita de armazenamento de sessão.
+    ➜ Redis Secondary Storage
+        ➜ Implementado storage Redis secundário para sessões better‑auth, sincronizando revogações entre Redis e banco relacional.
+    ➜ Platform Tracking
+        ➜ Campo applicationPlatform incluído em BetterAuthSession; migration 4726‑addBetterAuthSessionApplicationPlatform.ts criada; UI de sessões ativas atualizada.
+    ➜ Internationalization
+        ➜ Migrado i18n para app initializer, removido módulo dedicado e limpos imports em componentes.
+    ➜ Magic Link & Actor Session
+        ➜ Criado contexto de ator autenticado (authenticated‑actor‑context.ts) e expandida Auth Facade com métodos sendMagicLink, verifyMagicLink, getActorSession.
+        ➜ Frontend de autenticação atualizado: cliente HTTP com CSRF, guard de rota, páginas de login, callback e entrada de ator; testes de fluxo completo incluídos.
+
+
+
+Standup (16/07/2026)
+--------------------------------------------------------------------------------
+
+
+RONALDO
+📆 Reunião Onboarding
+
+📌 Agrotrace
+
+✅ Done:
+➜ #12847 - Dar suporte ao bloco repetivel de pergunta em relatorio
+    ➜ Alteração da procedure getFormDinamicoResposta para dar suporte ao bloco repetível
+    ➜ Adicionado suporte à perguntas do tipo GPS
+    ➜ Ajustado api para dar suporte na parte dinâmica do bloco repetível
+
+
+☎️ Com Ricardo, Brenda, Carlos e Iohan, sobre design Agrotrace autocadastro
+☎️ Com Gustavo, sobre melhorias em relatorio de respostas de form dinamico
+☎️ Com Matheus, a respeito de imagens no QGIS 
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12783 - Configuração de ranking de medalhas por protocolo na aba Ranking do programa
+      ➜  Ajustado o tratamento do protocolo selecionado na tela da certificadora
+      ➜  Refinadas entidades e metadados de certificadora para melhorar carregamento e manutenção dos vínculos
+
+🚧 In Progress:
+➜ #12737 - Exportação e importação em Excel da estrutura completa do Formulário Dinâmico
+      ➜  (progresso feito) Realizado analise e mapeado regras iniciais de exportação/importação, vínculos por código e remapeamento entre certificadoras
+      ➜  (progresso feito) Base inicial no CMS e API
+            ➜  criada tela/modal inicial para exportar e importar estruturas com seleção de certificadora, formulário e safra
+            ➜  adicionados contratos compartilhados, rota no menu de Importações e endpoints iniciais sem processamento real
+
+
+BRUNO
+📌 Agrotrace
+
+🚧 (In Progress):
+➜ #12732 - Login sem senha via Magic Link e Email OTP com prazo de expiração (better-auth)
+    ➜ Sessões Paired (Better Auth)
+        ➜ Estabilização e hardening do fluxo de sessões paired, incluindo metadata, MFA, OTP, TOTP e logout.
+        ➜ Criação e exposição de APIs para sessões paired, ajustes nos gateways e serviços de admin.
+        ➜ Refatoração do browser‑auth‑coordinator, inclusão de configuração de domínio de cookie e lifecycle.
+        ➜ Atualização de módulos de autenticação, wiring de mutação de sessão e documentação de cutover.
+        ➜ Invalidação de credenciais legacy de browsers e testes de integração MySQL.
+---
+
+📌 edital-fit
+
+✅ Done:
+➜ Agente Inteligente para Análise de Licitações
+    ➜ Login sem senha (Better Auth)
+        ➜ Substituição do plugin customizado por auth‑policy.plugin.ts oficial.
+        ➜ Adaptação do adapter de SMTP para versão genérica.
+        ➜ Implementação de login‑page.ts com estados, validação e debounce.
+        ➜ login.facade.ts com máquina de estado baseada em Signal e toast de confirmação.
+        ➜ Integração do cliente HTTP oficial do better‑auth.
+        ➜ Interceptor api‑credentials.interceptor.ts para envio de credentials/CSRF.
+        ➜ Nova primitiva de notificação ef‑toast (ts, service, variants).
+        ➜ Refatoração de auth‑layout.ts com slots responsivos e suporte mobile‑first.
+        ➜ Simplificação de ef‑form‑field.ts usando formControl Angular.
+        ➜ Configuração de environment files com URL base da API.
+
+
+
+
+Standup (17/07/2026)
+--------------------------------------------------------------------------------
+📆 (Spotlight - Mobile)
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12864 - [FIX] Desconsiderar vínculos desativados no relatório de respostas dinâmicas
+    ➜ Atualização da procedure getFormDinamicoResposta para melhoria de legibilidade e performance.
+    ➜ Limpeza do código SQL, remoção de espaços em branco desnecessários e alinhamento de instruções SQL para melhor clareza.
+    ➜ Garantia de formatação consistente em declarações de variáveis e queries SQL.
+    ➜ Implementação da lógica para desconsiderar vínculos desativados no relatório de respostas dinâmicas.
+
+☎️ Com Thielson e Bruno, sobre testes no login sem senha, problema ao subir a aplicação depois do merge e conflitos de merge entre as branchs
+☎️ Com Ronaldo sobre problemas nas migrations em dev
+☎️ Com Iohan, sobre dificuldades no programa do CITROS
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12859 - Verificar problemas para acessar dashboard
+      ➜  Investigado e corrigido problemas de autenticação no Stimulsoft Resultados > Dashboard
+      ➜  Ajustados conflitos de merge no fluxo do dashboard
+➜ Correção de migrations em dev
+      ➜  Investigados e ajustadas migrations relacionadas a protocolo em configuração e categoria de certificadora
+
+🚧 In Progress:
+➜ #12737 - Exportação e importação em Excel da estrutura completa do Formulário Dinâmico
+      ➜  (progresso feito) Exportação básica em Excel
+            ➜  implementada geração real de arquivo .xlsx para modelo e exportação com dados (service com regras iniciais)
+            ➜  adicionadas abas de estrutura, formulário, agrupadores, perguntas, listas, itens e domínios
+
+☎️ Com Bruno e Ronaldo sobre testes no login sem senha, problema ao subir a aplicação depois de merge na sprint e conflitos de merge entre as branchs
+☎️ Com Ronaldo sobre problemas nas migrations em dev
+
+
+BRUNO
+📌 Agrotrace
+
+✅ Done:
+➜ #12732 - Login sem senha via Magic Link e Email OTP com prazo de expiração
+    ➜ Login sem senha
+        ➜ Implementado filtro no dropdown de seleção de certificado e aprimorada a formatação do componente login, incluindo indentação consistente e estrutura de layout no contexto passwordless.
+
+---
+📌 edital-fit
+
+🚧 (In Progress):
+➜ #12764 - Agente Inteligente para Análise de Licitações
+    ➜ Agente Inteligente
+        ➜ Criado script de migração database/migrate.ts que lê DATABASE_URL e executa migrations, com testes em database/migrate.spec.ts.
+        ➜ Substituído Docker Compose por Testcontainers: novo script scripts/run-postgres-tests.mjs, documentação docs/ADR-0009-testcontainers-postgresql-test-harness.md e setup efêmero de PostgreSQL.
+        ➜ Implementado template de e‑mail Magic Link em magic-link-email.template.handlebars e renderer magic-link-email.renderer.ts com testes correspondentes.
+        ➜ Atualizados documentos DESIGN.md e AGENTS.md com diretrizes de e‑mail transacional.
+
+☎️ Com Gustavo, Iohan e Ricardo sobre criação de novo projeto EditalFit no Azure Devops
+☎️ Com Thielson e Ronaldo sobre testes no login sem senha, problema ao subir a aplicação depois do merge e conflitos de merge entre as branchs
+
+
+
+
+
+Standup (20/07/2026)
+--------------------------------------------------------------------------------
+📆 (Start of week meeting)
+
+
+
+RONALDO
+📌 Agrotrace
+
+✅ Done:
+➜ #12870 - [FIX] Ocultar perguntas referenciadas desativadas nos gráficos do formulário dinâmico
+    ➜ Atualização da procedure getFormRespostasReferenciadas para removendo pergunta não mais relacionadas à estrutura
+    ➜ Limpeza do código SQL, remoção de espaços em branco desnecessários e alinhamento de instruções SQL para melhor clareza.
+    ➜ Ajuste no serviço do Redis para suporte à conexão de usuários
+
+☎️ Com Iohan, sobre novas demandas e entregas do Citrus
+☎️ Com Bruno, sobre correção de bug de abertura de abas no Agrotrace
+☎️ Com Thielson, sobre duvidas nos relatorios do checkmilk no agrotrace e sobre atividade #12748
+
+
+
+THIELSON
+📌 Agrotrace
+
+✅ Done:
+➜ #12748 - Ao importar ou cadastrar pergunta colocar ela como "editavel"
+      ➜  Ajustado o cadastro pelo front para expor e permitir alterar a flag de editável no mobile
+      ➜  Incluído o campo editavel_mobile nos modelos de questionário, critério, tema, subtema e pergunta
+      ➜  Ajustada a importação e exportação de protocolo para preservar o comportamento de perguntas editáveis por padrão
+
+🚧 In Progress:
+➜ Relatórios checkmilk em exportação agrotrace
+      ➜  Adicionado Relatorio de qualidade
+
+☎️ Com Ronaldo sobre duvidas nos relatorios do checkmilk no agrotrace e sobre atividade #12748
+
+
+BRUNO
+📆 (Follow up com Ricardo)
+
+📌 Agrotrace
+
+✅ Done:
+➜ #12875 - [FIX] Botão "Abrir em nova janela" nas listagens redireciona para a raiz do dashboard
+
+🚧 (In Progress):
+➜ #12733 - [FEAT] Banimento e desbanimento de usuários pelo CMS (better-auth admin)
+    ➜ Gestão de Usuários e Banimento
+        ➜ Implementação de comandos de ban/unban, persistência transacional de estado e rotas de controle no CMS.
+        ➜ Criação de guards para escopo de gerenciamento e centralização de políticas de acesso administrativo.
+    ➜ Segurança e Credenciais
+        ➜ Implementação de revogação estrita de credenciais, versionamento de sessões e validação de estados de usuário.
+        ➜ Versionamento de tokens mobile, fluxos de MFA, passwordless e validação de versões em WebSockets e SSE.
+    ➜ Configuração de Ambiente
+        ➜ Ajuste de URL base da API em desenvolvimento e correção de headers para frames de coordenação de autenticação.
+
+📌 EditalFit
+
+🚧 (In Progress):
+➜ Ingestão de Documentos e Oportunidades
+    ➜ Implementação completa do fluxo de ingestão de documentos, incluindo persistência, filas, processamento de blobs e retentativas.
+    ➜ Criação de serviços de canonicalização, validação de artefatos e integração com storage Azure.
+    ➜ Desenvolvimento de CRUD de oportunidades, repositórios de persistência e definição de contratos de fila e domínio.
+
+☎️ Com Ronaldo sobre correção de bug de abertura de abas no Agrotrace
+☎️ Com Carlos sobre bug de autenticação no ambiente de dev e mobile + validação de correção
+☎️ Com Lucas sobre Cloudflare Turnstile para habilitar recurso de captcha para o Agrotrace
+
+
+
+Standup (21/07/2026)
+--------------------------------------------------------------------------------
+
+
+RONALDO
+📌 Agrotrace-
+
+✅ Done:
+➜ #12896 - Importação de Propriedade - Download de Planilha Populada
+    ➜ Implementação do endpoint GET ':id/modelo-populado' no backend para gerar e devolver uma planilha Excel populada.
+    ➜ Criação do método gerarModeloPopulado no serviço de importação para consultar detalhes, executar query SQL e gerar o arquivo Excel.
+    ➜ Desenvolvimento da procedure SQL sp_importacao_propriedade_produtor para processamento de linhas de importação, incluindo lógica de atualização por ID.
+    ➜ Adição de um botão 'Baixar planilha para edição' no componente de importação geral do frontend.
+    ➜ Implementação da lógica no frontend para gerenciar o estado de carregamento e disparar o download do blob da planilha populada.
+    ➜ Atualização das interfaces (IPropriedadeProdutorLinhaArquivo, ILinhaNormalizada, ImportacaoDisponivel) para incluir campos opcionais produtor_id e propriedade_id.
+    ➜ Adição de validação de IDs no procedimento sp_importacao_propriedade_produtor e tratamento de erro (NotFoundException) para importações sem planilha configurada.
+    ➜ Criação da migration 1784651006234‑alterSpImportacaoPropriedadeProdutorAtualizacaoPorId.ts para ajustar a tabela importacao_campo e a ordem dos campos.
+
+☎️ Com Iohan, Alinhar demandas e entregas Citros
+☎️ Com Iohan e Thayse - Verificar estruturas dos formulários citros e relatórios
+☎️ Com Bruno, sobre correção de problemas de migration local, correção de import que quebrava build no Agrotrace
+
+
+THIELSON
+📌 Chechmilk
+
+✅ Done:
+➜ #12744 - Corrigido bug na exibição da logo da certificadora no componente de cadastro de certificadora (apenas front)
+
+📌 Agrotrace
+
+✅ Done:
+➜ Relatórios checkmilk em exportação agrotrace
+      ➜  Adicionado Relatorio de PQFL, Relatorio Inconformidade Qualidade, Acompanhamento IATF e Acompanhamento Diagnostico (Mapeado parametros e criado migration para cadastro direto das exportações
+      ➜  Adicionado novos parâmetros dos filtro dinamicos na exportação
+
+
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ Refatoração de Migrações de Banco de Dados
+    ➜ Segurança e Autenticação
+        ➜ Ajuste nas migrações de banco de dados para permitir execução resiliente e resumível (1784143015190-addSecurePairedSessionSchema.ts e 1784559265202-addUserCredentialVersion.ts)
+➜ #12892 - [FIX] Erro 401 "Sessão de aplicação inválida" ao carregar dropdown de importações
+    ➜ Autenticação e Importação
+        ➜ Correção de dependências em guards de autenticação (jwt-auth.guard.ts) e restauração da listagem autenticada de importações
+        ➜ Ajuste nos fluxos de autenticação mobile para preservação de headers e descontinuação de nomes de cookies JWT legados
+➜ #12733 - [FEAT] Banimento e desbanimento de usuários pelo CMS (better-auth admin)
+    ➜ Gestão de Usuários no CMS
+        ➜ Implementação de interface para banimento e integração da ação de desbanimento de usuários
+        ➜ Refinamento do ciclo de vida de login para validar estado de banimento e persistência de versão de credencial
+
+📌 EditalFit
+🚧 (In Progress):
+➜ Refinamento da UX no Workspace de Ingestão de Documentos
+    ➜ Fluxo de Documentos
+        ➜ Melhorias na interface e lógica de ingestão de documentos, incluindo ajustes nos componentes de detalhe, listagem e histórico de associação, além de atualizações nos contratos de integração e repositórios de leitura
+
+☎️ Com Carlos sobre bug na api que impedia login via MFA
+☎️ Com Ronaldo sobre correção de problemas de migration local, correção de import que quebrava build no Agrotrace
+☎️ Com Iohan sobre hotfix de PR em prod
+
+
+
+Standup (22/07/2026)
+--------------------------------------------------------------------------------
+**Standup (22/07/2026)**
+📆 (Planing Web)
+
+**RONALDO**
+**📌 agrotrace-v3**
+
+**✅ Done:**
+➜ #12847 - Dr suporte ao bloco repetivel de pergunta em relatorio
+	➜ Alteração da procedure `getFormDinamicoResposta` para suportar respostas de formulários dinâmicos, incluindo blocos repetíveis, e campos adicionais.
+	➜ Criação de tabelas temporárias para gerenciar dados de blocos repetíveis e integração na estrutura de resposta.
+
+➜ #12900 - [FEAT] Dashboard analítico e relatório de encerramento da campanha de Sanidade dos Citros
+	➜ Desenvolvimento do `CitrosDashboardComponent` com funcionalidades para exibição e gerenciamento de dados do dashboard.
+	➜ Criação de modelos para estruturas de dados do dashboard (DashboardRecord, DashboardEvidence, etc.).
+	➜ Desenvolvimento do `CitrosDashboardService` para interações com a API, busca de dados, geração de relatórios e exportação de respostas.
+	➜ Integração do Leaflet para visualização de mapas de pontos de dados relacionados à saúde dos citros.
+	➜ Adição de capacidades de filtragem e recursos de geração de relatórios para aprimorar a experiência do usuário.
+	➜ Implementação de 7 seções do relatório, mapa interativo Leaflet, modais de detalhamento e exportação CSV/XLSX/PDF no componente Angular.
+	➜ Implementação de serviço para geração de relatórios em PDF com suporte a imagens remotas e templates dinâmicos (Handlebars).
+	➜ Adição de várias migrações para o endpoint e permissões do Dashboard Citros.
+	➜ Criação de tabelas para Dashboard Analítico Modelo com dados iniciais e inserção de definições para indicadores do Dashboard Citros.
+	➜ Alteração de procedimentos de resposta de formulário dinâmico para adicionar horários e respostas condicionais.
+	➜ Criação de tabelas e triggers para Dashboard Citros Fiscalização Regra com registro de auditoria.
+	➜ Implementação de cache de 5 minutos para o dashboard, cálculo de 14 indicadores sanitários, matriz de risco×manejo e ranking de prioridades.
+	➜ **Melhorias Técnicas:**
+		➜ Otimização de imagens remotas com Sharp, timeout de 15s e limite de 15MB no `BaseHtmlPdfReportService`.
+		➜ Aumento do `protocolTimeout` para 10 minutos e timeout padrão da página para 0 no `pdf-generator.ts` para evitar timeouts em PDFs grandes.
+		➜ Atualização da função para recuperar anexos de URL para usar o contêiner privado atual (`agrotrace-v3`).
+		➜ Ajuste da configuração de segurança do Docker para alinhamento com o `securityContext` do Kubernetes.
+		➜ Aprimoramento do suporte ao Puppeteer com diretórios de dados do usuário dedicados e caminhos de logo dinâmicos, garantindo persistência de perfil, configuração e cache.
+		➜ Modificação dos Dockerfiles (`.dev`, `.homo`, `.prod`) para incluir a variável de ambiente `PUPPETEER_USER_DATA_DIR` e configurar permissões nos diretórios temporários exigidos pelo Chromium/Crashpad.
+	➜ **Correções Implementadas:**
+		➜ Ajuste de regras existentes para replantio no Dashboard Citros Fiscalização.
+
+
+
+
+Standup (23/07/2026)
+--------------------------------------------------------------------------------
+
+
+Standup (24/07/2026)
+--------------------------------------------------------------------------------

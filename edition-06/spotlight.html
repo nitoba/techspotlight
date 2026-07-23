@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tech Spotlight #06 — Web Team</title>
+  <link rel="icon" href="../assets/web-team.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2128;--line:#30363d;--text:#e6edf3;--muted:#8b949e;--dim:#6e7681;--purple:#a78bfa;--blue:#60a5fa;--green:#34d399;--amber:#fbbf24;--coral:#fb7185;--cyan:#22d3ee}
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text)}body{font-family:"Space Grotesk",sans-serif}
+    .app{height:100%;display:grid;grid-template-rows:34px 38px 1fr 25px}.titlebar,.tabs,.status{display:flex;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11px}.titlebar{background:#090c10;border-bottom:1px solid var(--line);padding:0 14px;color:var(--muted);gap:10px}.traffic{display:flex;gap:6px}.traffic i{width:9px;height:9px;border-radius:50%;display:block}.traffic i:nth-child(1){background:#ff5f56}.traffic i:nth-child(2){background:#ffbd2e}.traffic i:nth-child(3){background:#27c93f}.title-center{margin:auto;color:var(--dim)}
+    .tabs{background:var(--panel);border-bottom:1px solid var(--line);overflow:hidden}.tab{height:100%;display:flex;align-items:center;padding:0 14px;border-right:1px solid var(--line);color:var(--dim);white-space:nowrap;cursor:pointer}.tab.active{background:var(--bg);color:var(--text);box-shadow:inset 0 2px var(--purple)}
+    .workspace{display:grid;grid-template-columns:220px 1fr;min-height:0}.sidebar{background:var(--panel);border-right:1px solid var(--line);overflow:auto;display:flex;flex-direction:column}.sidebar-main{padding:0}.explorer,.section-title{padding:14px 16px 6px;font:700 10px "JetBrains Mono";letter-spacing:.1em;color:var(--dim);text-transform:uppercase}.explorer{padding-top:12px}.side{display:flex;align-items:center;gap:8px;padding:5px 16px;font:11px "JetBrains Mono";line-height:1.25;color:var(--muted);cursor:pointer;border-left:2px solid transparent;overflow-wrap:anywhere}.side:hover{background:var(--panel2);color:var(--text)}.side.active{background:#242a33;color:var(--text);border-left-color:var(--purple);font-weight:600}.side-icon{width:14px;flex:0 0 14px;text-align:center;font-size:11px}.divider{height:1px;background:var(--line);margin:8px 0}.sidebar-team{padding:8px 16px 14px}.sidebar-team .section-title{padding:0 0 6px}.member{display:flex;align-items:center;gap:8px;padding:4px 0;font:10px "JetBrains Mono";color:var(--muted)}.member-avatar{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700}.av-r{background:#241b3f;color:var(--purple)}.av-b{background:#10233c;color:var(--blue)}.av-t{background:#0b2b20;color:var(--green)}.member-dot{width:6px;height:6px;border-radius:50%;background:var(--green);margin-left:auto}
+    .stage{position:relative;overflow:hidden;background:radial-gradient(circle at 82% 12%,rgba(96,165,250,.08),transparent 28%),var(--bg)}.slide{display:none;position:absolute;inset:0;padding:clamp(24px,3.8vw,58px) clamp(30px,5vw,82px);overflow:auto}.slide.active{display:block;animation:in .28s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .file{font:500 12px "JetBrains Mono";color:var(--dim);margin-bottom:15px}.file b{color:var(--purple)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(42px,5vw,76px);line-height:.98;max-width:980px;letter-spacing:-.045em;margin-bottom:22px}h2{font-size:clamp(28px,3.2vw,50px);line-height:1.05;letter-spacing:-.03em;margin-bottom:24px}h2 span,h1 span{color:var(--purple)}.lead{font-size:clamp(17px,1.7vw,25px);line-height:1.5;color:var(--muted);max-width:950px}.eyebrow{font:600 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.16em;color:var(--green);margin-bottom:18px}
+    .grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:rgba(22,27,34,.92);border:1px solid var(--line);border-radius:10px;padding:20px}.card h3{font-size:18px;margin-bottom:10px}.card p,.card li{color:var(--muted);line-height:1.45}.card ul{padding-left:18px;margin:8px 0}.tag{display:inline-flex;padding:4px 8px;border-radius:4px;font:600 10px "JetBrains Mono";background:#241b3f;color:#c4b5fd;margin-bottom:12px}.tag.green{background:#0b2b20;color:var(--green)}.tag.blue{background:#10233c;color:var(--blue)}.tag.amber{background:#2b2108;color:var(--amber)}
+    .code{background:#090c10;border:1px solid var(--line);border-radius:9px;padding:20px;font:13px/1.75 "JetBrains Mono";white-space:pre-wrap;color:var(--muted)}.kw{color:#ff7b72}.fn{color:#d2a8ff}.str{color:#a5d6ff}.num{color:#79c0ff}.cm{color:#6e7681}.ok{color:var(--green)}
+    .metric{padding:20px;border-left:3px solid var(--purple);background:var(--panel);border-radius:6px}.metric strong{display:block;font:700 clamp(27px,3vw,44px) "JetBrains Mono";color:var(--text)}.metric span{color:var(--muted);font-size:13px}.flow{display:flex;align-items:stretch;gap:10px;margin-top:22px}.step{flex:1;background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:8px}.step small{font:600 10px "JetBrains Mono";color:var(--purple)}.step b{display:block;margin:7px 0}.arrow{align-self:center;color:var(--dim);font-size:20px}
+    .hero-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.dashboard-frame{height:min(67vh,680px);background:#fff;border:1px solid #4b5563;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 18px 60px #0008;cursor:zoom-in}.dashboard-frame img{width:100%;height:100%;object-fit:cover;object-position:top}.dashboard-frame:after{content:"clique para ampliar";position:absolute;right:10px;bottom:10px;background:#0d1117dd;color:white;padding:6px 9px;border-radius:5px;font:10px "JetBrains Mono"}
+    .callout{border:1px solid #284b3c;background:#0b2119;border-radius:8px;padding:17px;color:#b7f7d7}.callout strong{color:var(--green)}.quote{border-left:3px solid var(--purple);padding:12px 18px;color:var(--muted);font-size:20px;line-height:1.45;margin:20px 0}.owner{display:flex;gap:12px;align-items:center;margin-top:25px;color:var(--muted)}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--blue));font:700 13px "JetBrains Mono";color:white}
+    .wins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.win{min-height:220px;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:9px;padding:22px}.win:nth-child(2){border-top-color:var(--blue)}.win:nth-child(3){border-top-color:var(--purple)}.win .icon{font-size:30px}.win h3{font-size:20px;margin:15px 0 8px}.todo{font:15px/2 "JetBrains Mono";background:#090c10;border:1px solid var(--line);padding:20px;border-radius:8px}.todo .done{color:var(--green)}.todo .next{color:var(--amber)}
+    .status{background:#6d28d9;padding:0 12px;color:#eee;gap:18px}.status .right{margin-left:auto;display:flex;gap:18px}.timer{cursor:pointer}.dots{display:flex;gap:7px;align-items:center}.dot{width:6px;height:6px;border-radius:50%;background:#ffffff55;cursor:pointer}.dot.active{background:#fff;transform:scale(1.4)}
+    .modal{display:none;position:fixed;inset:0;background:#000d;z-index:20;padding:35px}.modal.open{display:grid;place-items:center}.modal img{max-width:95vw;max-height:92vh;object-fit:contain;border-radius:7px}.close{position:fixed;top:15px;right:20px;color:#fff;font-size:30px;cursor:pointer}
+    .remote{position:fixed;right:16px;bottom:36px;z-index:10;background:#10151cdd;border:1px solid var(--line);border-radius:7px;padding:7px 10px;font:10px "JetBrains Mono";color:var(--dim)}.remote.live{color:var(--green);border-color:#285c46}
+    @media(max-width:900px){.workspace{grid-template-columns:1fr}.sidebar{display:none}.slide{padding:25px}.g2,.g3,.wins,.hero-layout{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.dashboard-frame{height:50vh}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="titlebar"><span class="traffic"><i></i><i></i><i></i></span><span>tech-spotlight / edition-06</span><span class="title-center">Web Engineering Team — Visual Studio Code</span></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="sidebar-main" id="side">
+        <div class="explorer">Explorer</div>
+        <div class="side active" data-i="0"><span class="side-icon">📋</span>README.md</div>
+        <div class="side" data-i="1"><span class="side-icon">⏱</span>runtime-budget.ts</div>
+        <div class="side" data-i="2"><span class="side-icon">📊</span>period-summary.json</div>
+        <div class="divider"></div>
+        <div class="section-title">Ronaldo</div>
+        <div class="side" data-i="3"><span class="side-icon">🍊</span>citros-dashboard.component.ts</div>
+        <div class="divider"></div>
+        <div class="section-title">Bruno</div>
+        <div class="side" data-i="4"><span class="side-icon">🔑</span>passwordless-auth.flow.ts</div>
+        <div class="divider"></div>
+        <div class="section-title">Thielson</div>
+        <div class="side" data-i="5"><span class="side-icon">📗</span>formulario-dinamico.xlsx</div>
+        <div class="divider"></div>
+        <div class="section-title">Wrap-up</div>
+        <div class="side" data-i="6"><span class="side-icon">🏆</span>engineering-wins.md</div>
+        <div class="side" data-i="7"><span class="side-icon">👋</span>exit.ts</div>
+      </div>
+      <div class="divider"></div>
+      <div class="sidebar-team">
+        <div class="section-title">Time Web</div>
+        <div class="member"><span class="member-avatar av-r">RO</span>Ronaldo<span class="member-dot"></span></div>
+        <div class="member"><span class="member-avatar av-b">BR</span>Bruno<span class="member-dot"></span></div>
+        <div class="member"><span class="member-avatar av-t">TH</span>Thielson<span class="member-dot"></span></div>
+      </div>
+    </aside>
+    <main class="stage">
+      <section class="slide active">
+        <div class="file">edition-06 / <b>README.md</b></div>
+        <div class="eyebrow">Tech Spotlight · Web Team · Edição #06</div>
+        <h1>Da coleta<br><span>ao uso.</span></h1>
+        <p class="lead">Dados que viram decisão, estruturas que ganham portabilidade e acesso com menos atrito.</p>
+        <div class="code" style="max-width:760px;margin-top:28px"><span class="kw">class</span> <span class="fn">TechSpotlight06</span> <span class="kw">extends</span> SprintReview {
+  team = [<span class="str">"Ronaldo"</span>, <span class="str">"Bruno"</span>, <span class="str">"Thielson"</span>];
+  period = <span class="str">"06/07 → 24/07/2026"</span>;
+  thesis = <span class="str">"complexidade técnica → valor percebido"</span>;
+}</div>
+      </section>
+
+      <section class="slide">
+        <div class="file">edition-06 / <b>runtime-budget.ts</b></div>
+        <h2>Três histórias. <span>30 minutos.</span></h2>
+        <div class="flow">
+          <div class="step"><small>00:00 — 04:00</small><b>Leitura do período</b><span>Contexto e direção</span></div><div class="arrow">→</div>
+          <div class="step"><small>04:00 — 11:00</small><b>Ronaldo</b><span>1 slide · Citros</span></div><div class="arrow">→</div>
+          <div class="step"><small>11:00 — 17:00</small><b>Bruno</b><span>1 slide · Login sem senha</span></div><div class="arrow">→</div>
+          <div class="step"><small>17:00 — 23:00</small><b>Thielson</b><span>1 slide · Formulário em Excel</span></div><div class="arrow">→</div>
+          <div class="step"><small>23:00 — 30:00</small><b>Time</b><span>Wins + roadmap</span></div>
+        </div>
+        <div class="quote">Não vamos navegar pelo backlog. Vamos mostrar como decisões de engenharia mudaram a experiência de quem usa e opera o produto.</div>
+      </section>
+
+      <section class="slide">
+        <div class="file">edition-06 / <b>period-summary.json</b></div>
+        <h2>O perfil do <span>período</span></h2>
+        <div class="g2 grid">
+          <div class="card"><span class="tag green">INTELIGÊNCIA OPERACIONAL</span><h3>Dados que orientam ação</h3><p>Citros, evolução Agroplus e ranking aproximaram coleta, leitura e priorização.</p></div>
+          <div class="card"><span class="tag blue">PLATAFORMA CONFIGURÁVEL</span><h3>Menos recadastro</h3><p>Formulário Dinâmico, importações e relatórios avançaram em reuso e portabilidade.</p></div>
+          <div class="card"><span class="tag amber">IDENTIDADE & SEGURANÇA</span><h3>Acesso com mais controle</h3><p>API Keys, passwordless, sessões pareadas, MFA e banimento evoluíram como uma jornada única.</p></div>
+          <div class="card"><span class="tag">CONFIABILIDADE</span><h3>Base para continuar evoluindo</h3><p>Procedures, migrations resilientes, correções de relatórios e autenticação sustentaram as entregas.</p></div>
+        </div>
+        <p class="file" style="margin-top:22px">// métricas finais serão consolidadas após o fechamento do período</p>
+      </section>
+
+      <section class="slide">
+        <div class="file">spotlights / ronaldo / <b>citros-dashboard.component.ts</b> · 8 min</div>
+        <div class="hero-layout">
+          <div>
+            <span class="tag green">#12900 · RONALDO</span>
+            <h2>Não são novos dados.<br>É uma <span>nova leitura.</span></h2>
+            <p class="lead">Os dados já existiam em relatórios e dashboards dinâmicos. O salto foi deixar de entregá-los de forma genérica e transformá-los em informação rica, específica e acionável para a Sanidade dos Citros.</p>
+            <div class="g3 grid" style="margin-top:24px">
+              <div class="metric"><strong>7</strong><span>seções integradas</span></div>
+              <div class="metric"><strong>14</strong><span>indicadores sanitários</span></div>
+              <div class="metric"><strong>5 min</strong><span>cache operacional</span></div>
+            </div>
+            <div class="callout" style="margin-top:18px"><strong>O padrão que queremos ampliar</strong><br>Entender o domínio → organizar a narrativa dos dados → destacar decisão e prioridade → replicar a abordagem em outros projetos.</div>
+            <div class="owner"><div class="avatar">RO</div><div><b>Ronaldo</b><br><span>Dados existentes → informação específica do negócio</span></div></div>
+          </div>
+          <div class="dashboard-frame" data-zoom="assets/ronaldo-citros/dashboard-citros-completo.png"><img src="assets/ronaldo-citros/dashboard-citros-completo.png" alt="Dashboard analítico da campanha de Sanidade dos Citros"></div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="file">spotlights / bruno / <b>passwordless-auth.flow.ts</b> · 6 min</div>
+        <span class="tag blue">#12732 · BRUNO</span>
+        <h2>Menos atrito para entrar.<br><span>Mais rigor por baixo.</span></h2>
+        <p class="lead">Remover a senha não remove controles: desloca a segurança para um fluxo mais inteligente, recuperável e observável.</p>
+        <div class="flow">
+          <div class="step"><small>REQUEST</small><b>E-mail ou Magic Link</b><span>rate limit por IP/e-mail</span></div><div class="arrow">→</div>
+          <div class="step"><small>VERIFY</small><b>Token temporário</b><span>expiração + User-Agent</span></div><div class="arrow">→</div>
+          <div class="step"><small>PAIR</small><b>Sessão pareada</b><span>estado entre aplicações</span></div><div class="arrow">→</div>
+          <div class="step"><small>CONTROL</small><b>Revogação</b><span>Redis + banco relacional</span></div>
+        </div>
+        <div class="callout" style="margin-top:18px"><strong>Em um único fluxo:</strong> Magic Link/OTP, expiração, rate limit, sessão pareada e revogação sincronizada entre Redis e banco.</div>
+        <div class="owner"><div class="avatar">BR</div><div><b>Bruno</b><br><span>Passwordless + hardening de sessões</span></div></div>
+      </section>
+
+      <section class="slide">
+        <div class="file">spotlights / thielson / <b>formulario-dinamico.xlsx</b> · 6 min</div>
+        <span class="tag amber">#12737 · THIELSON</span>
+        <h2>Um formulário complexo,<br><span>agora portável.</span></h2>
+        <p class="lead">Um formulário não é uma lista de perguntas. É uma árvore de relações que precisa continuar íntegra ao sair de um ambiente.</p>
+        <div class="g3 grid" style="margin-top:24px">
+          <div class="card"><h3>📚 7 famílias de abas</h3><p>Estrutura, formulário, agrupadores, perguntas, listas, itens e domínios.</p></div>
+          <div class="card"><h3>🔗 Códigos estáveis</h3><p>Vínculos reconstruíveis sem depender dos IDs locais do banco.</p></div>
+          <div class="card"><h3>♻️ Reuso entre contextos</h3><p>Base para replicar estruturas com menos recadastro e menos erro.</p></div>
+        </div>
+        <div class="callout" style="margin-top:18px"><strong>Demo em 4 passos:</strong> selecionar o contexto → gerar XLSX → abrir as abas → seguir o mesmo código entre agrupador e pergunta.</div>
+        <div class="owner"><div class="avatar">TH</div><div><b>Thielson</b><br><span>Exportação funcional · importação como próximo passo</span></div></div>
+      </section>
+
+      <section class="slide">
+        <div class="file">edition-06 / <b>engineering-wins.md</b> + <b>roadmap.todo</b></div>
+        <h2>O que ficou — e <span>o que vem agora</span></h2>
+        <div class="wins">
+          <div class="win"><div class="icon">📍</div><h3>Decisão operacional</h3><p>Citros conectou cobertura, risco, qualidade, fiscalização e encerramento.</p></div>
+          <div class="win"><div class="icon">🛡️</div><h3>Segurança como jornada</h3><p>API Keys, passwordless, sessões e banimento evoluíram de forma coordenada.</p></div>
+          <div class="win"><div class="icon">🧩</div><h3>Plataforma reutilizável</h3><p>Formulários, blocos repetíveis, relatórios e Excel avançaram em portabilidade.</p></div>
+        </div>
+        <div class="todo" style="margin-top:18px"><span class="next">[ ]</span> Onboarding do Agrônomo: landing page, autocadastro e início autônomo no Agrotrace
+<br><span class="next">[ ]</span> concluir importação da estrutura do Formulário Dinâmico
+<br><span class="next">[ ]</span> ampliar o padrão de informação rica do Citros para outros projetos</div>
+      </section>
+
+      <section class="slide">
+        <div class="file">edition-06 / <b>exit.ts</b></div>
+        <div style="height:80%;display:grid;place-content:center;text-align:center">
+          <div class="eyebrow">Web Team · Edition #06</div>
+          <h1 style="margin-inline:auto">Complexidade próxima<br><span>do resultado.</span></h1>
+          <p class="lead" style="margin-inline:auto">Dados viraram decisão. O acesso ficou mais simples. Estruturas complexas começaram a ganhar portabilidade.</p>
+          <div class="code" style="margin:28px auto 0;text-align:left"><span class="fn">console</span>.log(<span class="str">"Obrigado pela presença!"</span>); <span class="cm">// perguntas?</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="status"><span>⑂ master*</span><span id="statusFile">README.md</span><span class="right"><span class="timer" id="timer">▶ 00:00</span><span class="dots" id="dots"></span><span id="counter">1 / 8</span></span></div>
+</div>
+<div class="remote" id="remote">● local</div>
+<div class="modal" id="modal"><span class="close">×</span><img alt="Visualização ampliada"></div>
+<script>
+const labels=["README.md","runtime-budget.ts","period-summary.json","citros-dashboard.component.ts","passwordless-auth.flow.ts","formulario-dinamico.xlsx","engineering-wins.md","exit.ts"];
+const icons=["📋","⏱","📊","🍊","🔑","📗","🏆","👋"];
+const slides=[...document.querySelectorAll('.slide')],tabs=document.querySelector('#tabs'),side=document.querySelector('#side'),dots=document.querySelector('#dots');let cur=0;
+labels.forEach((x,i)=>{tabs.insertAdjacentHTML('beforeend',`<div class="tab ${i?'':'active'}" data-i="${i}">${icons[i]}&nbsp; ${x}</div>`);dots.insertAdjacentHTML('beforeend',`<i class="dot ${i?'':'active'}" data-i="${i}"></i>`)});
+function go(n,send=true){n=(n+slides.length)%slides.length;document.querySelectorAll('.active').forEach(e=>{if(e.matches('.slide,.tab,.side,.dot'))e.classList.remove('active')});cur=n;slides[cur].classList.add('active');document.querySelector(`.tab[data-i="${cur}"]`).classList.add('active');document.querySelector(`.side[data-i="${cur}"]`).classList.add('active');document.querySelector(`.dot[data-i="${cur}"]`).classList.add('active');document.querySelector('#counter').textContent=`${cur+1} / ${slides.length}`;document.querySelector('#statusFile').textContent=labels[cur];document.querySelector(`.tab[data-i="${cur}"]`).scrollIntoView({inline:'center'});if(send&&ws?.readyState===1&&canControl())ws.send(JSON.stringify({type:'slide-update',currentSlide:cur,slideLabel:labels[cur],slideActions:[]}))}
+document.addEventListener('click',e=>{const nav=e.target.closest('[data-i]');if(nav&&canControl())go(+nav.dataset.i);const z=e.target.closest('[data-zoom]');if(z){modal.querySelector('img').src=z.dataset.zoom;modal.classList.add('open')}if(e.target.matches('.close,.modal'))modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(modal.classList.contains('open')){if(e.key==='Escape')modal.classList.remove('open');return}if(canControl()&&['ArrowRight','ArrowDown',' '].includes(e.key))go(cur+1);if(canControl()&&['ArrowLeft','ArrowUp'].includes(e.key))go(cur-1);if(e.key.toLowerCase()==='f')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(e.key.toLowerCase()==='t')toggleTimer();if(e.key.toLowerCase()==='r')connect();if(['4','5','6'].includes(e.key)&&isHost())handoff({4:'Ronaldo',5:'Bruno',6:'Thielson'}[e.key])});
+let running=false,start=0,elapsed=0,tick;function toggleTimer(){running=!running;if(running){start=Date.now()-elapsed;tick=setInterval(drawTimer,500)}else{clearInterval(tick);elapsed=Date.now()-start}drawTimer()}function drawTimer(){if(running)elapsed=Date.now()-start;let s=Math.floor(elapsed/1000),m=Math.floor(s/60);document.querySelector('#timer').textContent=`${running?'⏸':'▶'} ${String(m).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}document.querySelector('#timer').onclick=toggleTimer;
+const q=new URLSearchParams(location.search),role=q.get('role')==='guest'?'guest':'host',name=q.get('name')||(role==='host'?'Ronaldo':'Guest');let ws,myId,hostId,ownerId;function canControl(){return !ws||ws.readyState!==1||myId===ownerId}function isHost(){return myId&&myId===hostId}function handoff(targetName){ws?.send(JSON.stringify({type:'control-handoff',targetName}))}function connect(){if(location.protocol==='file:')return;try{ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}`)}catch{return}ws.onopen=()=>{ws.send(JSON.stringify({type:'join',role,name,totalSlides:slides.length,currentSlide:cur}));remote.textContent='● conectado';remote.classList.add('live')};ws.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch{return}if(m.type==='session'){if(m.myId)myId=m.myId;hostId=m.hostId;ownerId=m.controlOwnerId;if(role==='guest'&&Number.isInteger(m.currentSlide))go(m.currentSlide,false);let owner=(m.clients||[]).find(x=>x.id===ownerId);remote.textContent=`● ${owner?owner.name:'conectado'} controla`}if(m.type==='slide-update'&&Number.isInteger(m.currentSlide))go(m.currentSlide,false);if(m.type==='navigate'&&Number.isInteger(m.slide))go(m.slide,false)};ws.onclose=()=>{remote.textContent='● local';remote.classList.remove('live')}}connect();
+</script>
+</body>
+</html>

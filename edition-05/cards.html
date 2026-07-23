@@ -1,653 +1,1264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resumo de Cards — Web Team · Edition #04 · 29/05/2026</title>
-<link rel="icon" type="image/svg+xml" href="../assets/web-team.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:       #0f1117;
-    --bg2:      #181c27;
-    --bg3:      #1e2235;
-    --bg4:      #252a40;
-    --border:   #2d3348;
-    --border2:  #3d4460;
-    --text:     #e8eaf2;
-    --text2:    #8b90a8;
-    --text3:    #555b78;
-    --ro:       #7c6af7;
-    --ro-bg:    #1a1640;
-    --ro-bd:    #3d3580;
-    --br:       #f0a855;
-    --br-bg:    #2a1e08;
-    --br-bd:    #7a5020;
-    --th:       #3ecf8e;
-    --th-bg:    #082418;
-    --th-bd:    #1a6845;
-    --feat:     #60adf5;
-    --feat-bg:  #0c1e35;
-    --fix:      #f97070;
-    --fix-bg:   #2a0f0f;
-    --ref:      #f0c040;
-    --ref-bg:   #261e04;
-    --test:     #52d98a;
-    --test-bg:  #082418;
-    --radius:   6px;
-    --radius-lg:10px;
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resumo de Cards — Web Team · Edition #04 · 29/05/2026</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/web-team.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f1117;
+        --bg2: #181c27;
+        --bg3: #1e2235;
+        --bg4: #252a40;
+        --border: #2d3348;
+        --border2: #3d4460;
+        --text: #e8eaf2;
+        --text2: #8b90a8;
+        --text3: #555b78;
+        --ro: #7c6af7;
+        --ro-bg: #1a1640;
+        --ro-bd: #3d3580;
+        --br: #f0a855;
+        --br-bg: #2a1e08;
+        --br-bd: #7a5020;
+        --th: #3ecf8e;
+        --th-bg: #082418;
+        --th-bd: #1a6845;
+        --feat: #60adf5;
+        --feat-bg: #0c1e35;
+        --fix: #f97070;
+        --fix-bg: #2a0f0f;
+        --ref: #f0c040;
+        --ref-bg: #261e04;
+        --test: #52d98a;
+        --test-bg: #082418;
+        --radius: 6px;
+        --radius-lg: 10px;
+      }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    padding: 0;
-  }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        padding: 0;
+      }
 
-  .hero {
-    padding: 56px 48px 40px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
+      .hero {
+        padding: 56px 48px 40px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -120px; right: -120px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,106,247,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(124, 106, 247, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
 
-  .hero-eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
+      .hero-eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--text3);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
 
-  .hero-title {
-    font-size: 38px;
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 6px;
-    letter-spacing: -0.01em;
-  }
+      .hero-title {
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
 
-  .hero-names {
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 1.2;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+      .hero-names {
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
 
-  .hero-names .dot {
-    color: var(--text3);
-    font-weight: 400;
-    font-size: 24px;
-  }
+      .hero-names .dot {
+        color: var(--text3);
+        font-weight: 400;
+        font-size: 24px;
+      }
 
-  .hero-names .accent-ro { color: var(--ro); }
-  .hero-names .accent-br { color: var(--br); }
-  .hero-names .accent-th { color: var(--th); }
+      .hero-names .accent-ro {
+        color: var(--ro);
+      }
+      .hero-names .accent-br {
+        color: var(--br);
+      }
+      .hero-names .accent-th {
+        color: var(--th);
+      }
 
-  .hero-sub {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--text2);
-    margin-bottom: 32px;
-  }
+      .hero-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 32px;
+      }
 
-  .stats-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+      .stats-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
 
-  .stat-chip {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 10px 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 80px;
-  }
+      .stat-chip {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 10px 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 80px;
+      }
 
-  .stat-val {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 3px;
-  }
+      .stat-val {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 3px;
+      }
 
-  .stat-lbl {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.06em;
-  }
+      .stat-lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--text3);
+        letter-spacing: 0.06em;
+      }
 
-  .controls {
-    padding: 20px 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
+      .controls {
+        padding: 20px 48px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg2);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
 
-  .search-wrap {
-    position: relative;
-    flex: 1;
-    min-width: 220px;
-    max-width: 360px;
-  }
+      .search-wrap {
+        position: relative;
+        flex: 1;
+        min-width: 220px;
+        max-width: 360px;
+      }
 
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text3);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    pointer-events: none;
-  }
+      .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text3);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        pointer-events: none;
+      }
 
-  .search-wrap input {
-    width: 100%;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--text);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    padding: 8px 12px 8px 32px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
+      .search-wrap input {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        padding: 8px 12px 8px 32px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
 
-  .search-wrap input:focus { border-color: var(--border2); }
-  .search-wrap input::placeholder { color: var(--text3); }
+      .search-wrap input:focus {
+        border-color: var(--border2);
+      }
+      .search-wrap input::placeholder {
+        color: var(--text3);
+      }
 
-  .filter-group {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-  }
+      .filter-group {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
 
-  .fbtn {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--border2);
-    background: transparent;
-    color: var(--text2);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
+      .fbtn {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        padding: 5px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border2);
+        background: transparent;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
 
-  .fbtn:hover { background: var(--bg4); color: var(--text); }
+      .fbtn:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
 
-  .fbtn.on-feat  { background: var(--feat-bg); color: var(--feat);  border-color: var(--feat); }
-  .fbtn.on-fix   { background: var(--fix-bg);  color: var(--fix);   border-color: var(--fix); }
-  .fbtn.on-ref   { background: var(--ref-bg);  color: var(--ref);   border-color: var(--ref); }
-  .fbtn.on-test  { background: var(--test-bg); color: var(--test);  border-color: var(--test); }
-  .fbtn.on-all   { background: var(--bg4); color: var(--text); border-color: var(--border2); }
-  .fbtn.on-ro    { background: var(--ro-bg);  color: var(--ro);  border-color: var(--ro-bd); }
-  .fbtn.on-br    { background: var(--br-bg);  color: var(--br);  border-color: var(--br-bd); }
-  .fbtn.on-th    { background: var(--th-bg);  color: var(--th);  border-color: var(--th-bd); }
+      .fbtn.on-feat {
+        background: var(--feat-bg);
+        color: var(--feat);
+        border-color: var(--feat);
+      }
+      .fbtn.on-fix {
+        background: var(--fix-bg);
+        color: var(--fix);
+        border-color: var(--fix);
+      }
+      .fbtn.on-ref {
+        background: var(--ref-bg);
+        color: var(--ref);
+        border-color: var(--ref);
+      }
+      .fbtn.on-test {
+        background: var(--test-bg);
+        color: var(--test);
+        border-color: var(--test);
+      }
+      .fbtn.on-all {
+        background: var(--bg4);
+        color: var(--text);
+        border-color: var(--border2);
+      }
+      .fbtn.on-ro {
+        background: var(--ro-bg);
+        color: var(--ro);
+        border-color: var(--ro-bd);
+      }
+      .fbtn.on-br {
+        background: var(--br-bg);
+        color: var(--br);
+        border-color: var(--br-bd);
+      }
+      .fbtn.on-th {
+        background: var(--th-bg);
+        color: var(--th);
+        border-color: var(--th-bd);
+      }
 
-  .sep { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
+      .sep {
+        width: 1px;
+        height: 24px;
+        background: var(--border);
+        flex-shrink: 0;
+      }
 
-  .result-count {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    margin-left: auto;
-    white-space: nowrap;
-  }
+      .result-count {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--text3);
+        margin-left: auto;
+        white-space: nowrap;
+      }
 
-  .content {
-    padding: 32px 48px 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
+      .content {
+        padding: 32px 48px 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
 
-  .member-section { display: flex; flex-direction: column; gap: 0; }
-  .member-section.hidden { display: none; }
+      .member-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .member-section.hidden {
+        display: none;
+      }
 
-  .member-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
+      .member-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
 
-  .member-avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
+      .member-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
 
-  .av-ro { background: var(--ro-bg); color: var(--ro); border: 1px solid var(--ro-bd); }
-  .av-br { background: var(--br-bg); color: var(--br); border: 1px solid var(--br-bd); }
-  .av-th { background: var(--th-bg); color: var(--th); border: 1px solid var(--th-bd); }
+      .av-ro {
+        background: var(--ro-bg);
+        color: var(--ro);
+        border: 1px solid var(--ro-bd);
+      }
+      .av-br {
+        background: var(--br-bg);
+        color: var(--br);
+        border: 1px solid var(--br-bd);
+      }
+      .av-th {
+        background: var(--th-bg);
+        color: var(--th);
+        border: 1px solid var(--th-bd);
+      }
 
-  .member-name {
-    font-size: 18px;
-    font-weight: 700;
-  }
+      .member-name {
+        font-size: 18px;
+        font-weight: 700;
+      }
 
-  .member-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    margin-left: 4px;
-  }
+      .member-meta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--text3);
+        margin-left: 4px;
+      }
 
-  .member-bar {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+      .member-bar {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
 
-  .cards-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
+      .cards-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+      }
 
-  .cards-table thead th {
-    background: var(--bg3);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-  }
+      .cards-table thead th {
+        background: var(--bg3);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
 
-  .cards-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.12s;
-    animation: rowIn 0.3s ease both;
-  }
+      .cards-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.12s;
+        animation: rowIn 0.3s ease both;
+      }
 
-  @keyframes rowIn {
-    from { opacity: 0; transform: translateX(-6px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
+      @keyframes rowIn {
+        from {
+          opacity: 0;
+          transform: translateX(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
 
-  .cards-table tbody tr:last-child { border-bottom: none; }
-  .cards-table tbody tr:hover { background: var(--bg3); }
-  .cards-table tbody tr.hidden { display: none; }
+      .cards-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .cards-table tbody tr:hover {
+        background: var(--bg3);
+      }
+      .cards-table tbody tr.hidden {
+        display: none;
+      }
 
-  .cards-table td {
-    padding: 12px 16px;
-    vertical-align: top;
-  }
+      .cards-table td {
+        padding: 12px 16px;
+        vertical-align: top;
+      }
 
-  .col-id {
-    width: 110px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    white-space: nowrap;
-  }
+      .col-id {
+        width: 110px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--text3);
+        white-space: nowrap;
+      }
 
-  .col-id a {
-    color: var(--text3);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
+      .col-id a {
+        color: var(--text3);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
 
-  .col-id a:hover {
-    color: var(--ro);
-    text-decoration: underline;
-  }
+      .col-id a:hover {
+        color: var(--ro);
+        text-decoration: underline;
+      }
 
-  .col-id .no-link {
-    color: var(--text3);
-    cursor: default;
-  }
+      .col-id .no-link {
+        color: var(--text3);
+        cursor: default;
+      }
 
-  .col-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.4;
-    margin-bottom: 4px;
-  }
+      .col-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.4;
+        margin-bottom: 4px;
+      }
 
-  .col-desc {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.55;
-  }
+      .col-desc {
+        font-size: 12px;
+        color: var(--text2);
+        line-height: 1.55;
+      }
 
-  .col-type { width: 90px; }
+      .col-type {
+        width: 90px;
+      }
 
-  .badge {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
+      .badge {
+        display: inline-block;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
 
-  .badge-feat { background: var(--feat-bg); color: var(--feat); border: 1px solid #1a3d60; }
-  .badge-fix  { background: var(--fix-bg);  color: var(--fix);  border: 1px solid #5a1818; }
-  .badge-ref  { background: var(--ref-bg);  color: var(--ref);  border: 1px solid #5a4010; }
-  .badge-test { background: var(--test-bg); color: var(--test); border: 1px solid #0f5030; }
+      .badge-feat {
+        background: var(--feat-bg);
+        color: var(--feat);
+        border: 1px solid #1a3d60;
+      }
+      .badge-fix {
+        background: var(--fix-bg);
+        color: var(--fix);
+        border: 1px solid #5a1818;
+      }
+      .badge-ref {
+        background: var(--ref-bg);
+        color: var(--ref);
+        border: 1px solid #5a4010;
+      }
+      .badge-test {
+        background: var(--test-bg);
+        color: var(--test);
+        border: 1px solid #0f5030;
+      }
 
-  .empty-state {
-    text-align: center;
-    padding: 40px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--text3);
-    display: none;
-  }
+      .empty-state {
+        text-align: center;
+        padding: 40px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--text3);
+        display: none;
+      }
 
-  .empty-state.visible { display: block; }
+      .empty-state.visible {
+        display: block;
+      }
 
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 20px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 20px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
 
-  .footer-left {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-  }
+      .footer-left {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--text3);
+      }
 
-  .footer-right {
-    display: flex;
-    gap: 8px;
-  }
+      .footer-right {
+        display: flex;
+        gap: 8px;
+      }
 
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-  }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--text3);
+      }
 
-  .legend-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-  }
-</style>
-</head>
-<body>
+      .legend-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <div
+        class="hero-eyebrow"
+        style="
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          justify-content: space-between;
+        "
+      >
+        <span>// web-team · agrotrace · ater-digital · sprint review</span>
+        <a
+          href="../index.html"
+          style="
+            font-family: &quot;IBM Plex Mono&quot;, monospace;
+            font-size: 11px;
+            color: var(--text3);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 4px;
+            transition: all 0.15s;
+            letter-spacing: 0;
+          "
+          onmouseover="
+            this.style.color = '#e8eaf2';
+            this.style.borderColor = '#3d4460';
+          "
+          onmouseout="
+            this.style.color = 'var(--text3)';
+            this.style.borderColor = 'var(--border)';
+          "
+          >⌂ Hub</a
+        >
+      </div>
+      <h1 class="hero-title">Resumo de Cards</h1>
+      <div class="hero-names">
+        <span class="accent-ro">Ronaldo</span>
+        <span class="dot">·</span>
+        <span class="accent-br">Bruno</span>
+        <span class="dot">·</span>
+        <span class="accent-th">Thielson</span>
+      </div>
+      <div class="hero-sub">
+        04/05/2026 – 28/05/2026 &nbsp;·&nbsp; Tech Spotlight #04 &nbsp;·&nbsp;
+        Apresentação: 29/05/2026
+      </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow" style="display:flex; align-items:center; gap:16px; justify-content:space-between">
-    <span>// web-team · agrotrace-v3 · ater-digital · sprint review</span>
-    <a href="../index.html" style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text3); text-decoration:none; border:1px solid var(--border); padding:3px 10px; border-radius:4px; transition:all 0.15s; letter-spacing:0" onmouseover="this.style.color='#e8eaf2';this.style.borderColor='#3d4460'" onmouseout="this.style.color='var(--text3)';this.style.borderColor='var(--border)'">⌂ Hub</a>
-  </div>
-  <h1 class="hero-title">Resumo de Cards</h1>
-  <div class="hero-names">
-    <span class="accent-ro">Ronaldo</span>
-    <span class="dot">·</span>
-    <span class="accent-br">Bruno</span>
-    <span class="dot">·</span>
-    <span class="accent-th">Thielson</span>
-  </div>
-  <div class="hero-sub">04/05/2026 – 28/05/2026 &nbsp;·&nbsp; Tech Spotlight #04 &nbsp;·&nbsp; Apresentação: 29/05/2026</div>
-
-  <div class="stats-row">
-    <div class="stat-chip">
-      <div class="stat-val" id="s-total">79</div>
-      <div class="stat-lbl">total</div>
+      <div class="stats-row">
+        <div class="stat-chip">
+          <div class="stat-val" id="s-total">79</div>
+          <div class="stat-lbl">total</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--feat)" id="s-feat">64</div>
+          <div class="stat-lbl">features</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--fix)" id="s-fix">10</div>
+          <div class="stat-lbl">fixes</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--ref)" id="s-ref">5</div>
+          <div class="stat-lbl">refactors</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--test)" id="s-test">0</div>
+          <div class="stat-lbl">testes</div>
+        </div>
+        <div class="stat-chip" style="margin-left: auto">
+          <div class="stat-val" style="color: var(--ro)" id="s-ro">25</div>
+          <div class="stat-lbl">ronaldo</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--br)" id="s-br">37</div>
+          <div class="stat-lbl">bruno</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val" style="color: var(--th)" id="s-th">17</div>
+          <div class="stat-lbl">thielson</div>
+        </div>
+      </div>
     </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--feat)" id="s-feat">64</div>
-      <div class="stat-lbl">features</div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por título ou #card..."
+          oninput="applyFilters()"
+        />
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="filter-group" id="typeFilters">
+        <button
+          class="fbtn on-all"
+          data-filter="type"
+          data-val="all"
+          onclick="setFilter('type', 'all', this)"
+        >
+          Todos
+        </button>
+        <button
+          class="fbtn"
+          data-filter="type"
+          data-val="feat"
+          onclick="setFilter('type', 'feat', this)"
+        >
+          feature
+        </button>
+        <button
+          class="fbtn"
+          data-filter="type"
+          data-val="fix"
+          onclick="setFilter('type', 'fix', this)"
+        >
+          fix
+        </button>
+        <button
+          class="fbtn"
+          data-filter="type"
+          data-val="ref"
+          onclick="setFilter('type', 'ref', this)"
+        >
+          refactor
+        </button>
+        <button
+          class="fbtn"
+          data-filter="type"
+          data-val="test"
+          onclick="setFilter('type', 'test', this)"
+        >
+          teste
+        </button>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="filter-group" id="memberFilters">
+        <button
+          class="fbtn on-all"
+          data-filter="member"
+          data-val="all"
+          onclick="setFilter('member', 'all', this)"
+        >
+          Todos
+        </button>
+        <button
+          class="fbtn"
+          data-filter="member"
+          data-val="ro"
+          onclick="setFilter('member', 'ro', this)"
+        >
+          Ronaldo
+        </button>
+        <button
+          class="fbtn"
+          data-filter="member"
+          data-val="br"
+          onclick="setFilter('member', 'br', this)"
+        >
+          Bruno
+        </button>
+        <button
+          class="fbtn"
+          data-filter="member"
+          data-val="th"
+          onclick="setFilter('member', 'th', this)"
+        >
+          Thielson
+        </button>
+      </div>
+
+      <div class="result-count" id="resultCount">79 cards</div>
     </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--fix)" id="s-fix">10</div>
-      <div class="stat-lbl">fixes</div>
+
+    <!-- CONTENT -->
+    <div class="content" id="content"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-left">
+        Web Team · Agrotrace v3 + ATER Digital · período 04/05 – 28/05/2026
+      </div>
+      <div class="footer-right">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--feat)"></div>
+          feature
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--fix)"></div>
+          fix
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--ref)"></div>
+          refactor
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: var(--test)"></div>
+          teste
+        </div>
+      </div>
     </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--ref)" id="s-ref">5</div>
-      <div class="stat-lbl">refactors</div>
-    </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--test)" id="s-test">0</div>
-      <div class="stat-lbl">testes</div>
-    </div>
-    <div class="stat-chip" style="margin-left:auto">
-      <div class="stat-val" style="color:var(--ro)" id="s-ro">25</div>
-      <div class="stat-lbl">ronaldo</div>
-    </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--br)" id="s-br">37</div>
-      <div class="stat-lbl">bruno</div>
-    </div>
-    <div class="stat-chip">
-      <div class="stat-val" style="color:var(--th)" id="s-th">17</div>
-      <div class="stat-lbl">thielson</div>
-    </div>
-  </div>
-</div>
 
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="search-wrap">
-    <span class="search-icon">⌕</span>
-    <input type="text" id="searchInput" placeholder="Buscar por título ou #card..." oninput="applyFilters()">
-  </div>
+    <script>
+      const DATA = {
+        ro: {
+          name: "Ronaldo",
+          avClass: "av-ro",
+          avInit: "RO",
+          nameColor: "var(--ro)",
+          cards: [
+            {
+              id: "#12282",
+              type: "feat",
+              title: "Painel consolidado da Propriedade",
+              desc: "Procedure getPainelPropriedade consolidando propriedade/diagnósticos/atendimentos/acompanhamentos/formulários. Tela completa com timeline, comparativos entre diagnósticos, ações de auditoria diretas e mapa interativo.",
+            },
+            {
+              id: "#12348",
+              type: "feat",
+              title: "Inspeção de vegetação em APP com NDVI Sentinel-2 ⚡",
+              desc: "SicarInspecaoVegetacaoService + SentinelStacClient para busca STAC Sentinel-2 L2A. Cálculo de NDVI sobre a geometria da APP, preview PNG server-side, cache via anexo da propriedade, html2canvas para relatórios contextuais.",
+            },
+            {
+              id: "#12342",
+              type: "feat",
+              title: "Importação da Lista Suja do MTE",
+              desc: "Importação automática da base de empregadores autuados por trabalho análogo à escravidão. MteListaSujaImportacaoController + Service, RuralShapeClient.getListaSujaMte(), polling automático, exibição no dashboard de análise.",
+            },
+            {
+              id: "#12387",
+              type: "feat",
+              title: "Relatório PDF Análise Socioambiental",
+              desc: "Endpoint no SicarDashboardController para emissão do relatório. SicarAnaliseRelatorioService + VerificarDocumentoComponent (verificação de documentos com status detalhado e checks de integridade).",
+            },
+            {
+              id: "#12337",
+              type: "feat",
+              title:
+                "Filtros Análise Socioambiental + refactor summary/overview",
+              desc: "Zoom com scroll no PropriedadeCarMap. SicarDashboardPayloadResponseDto removido; substituído por DTOs mais granulares (summary + overview). UI mais responsiva.",
+            },
+            {
+              id: "#12193",
+              type: "feat",
+              title: "Integração Base PRODES — RuralShape",
+              desc: "PropriedadeCar passou a rastrear datas de pesquisa para Sicar, Prodes, Ibama e Deter. SicarService com novas interfaces para importação de camadas (opções e resultados).",
+            },
+            {
+              id: "#12239",
+              type: "feat",
+              title: "Nova Coluna — CAR Estadual",
+              desc: "Cadastro de novo CAR estadual + integração com RuralShape para identificar o nº do CAR federal. Implementação migrada para ApiKey.",
+            },
+            {
+              id: "#12301",
+              type: "feat",
+              title:
+                "Fluxos de investigação e importação manual de camadas do CAR",
+              desc: "Diálogo de status de integração dos CARs. Importação de camadas e gerenciamento de status (fresh/warning/stale/empty). Seção no dashboard para propriedades com status diferente de Ativo.",
+            },
+            {
+              id: "#12361",
+              type: "feat",
+              title: "Divisão Datas PRODES — RTRS + pós-2008",
+              desc: "Novos períodos (RTRS 2016-2019) + métrica total pós-2008. Tipos after_rtrs / post_2008_total. SicarProdesRiskPanelComponent com novas categorias de risco. Refactoring da classificação temporal.",
+            },
+            {
+              id: "#12332",
+              type: "feat",
+              title: "Recortes temporais fixos e ordenação no painel PRODES",
+              desc: "Novos detalhes temporais no painel de risco do PRODES. Implementação de ordenação. Marco Temporal PRODES com recortes fixos.",
+            },
+            {
+              id: "#12362",
+              type: "feat",
+              title: "Aba Análise propriedades na Lista Suja",
+              desc: "Card de resumo MTE no dashboard. SicarMteSummaryCardComponent. SicarDashboardPayload com resumo de trabalhoEscravo. Nova aba de resumo integrada.",
+            },
+            {
+              id: "#12336",
+              type: "feat",
+              title: "ACL — telas de cadastros",
+              desc: "Access Control List para restringir acesso a IDs de pessoa e propriedade com base em certificadora e usuário. Correção de sobrescrita de filtros em consultas TypeORM.",
+            },
+            {
+              id: "#12408",
+              type: "feat",
+              title: "Identificador externo na planilha de importação",
+              desc: "Suporte para importação de identificadores externos (códigos de sistemas externos) para produtores e propriedades. Normalização (até 32 caracteres). Interfaces e serviços atualizados.",
+            },
+            {
+              id: "#12306",
+              type: "feat",
+              title: "Melhoria em gráficos — dash Carbono",
+              desc: "Delta (variação % entre safras) nos gráficos. Cores fixas por tema/questionário. Renomeações: Desempenho por Pilar e Desempenho por Objetivo estratégico. Cálculo de dias em UTC.",
+            },
+            {
+              id: "#12310",
+              type: "feat",
+              title: "Incluir e retirar perguntas da dashboard Carbono",
+              desc: "Ajuste da classificação de perguntas. Adição do ID 8592 em saúde do solo e biodiversidade. Remoções nas categorias de preservação de água, retenção de carbono e impacto social.",
+            },
+            {
+              id: "#12266",
+              type: "feat",
+              title: "Limites configuráveis de anexos no atendimento",
+              desc: "Categoria Anexos + registro quantidadeAnexosAtendimento (padrão 3). Mensagens de erro personalizadas. Validação antes do envio com fallback para o padrão.",
+            },
+            {
+              id: "#12317",
+              type: "feat",
+              title: "Aumentar limite de anexos — Respostas",
+              desc: "Limite de anexos em formulários de diagnóstico e acompanhamento.",
+            },
+            {
+              id: "#12226",
+              type: "feat",
+              title: "Botões de lembrete por e-mail e WhatsApp",
+              desc: "Lembretes para FormAtendimentoToken. Configuração de mensagem do lembrete na tarefa #12225. Fix da URL da API CMS em dev.",
+            },
+            {
+              id: "#12384",
+              type: "feat",
+              title: "Aprosoja — verificador + ordem nas perguntas",
+              desc: "Procedures getPerguntasView e getPerguntasPlanoDeAcaoView atualizadas para incluir campos verificador e ordem. Componentes frontend ajustados. campoOrdemPerguntaDiagnostico.",
+            },
+            {
+              id: "#12438",
+              type: "feat",
+              title: "Coluna de filtro — Operações/Formulários",
+              desc: "propriedadeId como filtro nas consultas de atendimento.",
+            },
+            {
+              id: "#12386",
+              type: "feat",
+              title: "Ajuste formulário respostas de atendimento API",
+              desc: "Lógica para geração dinâmica de colunas no relatório de atendimento.",
+            },
+            {
+              id: "#12325",
+              type: "fix",
+              title: "FK ao salvar propriedade com CAR estadual",
+              desc: "Evento para atualização da lista de CARs com atualização otimista. Emissão de PropriedadeCar ao resolver CAR federal. Output carFederalResolved alterado de void para PropriedadeCar.",
+            },
+            {
+              id: "#12400",
+              type: "fix",
+              title: "Motivo conferência APROVADO não salva",
+              desc: "Lógica de conferência de atendimento aprimorada com validações dinâmicas e ajustes na exibição.",
+            },
+            {
+              id: "#12338",
+              type: "fix",
+              title: "Filtro Gestão Atrasos",
+              desc: "Cálculo de atrasos no dashboard considera status do atendimento (concluído vs não). Campo data_limite_calc. Performance e simplificação de queries SQL. Atendimentos concluídos com atraso agora são contabilizados.",
+            },
+            {
+              id: "#12429",
+              type: "fix",
+              title: "Importação Propriedades/Produtores — apóstrofo",
+              desc: "Falhas na importação devido a caracteres especiais (apóstrofos) em nomes de localização — município/estado/país.",
+            },
+          ],
+        },
+        br: {
+          name: "Bruno",
+          avClass: "av-br",
+          avInit: "BR",
+          nameColor: "var(--br)",
+          cards: [
+            {
+              id: "ATER-30",
+              type: "feat",
+              title: "Migração da ponte Typebot → n8n",
+              desc: "Renomeação completa: a ponte Typebot virou N8n. Controllers, services e models atualizados. n8n passa a ser o orquestrador real do bot.",
+            },
+            {
+              id: "ATER-20",
+              type: "feat",
+              title: "Infraestrutura Typebot na VPS",
+              desc: "Banco de dados isolado typebot_db. Serviço de proxy Caddy para roteamento via Cloudflare Tunnel. Integração SMTP com Gmail. Adicionados REDIS_HOST/PORT/DB ao ConfigMap.",
+            },
+            {
+              id: "ATER-35",
+              type: "feat",
+              title: "Onboarding WhatsApp",
+              desc: "Ponte de onboarding para WhatsApp: fluxo de setup web, validação de tokens e integração com perfil do produtor.",
+            },
+            {
+              id: "ATER-17",
+              type: "feat",
+              title: "Integração de Agendamentos com Google Meet",
+              desc: "Cliente de agendamento + OpenAPI. Link do Google Meet em respostas confirmadas. Nome do técnico na listagem. Parsing de datas e coerção de tipos em slots disponíveis.",
+            },
+            {
+              id: "ATER-22",
+              type: "feat",
+              title: "Origem Auditada — dossier + RuralShape + alertas",
+              desc: "Workflow de exportação de dossier (PDF + persistência de evidências). Cliente RuralShape com normalização de risco. Workflow de registro de CAR. Alertas via WhatsApp com opt-in.",
+            },
+            {
+              id: "ATER-29",
+              type: "feat",
+              title: "Visitas Técnicas Phygital",
+              desc: "Módulo de agendamento com verificação de cotas, relatórios de visita e diagnóstico inicial. Migration 0055 e novos DTOs.",
+            },
+            {
+              id: "ATER-27",
+              type: "feat",
+              title: "Offline-first — sync de missões",
+              desc: "Cache local, fila de sincronização e compressão de imagens via Web Worker em apps/web/src/offline/. Hooks de status de conexão e migrações de banco local. Sync de diary com idempotência atômica.",
+            },
+            {
+              id: "ATER-28",
+              type: "feat",
+              title: "Coleta Guiada — validação + templates IA",
+              desc: "Validação de evidências no backend, integração de templates de IA para missões guiadas, UI do produtor com captura de medição e cards de orientação.",
+            },
+            {
+              id: "ATER-26",
+              type: "feat",
+              title: "Entitlements B2B",
+              desc: "Controle de capacidades de planos via banco de dados, com guardas de acesso e interface administrativa. Limites de chat e check-ins mensais por plano.",
+            },
+            {
+              id: "ATER-32",
+              type: "feat",
+              title: "B2B Real Billing — ledger",
+              desc: "API baseada em ledger para faturas B2B (serviços, use-cases, repositórios, migrações). Especificação P1 B2B real billing fechada na documentação técnica.",
+            },
+            {
+              id: "ATER-33",
+              type: "feat",
+              title: "Partner Invoice Management",
+              desc: "Endpoints, modelos Zod e componentes UI para criação, exportação, cancelamento e visualização de faturas de parceiros no admin.",
+            },
+            {
+              id: "ATER-31",
+              type: "feat",
+              title: "Portal de grupo coletivo para parceiros",
+              desc: "Endpoint para gerenciar links de grupo de parceiros. Exposição do dossiê do grupo coletivo. Linkagem de grupos digitais a contratos. Mapa de fornecedores.",
+            },
+            {
+              id: "ATER-40",
+              type: "feat",
+              title: "Gestão de Encontros Digitais",
+              desc: "Ciclo de vida de encontros: agendamento, cancelamento, reagendamento e registro de presença. Integração via Orval e UI de acompanhamento.",
+            },
+            {
+              id: "ATER-39",
+              type: "feat",
+              title: "Recompensas de Engajamento",
+              desc: "Campanhas de recompensa configuráveis, derivação de medalhas e ranking de engajamento com interface dedicada para técnicos.",
+            },
+            {
+              id: "ATER-38",
+              type: "feat",
+              title: "Cockpit de Âncora",
+              desc: "Cockpit com métricas, auditoria de ações privadas e interface para produtores, incluindo migração de banco de dados.",
+            },
+            {
+              id: "ATER-37",
+              type: "feat",
+              title: "KPIs de Benchmark Guiado",
+              desc: "KPIs de benchmark, serviços de catálogo e painéis de guia para produtores e técnicos.",
+            },
+            {
+              id: "ATER-36",
+              type: "feat",
+              title: "Fluxo de Desafios em Grupos",
+              desc: "Workflow de resultados de desafios: schemas de payload, serviços de avaliação e componentes de interface para visualização de resultados.",
+            },
+            {
+              id: "ATER-23",
+              type: "feat",
+              title: "Missões mensais de compliance",
+              desc: "Scheduler e serviço; endpoint e DTOs expostos; documentação do status operacional.",
+            },
+            {
+              id: "ATER-15",
+              type: "feat",
+              title: "Integração Google Drive para RAG",
+              desc: "GoogleDriveClient + GoogleDriveNormalizerService. Use case ScanGoogleDriveFolderUseCase + processor KnowledgeDriveImportProcessor com BullMQ. Configuração WORKER_MAX_JOBS_BEFORE_RESTART.",
+            },
+            {
+              id: "ATER-16",
+              type: "feat",
+              title: "Upload de anexo base64 para Typebot",
+              desc: "Endpoint uploadTypebotAttachmentBase64 em ChatController. Use case UploadChatAttachmentBase64UseCase. Limite do parser JSON aumentado para 20 MB.",
+            },
+            {
+              id: "ATER-21",
+              type: "feat",
+              title: "Encerramento de conversa",
+              desc: "Campo endConversation nos schemas Zod de saída da IA e nas respostas de chat. SendMessageUseCase, ChatController e processadores atualizados.",
+            },
+            {
+              id: "ATER-9",
+              type: "feat",
+              title: "Retry de RAG falho + supersede automático",
+              desc: 'Botão "Tentar enviar outro arquivo" limpa state local e permite retry. Detecção de falha em KS antiga libera supersede automático.',
+            },
+            {
+              id: "ATER-10",
+              type: "feat",
+              title: "Evolution API (WhatsApp)",
+              desc: "Captura de eventos via webhook, persistência de sessões de bot, validação de usuários parciais. Lógica de idempotência refinada e parser de webhooks ajustado.",
+            },
+            {
+              id: "ATER-11",
+              type: "feat",
+              title: "Typebot — módulo dedicado",
+              desc: "Módulo com chaves API administrativas, perfil de agente leve e gerenciamento otimizado de sessões (reuso de sessões ativas em vez de criar novas).",
+            },
+            {
+              id: "ATER-12",
+              type: "ref",
+              title: "Refatoração do Módulo de Mensagem",
+              desc: "Removido tratamento de webhook do Evolution; substituído por integração dedicada do Producer Typebot. ProducerWhatsappIdentity + GetProducerTypebotContext.",
+            },
+            {
+              id: "ATER-13",
+              type: "feat",
+              title: "Chat com ações inline e UI rica",
+              desc: "Botões de navegação inline, Carousel, AssistantActionButton e melhorias na inferência de categorias de documentos. Reforço de segurança em missões/fazendas.",
+            },
+            {
+              id: "ATER-14",
+              type: "fix",
+              title: "CORS sem origem + preloading sidebar",
+              desc: "Correção da validação de CORS para requisições sem origem e desativação de preloading de links no sidebar administrativo.",
+            },
+            {
+              id: "ATER-18",
+              type: "feat",
+              title: "Gestão de Técnicos — taxonomia",
+              desc: "Padronização de níveis (junior, senior, specialist) em todo o sistema, incluindo regras de gating de planos e labels da interface.",
+            },
+            {
+              id: "ATER-19",
+              type: "feat",
+              title: "Build de imagem RAG otimizado",
+              desc: "Substituída a instalação de curl por imagem oficial uv; base da imagem Python fixada para Bookworm, reduzindo falhas transitórias de mirror.",
+            },
+            {
+              id: "ATER-24",
+              type: "feat",
+              title: "Validação e bloqueio de missões inválidas",
+              desc: "Lógica de protocolo e UI adicionadas; testes incluídos.",
+            },
+            {
+              id: "ATER-25",
+              type: "feat",
+              title: "Fluxo completo de visita física",
+              desc: "Controllers, use-cases, repositório, migração 0062 e UI de booking integrados. Diálogo atualizado para calendário; guia de onboarding incluído.",
+            },
+            {
+              id: "ATER-34",
+              type: "feat",
+              title: "Sinais de Cadeia de Grupos",
+              desc: "Sinais de cadeia de grupos e dossiês de parceiros para visualização de links.",
+            },
+            {
+              id: "LP-3",
+              type: "feat",
+              title: "LP — Indicadores dinâmicos",
+              desc: "Indicadores dinâmicos integrados à procedure getIndicadoresHome e atualização do layout da seção de estatísticas.",
+            },
+            {
+              id: "LP-4",
+              type: "ref",
+              title: "LP — Centralização de env vars com Zod",
+              desc: "Centralização da gestão de variáveis de ambiente com Zod e implementação de logging de erros para o cliente de API.",
+            },
+            {
+              id: "LP-5",
+              type: "feat",
+              title: "LP — Sistema de Logo dinâmico",
+              desc: "Logotipo específico por landing no footer. FooterProjectPanel usa a nova lógica de resolução. Dockerfile.prod inclui AZURE_STORAGE_PUBLIC_CONTAINER_NAME.",
+            },
+            {
+              id: "#11801",
+              type: "feat",
+              title: "Telas cadastro padrão CMS — modais tiling",
+              desc: "Sistema de modais com janelas arrastáveis, tiling e suporte multi-registro. TilingModalService + FormDialogContainerComponent com estados de tiling.",
+            },
+            {
+              id: "#11033",
+              type: "fix",
+              title: "Gráfico — mesmo filtro exibindo dados diferentes",
+              desc: "Lógica de filtragem ajustada para garantir consistência na exibição de dados.",
+            },
+          ],
+        },
+        th: {
+          name: "Thielson",
+          avClass: "av-th",
+          avInit: "TH",
+          nameColor: "var(--th)",
+          cards: [
+            {
+              id: "#12315",
+              type: "feat",
+              title: "Tela de Comunicação com Produtores",
+              desc: "Módulo backend (templates, destinatários, entregas) + tela em Operações. Listagem com filtros (título/canal/período) + tabs por produtor. Templates Email/WhatsApp com variáveis substituídas. Webhooks centralizados (Evolution + Resend) com provider_message_id. Múltiplos contatos por produtor com snapshot + status consolidado por canal.",
+            },
+            {
+              id: "#12393",
+              type: "ref",
+              title: "Refactor PEC — ManyToMany → entidades pivô",
+              desc: "Entidades pivô para características, categorias, certificadoras, justificativas e tipos de criação. Services, módulos e models do web-common ajustados. Formulários do CMS atualizados.",
+            },
+            {
+              id: "#12228",
+              type: "feat",
+              title: "Duplicar Formulário entre safras",
+              desc: "Procedure duplicarFormRespostasEntreSafras. Criação de atendimento e respostas na safra de destino. Simulação antes da execução. Duplicação para múltiplas propriedades. Procedimento no front. Token e envios vinculados ao atendimento.",
+            },
+            {
+              id: "#12391",
+              type: "feat",
+              title: "Gestão de partos no módulo PEC",
+              desc: "Módulo backend de partos com estrutura de banco e service. Formulário e aba de partos na reprodução animal. Integrações com animal, categoria e tipo de criação.",
+            },
+            {
+              id: "#12323",
+              type: "feat",
+              title: "PEC — regras de idade animal + pesagem + lotes",
+              desc: "Novas regras de idade no cadastro de animal (filtro de categorias por idade estimada). Cadastro de lote integrado ao fluxo de reprodução. Configuração de registro de pesagem de lactação. Produção total de leite no controle de pesagem.",
+            },
+            {
+              id: "#12212",
+              type: "feat",
+              title:
+                "PEC/Checkmilk — refactor de tabelas + reprodução genérica",
+              desc: "status_produtivo e escore em pec_animal; nova tabela pec_tipo_criacao_certificadora; removido pec_tipo_producao. Migração massiva de bov → PEC (lactação, lote produção, pesagem, qualidade). Remoção de módulos antigos BOV no backend e web-common.",
+            },
+            {
+              id: "#12424",
+              type: "feat",
+              title: "Form Dinâmico — nova regra de agrupamento",
+              desc: "Nova opção de agrupamento nas perguntas do form dinâmico. Cadastro de perguntas no CMS atualizado. Procedure de carregamento ajustada. Reflexo no web-common.",
+            },
+            {
+              id: "#12378",
+              type: "fix",
+              title: "Pergunta de referência desativada continua aparecendo",
+              desc: "Procedure de carregamento das perguntas ajustada. Perguntas referenciadas desativadas deixam de aparecer. Migration para atualizar a procedure no banco.",
+            },
+            {
+              id: "#12413",
+              type: "ref",
+              title: "Flexibilizar validações de pesagem e inseminação PEC",
+              desc: "Removidas validações rígidas no controle de pesagem. Removidas validações rígidas no cadastro de inseminação IATF. Processamento de payload simplificado.",
+            },
+            {
+              id: "#12403",
+              type: "fix",
+              title: "Erro para adicionar mais de um contato",
+              desc: "Soft-delete de contatos de endereço ajustado. Garantido envio dos contatos para a aba de cadastro da propriedade. Corrigida marcação do formulário ao adicionar ou remover contatos.",
+            },
+            {
+              id: "#12297",
+              type: "fix",
+              title: "Ajuste na label do gráfico — Checkmilk",
+              desc: "Correção pontual de label no gráfico do Checkmilk.",
+            },
+            {
+              id: "#12038",
+              type: "fix",
+              title: "Divergência de dados Checkmilk",
+              desc: "Correção de divergência em dados exibidos no Checkmilk.",
+            },
+          ],
+        },
+      };
 
-  <div class="sep"></div>
+      const members = ["ro", "br", "th"];
+      let activeType = "all";
+      let activeMember = "all";
 
-  <div class="filter-group" id="typeFilters">
-    <button class="fbtn on-all" data-filter="type" data-val="all" onclick="setFilter('type','all',this)">Todos</button>
-    <button class="fbtn" data-filter="type" data-val="feat" onclick="setFilter('type','feat',this)">feature</button>
-    <button class="fbtn" data-filter="type" data-val="fix"  onclick="setFilter('type','fix',this)">fix</button>
-    <button class="fbtn" data-filter="type" data-val="ref"  onclick="setFilter('type','ref',this)">refactor</button>
-    <button class="fbtn" data-filter="type" data-val="test" onclick="setFilter('type','test',this)">teste</button>
-  </div>
+      function badgeClass(type) {
+        return {
+          feat: "badge-feat",
+          fix: "badge-fix",
+          ref: "badge-ref",
+          test: "badge-test",
+        }[type];
+      }
 
-  <div class="sep"></div>
+      function badgeLabel(type) {
+        return { feat: "feature", fix: "fix", ref: "refactor", test: "teste" }[
+          type
+        ];
+      }
 
-  <div class="filter-group" id="memberFilters">
-    <button class="fbtn on-all" data-filter="member" data-val="all" onclick="setFilter('member','all',this)">Todos</button>
-    <button class="fbtn" data-filter="member" data-val="ro" onclick="setFilter('member','ro',this)">Ronaldo</button>
-    <button class="fbtn" data-filter="member" data-val="br" onclick="setFilter('member','br',this)">Bruno</button>
-    <button class="fbtn" data-filter="member" data-val="th" onclick="setFilter('member','th',this)">Thielson</button>
-  </div>
+      function isAzureCard(id) {
+        return /^#\d+/.test(id);
+      }
 
-  <div class="result-count" id="resultCount">79 cards</div>
-</div>
+      function render() {
+        const root = document.getElementById("content");
+        root.innerHTML = "";
 
-<!-- CONTENT -->
-<div class="content" id="content"></div>
+        members.forEach((m) => {
+          const d = DATA[m];
+          const section = document.createElement("div");
+          section.className = "member-section";
+          section.id = "sec-" + m;
 
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-left">Web Team · Agrotrace v3 + ATER Digital · período 04/05 – 28/05/2026</div>
-  <div class="footer-right">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--feat)"></div>feature</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--fix)"></div>fix</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--ref)"></div>refactor</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--test)"></div>teste</div>
-  </div>
-</div>
-
-<script>
-const DATA = {
-  ro: {
-    name: 'Ronaldo',
-    avClass: 'av-ro',
-    avInit: 'RO',
-    nameColor: 'var(--ro)',
-    cards: [
-      { id:'#12282', type:'feat', title:'Painel consolidado da Propriedade', desc:'Procedure getPainelPropriedade consolidando propriedade/diagnósticos/atendimentos/acompanhamentos/formulários. Tela completa com timeline, comparativos entre diagnósticos, ações de auditoria diretas e mapa interativo.' },
-      { id:'#12348', type:'feat', title:'Inspeção de vegetação em APP com NDVI Sentinel-2 ⚡', desc:'SicarInspecaoVegetacaoService + SentinelStacClient para busca STAC Sentinel-2 L2A. Cálculo de NDVI sobre a geometria da APP, preview PNG server-side, cache via anexo da propriedade, html2canvas para relatórios contextuais.' },
-      { id:'#12342', type:'feat', title:'Importação da Lista Suja do MTE', desc:'Importação automática da base de empregadores autuados por trabalho análogo à escravidão. MteListaSujaImportacaoController + Service, RuralShapeClient.getListaSujaMte(), polling automático, exibição no dashboard de análise.' },
-      { id:'#12387', type:'feat', title:'Relatório PDF Análise Socioambiental', desc:'Endpoint no SicarDashboardController para emissão do relatório. SicarAnaliseRelatorioService + VerificarDocumentoComponent (verificação de documentos com status detalhado e checks de integridade).' },
-      { id:'#12337', type:'feat', title:'Filtros Análise Socioambiental + refactor summary/overview', desc:'Zoom com scroll no PropriedadeCarMap. SicarDashboardPayloadResponseDto removido; substituído por DTOs mais granulares (summary + overview). UI mais responsiva.' },
-      { id:'#12193', type:'feat', title:'Integração Base PRODES — RuralShape', desc:'PropriedadeCar passou a rastrear datas de pesquisa para Sicar, Prodes, Ibama e Deter. SicarService com novas interfaces para importação de camadas (opções e resultados).' },
-      { id:'#12239', type:'feat', title:'Nova Coluna — CAR Estadual', desc:'Cadastro de novo CAR estadual + integração com RuralShape para identificar o nº do CAR federal. Implementação migrada para ApiKey.' },
-      { id:'#12301', type:'feat', title:'Fluxos de investigação e importação manual de camadas do CAR', desc:'Diálogo de status de integração dos CARs. Importação de camadas e gerenciamento de status (fresh/warning/stale/empty). Seção no dashboard para propriedades com status diferente de Ativo.' },
-      { id:'#12361', type:'feat', title:'Divisão Datas PRODES — RTRS + pós-2008', desc:'Novos períodos (RTRS 2016-2019) + métrica total pós-2008. Tipos after_rtrs / post_2008_total. SicarProdesRiskPanelComponent com novas categorias de risco. Refactoring da classificação temporal.' },
-      { id:'#12332', type:'feat', title:'Recortes temporais fixos e ordenação no painel PRODES', desc:'Novos detalhes temporais no painel de risco do PRODES. Implementação de ordenação. Marco Temporal PRODES com recortes fixos.' },
-      { id:'#12362', type:'feat', title:'Aba Análise propriedades na Lista Suja', desc:'Card de resumo MTE no dashboard. SicarMteSummaryCardComponent. SicarDashboardPayload com resumo de trabalhoEscravo. Nova aba de resumo integrada.' },
-      { id:'#12336', type:'feat', title:'ACL — telas de cadastros', desc:'Access Control List para restringir acesso a IDs de pessoa e propriedade com base em certificadora e usuário. Correção de sobrescrita de filtros em consultas TypeORM.' },
-      { id:'#12408', type:'feat', title:'Identificador externo na planilha de importação', desc:'Suporte para importação de identificadores externos (códigos de sistemas externos) para produtores e propriedades. Normalização (até 32 caracteres). Interfaces e serviços atualizados.' },
-      { id:'#12306', type:'feat', title:'Melhoria em gráficos — dash Carbono', desc:'Delta (variação % entre safras) nos gráficos. Cores fixas por tema/questionário. Renomeações: Desempenho por Pilar e Desempenho por Objetivo estratégico. Cálculo de dias em UTC.' },
-      { id:'#12310', type:'feat', title:'Incluir e retirar perguntas da dashboard Carbono', desc:'Ajuste da classificação de perguntas. Adição do ID 8592 em saúde do solo e biodiversidade. Remoções nas categorias de preservação de água, retenção de carbono e impacto social.' },
-      { id:'#12266', type:'feat', title:'Limites configuráveis de anexos no atendimento', desc:'Categoria Anexos + registro quantidadeAnexosAtendimento (padrão 3). Mensagens de erro personalizadas. Validação antes do envio com fallback para o padrão.' },
-      { id:'#12317', type:'feat', title:'Aumentar limite de anexos — Respostas', desc:'Limite de anexos em formulários de diagnóstico e acompanhamento.' },
-      { id:'#12226', type:'feat', title:'Botões de lembrete por e-mail e WhatsApp', desc:'Lembretes para FormAtendimentoToken. Configuração de mensagem do lembrete na tarefa #12225. Fix da URL da API CMS em dev.' },
-      { id:'#12384', type:'feat', title:'Aprosoja — verificador + ordem nas perguntas', desc:'Procedures getPerguntasView e getPerguntasPlanoDeAcaoView atualizadas para incluir campos verificador e ordem. Componentes frontend ajustados. campoOrdemPerguntaDiagnostico.' },
-      { id:'#12438', type:'feat', title:'Coluna de filtro — Operações/Formulários', desc:'propriedadeId como filtro nas consultas de atendimento.' },
-      { id:'#12386', type:'feat', title:'Ajuste formulário respostas de atendimento API', desc:'Lógica para geração dinâmica de colunas no relatório de atendimento.' },
-      { id:'#12325', type:'fix', title:'FK ao salvar propriedade com CAR estadual', desc:'Evento para atualização da lista de CARs com atualização otimista. Emissão de PropriedadeCar ao resolver CAR federal. Output carFederalResolved alterado de void para PropriedadeCar.' },
-      { id:'#12400', type:'fix', title:'Motivo conferência APROVADO não salva', desc:'Lógica de conferência de atendimento aprimorada com validações dinâmicas e ajustes na exibição.' },
-      { id:'#12338', type:'fix', title:'Filtro Gestão Atrasos', desc:'Cálculo de atrasos no dashboard considera status do atendimento (concluído vs não). Campo data_limite_calc. Performance e simplificação de queries SQL. Atendimentos concluídos com atraso agora são contabilizados.' },
-      { id:'#12429', type:'fix', title:'Importação Propriedades/Produtores — apóstrofo', desc:'Falhas na importação devido a caracteres especiais (apóstrofos) em nomes de localização — município/estado/país.' }
-    ]
-  },
-  br: {
-    name: 'Bruno',
-    avClass: 'av-br',
-    avInit: 'BR',
-    nameColor: 'var(--br)',
-    cards: [
-      { id:'ATER-30', type:'feat', title:'Migração da ponte Typebot → n8n', desc:'Renomeação completa: a ponte Typebot virou N8n. Controllers, services e models atualizados. n8n passa a ser o orquestrador real do bot.' },
-      { id:'ATER-20', type:'feat', title:'Infraestrutura Typebot na VPS', desc:'Banco de dados isolado typebot_db. Serviço de proxy Caddy para roteamento via Cloudflare Tunnel. Integração SMTP com Gmail. Adicionados REDIS_HOST/PORT/DB ao ConfigMap.' },
-      { id:'ATER-35', type:'feat', title:'Onboarding WhatsApp', desc:'Ponte de onboarding para WhatsApp: fluxo de setup web, validação de tokens e integração com perfil do produtor.' },
-      { id:'ATER-17', type:'feat', title:'Integração de Agendamentos com Google Meet', desc:'Cliente de agendamento + OpenAPI. Link do Google Meet em respostas confirmadas. Nome do técnico na listagem. Parsing de datas e coerção de tipos em slots disponíveis.' },
-      { id:'ATER-22', type:'feat', title:'Origem Auditada — dossier + RuralShape + alertas', desc:'Workflow de exportação de dossier (PDF + persistência de evidências). Cliente RuralShape com normalização de risco. Workflow de registro de CAR. Alertas via WhatsApp com opt-in.' },
-      { id:'ATER-29', type:'feat', title:'Visitas Técnicas Phygital', desc:'Módulo de agendamento com verificação de cotas, relatórios de visita e diagnóstico inicial. Migration 0055 e novos DTOs.' },
-      { id:'ATER-27', type:'feat', title:'Offline-first — sync de missões', desc:'Cache local, fila de sincronização e compressão de imagens via Web Worker em apps/web/src/offline/. Hooks de status de conexão e migrações de banco local. Sync de diary com idempotência atômica.' },
-      { id:'ATER-28', type:'feat', title:'Coleta Guiada — validação + templates IA', desc:'Validação de evidências no backend, integração de templates de IA para missões guiadas, UI do produtor com captura de medição e cards de orientação.' },
-      { id:'ATER-26', type:'feat', title:'Entitlements B2B', desc:'Controle de capacidades de planos via banco de dados, com guardas de acesso e interface administrativa. Limites de chat e check-ins mensais por plano.' },
-      { id:'ATER-32', type:'feat', title:'B2B Real Billing — ledger', desc:'API baseada em ledger para faturas B2B (serviços, use-cases, repositórios, migrações). Especificação P1 B2B real billing fechada na documentação técnica.' },
-      { id:'ATER-33', type:'feat', title:'Partner Invoice Management', desc:'Endpoints, modelos Zod e componentes UI para criação, exportação, cancelamento e visualização de faturas de parceiros no admin.' },
-      { id:'ATER-31', type:'feat', title:'Portal de grupo coletivo para parceiros', desc:'Endpoint para gerenciar links de grupo de parceiros. Exposição do dossiê do grupo coletivo. Linkagem de grupos digitais a contratos. Mapa de fornecedores.' },
-      { id:'ATER-40', type:'feat', title:'Gestão de Encontros Digitais', desc:'Ciclo de vida de encontros: agendamento, cancelamento, reagendamento e registro de presença. Integração via Orval e UI de acompanhamento.' },
-      { id:'ATER-39', type:'feat', title:'Recompensas de Engajamento', desc:'Campanhas de recompensa configuráveis, derivação de medalhas e ranking de engajamento com interface dedicada para técnicos.' },
-      { id:'ATER-38', type:'feat', title:'Cockpit de Âncora', desc:'Cockpit com métricas, auditoria de ações privadas e interface para produtores, incluindo migração de banco de dados.' },
-      { id:'ATER-37', type:'feat', title:'KPIs de Benchmark Guiado', desc:'KPIs de benchmark, serviços de catálogo e painéis de guia para produtores e técnicos.' },
-      { id:'ATER-36', type:'feat', title:'Fluxo de Desafios em Grupos', desc:'Workflow de resultados de desafios: schemas de payload, serviços de avaliação e componentes de interface para visualização de resultados.' },
-      { id:'ATER-23', type:'feat', title:'Missões mensais de compliance', desc:'Scheduler e serviço; endpoint e DTOs expostos; documentação do status operacional.' },
-      { id:'ATER-15', type:'feat', title:'Integração Google Drive para RAG', desc:'GoogleDriveClient + GoogleDriveNormalizerService. Use case ScanGoogleDriveFolderUseCase + processor KnowledgeDriveImportProcessor com BullMQ. Configuração WORKER_MAX_JOBS_BEFORE_RESTART.' },
-      { id:'ATER-16', type:'feat', title:'Upload de anexo base64 para Typebot', desc:'Endpoint uploadTypebotAttachmentBase64 em ChatController. Use case UploadChatAttachmentBase64UseCase. Limite do parser JSON aumentado para 20 MB.' },
-      { id:'ATER-21', type:'feat', title:'Encerramento de conversa', desc:'Campo endConversation nos schemas Zod de saída da IA e nas respostas de chat. SendMessageUseCase, ChatController e processadores atualizados.' },
-      { id:'ATER-9', type:'feat', title:'Retry de RAG falho + supersede automático', desc:'Botão "Tentar enviar outro arquivo" limpa state local e permite retry. Detecção de falha em KS antiga libera supersede automático.' },
-      { id:'ATER-10', type:'feat', title:'Evolution API (WhatsApp)', desc:'Captura de eventos via webhook, persistência de sessões de bot, validação de usuários parciais. Lógica de idempotência refinada e parser de webhooks ajustado.' },
-      { id:'ATER-11', type:'feat', title:'Typebot — módulo dedicado', desc:'Módulo com chaves API administrativas, perfil de agente leve e gerenciamento otimizado de sessões (reuso de sessões ativas em vez de criar novas).' },
-      { id:'ATER-12', type:'ref', title:'Refatoração do Módulo de Mensagem', desc:'Removido tratamento de webhook do Evolution; substituído por integração dedicada do Producer Typebot. ProducerWhatsappIdentity + GetProducerTypebotContext.' },
-      { id:'ATER-13', type:'feat', title:'Chat com ações inline e UI rica', desc:'Botões de navegação inline, Carousel, AssistantActionButton e melhorias na inferência de categorias de documentos. Reforço de segurança em missões/fazendas.' },
-      { id:'ATER-14', type:'fix', title:'CORS sem origem + preloading sidebar', desc:'Correção da validação de CORS para requisições sem origem e desativação de preloading de links no sidebar administrativo.' },
-      { id:'ATER-18', type:'feat', title:'Gestão de Técnicos — taxonomia', desc:'Padronização de níveis (junior, senior, specialist) em todo o sistema, incluindo regras de gating de planos e labels da interface.' },
-      { id:'ATER-19', type:'feat', title:'Build de imagem RAG otimizado', desc:'Substituída a instalação de curl por imagem oficial uv; base da imagem Python fixada para Bookworm, reduzindo falhas transitórias de mirror.' },
-      { id:'ATER-24', type:'feat', title:'Validação e bloqueio de missões inválidas', desc:'Lógica de protocolo e UI adicionadas; testes incluídos.' },
-      { id:'ATER-25', type:'feat', title:'Fluxo completo de visita física', desc:'Controllers, use-cases, repositório, migração 0062 e UI de booking integrados. Diálogo atualizado para calendário; guia de onboarding incluído.' },
-      { id:'ATER-34', type:'feat', title:'Sinais de Cadeia de Grupos', desc:'Sinais de cadeia de grupos e dossiês de parceiros para visualização de links.' },
-      { id:'LP-3', type:'feat', title:'LP — Indicadores dinâmicos', desc:'Indicadores dinâmicos integrados à procedure getIndicadoresHome e atualização do layout da seção de estatísticas.' },
-      { id:'LP-4', type:'ref', title:'LP — Centralização de env vars com Zod', desc:'Centralização da gestão de variáveis de ambiente com Zod e implementação de logging de erros para o cliente de API.' },
-      { id:'LP-5', type:'feat', title:'LP — Sistema de Logo dinâmico', desc:'Logotipo específico por landing no footer. FooterProjectPanel usa a nova lógica de resolução. Dockerfile.prod inclui AZURE_STORAGE_PUBLIC_CONTAINER_NAME.' },
-      { id:'#11801', type:'feat', title:'Telas cadastro padrão CMS — modais tiling', desc:'Sistema de modais com janelas arrastáveis, tiling e suporte multi-registro. TilingModalService + FormDialogContainerComponent com estados de tiling.' },
-      { id:'#11033', type:'fix', title:'Gráfico — mesmo filtro exibindo dados diferentes', desc:'Lógica de filtragem ajustada para garantir consistência na exibição de dados.' }
-    ]
-  },
-  th: {
-    name: 'Thielson',
-    avClass: 'av-th',
-    avInit: 'TH',
-    nameColor: 'var(--th)',
-    cards: [
-      { id:'#12315', type:'feat', title:'Tela de Comunicação com Produtores', desc:'Módulo backend (templates, destinatários, entregas) + tela em Operações. Listagem com filtros (título/canal/período) + tabs por produtor. Templates Email/WhatsApp com variáveis substituídas. Webhooks centralizados (Evolution + Resend) com provider_message_id. Múltiplos contatos por produtor com snapshot + status consolidado por canal.' },
-      { id:'#12393', type:'ref', title:'Refactor PEC — ManyToMany → entidades pivô', desc:'Entidades pivô para características, categorias, certificadoras, justificativas e tipos de criação. Services, módulos e models do web-common ajustados. Formulários do CMS atualizados.' },
-      { id:'#12228', type:'feat', title:'Duplicar Formulário entre safras', desc:'Procedure duplicarFormRespostasEntreSafras. Criação de atendimento e respostas na safra de destino. Simulação antes da execução. Duplicação para múltiplas propriedades. Procedimento no front. Token e envios vinculados ao atendimento.' },
-      { id:'#12391', type:'feat', title:'Gestão de partos no módulo PEC', desc:'Módulo backend de partos com estrutura de banco e service. Formulário e aba de partos na reprodução animal. Integrações com animal, categoria e tipo de criação.' },
-      { id:'#12323', type:'feat', title:'PEC — regras de idade animal + pesagem + lotes', desc:'Novas regras de idade no cadastro de animal (filtro de categorias por idade estimada). Cadastro de lote integrado ao fluxo de reprodução. Configuração de registro de pesagem de lactação. Produção total de leite no controle de pesagem.' },
-      { id:'#12212', type:'feat', title:'PEC/Checkmilk — refactor de tabelas + reprodução genérica', desc:'status_produtivo e escore em pec_animal; nova tabela pec_tipo_criacao_certificadora; removido pec_tipo_producao. Migração massiva de bov → PEC (lactação, lote produção, pesagem, qualidade). Remoção de módulos antigos BOV no backend e web-common.' },
-      { id:'#12424', type:'feat', title:'Form Dinâmico — nova regra de agrupamento', desc:'Nova opção de agrupamento nas perguntas do form dinâmico. Cadastro de perguntas no CMS atualizado. Procedure de carregamento ajustada. Reflexo no web-common.' },
-      { id:'#12378', type:'fix', title:'Pergunta de referência desativada continua aparecendo', desc:'Procedure de carregamento das perguntas ajustada. Perguntas referenciadas desativadas deixam de aparecer. Migration para atualizar a procedure no banco.' },
-      { id:'#12413', type:'ref', title:'Flexibilizar validações de pesagem e inseminação PEC', desc:'Removidas validações rígidas no controle de pesagem. Removidas validações rígidas no cadastro de inseminação IATF. Processamento de payload simplificado.' },
-      { id:'#12403', type:'fix', title:'Erro para adicionar mais de um contato', desc:'Soft-delete de contatos de endereço ajustado. Garantido envio dos contatos para a aba de cadastro da propriedade. Corrigida marcação do formulário ao adicionar ou remover contatos.' },
-      { id:'#12297', type:'fix', title:'Ajuste na label do gráfico — Checkmilk', desc:'Correção pontual de label no gráfico do Checkmilk.' },
-      { id:'#12038', type:'fix', title:'Divergência de dados Checkmilk', desc:'Correção de divergência em dados exibidos no Checkmilk.' }
-    ]
-  }
-};
-
-const members = ['ro','br','th'];
-let activeType   = 'all';
-let activeMember = 'all';
-
-function badgeClass(type) {
-  return { feat:'badge-feat', fix:'badge-fix', ref:'badge-ref', test:'badge-test' }[type];
-}
-
-function badgeLabel(type) {
-  return { feat:'feature', fix:'fix', ref:'refactor', test:'teste' }[type];
-}
-
-function isAzureCard(id) {
-  return /^#\d+/.test(id);
-}
-
-function render() {
-  const root = document.getElementById('content');
-  root.innerHTML = '';
-
-  members.forEach(m => {
-    const d = DATA[m];
-    const section = document.createElement('div');
-    section.className = 'member-section';
-    section.id = 'sec-' + m;
-
-    section.innerHTML = `
+          section.innerHTML = `
       <div class="member-header">
         <div class="member-avatar ${d.avClass}">${d.avInit}</div>
         <span class="member-name" style="color:${d.nameColor}">${d.name}</span>
@@ -667,20 +1278,26 @@ function render() {
       <div class="empty-state" id="empty-${m}">Nenhum card encontrado.</div>
     `;
 
-    root.appendChild(section);
+          root.appendChild(section);
 
-    const tbody = document.getElementById('tbody-' + m);
-    d.cards.forEach(c => {
-      const tr = document.createElement('tr');
-      tr.dataset.type   = c.type;
-      tr.dataset.member = m;
-      tr.dataset.search = (c.id + ' ' + c.title + ' ' + c.desc).toLowerCase();
+          const tbody = document.getElementById("tbody-" + m);
+          d.cards.forEach((c) => {
+            const tr = document.createElement("tr");
+            tr.dataset.type = c.type;
+            tr.dataset.member = m;
+            tr.dataset.search = (
+              c.id +
+              " " +
+              c.title +
+              " " +
+              c.desc
+            ).toLowerCase();
 
-      const idCell = isAzureCard(c.id)
-        ? `<a href="https://dev.azure.com/ibsbiosistemico/AGROTRACE/_workitems/edit/${c.id.replace('#','')}" target="_blank" title="Abrir no Azure DevOps">${c.id}</a>`
-        : `<span class="no-link" title="Marco interno (sem card Azure)">${c.id}</span>`;
+            const idCell = isAzureCard(c.id)
+              ? `<a href="https://dev.azure.com/ibsbiosistemico/AGROTRACE/_workitems/edit/${c.id.replace("#", "")}" target="_blank" title="Abrir no Azure DevOps">${c.id}</a>`
+              : `<span class="no-link" title="Marco interno (sem card Azure)">${c.id}</span>`;
 
-      tr.innerHTML = `
+            tr.innerHTML = `
         <td class="col-id">${idCell}</td>
         <td>
           <div class="col-title">${c.title}</div>
@@ -688,74 +1305,83 @@ function render() {
         </td>
         <td class="col-type"><span class="badge ${badgeClass(c.type)}">${badgeLabel(c.type)}</span></td>
       `;
-      tbody.appendChild(tr);
-    });
-  });
+            tbody.appendChild(tr);
+          });
+        });
 
-  applyFilters();
-}
-
-function setFilter(group, val, btn) {
-  document.querySelectorAll(`[data-filter="${group}"]`).forEach(b => {
-    b.className = 'fbtn';
-  });
-  btn.classList.add('on-' + (val === 'all' ? 'all' : val));
-
-  if (group === 'type')   activeType   = val;
-  if (group === 'member') activeMember = val;
-  applyFilters();
-}
-
-function applyFilters() {
-  const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
-  let total = 0, feat = 0, fix = 0, ref = 0, test = 0;
-  const perM = { ro:0, br:0, th:0 };
-
-  members.forEach(m => {
-    const sec   = document.getElementById('sec-' + m);
-    const empty = document.getElementById('empty-' + m);
-    const memberMatch = activeMember === 'all' || activeMember === m;
-
-    if (!memberMatch) {
-      sec.classList.add('hidden');
-      return;
-    }
-    sec.classList.remove('hidden');
-
-    let vis = 0;
-    sec.querySelectorAll('tbody tr').forEach(row => {
-      const typeOk   = activeType === 'all' || row.dataset.type === activeType;
-      const searchOk = !q || row.dataset.search.includes(q);
-      const show = typeOk && searchOk;
-      row.classList.toggle('hidden', !show);
-      if (show) {
-        vis++;
-        total++;
-        const t = row.dataset.type;
-        if (t === 'feat') feat++;
-        if (t === 'fix')  fix++;
-        if (t === 'ref')  ref++;
-        if (t === 'test') test++;
-        perM[m]++;
+        applyFilters();
       }
-    });
 
-    document.getElementById('meta-' + m).textContent = vis + ' card' + (vis !== 1 ? 's' : '');
-    empty.classList.toggle('visible', vis === 0);
-  });
+      function setFilter(group, val, btn) {
+        document.querySelectorAll(`[data-filter="${group}"]`).forEach((b) => {
+          b.className = "fbtn";
+        });
+        btn.classList.add("on-" + (val === "all" ? "all" : val));
 
-  document.getElementById('resultCount').textContent = total + ' card' + (total !== 1 ? 's' : '');
-  document.getElementById('s-total').textContent = total;
-  document.getElementById('s-feat').textContent  = feat;
-  document.getElementById('s-fix').textContent   = fix;
-  document.getElementById('s-ref').textContent   = ref;
-  document.getElementById('s-test').textContent  = test;
-  document.getElementById('s-ro').textContent    = perM.ro;
-  document.getElementById('s-br').textContent    = perM.br;
-  document.getElementById('s-th').textContent    = perM.th;
-}
+        if (group === "type") activeType = val;
+        if (group === "member") activeMember = val;
+        applyFilters();
+      }
 
-render();
-</script>
-</body>
+      function applyFilters() {
+        const q = (document.getElementById("searchInput").value || "")
+          .toLowerCase()
+          .trim();
+        let total = 0,
+          feat = 0,
+          fix = 0,
+          ref = 0,
+          test = 0;
+        const perM = { ro: 0, br: 0, th: 0 };
+
+        members.forEach((m) => {
+          const sec = document.getElementById("sec-" + m);
+          const empty = document.getElementById("empty-" + m);
+          const memberMatch = activeMember === "all" || activeMember === m;
+
+          if (!memberMatch) {
+            sec.classList.add("hidden");
+            return;
+          }
+          sec.classList.remove("hidden");
+
+          let vis = 0;
+          sec.querySelectorAll("tbody tr").forEach((row) => {
+            const typeOk =
+              activeType === "all" || row.dataset.type === activeType;
+            const searchOk = !q || row.dataset.search.includes(q);
+            const show = typeOk && searchOk;
+            row.classList.toggle("hidden", !show);
+            if (show) {
+              vis++;
+              total++;
+              const t = row.dataset.type;
+              if (t === "feat") feat++;
+              if (t === "fix") fix++;
+              if (t === "ref") ref++;
+              if (t === "test") test++;
+              perM[m]++;
+            }
+          });
+
+          document.getElementById("meta-" + m).textContent =
+            vis + " card" + (vis !== 1 ? "s" : "");
+          empty.classList.toggle("visible", vis === 0);
+        });
+
+        document.getElementById("resultCount").textContent =
+          total + " card" + (total !== 1 ? "s" : "");
+        document.getElementById("s-total").textContent = total;
+        document.getElementById("s-feat").textContent = feat;
+        document.getElementById("s-fix").textContent = fix;
+        document.getElementById("s-ref").textContent = ref;
+        document.getElementById("s-test").textContent = test;
+        document.getElementById("s-ro").textContent = perM.ro;
+        document.getElementById("s-br").textContent = perM.br;
+        document.getElementById("s-th").textContent = perM.th;
+      }
+
+      render();
+    </script>
+  </body>
 </html>
