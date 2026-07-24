@@ -22,8 +22,10 @@
     .callout{border:1px solid #284b3c;background:#0b2119;border-radius:8px;padding:17px;color:#b7f7d7}.callout strong{color:var(--green)}.quote{border-left:3px solid var(--purple);padding:12px 18px;color:var(--muted);font-size:20px;line-height:1.45;margin:20px 0}.owner{display:flex;gap:12px;align-items:center;margin-top:25px;color:var(--muted)}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--blue));font:700 13px "JetBrains Mono";color:white}
     .wins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.win{min-height:220px;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:9px;padding:22px}.win:nth-child(2){border-top-color:var(--blue)}.win:nth-child(3){border-top-color:var(--purple)}.win .icon{font-size:30px}.win h3{font-size:20px;margin:15px 0 8px}.todo{font:15px/2 "JetBrains Mono";background:#090c10;border:1px solid var(--line);padding:20px;border-radius:8px}.todo .done{color:var(--green)}.todo .next{color:var(--amber)}
     .status{background:#6d28d9;padding:0 12px;color:#eee;gap:18px}.status .right{margin-left:auto;display:flex;gap:18px}.timer{cursor:pointer}.dots{display:flex;gap:7px;align-items:center}.dot{width:6px;height:6px;border-radius:50%;background:#ffffff55;cursor:pointer}.dot.active{background:#fff;transform:scale(1.4)}
-    .modal{display:none;position:fixed;inset:0;background:#000d;z-index:20;padding:35px}.modal.open{display:grid;place-items:center}.modal img{max-width:95vw;max-height:92vh;object-fit:contain;border-radius:7px}.close{position:fixed;top:15px;right:20px;color:#fff;font-size:30px;cursor:pointer}
+    .modal{display:none;position:fixed;inset:0;background:#000d;z-index:20;padding:35px}.modal.open{display:grid;place-items:center}.modal img{max-width:95vw;max-height:92vh;object-fit:contain;border-radius:7px}.close{position:fixed;top:15px;right:20px;color:#fff;font-size:30px;cursor:pointer;z-index:21}.modal.open.pano{display:block;overflow-y:auto;padding:24px 4vw}.modal.open.pano img{width:100%;max-width:none;max-height:none;display:block;margin:0 auto}
     .remote{position:fixed;right:16px;bottom:36px;z-index:10;background:#10151cdd;border:1px solid var(--line);border-radius:7px;padding:7px 10px;font:10px "JetBrains Mono";color:var(--dim)}.remote.live{color:var(--green);border-color:#285c46}
+    .timer-widget{position:fixed;top:84px;right:16px;z-index:15;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:6px 14px;cursor:pointer;user-select:none;box-shadow:0 2px 12px #0006;font-family:"JetBrains Mono",monospace;transition:all .2s}.timer-widget:hover{background:var(--panel2)}.timer-widget .t-icon{font-size:12px;color:var(--dim)}.timer-widget .t-display{font-size:20px;font-weight:600;letter-spacing:.05em;color:var(--dim)}.timer-widget.running .t-icon,.timer-widget.running .t-display{color:var(--green)}.timer-widget.warning .t-icon,.timer-widget.warning .t-display{color:var(--amber)}.timer-widget.overtime .t-icon,.timer-widget.overtime .t-display{color:var(--coral)}
+    .stats-filter{font:11px "JetBrains Mono";padding:4px 13px;border-radius:20px;border:1px solid var(--line);background:var(--panel2);color:var(--muted);cursor:pointer;transition:all .15s}.stats-filter:hover{color:var(--text)}.stats-filter.active{background:var(--f,#6d28d9);border-color:var(--f,#6d28d9);color:#fff}
     @media(max-width:900px){.workspace{grid-template-columns:1fr}.sidebar{display:none}.slide{padding:25px}.g2,.g3,.wins,.hero-layout{grid-template-columns:1fr}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.dashboard-frame{height:50vh}}
   </style>
 </head>
@@ -88,14 +90,29 @@
 
       <section class="slide">
         <div class="file">edition-06 / <b>period-summary.json</b></div>
-        <h2>O perfil do <span>período</span></h2>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+          <h2 style="margin-bottom:0">O perfil do <span>período</span></h2>
+          <div style="display:flex;gap:6px;margin-left:auto;align-items:center">
+            <button class="stats-filter active" data-m="all">Todos</button>
+            <button class="stats-filter" data-m="Ronaldo" style="--f:#7c3aed">Ronaldo</button>
+            <button class="stats-filter" data-m="Bruno" style="--f:#2563eb">Bruno</button>
+            <button class="stats-filter" data-m="Thielson" style="--f:#059669">Thielson</button>
+            <span id="statsCount" style="font:12px 'JetBrains Mono';color:var(--dim);margin-left:8px">34 cards</span>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px">
+          <div class="metric"><strong id="mv-all">34</strong><span>cards únicos</span></div>
+          <div class="metric" style="border-left-color:var(--green)"><strong id="mv-feat">22</strong><span>features</span></div>
+          <div class="metric" style="border-left-color:var(--coral)"><strong id="mv-fix">12</strong><span>fixes &amp; melhorias</span></div>
+          <div class="metric" style="border-left-color:var(--blue)"><strong>14 · 11 · 9</strong><span>Ronaldo · Thielson · Bruno</span></div>
+        </div>
         <div class="g2 grid">
           <div class="card"><span class="tag green">INTELIGÊNCIA OPERACIONAL</span><h3>Dados que orientam ação</h3><p>Citros, evolução Agroplus e ranking aproximaram coleta, leitura e priorização.</p></div>
           <div class="card"><span class="tag blue">PLATAFORMA CONFIGURÁVEL</span><h3>Menos recadastro</h3><p>Formulário Dinâmico, importações e relatórios avançaram em reuso e portabilidade.</p></div>
           <div class="card"><span class="tag amber">IDENTIDADE & SEGURANÇA</span><h3>Acesso com mais controle</h3><p>API Keys, passwordless, sessões pareadas, MFA e banimento evoluíram como uma jornada única.</p></div>
           <div class="card"><span class="tag">CONFIABILIDADE</span><h3>Base para continuar evoluindo</h3><p>Procedures, migrations resilientes, correções de relatórios e autenticação sustentaram as entregas.</p></div>
         </div>
-        <p class="file" style="margin-top:22px">// métricas finais serão consolidadas após o fechamento do período</p>
+        <p class="file" style="margin-top:22px">// 34 cards numerados únicos entre 06/07 e 23/07 · entregas sem card (fluxo MFA, relatórios Checkmilk, migrations) não contadas</p>
       </section>
 
       <section class="slide">
@@ -165,9 +182,9 @@
           <div class="win"><div class="icon">🛡️</div><h3>Segurança como jornada</h3><p>API Keys, passwordless, sessões e banimento evoluíram de forma coordenada.</p></div>
           <div class="win"><div class="icon">🧩</div><h3>Plataforma reutilizável</h3><p>Formulários, blocos repetíveis, relatórios e Excel avançaram em portabilidade.</p></div>
         </div>
-        <div class="todo" style="margin-top:18px"><span class="next">[ ]</span> Onboarding do Agrônomo: landing page, autocadastro e início autônomo no Agrotrace
-<br><span class="next">[ ]</span> concluir importação da estrutura do Formulário Dinâmico
-<br><span class="next">[ ]</span> ampliar o padrão de informação rica do Citros para outros projetos</div>
+        <div class="todo" style="margin-top:18px"><span class="next">[ ]</span> Onboarding do Agrônomo: landing page, autocadastro e início autônomo no Agrotrace <span style="color:var(--blue)">@bruno</span>
+<br><span class="next">[ ]</span> concluir importação da estrutura do Formulário Dinâmico <span style="color:var(--green)">@thielson</span>
+<br><span class="next">[ ]</span> ampliar o padrão de informação rica do Citros para outros projetos <span style="color:var(--purple)">@ronaldo</span></div>
       </section>
 
       <section class="slide">
@@ -184,6 +201,7 @@
   <div class="status"><span>⑂ master*</span><span id="statusFile">README.md</span><span class="right"><span class="timer" id="timer">▶ 00:00</span><span class="dots" id="dots"></span><span id="counter">1 / 8</span></span></div>
 </div>
 <div class="remote" id="remote">● local</div>
+<div class="timer-widget" id="timerWidget" title="Clique ou tecla T para iniciar/pausar"><span class="t-icon">▶</span><span class="t-display">00:00</span></div>
 <div class="modal" id="modal"><span class="close">×</span><img alt="Visualização ampliada"></div>
 <script>
 const labels=["README.md","runtime-budget.ts","period-summary.json","citros-dashboard.component.ts","passwordless-auth.flow.ts","formulario-dinamico.xlsx","engineering-wins.md","exit.ts"];
@@ -191,9 +209,12 @@ const icons=["📋","⏱","📊","🍊","🔑","📗","🏆","👋"];
 const slides=[...document.querySelectorAll('.slide')],tabs=document.querySelector('#tabs'),side=document.querySelector('#side'),dots=document.querySelector('#dots');let cur=0;
 labels.forEach((x,i)=>{tabs.insertAdjacentHTML('beforeend',`<div class="tab ${i?'':'active'}" data-i="${i}">${icons[i]}&nbsp; ${x}</div>`);dots.insertAdjacentHTML('beforeend',`<i class="dot ${i?'':'active'}" data-i="${i}"></i>`)});
 function go(n,send=true){n=(n+slides.length)%slides.length;document.querySelectorAll('.active').forEach(e=>{if(e.matches('.slide,.tab,.side,.dot'))e.classList.remove('active')});cur=n;slides[cur].classList.add('active');document.querySelector(`.tab[data-i="${cur}"]`).classList.add('active');document.querySelector(`.side[data-i="${cur}"]`).classList.add('active');document.querySelector(`.dot[data-i="${cur}"]`).classList.add('active');document.querySelector('#counter').textContent=`${cur+1} / ${slides.length}`;document.querySelector('#statusFile').textContent=labels[cur];document.querySelector(`.tab[data-i="${cur}"]`).scrollIntoView({inline:'center'});if(send&&ws?.readyState===1&&canControl())ws.send(JSON.stringify({type:'slide-update',currentSlide:cur,slideLabel:labels[cur],slideActions:[]}))}
-document.addEventListener('click',e=>{const nav=e.target.closest('[data-i]');if(nav&&canControl())go(+nav.dataset.i);const z=e.target.closest('[data-zoom]');if(z){modal.querySelector('img').src=z.dataset.zoom;modal.classList.add('open')}if(e.target.matches('.close,.modal'))modal.classList.remove('open')});
-document.addEventListener('keydown',e=>{if(modal.classList.contains('open')){if(e.key==='Escape')modal.classList.remove('open');return}if(canControl()&&['ArrowRight','ArrowDown',' '].includes(e.key))go(cur+1);if(canControl()&&['ArrowLeft','ArrowUp'].includes(e.key))go(cur-1);if(e.key.toLowerCase()==='f')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(e.key.toLowerCase()==='t')toggleTimer();if(e.key.toLowerCase()==='r')connect();if(['4','5','6'].includes(e.key)&&isHost())handoff({4:'Ronaldo',5:'Bruno',6:'Thielson'}[e.key])});
-let running=false,start=0,elapsed=0,tick;function toggleTimer(){running=!running;if(running){start=Date.now()-elapsed;tick=setInterval(drawTimer,500)}else{clearInterval(tick);elapsed=Date.now()-start}drawTimer()}function drawTimer(){if(running)elapsed=Date.now()-start;let s=Math.floor(elapsed/1000),m=Math.floor(s/60);document.querySelector('#timer').textContent=`${running?'⏸':'▶'} ${String(m).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}document.querySelector('#timer').onclick=toggleTimer;
+document.addEventListener('click',e=>{const nav=e.target.closest('[data-i]');if(nav&&canControl())go(+nav.dataset.i);const z=e.target.closest('[data-zoom]');if(z){const im=modal.querySelector('img'),fit=()=>modal.classList.toggle('pano',im.naturalHeight>im.naturalWidth*1.15);im.onload=fit;im.src=z.dataset.zoom;if(im.complete)fit();modal.scrollTop=0;modal.classList.add('open')}if(e.target.matches('.close,.modal'))modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(modal.classList.contains('open')){if(e.key==='Escape')modal.classList.remove('open');if(['ArrowDown','ArrowUp',' '].includes(e.key)){e.preventDefault();modal.scrollBy({top:(e.key==='ArrowUp'?-1:1)*innerHeight*.75,behavior:'smooth'})}return}if(canControl()&&['ArrowRight','ArrowDown',' '].includes(e.key))go(cur+1);if(canControl()&&['ArrowLeft','ArrowUp'].includes(e.key))go(cur-1);if(e.key.toLowerCase()==='f')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(e.key.toLowerCase()==='t')toggleTimer();if(e.key.toLowerCase()==='r')connect();if(['4','5','6'].includes(e.key)&&isHost())handoff({4:'Ronaldo',5:'Bruno',6:'Thielson'}[e.key])});
+let running=false,start=0,elapsed=0,tick;function toggleTimer(){running=!running;if(running){start=Date.now()-elapsed;tick=setInterval(drawTimer,500)}else{clearInterval(tick);elapsed=Date.now()-start}drawTimer()}function drawTimer(){if(running)elapsed=Date.now()-start;let s=Math.floor(elapsed/1000),m=Math.floor(s/60),txt=`${String(m).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;document.querySelector('#timer').textContent=`${running?'⏸':'▶'} ${txt}`;const w=document.querySelector('#timerWidget');w.querySelector('.t-display').textContent=txt;w.querySelector('.t-icon').textContent=running?'⏸':'▶';w.classList.toggle('running',running&&s<1500);w.classList.toggle('warning',s>=1500&&s<1800);w.classList.toggle('overtime',s>=1800)}document.querySelector('#timer').onclick=toggleTimer;document.querySelector('#timerWidget').onclick=toggleTimer;
+const KPI={Ronaldo:{feat:8,fix:6},Thielson:{feat:7,fix:4},Bruno:{feat:7,fix:2}};
+function filterStats(m){document.querySelectorAll('.stats-filter').forEach(b=>b.classList.toggle('active',b.dataset.m===m));const k=m==='all'?{feat:22,fix:12}:KPI[m];document.querySelector('#mv-all').textContent=k.feat+k.fix;document.querySelector('#mv-feat').textContent=k.feat;document.querySelector('#mv-fix').textContent=k.fix;document.querySelector('#statsCount').textContent=`${k.feat+k.fix} cards`}
+document.querySelectorAll('.stats-filter').forEach(b=>b.onclick=()=>filterStats(b.dataset.m));
 const q=new URLSearchParams(location.search),role=q.get('role')==='guest'?'guest':'host',name=q.get('name')||(role==='host'?'Ronaldo':'Guest');let ws,myId,hostId,ownerId;function canControl(){return !ws||ws.readyState!==1||myId===ownerId}function isHost(){return myId&&myId===hostId}function handoff(targetName){ws?.send(JSON.stringify({type:'control-handoff',targetName}))}function connect(){if(location.protocol==='file:')return;try{ws=new WebSocket(`${location.protocol==='https:'?'wss:':'ws:'}//${location.host}`)}catch{return}ws.onopen=()=>{ws.send(JSON.stringify({type:'join',role,name,totalSlides:slides.length,currentSlide:cur}));remote.textContent='● conectado';remote.classList.add('live')};ws.onmessage=e=>{let m;try{m=JSON.parse(e.data)}catch{return}if(m.type==='session'){if(m.myId)myId=m.myId;hostId=m.hostId;ownerId=m.controlOwnerId;if(role==='guest'&&Number.isInteger(m.currentSlide))go(m.currentSlide,false);let owner=(m.clients||[]).find(x=>x.id===ownerId);remote.textContent=`● ${owner?owner.name:'conectado'} controla`}if(m.type==='slide-update'&&Number.isInteger(m.currentSlide))go(m.currentSlide,false);if(m.type==='navigate'&&Number.isInteger(m.slide))go(m.slide,false)};ws.onclose=()=>{remote.textContent='● local';remote.classList.remove('live')}}connect();
 </script>
 </body>

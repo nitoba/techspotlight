@@ -1,7 +1,7 @@
 ================================================================================
-TECH SPOTLIGHT #05 — STANDUPS DO PERIODO
-Periodo: 01/06 - 02/07/2026
-Apresentacao: 03/07/2026
+TECH SPOTLIGHT #06 — STANDUPS DO PERIODO
+Periodo: 06/07 - 23/07/2026
+Apresentacao: 24/07/2026
 ================================================================================
 
 
@@ -972,7 +972,60 @@ Standup (22/07/2026)
 
 Standup (23/07/2026)
 --------------------------------------------------------------------------------
+RONALDO
+📌 Agrotrace
+
+🚧 (In Progress):
+➜ #12900 - [FEAT] Dashboard analítico e relatório de encerramento da campanha de Sanidade dos Citros
+    ➜ Implementação de cache de 5 minutos para o dashboard, cálculo de 14 indicadores sanitários, matriz de risco×manejo e ranking de prioridades.
+    ➜ Otimização de imagens remotas com Sharp, timeout de 15s e limite de 15MB no BaseHtmlPdfReportService.
+    ➜ Aumento do protocolTimeout para 10 minutos e timeout padrão da página para 0 no pdf-generator.ts para evitar timeouts em PDFs grandes.
+    ➜ Atualização da função para recuperar anexos de URL para usar o contêiner privado atual (agrotrace-v3).
+    ➜ Ajuste da configuração de segurança do Docker para alinhamento com o securityContext do Kubernetes.
+    ➜ Aprimoramento do suporte ao Puppeteer com diretórios de dados do usuário dedicados e caminhos de logo dinâmicos, garantindo persistência de perfil, configuração e cache.
+    ➜ Modificação dos Dockerfiles (.dev, .homo, .prod) para incluir a variável de ambiente PUPPETEER_USER_DATA_DIR e configurar permissões nos diretórios temporários exigidos pelo Chromium/Crashpad.
+    ➜ Ajuste de regras existentes para replantio no Dashboard Citros Fiscalização.
+
+☎️ Com Iohan, sobre demandas e feedbacks Desenvolvimento Citrus
+☎️ Com Bruno e Thielson sobre apresentação tech spotlight
+☎️ Com Thielson, testando implementação incial de importação de formulario dinamico
+BRUNO
+📌 agrotrace-v3
+
+✅ Done:
+➜ Fluxo de Autenticação e MFA
+    ➜ Reforçado o fluxo de autenticação pré-MFA, garantindo a preservação da versão do usuário após o MFA e o acesso master.
+    ➜ Ajustadas as boundaries de segurança para tokens pré-MFA e habilitada a consulta da certificadora antes da conclusão do MFA.
+    ➜ Atualizados os guards de autenticação (JWT, WS, SSE) e os serviços de bridge para suportar a integração com o Better Auth.
+
+🚧 (In Progress):
+➜ #12734 - [FEAT] Captcha no login/cadastro habilitável por certificadora (better-auth)
+    ➜ Integração de Captcha
+        ➜ Implementada a integração com Turnstile Captcha no cliente web e nos fluxos de login e passwordless.
+        ➜ Adicionada validação de captcha obrigatória antes de mutações no módulo de pré-cadastro e convites.
 
 
-Standup (24/07/2026)
---------------------------------------------------------------------------------
+☎️ Com Ronaldo e Thielson sobre apresentação tech spotlight
+☎️ Com Carlos sobre validação do bug e MFA no MOBILE e report de bug no app mobile
+☎️ Com Gusvato sobre validação do bug de MFA no app MOBILE
+☎️ Com Iohan sobre correções e aprovações dos merge para prod para corrigir bugs
+THIELSON
+📌 Agrotrace
+
+🚧 In Progress:
+➜ #12737 - Exportação e importação em Excel da estrutura completa do Formulário Dinâmico
+      ➜  (progresso feito) Refinamento da importação/exportação da estrutura
+            ➜  unificada a edição da estrutura e das perguntas na aba principal do Excel
+            ➜  ajustado o layout da planilha e a leitura do novo formato
+      ➜  (progresso feito) Prévia e confirmação da importação
+            ➜  refinadas mensagens e bloqueios da confirmação quando não há alterações aplicáveis
+            ➜  melhorada a visualização do preview no CMS e no fluxo de protocolo
+      ➜  (progresso feito) Perguntas referenciadas
+            ➜  implementada aba específica para configurar perguntas condicionais por resposta
+            ➜  adicionada exportação recursiva das perguntas dependentes
+            ➜  ajustada importação para atualizar apenas as perguntas presentes na aba
+            ➜  adicionadas validações para duplicidades, inconsistências e ciclos de referência
+
+☎️ Com Ronaldo testando implementação incial de importação de formulario dinamico
+☎️ Com Ronaldo e Thielson sobre apresentação tech spotlight
+
