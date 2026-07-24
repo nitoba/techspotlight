@@ -10,7 +10,8 @@
       "Bash(python3 _rewrite_slides.py)",
       "Bash(python3 _rewrite_overview.py)",
       "Bash(grep -n \"function getSlideActions\\\\|^      };$\" C:/IBS/DEV/TechSpotligh/semana-16-03-2026-01-04-2026/edition-04/spotlight.html)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "PowerShell(Start-Process \"c:\\\\IBS\\\\DEV\\\\TechSpotligh\\\\semana-16-03-2026-01-04-2026\\\\edition-05\\\\spotlight.html\")"
     ]
   }
 }
