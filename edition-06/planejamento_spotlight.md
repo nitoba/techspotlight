@@ -140,8 +140,27 @@ Nao usar a quantidade de cards como protagonista. Agrupar o trabalho em quatro l
 - identidade e seguranca: API Keys, sessoes, passwordless e banimento;
 - confiabilidade: procedures, migrations, relatorios e correcoes de autenticacao.
 
-Metricas devem ser recalculadas depois dos standups de 23 e 24/07. Contar somente cards
-numerados unicos efetivamente concluidos; nao contar a repeticao do mesmo card em varios dias.
+Metricas consolidadas (standups de 06/07 a 23/07, somente cards numerados unicos):
+
+| Dev | Cards | Features | Fixes/Melhorias |
+|---|---:|---:|---:|
+| Ronaldo | 14 | 8 | 6 |
+| Thielson | 11 | 7 | 4 |
+| Bruno | 9 | 7 | 2 |
+| **Total** | **34** | **22** | **12** |
+
+Detalhe por dev (para apoio de fala, nao ler no slide):
+
+- Ronaldo: #12717, #12644, #12412, #12762, #12752, #12777, #12784, #12782,
+  #12810, #12847, #12864, #12870, #12896, #12900
+- Thielson: #12677, #12047, #12740, #12738, #12804, #12825, #12783, #12737,
+  #12859, #12748, #12744
+- Bruno: #12702, #12731, #12730, #12732, #12764, #12875, #12733, #12892, #12734
+
+Observacoes: ainda em andamento no fechamento do periodo — #12900 (Ronaldo),
+#12737 (Thielson), #12764 e #12734 (Bruno). Entregas sem card numerado (fluxo MFA,
+cookie domain, relatorios Checkmilk, correcao de migrations) nao entram na conta.
+Comparativo: edicao #05 teve 42 cards em ~4,5 semanas; esta teve 34 em ~3 semanas.
 
 ### 3. `citros-dashboard.component.ts` - Spotlight Ronaldo
 
@@ -281,8 +300,14 @@ Roadmap inicial, sujeito aos standups finais:
 - [ ] consolidar a jornada passwordless e administracao de usuarios;
 - [ ] evoluir ingestao e analise de documentos do EditalFit.
 
-No slide, mostrar somente tres prioridades: Onboarding do Agronomo, importacao do
-Formulario Dinamico e ampliacao do padrao de informacao rica do Citros.
+No slide, mostrar somente tres prioridades, cada uma com dono definido:
+
+- Onboarding do Agronomo → Bruno
+- concluir importacao do Formulario Dinamico → Thielson
+- ampliar o padrao de informacao rica do Citros → Ronaldo
+
+Nota de formato: o bloco Lightning Tech foi retirado da estrutura da equipe Web
+(decisao do time) porque nao cabia nos 30 minutos.
 
 ### 8. `exit.ts` - fechamento
 
