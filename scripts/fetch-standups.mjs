@@ -29,11 +29,11 @@ import { fileURLToPath } from "node:url";
 
 // ── Config padrão (sobrescrita por env vars) ───────────────────────────────
 const CONFIG = {
-  channelId:   process.env.STANDUPS_CHANNEL  ?? "1503390163370250250",
+  channelId: process.env.STANDUPS_CHANNEL ?? "1503390163370250250",
   users: {
-    Ronaldo:  process.env.USER_RONALDO       ?? "960498239583432764",
-    Bruno:    process.env.USER_BRUNO         ?? "PREENCHER_USER_ID_BRUNO",
-    Thielson: process.env.USER_THIELSON      ?? "PREENCHER_USER_ID_THIELSON",
+    Ronaldo: process.env.USER_RONALDO ?? "960498239583432764",
+    Bruno: process.env.USER_BRUNO ?? "287257435830353922",
+    Thielson: process.env.USER_THIELSON ?? "255029200187031552",
   },
   // ordem em que cada pessoa aparece dentro de um mesmo dia
   order: ["Ronaldo", "Thielson", "Bruno"],
@@ -54,12 +54,14 @@ function parseArgs(argv) {
 
 const args = parseArgs(process.argv);
 const EDITION = Number(args.edition);
-const PERIOD_START = args.start;             // YYYY-MM-DD
-const PERIOD_END = args.end;                 // YYYY-MM-DD
+const PERIOD_START = args.start; // YYYY-MM-DD
+const PERIOD_END = args.end; // YYYY-MM-DD
 const PRESENTATION = args.presentation ?? PERIOD_END;
 
 if (!EDITION || !PERIOD_START || !PERIOD_END) {
-  console.error("Uso: --edition N --start YYYY-MM-DD --end YYYY-MM-DD [--presentation YYYY-MM-DD]");
+  console.error(
+    "Uso: --edition N --start YYYY-MM-DD --end YYYY-MM-DD [--presentation YYYY-MM-DD]",
+  );
   process.exit(1);
 }
 if (!process.env.DISCORD_BOT_TOKEN) {
@@ -69,7 +71,11 @@ if (!process.env.DISCORD_BOT_TOKEN) {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const OUT_PATH = path.join(ROOT, `edition-${String(EDITION).padStart(2, "0")}`, "standup_periodo.txt");
+const OUT_PATH = path.join(
+  ROOT,
+  `edition-${String(EDITION).padStart(2, "0")}`,
+  "standup_periodo.txt",
+);
 
 // ── Discord REST helpers ──────────────────────────────────────────────────
 const API = "https://discord.com/api/v10";
@@ -88,7 +94,7 @@ async function fetchMessagesBefore(channelId, beforeId = null) {
     const body = await res.json();
     const wait = Math.ceil((body.retry_after ?? 1) * 1000);
     console.error(`rate limit, aguardando ${wait}ms...`);
-    await new Promise(r => setTimeout(r, wait));
+    await new Promise((r) => setTimeout(r, wait));
     return fetchMessagesBefore(channelId, beforeId);
   }
   if (!res.ok) {
@@ -111,9 +117,9 @@ async function fetchPeriod(channelId, startMs, endMs) {
 
     for (const m of batch) {
       const ts = Date.parse(m.timestamp);
-      if (ts < startMs) return collected;        // já passamos do período → para
-      if (ts > endMs) continue;                  // ainda depois do período
-      if (!userIds.has(m.author.id)) continue;   // outro time
+      if (ts < startMs) return collected; // já passamos do período → para
+      if (ts > endMs) continue; // ainda depois do período
+      if (!userIds.has(m.author.id)) continue; // outro time
       collected.push(m);
     }
 
@@ -169,7 +175,9 @@ function renderTxt(editionN, startISO, endISO, presentationISO, byDay) {
   const sub = "-".repeat(80);
 
   lines.push(sep);
-  lines.push(`TECH SPOTLIGHT #${String(editionN).padStart(2, "0")} — STANDUPS DO PERIODO`);
+  lines.push(
+    `TECH SPOTLIGHT #${String(editionN).padStart(2, "0")} — STANDUPS DO PERIODO`,
+  );
   lines.push(`Periodo: ${formatBR(startISO)} - ${formatBR(endISO)}`);
   lines.push(`Apresentacao: ${formatBR(presentationISO)}`);
   lines.push(sep);
@@ -201,9 +209,11 @@ function renderTxt(editionN, startISO, endISO, presentationISO, byDay) {
 
 // ── Execução ──────────────────────────────────────────────────────────────
 const startMs = Date.parse(`${PERIOD_START}T00:00:00-03:00`);
-const endMs   = Date.parse(`${PERIOD_END}T23:59:59-03:00`);
+const endMs = Date.parse(`${PERIOD_END}T23:59:59-03:00`);
 
-console.error(`Buscando standups do canal ${CONFIG.channelId} entre ${PERIOD_START} e ${PERIOD_END}...`);
+console.error(
+  `Buscando standups do canal ${CONFIG.channelId} entre ${PERIOD_START} e ${PERIOD_END}...`,
+);
 const messages = await fetchPeriod(CONFIG.channelId, startMs, endMs);
 console.error(`Coletadas ${messages.length} mensagens dos 3 autores.`);
 
