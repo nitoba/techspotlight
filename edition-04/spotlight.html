@@ -1,0 +1,4285 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Spotlight — Web Team | 29/05/2026</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/web-team.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0d1117;
+        --bg2: #161b22;
+        --bg3: #1c2128;
+        --bg4: #21262d;
+        --border: #30363d;
+        --border2: #484f58;
+        --text: #e6edf3;
+        --text2: #8b949e;
+        --text3: #6e7681;
+        --purple: #a78bfa;
+        --purple-d: #7c3aed;
+        --purple-bg: #1a1033;
+        --teal: #34d399;
+        --teal-bg: #0a2218;
+        --coral: #fb923c;
+        --coral-bg: #2a1100;
+        --blue: #60a5fa;
+        --blue-bg: #0c1a2e;
+        --amber: #fbbf24;
+        --amber-bg: #241a00;
+        --green: #4ade80;
+        --red: #f87171;
+        --pink: #f472b6;
+        --font-mono: "JetBrains Mono", monospace;
+        --font-sans: "Space Grotesk", sans-serif;
+        --radius: 8px;
+        --radius-lg: 12px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── TOPBAR ── */
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        height: 38px;
+        padding: 0;
+        flex-shrink: 0;
+      }
+
+      .topbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 16px;
+        border-right: 1px solid var(--border);
+        height: 100%;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text2);
+      }
+
+      .topbar-logo .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-red {
+        background: #ff5f57;
+      }
+      .dot-amber {
+        background: #febc2e;
+      }
+      .dot-green {
+        background: #28c840;
+      }
+
+      .tabs-bar {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        height: 100%;
+        flex: 1;
+      }
+      .tabs-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 16px;
+        height: 100%;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text3);
+        border-right: 1px solid var(--border);
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        position: relative;
+      }
+      .tab-item:hover {
+        background: var(--bg3);
+        color: var(--text2);
+      }
+      .tab-item.active {
+        background: var(--bg);
+        color: var(--text);
+      }
+      .tab-item.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--purple);
+      }
+
+      .tab-icon {
+        font-size: 12px;
+      }
+
+      .topbar-right {
+        margin-left: auto;
+        padding: 0 16px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text3);
+        border-left: 1px solid var(--border);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      /* ── MAIN LAYOUT ── */
+      .main {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        width: 220px;
+        background: var(--bg2);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        overflow-y: auto;
+      }
+
+      .sidebar-section {
+        padding: 0;
+      }
+
+      .sidebar-header {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 14px 16px 6px;
+      }
+
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 16px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text2);
+        cursor: pointer;
+        transition:
+          background 0.12s,
+          color 0.12s;
+        border-left: 2px solid transparent;
+      }
+      .sidebar-item:hover {
+        background: var(--bg3);
+        color: var(--text);
+      }
+      .sidebar-item.active {
+        background: var(--bg4);
+        color: var(--text);
+        border-left-color: var(--purple);
+      }
+
+      .sidebar-icon {
+        width: 14px;
+        text-align: center;
+        font-size: 11px;
+      }
+
+      .sidebar-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 8px 0;
+      }
+
+      .sidebar-team {
+        padding: 8px 16px 14px;
+      }
+
+      .member {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text2);
+      }
+
+      .member-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 700;
+      }
+      .av-r {
+        background: var(--purple-bg);
+        color: var(--purple);
+      }
+      .av-b {
+        background: var(--blue-bg);
+        color: var(--blue);
+      }
+      .av-t {
+        background: var(--teal-bg);
+        color: var(--teal);
+      }
+
+      .member-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        margin-left: auto;
+      }
+
+      /* ── CONTENT ── */
+      .content {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .slide {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        padding: 40px 56px;
+        animation: fadeIn 0.25s ease;
+      }
+      .slide.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── STATUSBAR ── */
+      .statusbar {
+        height: 24px;
+        background: var(--purple-d);
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      .status-item {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      /* ── TIMER WIDGET ── */
+      .timer-widget {
+        position: fixed;
+        top: 46px;
+        right: 16px;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 6px 14px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      .timer-widget:hover {
+        border-color: var(--border2);
+        background: var(--bg3);
+      }
+      .timer-icon {
+        font-size: 12px;
+        color: var(--text3);
+        transition: color 0.2s;
+      }
+      .timer-display {
+        font-family: var(--font-mono);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text3);
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      .timer-widget.running .timer-icon {
+        color: var(--teal);
+      }
+      .timer-widget.running .timer-display {
+        color: var(--teal);
+      }
+      .timer-widget.warning .timer-display {
+        color: var(--amber);
+      }
+      .timer-widget.warning .timer-icon {
+        color: var(--amber);
+      }
+      .timer-widget.overtime .timer-display {
+        color: var(--red);
+      }
+      .timer-widget.overtime .timer-icon {
+        color: var(--red);
+      }
+
+      /* ── CODE BLOCK ── */
+      .code-block {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .code-block-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text2);
+      }
+
+      .code-body {
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .line-numbers {
+        padding: 14px 12px;
+        color: var(--text3);
+        text-align: right;
+        user-select: none;
+        border-right: 1px solid var(--border);
+        min-width: 42px;
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .code-lines {
+        padding: 14px 18px;
+        flex: 1;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+      .str {
+        color: #c3e88d;
+      }
+      .cmt {
+        color: #546e7a;
+        font-style: italic;
+      }
+      .num {
+        color: #f78c6c;
+      }
+      .fn {
+        color: #82aaff;
+      }
+      .prop {
+        color: #89ddff;
+      }
+      .tag {
+        color: var(--amber);
+      }
+      .ok {
+        color: var(--teal);
+      }
+      .err {
+        color: var(--red);
+      }
+      .punc {
+        color: var(--text2);
+      }
+
+      /* ── SLIDE COMPONENTS ── */
+      .slide-title {
+        font-family: var(--font-sans);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .slide-heading {
+        font-family: var(--font-sans);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .slide-heading span {
+        color: var(--purple);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+      }
+      .badge-purple {
+        background: var(--purple-bg);
+        color: var(--purple);
+        border: 1px solid #4c1d95;
+      }
+      .badge-teal {
+        background: var(--teal-bg);
+        color: var(--teal);
+        border: 1px solid #065f46;
+      }
+      .badge-blue {
+        background: var(--blue-bg);
+        color: var(--blue);
+        border: 1px solid #1e3a5f;
+      }
+      .badge-amber {
+        background: var(--amber-bg);
+        color: var(--amber);
+        border: 1px solid #78350f;
+      }
+      .badge-coral {
+        background: var(--coral-bg);
+        color: var(--coral);
+        border: 1px solid #7c2d12;
+      }
+      .badge-green {
+        background: #0a2218;
+        color: var(--green);
+        border: 1px solid #14532d;
+      }
+      .badge-red {
+        background: #2a0f0f;
+        color: var(--red);
+        border: 1px solid #7f1d1d;
+      }
+
+      .card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 20px;
+      }
+
+      .card-accent-purple {
+        border-left: 3px solid var(--purple);
+      }
+      .card-accent-teal {
+        border-left: 3px solid var(--teal);
+      }
+      .card-accent-blue {
+        border-left: 3px solid var(--blue);
+      }
+      .card-accent-coral {
+        border-left: 3px solid var(--coral);
+      }
+      .card-accent-amber {
+        border-left: 3px solid var(--amber);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .metric {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        text-align: center;
+      }
+      .metric-val {
+        font-family: var(--font-mono);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--purple);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .metric-lbl {
+        font-size: 14px;
+        color: var(--text3);
+      }
+
+      .flex-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .mb-4 {
+        margin-bottom: 4px;
+      }
+      .mb-8 {
+        margin-bottom: 8px;
+      }
+      .mb-12 {
+        margin-bottom: 12px;
+      }
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+      .mb-20 {
+        margin-bottom: 20px;
+      }
+      .mb-24 {
+        margin-bottom: 24px;
+      }
+      .mt-16 {
+        margin-top: 16px;
+      }
+      .mt-20 {
+        margin-top: 20px;
+      }
+
+      .section-block {
+        margin-bottom: 18px;
+      }
+
+      .section-label {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text3);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .tag-list {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 12px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text2);
+      }
+
+      .flow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--text2);
+      }
+
+      .flow-step {
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        padding: 8px 16px;
+        color: var(--text);
+        font-size: 15px;
+      }
+
+      .flow-arrow {
+        color: var(--text3);
+        font-size: 18px;
+      }
+
+      .win-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .win-icon {
+        font-size: 24px;
+      }
+
+      .win-who {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .win-text {
+        font-size: 16px;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        margin-bottom: 8px;
+      }
+
+      .todo-check {
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid var(--border2);
+        border-radius: 3px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .todo-content {
+        flex: 1;
+      }
+      .todo-title {
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .todo-desc {
+        font-size: 14px;
+        color: var(--text3);
+      }
+      .todo-who {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 3px;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+
+      .tl-item {
+        display: flex;
+        gap: 16px;
+        padding-bottom: 16px;
+      }
+
+      .tl-line {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      .tl-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--purple);
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+
+      .tl-connector {
+        width: 2px;
+        flex: 1;
+        background: var(--border);
+        min-height: 20px;
+      }
+
+      .tl-body {
+        flex: 1;
+      }
+
+      .tl-time {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text3);
+        margin-bottom: 4px;
+      }
+
+      .tl-text {
+        font-size: 16px;
+        color: var(--text2);
+        line-height: 1.5;
+      }
+
+      /* ── NAV CONTROLS ── */
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 10px;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .nav-btn {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--text2);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 8px 20px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .nav-btn:hover {
+        background: var(--bg4);
+        color: var(--text);
+        border-color: var(--border2);
+      }
+      .nav-btn:active {
+        transform: scale(0.97);
+      }
+
+      .nav-dots {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .nav-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border2);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-dot.active {
+        background: var(--purple);
+        transform: scale(1.4);
+      }
+
+      .slide-counter {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text3);
+        min-width: 60px;
+        text-align: center;
+      }
+
+      /* ── COVER ── */
+      .cover-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .cover-icon {
+        width: 72px;
+        height: 72px;
+        display: block;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 4px 16px rgba(127, 119, 221, 0.3));
+      }
+
+      .cover-tag {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--purple);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .cover-title {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+
+      .cover-title .accent {
+        color: var(--purple);
+      }
+
+      .cover-subtitle {
+        font-family: var(--font-mono);
+        font-size: 16px;
+        color: var(--text2);
+        margin-bottom: 24px;
+      }
+
+      .cover-code {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-family: var(--font-mono);
+        font-size: 15px;
+      }
+
+      .cover-code-header {
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 16px;
+        font-size: 13px;
+        color: var(--text3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .cover-code-body {
+        padding: 16px 18px;
+        line-height: 1.8;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        color: var(--text2);
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--purple), var(--blue));
+        border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+
+      kbd {
+        display: inline-block;
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text2);
+      }
+
+      /* scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+
+      /* ── CLICKABLE METRICS ── */
+      .metric-click {
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+      }
+      .metric-click:hover {
+        border-color: var(--border2);
+        background: var(--bg4);
+        transform: translateY(-2px);
+      }
+      .metric-click::after {
+        content: "▾ ver cards";
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        color: var(--text3);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .metric-click:hover::after {
+        opacity: 1;
+      }
+
+      /* ── KPI MODAL ── */
+      .kpi-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .kpi-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .kpi-modal {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(10px);
+        transition: transform 0.2s;
+      }
+      .kpi-overlay.open .kpi-modal {
+        transform: translateY(0);
+      }
+
+      .kpi-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .kpi-modal-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .kpi-modal-close {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text2);
+        font-size: 14px;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+      .kpi-modal-close:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .kpi-modal-body {
+        overflow-y: auto;
+        padding: 0;
+      }
+
+      .kpi-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .kpi-table thead th {
+        background: var(--bg3);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        text-align: left;
+        position: sticky;
+        top: 0;
+      }
+      .kpi-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.1s;
+      }
+      .kpi-table tbody tr:hover {
+        background: var(--bg3);
+      }
+      .kpi-table td {
+        padding: 10px 16px;
+        color: var(--text2);
+      }
+      .kpi-table td:first-child {
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+      .kpi-table .kpi-badge {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 12px;
+      }
+
+      /* ── OVERVIEW CARDS ── */
+      .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        align-content: start;
+      }
+
+      .overview-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: relative;
+      }
+      .overview-card:hover {
+        border-color: var(--purple);
+        background: var(--bg3);
+        transform: translateY(-2px);
+      }
+
+      .overview-card-id {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text3);
+      }
+
+      .overview-card-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.35;
+        padding-right: 50px;
+      }
+
+      .overview-card-hint {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text3);
+        margin-top: 4px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .overview-card:hover .overview-card-hint {
+        opacity: 1;
+      }
+
+      .overview-card-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      /* ── ATER DIGITAL VISUALS ── */
+      .ater-visual-panel {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .ater-visual-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .ater-visual-title {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text3);
+      }
+
+      .ater-shot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .ater-shot {
+        background: #f8faf9;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        min-height: 140px;
+        position: relative;
+      }
+
+      .ater-shot img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      .ater-shot.tall img {
+        object-position: top center;
+      }
+
+      .ater-shot.wide {
+        grid-column: 1 / -1;
+      }
+
+      .ater-shot.wide img {
+        height: 190px;
+      }
+
+      .ater-shot-caption {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(13, 17, 23, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        padding: 4px 6px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        color: var(--text2);
+      }
+
+      /* ── SCREENSHOT MODAL ── */
+      .ss-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .ss-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .ss-modal {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        width: 92%;
+        max-width: 1100px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(10px);
+        transition: transform 0.2s;
+      }
+      .ss-overlay.open .ss-modal {
+        transform: translateY(0);
+      }
+
+      .ss-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border);
+        gap: 12px;
+      }
+
+      .ss-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .ss-card-id {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--purple);
+        flex-shrink: 0;
+      }
+
+      .ss-title {
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ss-close {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text2);
+        font-size: 14px;
+        padding: 4px 12px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .ss-close:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .ss-body {
+        overflow: auto;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-height: 200px;
+      }
+
+      .ss-body img {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+
+      /* Modo "tall" — screenshots de celular muito altos:
+         largura travada (mimetiza viewport mobile), altura livre,
+         body rola verticalmente. Botões/contador passam a fixed
+         pra continuarem visíveis durante o scroll. */
+      .ss-body.tall {
+        align-items: flex-start;
+      }
+      .ss-body.tall img {
+        max-width: 380px;
+        max-height: none;
+        width: 100%;
+      }
+      .ss-body.tall .ss-carousel-btn {
+        position: fixed;
+        top: 50%;
+      }
+      .ss-body.tall .ss-carousel-btn.prev {
+        left: 30px;
+      }
+      .ss-body.tall .ss-carousel-btn.next {
+        right: 30px;
+      }
+      .ss-body.tall .ss-counter {
+        position: fixed;
+        bottom: 5vh;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .ss-carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        color: var(--text);
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.2s ease,
+          background 0.15s,
+          border-color 0.15s;
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .ss-body:hover .ss-carousel-btn,
+      .ss-carousel-btn:focus-visible {
+        opacity: 0.8;
+        pointer-events: auto;
+      }
+      .ss-carousel-btn:hover {
+        background: var(--bg4);
+        border-color: var(--purple);
+        opacity: 1;
+      }
+      .ss-carousel-btn.prev {
+        left: 12px;
+      }
+      .ss-carousel-btn.next {
+        right: 12px;
+      }
+
+      .ss-counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text2);
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+      .ss-body:hover .ss-counter {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .ss-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border2);
+        transition: all 0.2s;
+      }
+      .ss-dot.active {
+        background: var(--purple);
+        transform: scale(1.4);
+      }
+
+      .ss-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 48px;
+        color: var(--text3);
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .ss-empty-icon {
+        font-size: 40px;
+        opacity: 0.5;
+      }
+
+      /* ── STATS FILTER ── */
+      .stats-filter {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        padding: 4px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: var(--bg3);
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .stats-filter:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .stats-filter.active {
+        background: var(--f-color, var(--purple-d));
+        border-color: var(--f-color, var(--purple-d));
+        color: #fff;
+      }
+
+      /* ── TERMINAL DEMO ── */
+      .term-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+      .term-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .term-window {
+        background: #0d1117;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 820px;
+        max-height: 82vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(12px) scale(0.97);
+        transition: transform 0.25s;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      }
+      .term-overlay.open .term-window {
+        transform: translateY(0) scale(1);
+      }
+
+      .term-titlebar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        border-radius: 10px 10px 0 0;
+      }
+      .term-titlebar .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .term-titlebar-text {
+        flex: 1;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text3);
+      }
+      .term-close-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text3);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 2px 10px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .term-close-btn:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .term-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 20px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--text2);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .term-body .t-prompt {
+        color: var(--teal);
+      }
+      .term-body .t-cmd {
+        color: #e6edf3;
+        font-weight: 700;
+      }
+      .term-body .t-info {
+        color: var(--blue);
+      }
+      .term-body .t-header {
+        color: var(--amber);
+        font-weight: 700;
+      }
+      .term-body .t-label {
+        color: var(--purple);
+      }
+      .term-body .t-ok {
+        color: var(--teal);
+        font-weight: 700;
+      }
+      .term-body .t-h2 {
+        color: var(--amber);
+        font-weight: 700;
+      }
+      .term-body .t-check {
+        color: var(--text3);
+      }
+      .term-body .t-link {
+        color: var(--blue);
+        text-decoration: underline;
+      }
+      .term-body .t-dim {
+        color: var(--text3);
+      }
+      .term-body .t-sparkle {
+        color: #c15f3c;
+        font-weight: 700;
+      }
+      .term-body .t-step-pipe {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-spin-dot {
+        color: #e5a94e;
+        font-weight: 700;
+        display: inline;
+      }
+      .term-body .t-spin-text {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-done-dot {
+        color: var(--teal);
+        font-weight: 700;
+        display: inline;
+      }
+      .term-body .t-done-text {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-cyan {
+        color: var(--blue);
+        font-weight: 700;
+      }
+      .term-body .t-bold {
+        color: #e6edf3;
+        font-weight: 700;
+      }
+      @keyframes termPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .term-body .t-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        background: var(--teal);
+        vertical-align: text-bottom;
+        animation: blink 0.8s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .term-play-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        color: var(--amber);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .term-play-btn:hover {
+        background: var(--amber-bg);
+        border-color: var(--amber);
+        color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TIMER WIDGET -->
+    <div
+      class="timer-widget"
+      id="timerBtn"
+      onclick="toggleTimer()"
+      title="Clique para iniciar (ou pressione T)"
+    >
+      <span class="timer-icon" id="timerIcon">▶</span>
+      <span class="timer-display" id="timerDisplay">00:00</span>
+    </div>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <a
+        href="../index.html"
+        class="topbar-logo"
+        style="text-decoration: none; color: var(--text2)"
+        title="Voltar ao índice"
+      >
+        <div class="dot dot-red"></div>
+        <div class="dot dot-amber"></div>
+        <div class="dot dot-green"></div>
+        &nbsp;⌂ hub
+      </a>
+      <div class="tabs-bar" id="tabsBar"></div>
+      <div class="topbar-right">
+        <span>UTF-8</span>
+        <span>TypeScript</span>
+        <span>Git: main</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-header">Explorer</div>
+
+          <div class="sidebar-item active" onclick="goTo(0)" id="si-0">
+            <span class="sidebar-icon">📋</span> README.md
+          </div>
+          <div class="sidebar-item" onclick="goTo(1)" id="si-1">
+            <span class="sidebar-icon">📅</span> agenda.ts
+          </div>
+          <div class="sidebar-item" onclick="goTo(2)" id="si-2">
+            <span class="sidebar-icon">📊</span> stats.json
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Thielson</div>
+
+          <div class="sidebar-item" onclick="goTo(3)" id="si-3">
+            <span class="sidebar-icon">💬</span> comunicacao-produtores.module.ts
+          </div>
+          <div class="sidebar-item" onclick="goTo(4)" id="si-4">
+            <span class="sidebar-icon">📸</span> overview-thielson.md
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Ronaldo</div>
+
+          <div class="sidebar-item" onclick="goTo(5)" id="si-5">
+            <span class="sidebar-icon">🌍</span> sicar-dashboard.service.ts
+          </div>
+          <div class="sidebar-item" onclick="goTo(6)" id="si-6">
+            <span class="sidebar-icon">⚡</span> ndvi-sentinel.service.ts
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Bruno</div>
+
+          <div class="sidebar-item" onclick="goTo(7)" id="si-7">
+            <span class="sidebar-icon">🤖</span> ater-whatsapp.config.ts
+          </div>
+          <div class="sidebar-item" onclick="goTo(8)" id="si-8">
+            <span class="sidebar-icon">📸</span> overview-bruno.md
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Wrap-up</div>
+
+          <div class="sidebar-item" onclick="goTo(9)" id="si-9">
+            <span class="sidebar-icon">🗺️</span> roadmap.todo
+          </div>
+          <div class="sidebar-item" onclick="goTo(10)" id="si-10">
+            <span class="sidebar-icon">👋</span> exit.ts
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-team">
+          <div class="sidebar-header" style="padding: 0 0 6px">Time Web</div>
+          <div class="member">
+            <div class="member-avatar av-r">RO</div>
+            Ronaldo
+            <div class="member-dot"></div>
+          </div>
+          <div class="member">
+            <div class="member-avatar av-b">BR</div>
+            Bruno
+            <div class="member-dot"></div>
+          </div>
+          <div class="member">
+            <div class="member-avatar av-t">TH</div>
+            Thielson
+            <div class="member-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="content">
+        <!-- ─── SLIDE 0: CAPA ─── -->
+        <div class="slide active" id="slide-0">
+          <div class="cover-grid">
+            <div>
+              <img
+                src="../assets/web-team.svg"
+                alt="Web Team"
+                class="cover-icon"
+              />
+              <div class="cover-tag">// Tech Spotlight — Edition #04</div>
+              <div class="cover-title">
+                Web<br /><span class="accent">Engineering</span><br />Team
+              </div>
+              <div class="cover-subtitle">
+                29 de maio de 2026 · 30 min (target) · ciclo de 4 semanas
+              </div>
+
+              <div class="flex-row mb-20">
+                <span class="pill">🧑‍💻 Ronaldo</span>
+                <span class="pill">🧑‍💻 Bruno</span>
+                <span class="pill">🧑‍💻 Thielson</span>
+              </div>
+
+              <div class="tag-list">
+                <span class="badge badge-purple">NestJS</span>
+                <span class="badge badge-blue">Angular</span>
+                <span class="badge badge-teal">React</span>
+                <span class="badge badge-amber">FastAPI</span>
+                <span class="badge badge-coral">Mastra AI</span>
+                <span class="badge badge-green">PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="cover-code">
+              <div class="cover-code-header">📄 README.md — agrotrace-v3</div>
+              <div class="cover-code-body">
+                <span class="cmt"># Tech Spotlight</span><br />
+                <span class="cmt">## 04/05 – 28/05/2026</span><br /><br />
+                <span class="kw">class</span>
+                <span class="fn">TechSpotlight</span> {<br />
+                &nbsp;&nbsp;<span class="prop">edition</span>:
+                <span class="num">4</span><br />
+                &nbsp;&nbsp;<span class="prop">team</span>:
+                <span class="str">"Web"</span><br />
+                &nbsp;&nbsp;<span class="prop">theme</span>:
+                <span class="str">"integração com o produtor no mundo real"</span><br />
+                &nbsp;&nbsp;<span class="prop">topics</span>: [<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str"
+                  >"ATER Digital + WhatsApp/n8n"</span
+                >,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str"
+                  >"Comunicação ativa com Produtores"</span
+                >,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str"
+                  >"Painel de Análise Socioambiental"</span
+                >,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="str"
+                  >"NDVI Sentinel-2 ⚡"</span
+                ><br />
+                &nbsp;&nbsp;]<br />
+                }
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: auto;
+              padding-top: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+              font-family: var(--font-mono);
+              font-size: 11px;
+              color: var(--text3);
+            "
+          >
+            Use <kbd>←</kbd> <kbd>→</kbd> para navegar &nbsp;·&nbsp;
+            <kbd>F</kbd> tela cheia &nbsp;·&nbsp; <kbd>T</kbd> cronômetro
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 1: AGENDA ─── -->
+        <div class="slide" id="slide-1">
+          <div class="slide-title">// agenda.ts</div>
+          <div class="slide-heading">Agenda de <span>hoje</span></div>
+
+          <div
+            style="
+              margin-bottom: 16px;
+              padding: 8px 14px;
+              background: var(--purple-bg);
+              border: 1px solid #4c1d95;
+              border-radius: var(--radius);
+              font-family: var(--font-mono);
+              font-size: 13px;
+              color: var(--purple);
+              display: inline-block;
+            "
+          >
+            🎯 Fio condutor — integração com o produtor no mundo real · Cap: 25min + buffer
+          </div>
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--text2)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">00:00 – 01:30 · Ronaldo · 1.5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-purple">Abertura</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Métricas do período + tema da edição</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--teal)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">01:30 – 06:30 · Thielson · 5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-teal">Spotlight 1</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Comunicação com Produtores — Email + WhatsApp em um lugar só</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--teal)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">06:30 – 08:00 · Thielson · 1.5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-teal">Overview</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Entregas em destaque — refactor PEC, duplicar form, partos</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--purple)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">08:00 – 13:00 · Ronaldo · 5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-purple">Spotlight 2</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Painel de Análise Socioambiental — PRODES + Lista Suja MTE + relatório</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--amber)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">13:00 – 15:30 · Ronaldo · 2.5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-amber">⚡ Lightning</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Inspeção de vegetação via NDVI Sentinel-2 (#12348)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--blue)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">15:30 – 20:30 · Bruno · 5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-blue">Spotlight 3</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >ATER Digital — WhatsApp + n8n + Evolution na VPS</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--blue)"></div>
+                <div class="tl-connector"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">20:30 – 22:00 · Bruno · 1.5min</div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                  "
+                >
+                  <span class="badge badge-blue">Overview</span>
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Entregas em destaque — offline-first, B2B billing, agendamento</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="tl-item" style="padding-bottom: 0">
+              <div class="tl-line">
+                <div class="tl-dot" style="background: var(--text3)"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">22:00 – 25:00 · Ronaldo · 3min</div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span
+                    class="badge"
+                    style="
+                      background: var(--bg3);
+                      color: var(--text2);
+                      border: 1px solid var(--border);
+                    "
+                    >Roadmap + Close</span
+                  >
+                  <span style="font-size: 16px; color: var(--text)"
+                    >Próximas prioridades (Edition #05) e encerramento</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 2: STATS ─── -->
+        <div class="slide" id="slide-2">
+          <div class="slide-title">// stats.json</div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              margin-bottom: 20px;
+              flex-wrap: wrap;
+            "
+          >
+            <div class="slide-heading" style="margin-bottom: 0">
+              Métricas do <span>período</span>
+            </div>
+            <div
+              style="
+                font-family: var(--font-mono);
+                font-size: 18px;
+                color: var(--text2);
+                margin-bottom: 0;
+                letter-spacing: 0.03em;
+              "
+            >
+              📅 04/05 – 28/05/2026 · 4 semanas
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 6px;
+                margin-left: auto;
+                align-items: center;
+              "
+            >
+              <button
+                class="stats-filter active"
+                data-member="all"
+                onclick="filterStats('all')"
+              >
+                Todos
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Ronaldo"
+                onclick="filterStats('Ronaldo')"
+                style="--f-color: var(--purple)"
+              >
+                Ronaldo
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Bruno"
+                onclick="filterStats('Bruno')"
+                style="--f-color: var(--blue)"
+              >
+                Bruno
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Thielson"
+                onclick="filterStats('Thielson')"
+                style="--f-color: var(--teal)"
+              >
+                Thielson
+              </button>
+              <span
+                id="statsCount"
+                style="
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                  color: var(--text3);
+                  margin-left: 8px;
+                "
+                >79 cards</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="grid-4 mb-24"
+            style="grid-template-columns: repeat(5, 1fr)"
+          >
+            <div
+              class="metric metric-click"
+              data-kpi="all"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-all" style="color: var(--purple)">
+                79
+              </div>
+              <div class="metric-lbl">cards entregues</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="feat"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-feat" style="color: var(--teal)">
+                64
+              </div>
+              <div class="metric-lbl">features</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="fix"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-fix" style="color: var(--coral)">
+                10
+              </div>
+              <div class="metric-lbl">bugs corrigidos</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="ref"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-ref" style="color: var(--blue)">
+                5
+              </div>
+              <div class="metric-lbl">refactors/migração</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="test"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-test" style="color: var(--amber)">
+                0
+              </div>
+              <div class="metric-lbl">tests</div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="gap: 20px">
+            <div>
+              <div class="section-label">sistemas atendidos</div>
+              <div class="tag-list mb-16">
+                <span class="badge badge-purple">Agrotrace-v3</span>
+                <span class="badge badge-blue">Checkmilk</span>
+                <span class="badge badge-teal">ATER Digital</span>
+                <span class="badge badge-amber">LP/Blog</span>
+                <span class="badge badge-coral">CMS</span>
+              </div>
+
+              <div class="section-label">stack utilizada</div>
+              <div class="tag-list mb-16">
+                <span class="chip">NestJS</span>
+                <span class="chip">Angular</span>
+                <span class="chip">React/Vite</span>
+                <span class="chip">n8n</span>
+                <span class="chip">Evolution API</span>
+                <span class="chip">Typebot</span>
+                <span class="chip">Resend</span>
+                <span class="chip">Sentinel-2 / STAC</span>
+                <span class="chip">RuralShape</span>
+                <span class="chip">Mastra AI</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Drizzle/TypeORM</span>
+              </div>
+
+              <div class="section-label">cards por dev</div>
+              <div style="display: flex; gap: 10px">
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Ronaldo')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-ronaldo"
+                    style="
+                      color: var(--purple);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    25
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">ronaldo</div>
+                </div>
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Bruno')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-bruno"
+                    style="
+                      color: var(--blue);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    37
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">bruno</div>
+                </div>
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Thielson')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-thielson"
+                    style="
+                      color: var(--teal);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    17
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">thielson</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <div class="code-block-header">📊 distribuição por tipo</div>
+              <div class="code-body">
+                <div
+                  class="code-lines"
+                  style="padding: 14px 18px"
+                  id="statsDistribution"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Narrativa / tema da edição ── -->
+          <div style="margin-top: 22px;">
+            <div class="section-label" style="color: var(--purple); margin-bottom: 10px;">
+              🎯 o que os números não contam
+            </div>
+            <div class="grid-2" style="gap: 14px;">
+              <div class="card card-accent-purple" style="padding: 14px 18px;">
+                <div style="font-size: 16px; color: var(--text); font-weight: 600; margin-bottom: 8px;">
+                  Comunicação com o produtor no mundo real
+                </div>
+                <div style="font-size: 13px; color: var(--text2); line-height: 1.6;">
+                  Os 3 spotlights desta edição tocam a mesma veia — convergência
+                  espontânea, não planejada:
+                  <strong style="color: var(--blue)">Bruno</strong> levou o
+                  Agrotrace pro WhatsApp via n8n;
+                  <strong style="color: var(--teal)">Thielson</strong> criou o
+                  canal de comunicação ativa (email + WhatsApp);
+                  <strong style="color: var(--purple)">Ronaldo</strong> trouxe o
+                  mundo externo (satélite Sentinel-2, PRODES, Lista Suja MTE)
+                  pra dentro da propriedade. A Evolution API é compartilhada
+                  entre dois projetos — o time não duplicou esforço.
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="card card-accent-teal" style="padding: 12px 14px;">
+                  <div class="section-label" style="color: var(--teal); margin-bottom: 4px;">
+                    do "manter" para o "construir"
+                  </div>
+                  <div style="font-size: 13px; color: var(--text2); line-height: 1.5;">
+                    <strong style="color: var(--teal)">81%</strong> das entregas
+                    são <strong>features</strong> (vs ~55% na Edition #03).
+                    Bugs caíram <strong>−62%</strong>. A base estabilizou — o
+                    time mudou de modo.
+                  </div>
+                </div>
+
+                <div class="card card-accent-blue" style="padding: 12px 14px;">
+                  <div class="section-label" style="color: var(--blue); margin-bottom: 4px;">
+                    peso &gt; quantidade
+                  </div>
+                  <div style="font-size: 13px; color: var(--text2); line-height: 1.5;">
+                    Cards individuais valem mais: Painel da Propriedade, NDVI
+                    Sentinel-2, refactor pivot do PEC, B2B billing. O ticket
+                    médio de complexidade subiu.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 3: SPOTLIGHT 1 — Thielson ─── -->
+        <div class="slide" id="slide-3">
+          <div class="slide-title">// spotlight 1 — Thielson — 5 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-teal">⚡ feature</span>
+            <span class="badge badge-green">#12315</span>
+            <span class="badge badge-purple">WhatsApp</span>
+            <span class="badge badge-blue">Email</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >comunicacao-produtores.module.ts</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            Comunicação com Produtores — <span>email + WhatsApp</span> em um único módulo
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <div class="card card-accent-coral">
+                <div class="section-label" style="color: var(--coral)">❌ problema</div>
+                <div style="font-size: 14px; color: var(--text2); line-height: 1.55">
+                  A comunicação com o produtor estava espalhada entre lembretes do
+                  formulário, notificações pontuais e mensagens manuais. Faltava um
+                  hub onde o operador pudesse selecionar produtores, escolher canal
+                  (email/WhatsApp), usar templates com variáveis e acompanhar
+                  status de entrega por contato — tudo no mesmo lugar.
+                </div>
+              </div>
+
+              <div class="card card-accent-teal">
+                <div class="section-label" style="color: var(--teal)">✓ o que entregamos</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; color: var(--text2);">
+                  <div>→ <strong>Módulo backend</strong> com templates + destinatários + entregas</div>
+                  <div>→ <strong>Tela em Operações</strong>: listagem com filtros (título/canal/período) + tabs por produtor</div>
+                  <div>→ <strong>Templates Email/WhatsApp</strong> com variáveis substituídas no envio</div>
+                  <div>→ <strong>Webhooks centralizados</strong>: Evolution + Resend com <code>provider_message_id</code></div>
+                  <div>→ <strong>Múltiplos contatos por produtor</strong>: 1 entrega/contato + snapshot + status consolidado por canal</div>
+                  <div>→ <strong>Permissões</strong> de endpoint + integração com picklist de produtores</div>
+                </div>
+              </div>
+
+              <div class="card card-accent-blue">
+                <div class="section-label" style="color: var(--blue)">🎯 destaque técnico</div>
+                <div style="font-size: 14px; color: var(--text2); line-height: 1.55">
+                  <strong>Webhooks roteados em um só lugar</strong>: independente
+                  do canal (Evolution para WhatsApp, Resend para email), o status
+                  da entrega volta pro mesmo handler. O <code>provider_message_id</code>
+                  amarra a entrega ao registro de comunicação — mesmo com N contatos
+                  por produtor, o status consolidado fica coerente.
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block" style="height: fit-content">
+              <div class="code-block-header">⚡ comunicacao.entity.ts</div>
+              <div class="code-body">
+                <div class="line-numbers">
+                  1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16
+                </div>
+                <div class="code-lines">
+                  <span class="cmt">// 1 comunicação → N entregas (uma por contato)</span><br /><br />
+                  <span class="kw">@Entity</span>(<span class="str">'comunicacao_entrega'</span>)<br />
+                  <span class="kw">class</span> <span class="fn">ComunicacaoEntrega</span> {<br />
+                  &nbsp;&nbsp;<span class="prop">comunicacaoId</span>: <span class="prop">number</span><br />
+                  &nbsp;&nbsp;<span class="prop">produtorId</span>: <span class="prop">number</span><br />
+                  &nbsp;&nbsp;<span class="prop">contatoSnapshot</span>: <span class="prop">string</span> <span class="cmt">// "1199..." ou "@..."</span><br />
+                  &nbsp;&nbsp;<span class="prop">tipoContato</span>: <span class="prop">'whatsapp'</span> | <span class="prop">'email'</span><br />
+                  &nbsp;&nbsp;<span class="prop">providerMessageId</span>: <span class="prop">string</span><br />
+                  &nbsp;&nbsp;<span class="prop">status</span>: <span class="prop">EntregaStatus</span><br />
+                  }<br /><br />
+                  <span class="cmt">// webhook handler único</span><br />
+                  <span class="cmt">// → busca por providerMessageId</span><br />
+                  <span class="cmt">// → atualiza status</span><br />
+                  <span class="cmt">// → consolida status por canal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 4: OVERVIEW THIELSON ─── -->
+        <div class="slide" id="slide-4">
+          <div class="slide-title">// overview — Thielson</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-teal">📸 overview</span>
+            <span class="badge badge-blue">PEC/Checkmilk</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >overview-thielson.md</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            Entregas em <span>destaque</span> — Thielson
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-amber" style="font-size: 11px; padding: 2px 8px">ref</span>
+              </div>
+              <div class="overview-card-id">#12393</div>
+              <div class="overview-card-title">
+                Refactor PEC — ManyToMany → entidades pivô (características, categorias, certificadoras, justificativas)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#12228</div>
+              <div class="overview-card-title">
+                Duplicar Formulário entre safras — procedure + duplicação em lote por propriedade
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#12391</div>
+              <div class="overview-card-title">
+                Gestão de partos no módulo PEC — fluxo backend + formulário + abas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#12323</div>
+              <div class="overview-card-title">
+                PEC — novas regras de idade animal + cadastro de pesagem + lotes
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#12212</div>
+              <div class="overview-card-title">
+                PEC/Checkmilk — refactor de tabelas + fluxo de reprodução genérico (bov → PEC)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#12424</div>
+              <div class="overview-card-title">
+                Form Dinâmico — nova regra de agrupamento de perguntas + procedure ajustada
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-red" style="font-size: 11px; padding: 2px 8px">fix</span>
+              </div>
+              <div class="overview-card-id">#12378</div>
+              <div class="overview-card-title">
+                Pergunta de referência desativada continua aparecendo — procedure ajustada
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-amber" style="font-size: 11px; padding: 2px 8px">ref</span>
+              </div>
+              <div class="overview-card-id">#12413</div>
+              <div class="overview-card-title">
+                Flexibilização de validações de pesagem e inseminação no PEC
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-red" style="font-size: 11px; padding: 2px 8px">fix</span>
+              </div>
+              <div class="overview-card-id">#12403</div>
+              <div class="overview-card-title">
+                Erro para adicionar mais de um contato — soft-delete + envio para aba de cadastro
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 5: SPOTLIGHT 2 — Ronaldo ─── -->
+        <div class="slide" id="slide-5">
+          <div class="slide-title">// spotlight 2 — Ronaldo — 5 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-purple">📊 feature</span>
+            <span class="badge badge-green">#12342</span>
+            <span class="badge badge-green">#12361</span>
+            <span class="badge badge-green">#12387</span>
+            <span class="badge badge-green">#12337</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >sicar-dashboard.service.ts</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            Painel de <span>Análise Socioambiental</span> — o mundo externo dentro da propriedade
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <div class="card card-accent-coral">
+                <div class="section-label" style="color: var(--coral)">❌ problema</div>
+                <div style="font-size: 14px; color: var(--text2); line-height: 1.55">
+                  A análise da propriedade dependia de cruzar informações de várias bases
+                  oficiais (PRODES, IBAMA, Lista Suja do MTE) com a base de fazendas — e
+                  isso era manual ou simplesmente não existia. Era preciso trazer essas
+                  bases para dentro do Agrotrace de forma <strong>automática</strong>,
+                  <strong>rastreável</strong> (com data de cada consulta) e
+                  <strong>auditável</strong> (com relatório formal).
+                </div>
+              </div>
+
+              <div class="card card-accent-purple">
+                <div class="section-label" style="color: var(--purple)">✓ o que entregamos</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; color: var(--text2);">
+                  <div>→ <strong>#12193</strong> Integração base PRODES via RuralShape — tracking Sicar/Prodes/Ibama/Deter na PropriedadeCar</div>
+                  <div>→ <strong>#12239</strong> CAR Estadual + resolução CAR federal via RuralShape</div>
+                  <div>→ <strong>#12301</strong> Investigação manual + status de camadas (fresh/warning/stale/empty)</div>
+                  <div>→ <strong>#12342</strong> Importação <strong>Lista Suja do MTE</strong> (trabalho análogo a escravo) com polling automático</div>
+                  <div>→ <strong>#12361/#12332</strong> Recortes temporais PRODES — RTRS 2016-2019, pós-2008, ordenação</div>
+                  <div>→ <strong>#12362</strong> Card de resumo MTE no dashboard de análise</div>
+                  <div>→ <strong>#12337</strong> Filtros do painel + zoom com scroll + endpoints summary/overview</div>
+                  <div>→ <strong>#12387</strong> Relatório PDF "Análise Socioambiental" com verificador de documento</div>
+                </div>
+              </div>
+
+              <div class="card card-accent-blue">
+                <div class="section-label" style="color: var(--blue)">🎯 destaque técnico</div>
+                <div style="font-size: 14px; color: var(--text2); line-height: 1.55">
+                  Refactor de payload monolítico em <code>summary</code> e <code>overview</code>
+                  separados (#12337) — o dashboard inicial carrega só o resumo, e os
+                  detalhes vêm sob demanda. Performance subiu e os componentes
+                  ficaram reusáveis. Stack: <code>SicarDataProcessorService</code> +
+                  <code>SicarDashboardService</code> + procedure consolidadora.
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; height: fit-content;">
+              <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text3); letter-spacing: 0.5px;">
+                // fontes integradas
+              </div>
+              <div class="grid-2" style="gap: 10px">
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--teal); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--teal); margin-bottom: 6px;">PRODES</div>
+                  <div style="font-size: 12px; color: var(--text2)">Desmatamento anual · RTRS · pós-MCR · ordenação</div>
+                </div>
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--coral); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--coral); margin-bottom: 6px;">IBAMA</div>
+                  <div style="font-size: 12px; color: var(--text2)">Embargos ambientais</div>
+                </div>
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--amber); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--amber); margin-bottom: 6px;">DETER</div>
+                  <div style="font-size: 12px; color: var(--text2)">Alertas em tempo real</div>
+                </div>
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--red); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--red); margin-bottom: 6px;">MTE 🆕</div>
+                  <div style="font-size: 12px; color: var(--text2)">Lista Suja — trabalho análogo a escravo</div>
+                </div>
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--blue); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--blue); margin-bottom: 6px;">SICAR</div>
+                  <div style="font-size: 12px; color: var(--text2)">Cadastro fundiário + CAR estadual</div>
+                </div>
+                <div style="background: var(--bg2); border: 1px solid var(--border); border-top: 3px solid var(--purple); border-radius: var(--radius); padding: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--purple); margin-bottom: 6px;">PDF</div>
+                  <div style="font-size: 12px; color: var(--text2)">Relatório auditável + verificador</div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text3); padding: 10px 14px; background: var(--purple-bg); border: 1px solid #4c1d95; border-radius: var(--radius);">
+                🤝 Parceria com <strong>Iohan</strong> (back-end + RuralShape) e <strong>Ricardo</strong> (regras de negócio)
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 6: LIGHTNING TECH — Ronaldo · NDVI Sentinel-2 ─── -->
+        <div class="slide" id="slide-6">
+          <div class="slide-title">// lightning — Ronaldo — 2.5 min ⚡</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-amber">⚡ Lightning</span>
+            <span class="badge badge-green">#12348</span>
+            <span class="badge badge-purple">Sentinel-2</span>
+            <span class="badge badge-teal">NDVI</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >sicar-inspecao-vegetacao.service.ts</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            Inspeção de vegetação em APP via <span>NDVI Sentinel-2</span>
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <div class="card card-accent-amber">
+                <div class="section-label" style="color: var(--amber)">o que entregamos</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; color: var(--text2);">
+                  <div>→ <strong>SicarInspecaoVegetacaoService</strong> — orquestração da análise (selecionar cena, processar, gerar preview)</div>
+                  <div>→ <strong>SentinelStacClient</strong> — busca cenas Sentinel-2 L2A no STAC</div>
+                  <div>→ Cálculo de <strong>estatísticas NDVI</strong> sobre a geometria da APP</div>
+                  <div>→ <strong>Preview PNG</strong> gerado server-side + cache via anexo da propriedade</div>
+                  <div>→ <strong>html2canvas</strong> para relatórios contextuais com mapa + dados</div>
+                  <div>→ Endpoints: solicitação, listagem, processamento, preview, histórico</div>
+                  <div>→ <strong>SicarDataProcessorService</strong> — integridade de referências (temas/status/tipos)</div>
+                </div>
+              </div>
+
+              <div class="card card-accent-purple">
+                <div class="section-label" style="color: var(--purple)">por que importa</div>
+                <div style="font-size: 14px; color: var(--text2); line-height: 1.55">
+                  Quando uma propriedade declara APP preservada, agora dá pra
+                  <strong>auditar isso direto do satélite</strong>, sem ter ido
+                  no campo. O NDVI das cenas Sentinel-2 mostra cobertura vegetal
+                  na própria geometria da APP — e o histórico fica anexado à
+                  propriedade pra consulta futura.
+                </div>
+              </div>
+
+              <div class="tag-list">
+                <span class="chip">Sentinel-2 L2A</span>
+                <span class="chip">STAC API</span>
+                <span class="chip">NDVI</span>
+                <span class="chip">html2canvas</span>
+                <span class="chip">PNG cache</span>
+                <span class="chip">Geometria APP</span>
+              </div>
+            </div>
+
+            <div class="code-block" style="height: fit-content">
+              <div class="code-block-header">⚡ sicar-inspecao-vegetacao.service.ts</div>
+              <div class="code-body">
+                <div class="line-numbers">
+                  1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18
+                </div>
+                <div class="code-lines">
+                  <span class="cmt">// 1. busca cenas Sentinel-2 L2A</span><br />
+                  <span class="cmt">// 2. recorta sobre a geometria da APP</span><br />
+                  <span class="cmt">// 3. calcula NDVI = (NIR - RED) / (NIR + RED)</span><br />
+                  <span class="cmt">// 4. gera PNG + estatísticas</span><br /><br />
+                  <span class="kw">async</span> <span class="fn">inspect</span>(<span class="prop">carId</span>: <span class="prop">number</span>) {<br />
+                  &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">geom</span> = <span class="kw">await</span> <span class="prop">this</span>.<span class="fn">loadAppGeometry</span>(<span class="prop">carId</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">scenes</span> = <span class="kw">await</span> <span class="prop">stac</span>.<span class="fn">searchL2A</span>(<span class="prop">geom</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">stats</span> = <span class="kw">await</span> <span class="prop">this</span>.<span class="fn">computeNDVI</span>(<span class="prop">scenes</span>, <span class="prop">geom</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span> <span class="prop">png</span> = <span class="kw">await</span> <span class="prop">this</span>.<span class="fn">renderPreview</span>(<span class="prop">stats</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">await</span> <span class="prop">this</span>.<span class="fn">cacheAsAttachment</span>(<span class="prop">carId</span>, <span class="prop">png</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">return</span> { <span class="prop">stats</span>, <span class="prop">png</span> }<br />
+                  }<br /><br />
+                  <span class="cmt">// próximo passo: estender pra</span><br />
+                  <span class="cmt">// Reserva Legal, Imóvel, Talhão, Croqui</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 7: SPOTLIGHT 3 — Bruno ─── -->
+        <div class="slide" id="slide-7">
+          <div class="slide-title">// spotlight 3 — Bruno — 5 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-blue">🤖 feature</span>
+            <span class="badge badge-teal">ATER Digital</span>
+            <span class="badge badge-purple">WhatsApp</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >ater-whatsapp.config.ts</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            ATER Digital — <span>WhatsApp + n8n</span> com infra própria
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <div class="card card-accent-coral" style="padding: 12px 16px">
+                <div class="section-label" style="color: var(--coral)">❌ problema</div>
+                <div style="font-size: 13px; color: var(--text2); line-height: 1.5">
+                  O produtor está no WhatsApp — não no app. Precisávamos de um canal de
+                  IA que reconhecesse o produtor, consultasse dados reais da fazenda no
+                  RuralShape, agendasse visita técnica e disparasse alertas — sem
+                  acoplar o Typebot ao núcleo da API. A complexidade pediu uma
+                  orquestração externa e infra dedicada.
+                </div>
+              </div>
+
+              <div class="card card-accent-blue" style="padding: 12px 16px">
+                <div class="section-label" style="color: var(--blue)">✓ o que entregamos</div>
+                <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--text2);">
+                  <div>→ <strong>Migração Typebot → n8n</strong> como orquestrador (renomeação completa da ponte)</div>
+                  <div>→ <strong>Infra na VPS</strong>: <code>typebot_db</code> isolado, proxy Caddy via Cloudflare Tunnel, SMTP Gmail</div>
+                  <div>→ <strong>Onboarding WhatsApp</strong>: ponte web, validação de tokens, perfil do produtor</div>
+                  <div>→ <strong>Agendamento</strong> de visita técnica: slots, Google Meet, calendário</div>
+                  <div>→ <strong>Alertas WhatsApp</strong> com opt-in + armazenamento de entregas</div>
+                  <div>→ <strong>RuralShape pelo bot</strong>: cliente + normalizador + status de risco</div>
+                  <div>→ <strong>n8n → WhatsApp</strong>: adaptação das respostas para formatação correta</div>
+                </div>
+              </div>
+
+              <div class="card card-accent-teal" style="padding: 12px 16px">
+                <div class="section-label" style="color: var(--teal)">🎯 destaque técnico</div>
+                <div style="font-size: 13px; color: var(--text2); line-height: 1.5">
+                  Saímos de uma integração acoplada para uma <strong>arquitetura
+                  desacoplada</strong>: Evolution recebe → n8n orquestra → API expõe
+                  contexto. Toda lógica de conversa fica no n8n; a API só serve dados.
+                  Pareamos com Elias para construir os fluxos.
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; height: fit-content;">
+              <div class="code-block">
+                <div class="code-block-header">📐 arquitetura ATER + WhatsApp</div>
+                <div class="code-body">
+                  <div class="line-numbers">
+                    1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14
+                  </div>
+                  <div class="code-lines">
+                    <span class="cmt">// produtor → WhatsApp</span><br />
+                    <span class="cmt">//   ↓</span><br />
+                    <span class="cmt">// Evolution API (VPS)</span><br />
+                    <span class="cmt">//   ↓ webhook</span><br />
+                    <span class="cmt">// n8n (orquestrador)</span><br />
+                    <span class="cmt">//   ↓ consulta</span><br />
+                    <span class="cmt">// API ATER Digital</span><br />
+                    <span class="cmt">//   ↓</span><br />
+                    <span class="cmt">// ├─ RuralShape</span><br />
+                    <span class="cmt">// ├─ Google Calendar</span><br />
+                    <span class="cmt">// ├─ Producer Identity</span><br />
+                    <span class="cmt">// └─ Alertas opt-in</span><br /><br />
+                    <span class="cmt">// IA responde no WhatsApp</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tag-list">
+                <span class="chip">Evolution API</span>
+                <span class="chip">n8n</span>
+                <span class="chip">Typebot</span>
+                <span class="chip">Cloudflare Tunnel</span>
+                <span class="chip">Caddy</span>
+                <span class="chip">Google Meet</span>
+                <span class="chip">RuralShape</span>
+                <span class="chip">VPS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 8: OVERVIEW BRUNO ─── -->
+        <div class="slide" id="slide-8">
+          <div class="slide-title">// overview — Bruno</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-blue">📸 overview</span>
+            <span class="badge badge-teal">ATER Digital</span>
+            <span
+              style="font-size: 14px; color: var(--text3); font-family: var(--font-mono);"
+              >overview-bruno.md</span
+            >
+          </div>
+          <div class="slide-heading" style="font-size: 28px; margin-bottom: 20px">
+            Entregas em <span>destaque</span> — Bruno
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-32</div>
+              <div class="overview-card-title">
+                B2B Real Billing — ledger + faturas + drilldown de parceiros (API + UI admin)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-27</div>
+              <div class="overview-card-title">
+                Offline-first — cache local, fila de sync, compressão via Web Worker, migrations
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-29</div>
+              <div class="overview-card-title">
+                Visitas Técnicas Phygital — agendamento, diagnóstico inicial, cotas, relatórios
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-22</div>
+              <div class="overview-card-title">
+                Origem Auditada — dossiê PDF + cliente RuralShape + alertas WhatsApp opt-in
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-26</div>
+              <div class="overview-card-title">
+                Entitlements B2B — planos, limites de chat, check-ins mensais, guardas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-40</div>
+              <div class="overview-card-title">
+                Gestão de Encontros Digitais — agendamento, recorrência, presença, cancelamento
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-15</div>
+              <div class="overview-card-title">
+                Google Drive — importação de documentos via BullMQ + processor + worker config
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-31</div>
+              <div class="overview-card-title">
+                Portal de grupo coletivo + dossiê do grupo + linkagem a contratos
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-39</div>
+              <div class="overview-card-title">
+                Recompensas de Engajamento — medalhas configuráveis, ranking, campanhas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">ATER-28</div>
+              <div class="overview-card-title">
+                Coleta Guiada — validação de evidências + templates de IA + medição
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">#11801</div>
+              <div class="overview-card-title">
+                Telas cadastro CMS — modais tiling, janelas arrastáveis, multi-registro
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span class="badge badge-green" style="font-size: 11px; padding: 2px 8px">feat</span>
+              </div>
+              <div class="overview-card-id">LP/blog</div>
+              <div class="overview-card-title">
+                Landing Page — indicadores dinâmicos, Logo dinâmico, env vars com Zod, Dockerfile Azure
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 9: ROADMAP ─── -->
+        <div class="slide" id="slide-9">
+          <div class="slide-title">
+            // roadmap.todo — Edition #05 — 2 min ⏱
+          </div>
+          <div class="slide-heading">Próximas <span>prioridades</span></div>
+
+          <div style="display: flex; flex-direction: column; gap: 0; flex: 1">
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">Painel Consolidado da Propriedade — evolução</div>
+                <div class="todo-desc">
+                  Ampliar o painel #12282 já entregue (procedure + tela base) com
+                  mais agregações, comparativos por safra e ações diretas a partir
+                  da visão única.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--purple-bg); color: var(--purple)">@ronaldo</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">Projeto Carbono — genérico para todas certificadoras</div>
+                <div class="todo-desc">
+                  Abstrair o questionário/dashboard de Carbono hoje acoplado a uma
+                  certificadora específica para suportar múltiplas certificadoras com
+                  configuração própria.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--purple-bg); color: var(--purple)">@ronaldo</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">NDVI em outras camadas geoespaciais</div>
+                <div class="todo-desc">
+                  Estender a inspeção via Sentinel-2 do #12348 (hoje só APP) para
+                  <strong>Reserva Legal, Imóvel, Talhão e Croqui</strong> — mesma
+                  stack, geometrias diferentes.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--purple-bg); color: var(--purple)">@ronaldo</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">ATER Digital — B2B real billing em produção</div>
+                <div class="todo-desc">
+                  Fechar o ledger de faturamento B2B, geração e cancelamento de
+                  faturas, drilldown de parceiros e exportação de relatórios.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--blue-bg); color: var(--blue)">@bruno</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">ATER Digital — bot WhatsApp+n8n em produção</div>
+                <div class="todo-desc">
+                  Sair do MVP: fechar onboarding/agendamento/alertas com SLA,
+                  monitoramento e fallback para conversa humana.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--blue-bg); color: var(--blue)">@bruno</span>
+                <span class="todo-who" style="background: var(--bg2); color: var(--text2); border: 1px solid var(--border)">+ elias</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">PEC/Checkmilk — genérico para qualquer animal</div>
+                <div class="todo-desc">
+                  Generalizar o fluxo (hoje focado em bovinos) para outras espécies
+                  com configuração por certificadora — segue do roadmap original.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--teal-bg); color: var(--teal)">@thielson</span>
+                <span class="todo-who" style="background: var(--bg2); color: var(--text2); border: 1px solid var(--border)">+ matheus</span>
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">Templates de Importação Form Dinâmico via Excel</div>
+                <div class="todo-desc">
+                  Replicar o modelo de import por Excel já existente no Diagnóstico
+                  para o Formulário Dinâmico — geração de planilha base + parser.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span class="todo-who" style="background: var(--teal-bg); color: var(--teal)">@thielson</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: auto; padding-top: 14px; font-family: var(--font-mono); font-size: 13px; color: var(--text3); text-align: center;">
+            Próxima Web: <span style="color: var(--purple)">~19/06/2026</span> — ciclo de 3 semanas
+          </div>
+        </div>
+        <!-- ─── SLIDE 10: EXIT ─── -->
+        <div class="slide" id="slide-10">
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              gap: 24px;
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--text3);
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+              "
+            >
+              // exit.ts
+            </div>
+
+            <div style="font-size: 48px; font-weight: 700; line-height: 1.15">
+              Obrigado pela<br /><span style="color: var(--purple)"
+                >presença!</span
+              >
+            </div>
+
+            <div class="code-block" style="max-width: 720px; width: 100%">
+              <div class="code-block-header">👋 exit.ts</div>
+              <div class="code-body">
+                <div class="line-numbers">
+                  1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13
+                </div>
+                <div class="code-lines">
+                  <span class="cmt">// exit.ts</span><br />
+                  <span class="kw">import</span> {
+                  <span class="prop">team</span> } <span class="kw">from</span>
+                  <span class="str">'./web-engineering'</span><br /><br />
+                  <span class="prop">console</span>.<span class="fn">log</span
+                  >(<span class="str">"Obrigado pela presença!"</span>)<br />
+                  <span class="prop">console</span>.<span class="fn">log</span
+                  >(<span class="str"
+                    >`Próximo spotlight: ${team.nextDate}`</span
+                  >)<br /><br />
+                  <span class="cmt">// Dúvidas?</span><br />
+                  <span class="cmt">// → Ronaldo, Bruno ou Thielson</span><br />
+                  <span class="cmt">// → #web-engineering no Discord</span
+                  ><br /><br />
+                  <span class="prop">process</span>.<span class="fn">exit</span
+                  >(<span class="num">0</span>)
+                  <span class="cmt">// até a próxima! 👋</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row" style="justify-content: center; gap: 8px">
+              <span
+                class="pill"
+                style="border-color: var(--border2); color: var(--text3)"
+                >✓ Edition #04 — 29/05/2026</span
+              >
+              <span
+                class="pill"
+                style="border-color: #4c1d95; color: var(--purple)"
+                >→ Edition #05 — ~19/06/2026</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /content -->
+    </div>
+    <!-- /main -->
+
+    <!-- NAV -->
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="prev()">← prev</button>
+      <div class="nav-dots" id="navDots"></div>
+      <span class="slide-counter" id="slideCounter">1 / 11</span>
+      <button class="nav-btn" onclick="next()">next →</button>
+    </div>
+
+    <!-- STATUSBAR -->
+    <div class="statusbar">
+      <div class="status-item">🌿 main</div>
+      <div class="status-item" id="statusFile">README.md</div>
+      <div class="status-item">Tech Spotlight — Web Team</div>
+      <div class="status-item" style="margin-left: auto">29/05/2026</div>
+    </div>
+
+    <!-- KPI MODAL -->
+    <div
+      class="kpi-overlay"
+      id="kpiOverlay"
+      onclick="if (event.target === this) closeKpiModal();"
+    >
+      <div class="kpi-modal">
+        <div class="kpi-modal-header">
+          <div class="kpi-modal-title" id="kpiTitle">Cards</div>
+          <button class="kpi-modal-close" onclick="closeKpiModal()">
+            ✕ Fechar
+          </button>
+        </div>
+        <div class="kpi-modal-body">
+          <table class="kpi-table">
+            <thead>
+              <tr>
+                <th>#Card</th>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Responsável</th>
+              </tr>
+            </thead>
+            <tbody id="kpiBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOT MODAL -->
+    <div
+      class="ss-overlay"
+      id="ssOverlay"
+      onclick="if (event.target === this) closeScreenshot();"
+    >
+      <div class="ss-modal">
+        <div class="ss-header">
+          <div class="ss-header-left">
+            <span class="ss-card-id" id="ssCardId">#00000</span>
+            <span class="ss-title" id="ssTitle">Título</span>
+          </div>
+          <button class="ss-close" onclick="closeScreenshot()">✕ Fechar</button>
+        </div>
+        <div class="ss-body" id="ssBody"></div>
+      </div>
+    </div>
+
+    <!-- TERMINAL DEMO MODAL -->
+    <div
+      class="term-overlay"
+      id="termOverlay"
+      onclick="if (event.target === this) closeTermDemo();"
+    >
+      <div class="term-window">
+        <div class="term-titlebar">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-amber"></div>
+          <div class="dot dot-green"></div>
+          <div class="term-titlebar-text" id="termTitle">Terminal</div>
+          <button class="term-close-btn" onclick="closeTermDemo()">
+            ✕ Fechar
+          </button>
+        </div>
+        <div class="term-body" id="termBody"></div>
+      </div>
+    </div>
+
+    <script>
+      /* ── TERMINAL DEMO ANIMATION ── */
+      const TERM_SEQUENCES = {};
+
+      const TERM_CLASSES = {
+        prompt: "t-prompt",
+        cmd: "t-cmd",
+        info: "t-info",
+        header: "t-header",
+        label: "t-label",
+        ok: "t-ok",
+        h2: "t-h2",
+        check: "t-check",
+        link: "t-link",
+        dim: "t-dim",
+        text: "",
+        sparkle: "t-sparkle",
+        cyan: "t-cyan",
+        bold: "t-bold",
+      };
+
+      let termAnimId = 0;
+
+      async function openTermDemo(which) {
+        const overlay = document.getElementById("termOverlay");
+        const body = document.getElementById("termBody");
+        const title = document.getElementById("termTitle");
+        title.textContent = "Terminal — " + which;
+        body.innerHTML = "";
+        overlay.classList.add("open");
+
+        const seq = TERM_SEQUENCES[which];
+        if (!seq) return;
+        const runId = ++termAnimId;
+
+        for (const step of seq) {
+          if (runId !== termAnimId) return;
+
+          if (step.delay) {
+            await new Promise((r) => setTimeout(r, step.delay));
+            continue;
+          }
+
+          if (step.type === "spin") {
+            const line = document.createElement("div");
+            const pipe = document.createElement("span");
+            pipe.className = "t-step-pipe";
+            pipe.textContent = "  │ ";
+            const dot = document.createElement("span");
+            dot.className = "t-spin-dot";
+            dot.textContent = "●";
+            dot.style.animation = "termPulse .6s ease-in-out infinite";
+            const txt = document.createElement("span");
+            txt.className = "t-spin-text";
+            txt.textContent = " " + step.spinText;
+            line.append(pipe, dot, txt);
+            body.appendChild(line);
+            body.scrollTop = body.scrollHeight;
+
+            await new Promise((r) => setTimeout(r, step.spinDuration || 500));
+            if (runId !== termAnimId) return;
+
+            dot.style.animation = "";
+            dot.className = "t-done-dot";
+            dot.textContent = "✓";
+            txt.className = "t-done-text";
+            txt.textContent = " " + step.doneText;
+            body.scrollTop = body.scrollHeight;
+            await new Promise((r) => setTimeout(r, 80));
+          } else if (step.type === "cmd" && step.typeSpeed) {
+            const line = document.createElement("div");
+            const span = document.createElement("span");
+            span.className = TERM_CLASSES[step.type] || "";
+            line.appendChild(span);
+            body.appendChild(line);
+
+            for (let i = 0; i < step.text.length; i++) {
+              if (runId !== termAnimId) return;
+              span.textContent += step.text[i];
+              body.scrollTop = body.scrollHeight;
+              await new Promise((r) => setTimeout(r, step.typeSpeed));
+            }
+          } else {
+            const line = document.createElement("div");
+            const span = document.createElement("span");
+            span.className = TERM_CLASSES[step.type] || "";
+            span.textContent = step.text;
+            line.appendChild(span);
+            body.appendChild(line);
+            body.scrollTop = body.scrollHeight;
+            await new Promise((r) => setTimeout(r, 45));
+          }
+        }
+
+        if (runId === termAnimId) {
+          const cursor = document.createElement("div");
+          cursor.style.marginTop = "8px";
+          const prompt = document.createElement("span");
+          prompt.className = "t-prompt";
+          prompt.textContent = "~/agrotrace-v3 ";
+          cursor.appendChild(prompt);
+          const blk = document.createElement("span");
+          blk.className = "t-cursor";
+          cursor.appendChild(blk);
+          body.appendChild(cursor);
+          body.scrollTop = body.scrollHeight;
+        }
+      }
+
+      function closeTermDemo() {
+        termAnimId++;
+        document.getElementById("termOverlay").classList.remove("open");
+      }
+
+      // KPI_CARDS — periodo 04/05 a 28/05/2026 (4 semanas)
+      const KPI_CARDS = [
+        // === RONALDO ===
+        { id: "#12226", type: "feat", title: "Botões de lembrete por e-mail e WhatsApp na grade de formulários pendentes", who: "Ronaldo" },
+        { id: "#12239", type: "feat", title: "Nova Coluna — CAR Estadual + integração RuralShape", who: "Ronaldo" },
+        { id: "#12193", type: "feat", title: "Integração Base PRODES — RuralShape (Sicar/Prodes/Ibama/Deter)", who: "Ronaldo" },
+        { id: "#12282", type: "feat", title: "Painel consolidado da Propriedade — procedure + tela com timeline/diagnósticos/mapa", who: "Ronaldo" },
+        { id: "#12301", type: "feat", title: "Fluxos de investigação e importação manual de camadas do CAR", who: "Ronaldo" },
+        { id: "#12317", type: "feat", title: "Aumentar limite de anexos — Respostas", who: "Ronaldo" },
+        { id: "#12266", type: "feat", title: "Limites configuráveis de anexos no atendimento", who: "Ronaldo" },
+        { id: "#12306", type: "feat", title: "Melhoria em gráficos — dash Carbono (delta por safra, cores por tema)", who: "Ronaldo" },
+        { id: "#12310", type: "feat", title: "Incluir e retirar perguntas da dashboard Carbono", who: "Ronaldo" },
+        { id: "#12325", type: "fix", title: "Erro FK ao salvar propriedade com CAR estadual já resolvido", who: "Ronaldo" },
+        { id: "#12332", type: "feat", title: "Recortes temporais fixos e ordenação no painel Marco Temporal PRODES", who: "Ronaldo" },
+        { id: "#12342", type: "feat", title: "Importação da Lista Suja do MTE — trabalho análogo a escravo", who: "Ronaldo" },
+        { id: "#12348", type: "feat", title: "Inspeção de vegetação em APP com NDVI Sentinel-2 (Lightning ⚡)", who: "Ronaldo" },
+        { id: "#12361", type: "feat", title: "Divisão Datas PRODES — classificações RTRS 2016-2019 + pós-2008", who: "Ronaldo" },
+        { id: "#12362", type: "feat", title: "Aba Análise propriedades na Lista Suja MTE", who: "Ronaldo" },
+        { id: "#12337", type: "feat", title: "Filtros Análise Socioambiental + zoom com scroll + summary/overview", who: "Ronaldo" },
+        { id: "#12386", type: "feat", title: "Ajuste — formulário respostas de atendimento API", who: "Ronaldo" },
+        { id: "#12387", type: "feat", title: "Relatório PDF — Análise Socioambiental + VerificarDocumento", who: "Ronaldo" },
+        { id: "#12400", type: "fix", title: "Motivo conferência APROVADO não salva", who: "Ronaldo" },
+        { id: "#12408", type: "feat", title: "Identificador externo de produtor e propriedade na planilha de importação", who: "Ronaldo" },
+        { id: "#12338", type: "fix", title: "Filtro Gestão Atrasos — considerar status concluído vs não", who: "Ronaldo" },
+        { id: "#12384", type: "feat", title: "Melhorias telas diagnóstico/acompanhamento — Aprosoja", who: "Ronaldo" },
+        { id: "#12438", type: "feat", title: "Coluna de filtro — Operações/Formulários", who: "Ronaldo" },
+        { id: "#12429", type: "fix", title: "Importação Propriedades/Produtores — falha com apóstrofo em municípios", who: "Ronaldo" },
+        { id: "#12336", type: "feat", title: "ACL — restrição de acesso por certificadora/usuário nas telas de cadastro", who: "Ronaldo" },
+
+        // === THIELSON ===
+        { id: "#12315", type: "feat", title: "Tela de Comunicação com Produtores — email + WhatsApp + templates + webhooks", who: "Thielson" },
+        { id: "#12212", type: "feat", title: "PEC / Checkmilk — refatoração de tabelas + fluxo de reprodução animal", who: "Thielson" },
+        { id: "#12212a", type: "feat", title: "PEC — cadastros de tipo_criacao, raça, categorias e características no CMS", who: "Thielson" },
+        { id: "#12212b", type: "feat", title: "PEC — fluxo de reprodução: animal, diagnóstico, IATF e sêmen", who: "Thielson" },
+        { id: "#12212c", type: "feat", title: "PEC — estoque de sêmen (controller + services + web-common)", who: "Thielson" },
+        { id: "#12212d", type: "ref", title: "PEC — simplificação de N:N + getters de labels para enums", who: "Thielson" },
+        { id: "#12212e", type: "feat", title: "PEC — sistema de justificativas para processos de reprodução", who: "Thielson" },
+        { id: "#12228", type: "feat", title: "Duplicar Formulário entre safras — procedure + duplicação em lote por propriedade", who: "Thielson" },
+        { id: "#12323", type: "feat", title: "PEC — novas regras idade animal + cadastro de pesagem + lotes", who: "Thielson" },
+        { id: "#12378", type: "fix", title: "Pergunta referência desativada continua aparecendo", who: "Thielson" },
+        { id: "#12391", type: "feat", title: "Gestão de partos no módulo PEC", who: "Thielson" },
+        { id: "#12393", type: "ref", title: "Substituir relacionamentos ManyToMany por entidades pivô no PEC", who: "Thielson" },
+        { id: "#12413", type: "ref", title: "Flexibilizar validações de pesagem e inseminação PEC", who: "Thielson" },
+        { id: "#12403", type: "fix", title: "Erro para add mais de um contato (Natalia)", who: "Thielson" },
+        { id: "#12297", type: "fix", title: "Ajuste na label do gráfico — Checkmilk", who: "Thielson" },
+        { id: "#12038", type: "fix", title: "Divergência de dados Checkmilk", who: "Thielson" },
+        { id: "#12424", type: "feat", title: "Regra de Validação — novo agrupamento de perguntas no Form Dinâmico", who: "Thielson" },
+
+        // === BRUNO ===
+        { id: "ATER-30", type: "feat", title: "ATER — migração da ponte Typebot para n8n (renomeação completa)", who: "Bruno" },
+        { id: "ATER-20", type: "feat", title: "ATER — infraestrutura Typebot na VPS (DB isolado, Caddy, Cloudflare Tunnel, SMTP)", who: "Bruno" },
+        { id: "ATER-35", type: "feat", title: "ATER — Onboarding via WhatsApp (ponte + validação de tokens + perfil produtor)", who: "Bruno" },
+        { id: "ATER-17", type: "feat", title: "ATER — Integração de Agendamentos com Google Meet + slots + listagem", who: "Bruno" },
+        { id: "ATER-22", type: "feat", title: "ATER — Origem Auditada (dossier PDF + integração RuralShape + alertas WhatsApp)", who: "Bruno" },
+        { id: "ATER-29", type: "feat", title: "ATER — Visitas Técnicas Phygital (agendamento, diagnóstico, cotas)", who: "Bruno" },
+        { id: "ATER-27", type: "feat", title: "ATER — Offline-first sync (cache local, fila, compressão via Web Worker)", who: "Bruno" },
+        { id: "ATER-28", type: "feat", title: "ATER — Coleta Guiada (validação de evidências + templates IA + medição)", who: "Bruno" },
+        { id: "ATER-26", type: "feat", title: "ATER — Entitlements B2B (planos, chat limits, check-ins mensais)", who: "Bruno" },
+        { id: "ATER-32", type: "feat", title: "ATER — B2B Real Billing (ledger + faturas + drilldown de parceiros)", who: "Bruno" },
+        { id: "ATER-33", type: "feat", title: "ATER — Partner Invoice Management (CRUD + exportação + cancelamento)", who: "Bruno" },
+        { id: "ATER-31", type: "feat", title: "ATER — Portal de grupo coletivo para parceiros + dossiê do grupo", who: "Bruno" },
+        { id: "ATER-40", type: "feat", title: "ATER — Gestão de Encontros Digitais (agenda, recorrência, presença)", who: "Bruno" },
+        { id: "ATER-39", type: "feat", title: "ATER — Recompensas de Engajamento (medalhas, ranking, campanhas)", who: "Bruno" },
+        { id: "ATER-38", type: "feat", title: "ATER — Cockpit de Âncora (métricas + auditoria + UI produtor)", who: "Bruno" },
+        { id: "ATER-37", type: "feat", title: "ATER — KPIs de Benchmark Guiado (catálogo + painéis técnico/produtor)", who: "Bruno" },
+        { id: "ATER-36", type: "feat", title: "ATER — Fluxo de Desafios em Grupos", who: "Bruno" },
+        { id: "ATER-23", type: "feat", title: "ATER — Compliance missões mensais (scheduler + endpoint)", who: "Bruno" },
+        { id: "ATER-15", type: "feat", title: "ATER — Google Drive importação de documentos (BullMQ + processor)", who: "Bruno" },
+        { id: "ATER-16", type: "feat", title: "ATER — Upload de anexo base64 para Typebot (20MB)", who: "Bruno" },
+        { id: "ATER-21", type: "feat", title: "ATER — Lógica de término de conversa (endConversation flag)", who: "Bruno" },
+        { id: "ATER-9", type: "feat", title: "ATER — Retry de RAG falho + supersede automático em KS antiga", who: "Bruno" },
+        { id: "ATER-10", type: "feat", title: "ATER — Evolution API (webhook, sessões, parser idempotente)", who: "Bruno" },
+        { id: "ATER-11", type: "feat", title: "ATER — Typebot módulo (API keys, perfil agente leve, reuso de sessões)", who: "Bruno" },
+        { id: "ATER-12", type: "ref", title: "ATER — Refatoração Módulo Mensagem (Producer Typebot + Identity)", who: "Bruno" },
+        { id: "ATER-13", type: "feat", title: "ATER — Chat ações inline + Carousel + AssistantActionButton", who: "Bruno" },
+        { id: "ATER-14", type: "fix", title: "ATER — Validação CORS sem origem + preloading sidebar", who: "Bruno" },
+        { id: "ATER-18", type: "feat", title: "ATER — Gestão de Técnicos (taxonomia junior/senior/specialist)", who: "Bruno" },
+        { id: "ATER-19", type: "feat", title: "ATER — Build de imagem RAG otimizado (uv + Bookworm fixado)", who: "Bruno" },
+        { id: "ATER-24", type: "feat", title: "ATER — Validação e bloqueio de respostas de missões inválidas", who: "Bruno" },
+        { id: "ATER-25", type: "feat", title: "ATER — Fluxo completo de visita física + booking + onboarding", who: "Bruno" },
+        { id: "ATER-34", type: "feat", title: "ATER — Sinais de Cadeia de Grupos + dossiês de parceiros", who: "Bruno" },
+        { id: "LP-3", type: "feat", title: "Landing Page — Indicadores dinâmicos via procedure getIndicadoresHome", who: "Bruno" },
+        { id: "LP-4", type: "ref", title: "Landing Page — Centralização de env vars com Zod + logging", who: "Bruno" },
+        { id: "LP-5", type: "feat", title: "Landing Page — Sistema de Logo dinâmico no footer + AZURE_STORAGE", who: "Bruno" },
+        { id: "#11801", type: "feat", title: "Telas cadastro padrão CMS — modais tiling/janelas arrastáveis", who: "Bruno" },
+        { id: "#11033", type: "fix", title: "Ajuste em gráfico usando mesmo filtro e exibindo dados diferentes", who: "Bruno" },
+      ];
+
+      const KPI_LABELS = {
+        all: "Todos os Cards",
+        feat: "Features",
+        fix: "Bugs Corrigidos",
+        ref: "Refactors/Migração",
+        test: "Tests",
+      };
+      const KPI_COLORS = {
+        feat: "var(--teal)",
+        fix: "var(--coral)",
+        ref: "var(--blue)",
+        test: "var(--amber)",
+      };
+      const KPI_BG = {
+        feat: "var(--teal-bg)",
+        fix: "var(--coral-bg)",
+        ref: "var(--blue-bg)",
+        test: "var(--amber-bg)",
+      };
+      const KPI_NAMES = {
+        feat: "feature",
+        fix: "fix",
+        ref: "refactor",
+        test: "test",
+      };
+
+      // ── Stats filter by member ──
+      let statsMember = "all";
+
+      function filterStats(member) {
+        statsMember = member;
+        document.querySelectorAll(".stats-filter").forEach((b) => {
+          b.classList.toggle("active", b.dataset.member === member);
+        });
+        const cards =
+          member === "all"
+            ? KPI_CARDS
+            : KPI_CARDS.filter((c) => c.who === member);
+        const total = cards.length;
+        const feat = cards.filter((c) => c.type === "feat").length;
+        const fix = cards.filter((c) => c.type === "fix").length;
+        const ref = cards.filter((c) => c.type === "ref").length;
+        const test = cards.filter((c) => c.type === "test").length;
+
+        document.getElementById("mv-all").textContent = total;
+        document.getElementById("mv-feat").textContent = feat;
+        document.getElementById("mv-fix").textContent = fix;
+        document.getElementById("mv-ref").textContent = ref;
+        document.getElementById("mv-test").textContent = test;
+        document.getElementById("statsCount").textContent = total + " cards";
+
+        // Update per-dev counts
+        const devR = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Ronaldo",
+        ).length;
+        const devB = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Bruno",
+        ).length;
+        const devT = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Thielson",
+        ).length;
+        document.getElementById("mv-ronaldo").textContent = devR;
+        document.getElementById("mv-bruno").textContent = devB;
+        document.getElementById("mv-thielson").textContent = devT;
+
+        // Update distribution bars
+        const dist = document.getElementById("statsDistribution");
+        const bars = [
+          {
+            label: "features",
+            count: feat,
+            color: "var(--purple)",
+            grad: "linear-gradient(90deg, var(--purple), var(--blue))",
+          },
+          {
+            label: "fixes",
+            count: fix,
+            color: "var(--red)",
+            grad: "linear-gradient(90deg, var(--red), var(--coral))",
+          },
+          {
+            label: "refactors",
+            count: ref,
+            color: "var(--teal)",
+            grad: "linear-gradient(90deg, var(--teal), var(--blue))",
+          },
+          {
+            label: "infra",
+            count: test,
+            color: "var(--amber)",
+            grad: "linear-gradient(90deg, var(--amber), var(--coral))",
+          },
+        ];
+        dist.innerHTML = bars
+          .map((b, i) => {
+            const pct = total > 0 ? Math.round((b.count / total) * 100) : 0;
+            return `<div style="margin-bottom:${i < 3 ? "10px" : "0"}">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="color:${b.color}">${b.label} (${b.count})</span>
+        <span class="num">${pct}%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${b.grad};transition:width 0.4s"></div></div>
+    </div>`;
+          })
+          .join("");
+      }
+
+      // Render initial stats
+      filterStats("all");
+
+      function openKpiModal(kpi) {
+        let base =
+          statsMember === "all"
+            ? KPI_CARDS
+            : KPI_CARDS.filter((c) => c.who === statsMember);
+        const filtered =
+          kpi === "all" ? base : base.filter((c) => c.type === kpi);
+        document.getElementById("kpiTitle").textContent = KPI_LABELS[kpi];
+        const tbody = document.getElementById("kpiBody");
+        tbody.innerHTML = filtered
+          .map((c) => {
+            const num = c.id.replace("#", "").replace("b", "");
+            return `<tr>
+      <td><a href="https://dev.azure.com/ibsbiosistemico/AGROTRACE/_workitems/edit/${num}" target="_blank" style="color:var(--text);text-decoration:none;transition:color 0.15s" onmouseover="this.style.color='var(--purple)'" onmouseout="this.style.color='var(--text)'">${c.id}</a></td>
+      <td>${c.title}</td>
+      <td><span class="kpi-badge" style="background:${KPI_BG[c.type]};color:${KPI_COLORS[c.type]}">${KPI_NAMES[c.type]}</span></td>
+      <td>${c.who}</td>
+    </tr>`;
+          })
+          .join("");
+        document.getElementById("kpiOverlay").classList.add("open");
+      }
+
+      function closeKpiModal() {
+        document.getElementById("kpiOverlay").classList.remove("open");
+      }
+
+      document.querySelectorAll(".metric-click").forEach((el) => {
+        el.addEventListener("click", () => openKpiModal(el.dataset.kpi));
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (
+            document.getElementById("termOverlay").classList.contains("open")
+          ) {
+            closeTermDemo();
+            e.stopPropagation();
+            return;
+          }
+          if (document.getElementById("ssOverlay").classList.contains("open")) {
+            closeScreenshot();
+            e.stopPropagation();
+            return;
+          }
+          if (
+            document.getElementById("kpiOverlay").classList.contains("open")
+          ) {
+            closeKpiModal();
+            e.stopPropagation();
+          }
+        }
+      });
+
+      // ── Screenshot carousel ──
+      let ssImages = [];
+      let ssIndex = 0;
+      let ssCardId = "";
+
+      function openScreenshot(cardId, title) {
+        ssCardId = cardId;
+        ssImages = [];
+        ssIndex = 0;
+        document.getElementById("ssCardId").textContent = "#" + cardId;
+        document.getElementById("ssTitle").textContent = title;
+        const body = document.getElementById("ssBody");
+        body.innerHTML =
+          '<div class="ss-empty"><div class="ss-empty-icon">⏳</div>Carregando...</div>';
+        document.getElementById("ssOverlay").classList.add("open");
+
+        const single = new Image();
+        single.src = "assets/" + cardId + ".png";
+        single.onload = () => {
+          ssImages = [single.src];
+          probeNext(cardId, 2, () => renderCarousel());
+        };
+        single.onerror = () => {
+          const first = new Image();
+          first.src = "assets/" + cardId + "-1.png";
+          first.onload = () => {
+            ssImages = [first.src];
+            probeNext(cardId, 2, () => renderCarousel());
+          };
+          first.onerror = () => {
+            body.innerHTML =
+              '<div class="ss-empty"><div class="ss-empty-icon">📷</div>Screenshot ainda não adicionado<br><span style="font-size:12px;color:var(--text3)">Salve em assets/' +
+              cardId +
+              ".png ou assets/" +
+              cardId +
+              "-1.png, -2.png, ...</span></div>";
+          };
+        };
+      }
+
+      function probeNext(cardId, n, done) {
+        const img = new Image();
+        img.src = "assets/" + cardId + "-" + n + ".png";
+        img.onload = () => {
+          ssImages.push(img.src);
+          probeNext(cardId, n + 1, done);
+        };
+        img.onerror = done;
+      }
+
+      function renderCarousel() {
+        const body = document.getElementById("ssBody");
+        body.classList.remove("tall");
+        body.scrollTop = 0;
+        const img = document.createElement("img");
+        img.src = ssImages[ssIndex];
+        img.alt = "#" + ssCardId + " — imagem " + (ssIndex + 1);
+        const applyTallIfNeeded = () => {
+          if (img.naturalWidth && img.naturalHeight) {
+            if (img.naturalHeight / img.naturalWidth > 1.5) {
+              body.classList.add("tall");
+            }
+          }
+        };
+        img.addEventListener("load", applyTallIfNeeded);
+        if (img.complete) applyTallIfNeeded();
+        body.innerHTML = "";
+        body.appendChild(img);
+
+        body
+          .querySelectorAll(".ss-carousel-btn, .ss-counter")
+          .forEach((el) => el.remove());
+
+        if (ssImages.length > 1) {
+          const prev = document.createElement("button");
+          prev.className = "ss-carousel-btn prev";
+          prev.innerHTML = "‹";
+          prev.onclick = (e) => {
+            e.stopPropagation();
+            ssNav(-1);
+          };
+
+          const next = document.createElement("button");
+          next.className = "ss-carousel-btn next";
+          next.innerHTML = "›";
+          next.onclick = (e) => {
+            e.stopPropagation();
+            ssNav(1);
+          };
+
+          const counter = document.createElement("div");
+          counter.className = "ss-counter";
+          counter.innerHTML =
+            ssImages
+              .map(
+                (_, i) =>
+                  '<div class="ss-dot' +
+                  (i === ssIndex ? " active" : "") +
+                  '"></div>',
+              )
+              .join("") +
+            "<span>" +
+            (ssIndex + 1) +
+            " / " +
+            ssImages.length +
+            "</span>";
+
+          body.appendChild(prev);
+          body.appendChild(next);
+          body.appendChild(counter);
+        }
+      }
+
+      function ssNav(dir) {
+        ssIndex = (ssIndex + dir + ssImages.length) % ssImages.length;
+        renderCarousel();
+      }
+
+      function closeScreenshot() {
+        document.getElementById("ssOverlay").classList.remove("open");
+        ssImages = [];
+        ssIndex = 0;
+      }
+
+      const slides = document.querySelectorAll(".slide");
+      const sidebarItems = document.querySelectorAll('[id^="si-"]');
+      const total = slides.length;
+      let cur = 0;
+
+      const labels = [
+        "README.md",
+        "agenda.ts",
+        "stats.json",
+        "comunicacao-produtores.module.ts",
+        "overview-thielson.md",
+        "sicar-dashboard.service.ts",
+        "ndvi-sentinel.service.ts",
+        "ater-whatsapp.config.ts",
+        "overview-bruno.md",
+        "roadmap.todo",
+        "exit.ts",
+      ];
+
+      // Build tabs
+      const tabsBar = document.getElementById("tabsBar");
+      const icons = [
+        "📋",
+        "📅",
+        "📊",
+        "💬",
+        "📸",
+        "🌍",
+        "⚡",
+        "🤖",
+        "📸",
+        "🗺️",
+        "👋",
+      ];
+      labels.forEach((l, i) => {
+        const t = document.createElement("div");
+        t.className = "tab-item" + (i === 0 ? " active" : "");
+        t.innerHTML = `<span class="tab-icon">${icons[i]}</span>${l}`;
+        t.onclick = () => goTo(i);
+        t.id = "tab-" + i;
+        tabsBar.appendChild(t);
+      });
+
+      // Build dots
+      const dotsEl = document.getElementById("navDots");
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement("div");
+        d.className = "nav-dot" + (i === 0 ? " active" : "");
+        d.onclick = () => goTo(i);
+        d.id = "dot-" + i;
+        dotsEl.appendChild(d);
+      }
+
+      function goTo(n) {
+        slides[cur].classList.remove("active");
+        document.getElementById("tab-" + cur)?.classList.remove("active");
+        document.getElementById("dot-" + cur)?.classList.remove("active");
+        document.getElementById("si-" + cur)?.classList.remove("active");
+
+        cur = (n + total) % total;
+
+        slides[cur].classList.add("active");
+        document.getElementById("tab-" + cur)?.classList.add("active");
+        document.getElementById("dot-" + cur)?.classList.add("active");
+        document.getElementById("si-" + cur)?.classList.add("active");
+
+        document.getElementById("slideCounter").textContent =
+          cur + 1 + " / " + total;
+        document.getElementById("statusFile").textContent = labels[cur];
+
+        const tab = document.getElementById("tab-" + cur);
+        if (tab)
+          tab.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+      }
+
+      function next() {
+        goTo(cur + 1);
+      }
+      function prev() {
+        goTo(cur - 1);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (document.getElementById("ssOverlay").classList.contains("open")) {
+          if (ssImages.length > 1) {
+            if (e.key === "ArrowRight") {
+              ssNav(1);
+              e.stopPropagation();
+              return;
+            }
+            if (e.key === "ArrowLeft") {
+              ssNav(-1);
+              e.stopPropagation();
+              return;
+            }
+          }
+          return;
+        }
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next();
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") prev();
+        if (e.key === "f" || e.key === "F") {
+          if (!document.fullscreenElement)
+            document.documentElement.requestFullscreen();
+          else document.exitFullscreen();
+        }
+        if (e.key === "t" || e.key === "T") toggleTimer();
+        if (e.key === "r" || e.key === "R") toggleRemote();
+      });
+
+      // ── Timer / Cronômetro ──
+      let timerInterval = null;
+      let timerStart = null;
+      let timerElapsed = 0;
+      let timerRunning = false;
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerStart = Date.now() - timerElapsed;
+          timerInterval = setInterval(updateTimer, 1000);
+          timerRunning = true;
+          document.getElementById("timerIcon").textContent = "⏸";
+          document.getElementById("timerBtn").classList.add("running");
+          document.getElementById("timerBtn").title =
+            "Clique para pausar (ou pressione T)";
+        } else {
+          clearInterval(timerInterval);
+          timerElapsed = Date.now() - timerStart;
+          timerRunning = false;
+          document.getElementById("timerIcon").textContent = "▶";
+          document.getElementById("timerBtn").classList.remove("running");
+          document.getElementById("timerBtn").title =
+            "Clique para retomar (ou pressione T)";
+        }
+      }
+
+      function updateTimer() {
+        timerElapsed = Date.now() - timerStart;
+        const totalSec = Math.floor(timerElapsed / 1000);
+        const min = Math.floor(totalSec / 60);
+        const sec = totalSec % 60;
+        const display =
+          String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+        document.getElementById("timerDisplay").textContent = display;
+
+        const btn = document.getElementById("timerBtn");
+        btn.classList.remove("warning", "overtime");
+        if (min >= 50) {
+          btn.classList.add("overtime");
+        } else if (min >= 40) {
+          btn.classList.add("warning");
+        }
+      }
+
+      // ── WebSocket Remote Control (host/guest com delegação) ──
+      // Protocolo novo: cada cliente entra com role=host|guest e name.
+      // Somente quem tem `controlOwnerId` pode navegar/disparar ações.
+      // O host (4=Ronaldo) pode delegar controle com as teclas 4/5/6.
+      // Se o guest com controle cai, volta pro host automaticamente.
+
+      const urlParams = new URLSearchParams(location.search);
+      const myRole =
+        (urlParams.get("role") || "host").toLowerCase() === "guest"
+          ? "guest"
+          : "host";
+      const myName =
+        urlParams.get("name") || (myRole === "host" ? "Ronaldo" : "Guest");
+
+      // Mapeamento das teclas de delegação (sem modificador, só o número)
+      const HANDOFF_KEYS = {
+        4: "Ronaldo",
+        5: "Bruno",
+        6: "Thielson",
+      };
+
+      let remoteWs = null;
+      let remoteConnected = false;
+      let applyingFromRemote = false;
+      let myId = null;
+      let hostId = null;
+      let controlOwnerId = null;
+      let peers = [];
+
+      function iHaveControl() {
+        return myId != null && myId === controlOwnerId;
+      }
+      function iAmHost() {
+        return myId != null && myId === hostId;
+      }
+      function canActLocally() {
+        // Antes de o handshake chegar, deixa agir normalmente (sessão ainda não conhecida).
+        if (applyingFromRemote) return true;
+        if (!remoteConnected) return true;
+        if (controlOwnerId == null) return true;
+        return iHaveControl();
+      }
+
+      function toggleRemote() {
+        if (remoteConnected) disconnectRemote();
+        else connectRemote();
+      }
+
+      function connectRemote(url) {
+        if (!url) {
+          if (location.protocol === "file:") return;
+          const wsProto = location.protocol === "https:" ? "wss:" : "ws:";
+          url = `${wsProto}//${location.host}`;
+        }
+        try {
+          remoteWs = new WebSocket(url);
+        } catch {
+          updatePeersUI();
+          return;
+        }
+
+        remoteWs.onopen = () => {
+          remoteWs.send(
+            JSON.stringify({
+              type: "join",
+              role: myRole,
+              name: myName,
+              totalSlides: total,
+              currentSlide: cur,
+            }),
+          );
+          remoteConnected = true;
+          updatePeersUI();
+        };
+
+        remoteWs.onmessage = (e) => {
+          let msg;
+          try {
+            msg = JSON.parse(e.data);
+          } catch {
+            return;
+          }
+
+          if (msg.type === "session") {
+            if (typeof msg.myId === "number") myId = msg.myId;
+            hostId = msg.hostId;
+            controlOwnerId = msg.controlOwnerId;
+            peers = Array.isArray(msg.clients) ? msg.clients : [];
+            // Guests recém-conectados: sincroniza pro slide atual do host.
+            if (
+              myRole === "guest" &&
+              typeof msg.currentSlide === "number" &&
+              msg.currentSlide !== cur
+            ) {
+              applyingFromRemote = true;
+              try {
+                goTo(msg.currentSlide);
+              } finally {
+                applyingFromRemote = false;
+              }
+            }
+            updatePeersUI();
+            return;
+          }
+
+          if (msg.type === "slide-update") {
+            if (
+              typeof msg.currentSlide === "number" &&
+              msg.currentSlide !== cur
+            ) {
+              applyingFromRemote = true;
+              try {
+                goTo(msg.currentSlide);
+              } finally {
+                applyingFromRemote = false;
+              }
+            }
+            return;
+          }
+
+          if (msg.type === "navigate") {
+            applyingFromRemote = true;
+            try {
+              if (msg.action === "next") next();
+              else if (msg.action === "prev") prev();
+              else if (msg.action === "goto" && typeof msg.slide === "number")
+                goTo(msg.slide);
+            } finally {
+              applyingFromRemote = false;
+            }
+            return;
+          }
+
+          if (msg.type === "action") {
+            applyingFromRemote = true;
+            try {
+              handleRemoteAction(msg.action, msg.params || {});
+            } finally {
+              applyingFromRemote = false;
+            }
+            return;
+          }
+
+          if (msg.type === "error") {
+            flashPeersStatus(msg.error || "erro");
+            return;
+          }
+        };
+
+        remoteWs.onerror = () => {};
+
+        remoteWs.onclose = () => {
+          remoteConnected = false;
+          myId = null;
+          hostId = null;
+          controlOwnerId = null;
+          peers = [];
+          updatePeersUI();
+          setTimeout(() => {
+            if (!remoteConnected)
+              try {
+                connectRemote(url);
+              } catch (e) {}
+          }, 5000);
+        };
+      }
+
+      function disconnectRemote() {
+        if (remoteWs) {
+          remoteWs.close();
+          remoteWs = null;
+        }
+        remoteConnected = false;
+        myId = null;
+        hostId = null;
+        controlOwnerId = null;
+        peers = [];
+        updatePeersUI();
+      }
+
+      // Map of actions available per slide
+      // SLIDE_ACTIONS vazio: adicionar screenshots conforme entregas avancam
+      const SLIDE_ACTIONS = {};
+
+      function getSlideActions() {
+        return SLIDE_ACTIONS[cur] || [];
+      }
+
+      function handleRemoteAction(action, params) {
+        switch (action) {
+          case "openScreenshot":
+            openScreenshot(params.cardId, params.title);
+            break;
+          case "closeModals":
+            if (document.getElementById("ssOverlay").classList.contains("open"))
+              closeScreenshot();
+            if (
+              document.getElementById("kpiOverlay").classList.contains("open")
+            )
+              closeKpiModal();
+            break;
+          case "ssNav":
+            if (ssImages.length > 1) ssNav(params.dir);
+            break;
+          case "toggleTimer":
+            toggleTimer();
+            break;
+          case "openKpiModal":
+            openKpiModal(params.kpi || "all");
+            break;
+          case "closeKpiModal":
+            closeKpiModal();
+            break;
+          case "filterStats":
+            filterStats(params.member || "all");
+            break;
+        }
+      }
+
+      function emitSlideUpdate() {
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        if (applyingFromRemote) return;
+        if (!iHaveControl()) return;
+        remoteWs.send(
+          JSON.stringify({
+            type: "slide-update",
+            currentSlide: cur,
+            slideLabel: labels[cur] || "",
+            slideActions: getSlideActions(),
+          }),
+        );
+      }
+
+      function emitAction(action, params) {
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        if (applyingFromRemote) return;
+        if (!iHaveControl()) return;
+        remoteWs.send(
+          JSON.stringify({
+            type: "action",
+            action,
+            params: params || {},
+          }),
+        );
+      }
+
+      // ── Wrap das funções locais para aplicar regras de controle + broadcast ──
+      const _origGoTo = goTo;
+      goTo = function (n) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle — aguarde handoff");
+          return;
+        }
+        _origGoTo(n);
+        emitSlideUpdate();
+      };
+
+      const _origOpenScreenshot = openScreenshot;
+      openScreenshot = function (cardId, title) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle");
+          return;
+        }
+        _origOpenScreenshot(cardId, title);
+        emitAction("openScreenshot", { cardId, title });
+      };
+
+      const _origCloseScreenshot = closeScreenshot;
+      closeScreenshot = function () {
+        if (!canActLocally()) return;
+        _origCloseScreenshot();
+        emitAction("closeModals");
+      };
+
+      const _origSsNav = ssNav;
+      ssNav = function (dir) {
+        if (!canActLocally()) return;
+        _origSsNav(dir);
+        emitAction("ssNav", { dir });
+      };
+
+      const _origToggleTimer = toggleTimer;
+      toggleTimer = function () {
+        // Timer pode ser sincronizado, mas não bloqueia guest (cada um vê o seu próprio)
+        _origToggleTimer();
+        emitAction("toggleTimer");
+      };
+
+      const _origOpenKpiModal = openKpiModal;
+      openKpiModal = function (kpi) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle");
+          return;
+        }
+        _origOpenKpiModal(kpi);
+        emitAction("openKpiModal", { kpi });
+      };
+
+      const _origCloseKpiModal = closeKpiModal;
+      closeKpiModal = function () {
+        if (!canActLocally()) return;
+        _origCloseKpiModal();
+        emitAction("closeModals");
+      };
+
+      const _origFilterStats = filterStats;
+      filterStats = function (member) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle");
+          return;
+        }
+        _origFilterStats(member);
+        emitAction("filterStats", { member });
+      };
+
+      // ── Teclas de delegação (apenas host): 4=Ronaldo, 5=Bruno, 6=Thielson ──
+      document.addEventListener("keydown", (e) => {
+        if (!iAmHost()) return;
+        if (document.getElementById("ssOverlay")?.classList.contains("open"))
+          return;
+        if (document.getElementById("kpiOverlay")?.classList.contains("open"))
+          return;
+        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
+        const targetName = HANDOFF_KEYS[e.key];
+        if (!targetName) return;
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        const target = peers.find(
+          (p) => p.name.toLowerCase() === targetName.toLowerCase(),
+        );
+        if (!target) {
+          flashPeersStatus(`${targetName} nao esta conectado`);
+          e.preventDefault();
+          return;
+        }
+        if (target.id === controlOwnerId) {
+          flashPeersStatus(`${targetName} ja esta no controle`);
+          e.preventDefault();
+          return;
+        }
+        remoteWs.send(
+          JSON.stringify({
+            type: "control-handoff",
+            targetId: target.id,
+            targetName,
+          }),
+        );
+        flashPeersStatus(`controle → ${targetName}`);
+        e.preventDefault();
+      });
+
+      // ── UI: barra de peers/controle ──
+      function updatePeersUI() {
+        let el = document.getElementById("peersBar");
+        if (!el) {
+          el = document.createElement("div");
+          el.id = "peersBar";
+          el.style.cssText =
+            "position:fixed;bottom:32px;right:16px;font-family:JetBrains Mono,monospace;font-size:0.7rem;padding:6px 12px;border-radius:6px;z-index:9999;background:rgba(30,30,30,0.92);border:1px solid #3e3e42;color:#cccccc;display:flex;gap:10px;align-items:center;cursor:pointer;transition:opacity 0.3s";
+          el.onclick = toggleRemote;
+          el.title = "Clique para reconectar (ou pressione R)";
+          document.body.appendChild(el);
+        }
+        if (!remoteConnected) {
+          el.innerHTML = `<span style="color:#f87171">● offline</span> <span style="opacity:0.6">${myRole}:${myName}</span>`;
+          return;
+        }
+        const parts = [];
+        parts.push(
+          `<span style="color:#34d399">●</span> <span style="opacity:0.6">você:</span> <span>${myName}</span>`,
+        );
+        if (peers.length) {
+          parts.push(`<span style="opacity:0.3">│</span>`);
+          const tags = peers
+            .map((p) => {
+              const isHost = p.id === hostId;
+              const hasControl = p.id === controlOwnerId;
+              const isMe = p.id === myId;
+              let color = "#9ca3af";
+              if (hasControl) color = "#fbbf24";
+              else if (isMe) color = "#60a5fa";
+              const prefix = isHost ? "★" : "";
+              const suffix = hasControl ? "◉" : "";
+              return `<span style="color:${color}">${prefix}${p.name}${suffix}</span>`;
+            })
+            .join(" ");
+          parts.push(tags);
+        }
+        if (iAmHost()) {
+          parts.push(
+            '<span style="opacity:0.3">│</span>',
+            '<span style="opacity:0.5">[4/5/6]</span>',
+          );
+        } else if (!iHaveControl()) {
+          parts.push(
+            '<span style="opacity:0.3">│</span>',
+            '<span style="opacity:0.5">modo view</span>',
+          );
+        }
+        el.innerHTML = parts.join(" ");
+        el.style.opacity = "1";
+      }
+
+      let _peersFlashTimer = null;
+      function flashPeersStatus(text) {
+        const el = document.getElementById("peersBar");
+        if (!el) return;
+        el.innerHTML = `<span style="color:#fbbf24">⚠ ${text}</span>`;
+        if (_peersFlashTimer) clearTimeout(_peersFlashTimer);
+        _peersFlashTimer = setTimeout(() => updatePeersUI(), 2000);
+      }
+
+      // Auto-connect on load
+      const initialSlideFromHash = Number(
+        (location.hash.match(/\d+/) || [])[0],
+      );
+      if (
+        Number.isInteger(initialSlideFromHash) &&
+        initialSlideFromHash >= 0 &&
+        initialSlideFromHash < total
+      ) {
+        _origGoTo(initialSlideFromHash);
+      }
+      updatePeersUI();
+      try {
+        connectRemote();
+      } catch (e) {}
+    </script>
+  </body>
+</html>

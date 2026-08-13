@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tech Spotlight Edition"
+  short_description: "Cria decks Web com protocolo de cards e roteiro"
+  default_prompt: "Use $tech-spotlight-edition para criar a próxima edição do Tech Spotlight Web a partir dos standups e cards do Azure DevOps."

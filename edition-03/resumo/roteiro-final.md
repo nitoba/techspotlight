@@ -17,7 +17,7 @@
 | Fixes                | 26    |
 | Refactors/Migração   | 3     |
 | Tests                | 2     |
-| Projetos novos       | 1 (ATER Digital — 8 marcos: setup, RAG, agente, Evolution API, chat, renomeação, etc.) |
+| Projetos novos       | 1 (ATER Digital — 8 marcos: produto phygital, RAG, agente, Evolution API, Typebot, renomeação, etc.) |
 | Sistemas atendidos   | Agrotrace-v3, Checkmilk, ATER Digital, Landing Page/Blog, CMS |
 | Stack do periodo     | NestJS, TypeORM, Angular, PostgreSQL, MySQL, **+ Python/FastAPI, React/Vite, Drizzle ORM, Mastra AI, pgvector** |
 
@@ -47,7 +47,7 @@
 
 Métricas do período (slide stats.json):
 - **69 cards** entregues em ~18 dias úteis (≈4/dia)
-- 1 sistema novo nascendo: ATER Digital (8 marcos no período)
+- 1 sistema novo nascendo: ATER Digital (produto phygital de assistência rural, com 8 marcos no período)
 - 5 sistemas atendidos no total
 - Stack expandida: time agora rodando Python + Mastra AI + pgvector além do core Angular/Nest
 
@@ -68,29 +68,41 @@ Frase de abertura:
 **Arquivo simulado:** `ater-digital/README.md`
 
 ### PROBLEMA (1 min)
-- Demanda nova: assistente para apoio ao produtor agricola via chat
-- Precisa responder duvidas tecnicas com base em documentos reais (nao alucinar)
+- O IBS tem 20 anos de assistência rural em campo, mas um modelo 100% presencial não escala
+- A proposta do ATER Digital é transformar o produtor de "espectador do laudo" em coletor ativo de dados e executor assistido
+- Precisa manter a confiança da visita técnica, mas com diário de campo, fotos, medições, missões e evidências entre as visitas
 - Tem que rodar como produto independente, com deploy proprio
 
 ### SOLUÇÃO (3 min) — slide com arquitetura
+- **Produto phygital:** visita técnica estratégica + acompanhamento digital contínuo
+- **Experiência de campo:** diário, fazendas/talhões, perfil agronômico, missões semanais e canais mobile-first
+- **IA como camada de apoio:** triagem, busca em base técnica e respostas assistidas; o produto é a relação contínua com o produtor
 - **Monorepo** com 3 apps:
   - `apps/rag/` — Python + FastAPI + Docling + pgvector + sentence-transformers
   - `apps/server/` — NestJS + Drizzle ORM + Postgres
   - `apps/web/` — React + Vite + TanStack Router + shadcn/ui
 - **Stack agentica:** Mastra AI orquestra ferramentas de classificacao e auto-reflexao
-- **Integracao externa:** Evolution API + Typebot (chat WhatsApp)
+- **Integracao externa:** Evolution API + Typebot para WhatsApp, reduzindo fricção no campo
+- **Avanco recente do Bruno (05/05-06/05):**
+  - API administrativa de Typebot com chaves, guard dedicado e CRUD
+  - Contexto do produtor para Typebot com sessao bearer curta
+  - Captura inbound do WhatsApp via Evolution com parser validado, idempotencia e hash unico
+  - Persistencia de usuarios parciais vindos do WhatsApp sem poluir listas de tecnico/assinatura
+  - Perfil leve de IA para respostas mais diretas no canal externo
 - **Infra:** docker-compose com Postgres + Redis + MinIO; deploy K8s separado
 - **Renomeacao:** nasceu como `agro-assistant` (07/04), virou `ATER-DIGITAL` em 16/04
   com replace em codigo, manifestos K8s, configmaps e templates de e-mail —
   zero downtime no que ja estava em dev
 
 ### RESULTADO (30s)
-- 1 produto novo, ja com chat funcional, RAG indexando documentos e fluxo
-  WhatsApp-Typebot ativo
+- 1 produto novo, ja com base phygital funcional: produtor, fazenda, talhao,
+  chat de apoio, RAG indexando documentos, fluxo WhatsApp-Typebot ativo e telas
+  reais para produtor/tecnico
 
 ### DEMO (30s)
-- Chat fazendo uma consulta agricola → busca em base de conhecimento → resposta
-  estruturada com botoes inline
+- Mostrar o fluxo como acompanhamento contínuo: produtor/fazenda/talhao → chat
+  de apoio → base de conhecimento → resposta estruturada
+- Backup visual: galeria `edition-03/assets/ater-digital-1..7.png`, com foco em chat de apoio, fazenda/talhao, perfil do produtor e carteira do tecnico
 - Cap rigido de 30s — se travar, pular pra screenshot
 
 ⏰ **Cap:** 6 min. Se passar, cortar a demo.
@@ -163,28 +175,39 @@ Frase de abertura:
 
 ---
 
-## LIGHTNING TECH — Mastra AI + RAG: agente com classificacao e auto-reflexao — 3 min — Bruno
+## LIGHTNING TECH — Mastra AI no Ater-Digital: orquestrador de ferramentas — 3 min — Bruno
 
-**Arquivo simulado:** `mastra-agent.ts`
+**Arquivo real:** `apps/server/src/shared/infra/ai/agents/agro-orchestrator.agent.ts`
 
 ### Por que e interessante
-Diferente de chamar a API do LLM direto, o **Mastra AI** organiza o agente em
-ferramentas (tools) com tipagem forte e suporte nativo a auto-reflexao —
-o agente **classifica a pergunta antes de responder** e decide qual fonte
-de conhecimento consultar.
+O Ater-Digital nao esta apenas chamando um LLM. O Mastra virou a camada de
+orquestracao: decide quais ferramentas usar, preserva memoria por produtor,
+carrega protocolos operacionais em markdown e conecta o chat do app com o canal
+leve do WhatsApp/Typebot.
 
-### 3 pontos chave (1 min cada)
-1. **Tools tipadas:** cada capacidade do agente vira uma tool com Zod schema —
-   classificacao, busca em knowledge source, resposta estruturada
-2. **RAG com pgvector:** documentos sao processados com Docling, embedados com
-   sentence-transformers e armazenados em Postgres com pgvector. Busca semantica
-   nativa no banco — sem servico vetorial separado
-3. **Auto-reflexao:** o agente revisa a propria resposta antes de devolver pro
-   usuario, baseado em criterios definidos como tool — reduz alucinacao em
-   contexto agricola onde precisao importa
+### Features reais para comentar
+1. **Dois perfis de agente:** `full` para o app completo e `typebot` para
+   WhatsApp. O perfil Typebot reutiliza RAG, clima, imagem e audio, mas nao
+   aciona diario/missoes/gate phygital.
+2. **Tools tipadas com Zod:** `classify_query`, `rag_search`, `get_weather`,
+   `analyze_image`, `transcribe_audio`, `self_reflect`, `check_cycle_data`,
+   `create_adhoc_mission` e ferramentas do MCP-Brasil.
+3. **Working memory persistida em Postgres:** perfil do produtor, fazendas,
+   talhoes, cultura, documentos, observacoes, semana atual, missoes pendentes
+   e frescor do diario entram no contexto sem perguntar de novo.
+4. **Workspace + skills markdown:** protocolos como `agro-rag-protocol`,
+   `agro-phygital-cycle`, `agro-typebot-lite-routing` e `agro-tool-discipline`
+   sao carregados pelo agente como guias operacionais.
+5. **Processors/guardrails:** PII detector, prompt-injection detector,
+   ToolCallFilter e EnsureFinalResponseProcessor para reduzir risco,
+   economizar contexto e evitar resposta vazia no limite de steps.
+6. **MCP-Brasil:** via meta-tools (`search_tools`, `call_tool`) para buscar
+   dados publicos brasileiros sob demanda sem expor 300+ tools ao agente.
 
-### Codigo no slide
-Mostrar 1 tool com Zod schema + chamada do agente. **Maximo 15 linhas.**
+### Frase curta
+> "A parte interessante nao e so o modelo responder; e o agente saber quando
+> buscar manual, quando puxar clima, quando analisar imagem, quando criar missao
+> e quando parar porque a confianca esta baixa."
 
 ⏰ **Cap:** 4 min. Se passar, cortar pro Wins.
 

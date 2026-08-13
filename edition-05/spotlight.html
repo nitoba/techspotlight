@@ -1,0 +1,5422 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Spotlight — Web Team | Edition #05</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/web-team.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0d1117;
+        --bg2: #161b22;
+        --bg3: #1c2128;
+        --bg4: #21262d;
+        --border: #30363d;
+        --border2: #484f58;
+        --text: #e6edf3;
+        --text2: #8b949e;
+        --text3: #6e7681;
+        --purple: #a78bfa;
+        --purple-d: #7c3aed;
+        --purple-bg: #1a1033;
+        --teal: #34d399;
+        --teal-bg: #0a2218;
+        --coral: #fb923c;
+        --coral-bg: #2a1100;
+        --blue: #60a5fa;
+        --blue-bg: #0c1a2e;
+        --amber: #fbbf24;
+        --amber-bg: #241a00;
+        --green: #4ade80;
+        --red: #f87171;
+        --pink: #f472b6;
+        --font-mono: "JetBrains Mono", monospace;
+        --font-sans: "Space Grotesk", sans-serif;
+        --radius: 8px;
+        --radius-lg: 12px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── TOPBAR ── */
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        height: 38px;
+        padding: 0;
+        flex-shrink: 0;
+      }
+
+      .topbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 16px;
+        border-right: 1px solid var(--border);
+        height: 100%;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text2);
+      }
+
+      .topbar-logo .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-red {
+        background: #ff5f57;
+      }
+      .dot-amber {
+        background: #febc2e;
+      }
+      .dot-green {
+        background: #28c840;
+      }
+
+      .tabs-bar {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        height: 100%;
+        flex: 1;
+      }
+      .tabs-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 16px;
+        height: 100%;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text3);
+        border-right: 1px solid var(--border);
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        position: relative;
+      }
+      .tab-item:hover {
+        background: var(--bg3);
+        color: var(--text2);
+      }
+      .tab-item.active {
+        background: var(--bg);
+        color: var(--text);
+      }
+      .tab-item.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--purple);
+      }
+
+      .tab-icon {
+        font-size: 12px;
+      }
+
+      .topbar-right {
+        margin-left: auto;
+        padding: 0 16px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text3);
+        border-left: 1px solid var(--border);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      /* ── MAIN LAYOUT ── */
+      .main {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        width: 220px;
+        background: var(--bg2);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        overflow-y: auto;
+      }
+
+      .sidebar-section {
+        padding: 0;
+      }
+
+      .sidebar-header {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 14px 16px 6px;
+      }
+
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 16px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text2);
+        cursor: pointer;
+        transition:
+          background 0.12s,
+          color 0.12s;
+        border-left: 2px solid transparent;
+      }
+      .sidebar-item:hover {
+        background: var(--bg3);
+        color: var(--text);
+      }
+      .sidebar-item.active {
+        background: var(--bg4);
+        color: var(--text);
+        border-left-color: var(--purple);
+      }
+
+      .sidebar-icon {
+        width: 14px;
+        text-align: center;
+        font-size: 11px;
+      }
+
+      .sidebar-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 8px 0;
+      }
+
+      .sidebar-team {
+        padding: 8px 16px 14px;
+      }
+
+      .member {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text2);
+      }
+
+      .member-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 700;
+      }
+      .av-r {
+        background: var(--purple-bg);
+        color: var(--purple);
+      }
+      .av-b {
+        background: var(--blue-bg);
+        color: var(--blue);
+      }
+      .av-t {
+        background: var(--teal-bg);
+        color: var(--teal);
+      }
+
+      .member-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        margin-left: auto;
+      }
+
+      /* ── CONTENT ── */
+      .content {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .slide {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        padding: 40px 56px;
+        animation: fadeIn 0.25s ease;
+      }
+      .slide.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── STATUSBAR ── */
+      .statusbar {
+        height: 24px;
+        background: var(--purple-d);
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      .status-item {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      /* ── TIMER WIDGET ── */
+      .timer-widget {
+        position: fixed;
+        top: 46px;
+        right: 16px;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 6px 14px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      .timer-widget:hover {
+        border-color: var(--border2);
+        background: var(--bg3);
+      }
+      .timer-icon {
+        font-size: 12px;
+        color: var(--text3);
+        transition: color 0.2s;
+      }
+      .timer-display {
+        font-family: var(--font-mono);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text3);
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      .timer-widget.running .timer-icon {
+        color: var(--teal);
+      }
+      .timer-widget.running .timer-display {
+        color: var(--teal);
+      }
+      .timer-widget.warning .timer-display {
+        color: var(--amber);
+      }
+      .timer-widget.warning .timer-icon {
+        color: var(--amber);
+      }
+      .timer-widget.overtime .timer-display {
+        color: var(--red);
+      }
+      .timer-widget.overtime .timer-icon {
+        color: var(--red);
+      }
+
+      /* ── CODE BLOCK ── */
+      .code-block {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .code-block-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text2);
+      }
+
+      .code-body {
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .line-numbers {
+        padding: 14px 12px;
+        color: var(--text3);
+        text-align: right;
+        user-select: none;
+        border-right: 1px solid var(--border);
+        min-width: 42px;
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .code-lines {
+        padding: 14px 18px;
+        flex: 1;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+      .str {
+        color: #c3e88d;
+      }
+      .cmt {
+        color: #546e7a;
+        font-style: italic;
+      }
+      .num {
+        color: #f78c6c;
+      }
+      .fn {
+        color: #82aaff;
+      }
+      .prop {
+        color: #89ddff;
+      }
+      .tag {
+        color: var(--amber);
+      }
+      .ok {
+        color: var(--teal);
+      }
+      .err {
+        color: var(--red);
+      }
+      .punc {
+        color: var(--text2);
+      }
+
+      /* ── SLIDE COMPONENTS ── */
+      .slide-title {
+        font-family: var(--font-sans);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .slide-heading {
+        font-family: var(--font-sans);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .slide-heading span {
+        color: var(--purple);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+      }
+      .badge-purple {
+        background: var(--purple-bg);
+        color: var(--purple);
+        border: 1px solid #4c1d95;
+      }
+      .badge-teal {
+        background: var(--teal-bg);
+        color: var(--teal);
+        border: 1px solid #065f46;
+      }
+      .badge-blue {
+        background: var(--blue-bg);
+        color: var(--blue);
+        border: 1px solid #1e3a5f;
+      }
+      .badge-amber {
+        background: var(--amber-bg);
+        color: var(--amber);
+        border: 1px solid #78350f;
+      }
+      .badge-coral {
+        background: var(--coral-bg);
+        color: var(--coral);
+        border: 1px solid #7c2d12;
+      }
+      .badge-green {
+        background: #0a2218;
+        color: var(--green);
+        border: 1px solid #14532d;
+      }
+      .badge-red {
+        background: #2a0f0f;
+        color: var(--red);
+        border: 1px solid #7f1d1d;
+      }
+
+      .card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 20px;
+      }
+
+      .card-accent-purple {
+        border-left: 3px solid var(--purple);
+      }
+      .card-accent-teal {
+        border-left: 3px solid var(--teal);
+      }
+      .card-accent-blue {
+        border-left: 3px solid var(--blue);
+      }
+      .card-accent-coral {
+        border-left: 3px solid var(--coral);
+      }
+      .card-accent-amber {
+        border-left: 3px solid var(--amber);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .metric {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        text-align: center;
+      }
+      .metric-val {
+        font-family: var(--font-mono);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--purple);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .metric-lbl {
+        font-size: 14px;
+        color: var(--text3);
+      }
+
+      .flex-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .mb-4 {
+        margin-bottom: 4px;
+      }
+      .mb-8 {
+        margin-bottom: 8px;
+      }
+      .mb-12 {
+        margin-bottom: 12px;
+      }
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+      .mb-20 {
+        margin-bottom: 20px;
+      }
+      .mb-24 {
+        margin-bottom: 24px;
+      }
+      .mt-16 {
+        margin-top: 16px;
+      }
+      .mt-20 {
+        margin-top: 20px;
+      }
+
+      .section-block {
+        margin-bottom: 18px;
+      }
+
+      .section-label {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text3);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .tag-list {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 12px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text2);
+      }
+
+      .auth-brief-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .auth-brief-card {
+        padding: 18px 20px;
+      }
+
+      .auth-brief-card .section-label {
+        margin-bottom: 12px;
+      }
+
+      .auth-problem-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .auth-lead {
+        display: flex;
+        align-items: center;
+        min-height: 92px;
+        padding: 14px 16px;
+        border-radius: var(--radius);
+        background: rgba(251, 146, 60, 0.08);
+        border: 1px solid rgba(251, 146, 60, 0.22);
+        color: var(--text);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .auth-detail-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .auth-detail-item,
+      .auth-delivery-item,
+      .auth-stage {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(33, 38, 45, 0.62);
+      }
+
+      .auth-detail-item {
+        padding: 10px 12px;
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .auth-detail-item strong,
+      .auth-stage strong {
+        color: var(--text);
+      }
+
+      .auth-delivery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .auth-delivery-item {
+        padding: 10px 12px;
+      }
+
+      .auth-delivery-title {
+        margin-bottom: 4px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .auth-delivery-copy {
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .auth-stage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .auth-stage {
+        padding: 12px 14px;
+      }
+
+      .auth-stage-label {
+        margin-bottom: 6px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .auth-stage-copy {
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .auth-stage-note {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: var(--radius);
+        background: rgba(52, 211, 153, 0.08);
+        color: var(--text2);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .flow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--text2);
+      }
+
+      .flow-step {
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        padding: 8px 16px;
+        color: var(--text);
+        font-size: 15px;
+      }
+
+      .flow-arrow {
+        color: var(--text3);
+        font-size: 18px;
+      }
+
+      .win-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .win-icon {
+        font-size: 24px;
+      }
+
+      .win-who {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .win-text {
+        font-size: 16px;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        margin-bottom: 8px;
+      }
+
+      .todo-check {
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid var(--border2);
+        border-radius: 3px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .todo-content {
+        flex: 1;
+      }
+      .todo-title {
+        font-family: var(--font-mono);
+        font-size: 15px;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .todo-desc {
+        font-size: 14px;
+        color: var(--text3);
+      }
+      .todo-who {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 3px;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+
+      .tl-item {
+        display: flex;
+        gap: 16px;
+        padding-bottom: 16px;
+      }
+
+      .tl-line {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      .tl-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--purple);
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+
+      .tl-connector {
+        width: 2px;
+        flex: 1;
+        background: var(--border);
+        min-height: 20px;
+      }
+
+      .tl-body {
+        flex: 1;
+      }
+
+      .tl-time {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text3);
+        margin-bottom: 4px;
+      }
+
+      .tl-text {
+        font-size: 16px;
+        color: var(--text2);
+        line-height: 1.5;
+      }
+
+      /* ── NAV CONTROLS ── */
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 10px;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .nav-btn {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--text2);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 8px 20px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .nav-btn:hover {
+        background: var(--bg4);
+        color: var(--text);
+        border-color: var(--border2);
+      }
+      .nav-btn:active {
+        transform: scale(0.97);
+      }
+
+      .nav-dots {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .nav-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border2);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-dot.active {
+        background: var(--purple);
+        transform: scale(1.4);
+      }
+
+      .slide-counter {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--text3);
+        min-width: 60px;
+        text-align: center;
+      }
+
+      /* ── COVER ── */
+      .cover-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .cover-icon {
+        width: 72px;
+        height: 72px;
+        display: block;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 4px 16px rgba(127, 119, 221, 0.3));
+      }
+
+      .cover-tag {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--purple);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .cover-title {
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+
+      .cover-title .accent {
+        color: var(--purple);
+      }
+
+      .cover-subtitle {
+        font-family: var(--font-mono);
+        font-size: 16px;
+        color: var(--text2);
+        margin-bottom: 24px;
+      }
+
+      .cover-code {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-family: var(--font-mono);
+        font-size: 15px;
+      }
+
+      .cover-code-header {
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 16px;
+        font-size: 13px;
+        color: var(--text3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .cover-code-body {
+        padding: 16px 18px;
+        line-height: 1.8;
+      }
+
+      .release-terminal {
+        background: #070b12;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        font-family: var(--font-mono);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+      }
+
+      .release-terminal-body {
+        padding: 18px 20px;
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .terminal-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 8px;
+      }
+
+      .terminal-prompt {
+        color: var(--green);
+        flex-shrink: 0;
+      }
+
+      .terminal-cmd {
+        color: var(--text);
+      }
+
+      .terminal-out {
+        color: var(--text2);
+      }
+
+      .terminal-ok {
+        color: var(--teal);
+      }
+
+      .terminal-warn {
+        color: var(--amber);
+      }
+
+      .cover-kpi-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .cover-kpi {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--bg2);
+        padding: 10px 12px;
+      }
+
+      .cover-kpi-num {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .cover-kpi-label {
+        font-size: 11px;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .run-pipeline {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .run-step {
+        position: relative;
+        min-height: 168px;
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--step-color, var(--purple));
+        border-radius: var(--radius);
+        background: var(--bg2);
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .run-step::after {
+        content: "→";
+        position: absolute;
+        right: -14px;
+        top: 22px;
+        color: var(--text3);
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+
+      .run-step:last-child::after {
+        display: none;
+      }
+
+      .run-time {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text3);
+      }
+
+      .run-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--step-color, var(--purple));
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .run-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.25;
+      }
+
+      .run-desc {
+        font-size: 12px;
+        color: var(--text2);
+        line-height: 1.45;
+      }
+
+      .run-guardrail {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        border: 1px solid #4c1d95;
+        border-radius: var(--radius);
+        background: var(--purple-bg);
+        padding: 12px 14px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--purple);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        color: var(--text2);
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--purple), var(--blue));
+        border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+
+      kbd {
+        display: inline-block;
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text2);
+      }
+
+      /* scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+
+      /* ── CLICKABLE METRICS ── */
+      .metric-click {
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+      }
+      .metric-click:hover {
+        border-color: var(--border2);
+        background: var(--bg4);
+        transform: translateY(-2px);
+      }
+      .metric-click::after {
+        content: "▾ ver cards";
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        color: var(--text3);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .metric-click:hover::after {
+        opacity: 1;
+      }
+
+      /* ── KPI MODAL ── */
+      .kpi-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .kpi-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .kpi-modal {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(10px);
+        transition: transform 0.2s;
+      }
+      .kpi-overlay.open .kpi-modal {
+        transform: translateY(0);
+      }
+
+      .kpi-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .kpi-modal-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .kpi-modal-close {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text2);
+        font-size: 14px;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+      .kpi-modal-close:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .kpi-modal-body {
+        overflow-y: auto;
+        padding: 0;
+      }
+
+      .kpi-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .kpi-table thead th {
+        background: var(--bg3);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        text-align: left;
+        position: sticky;
+        top: 0;
+      }
+      .kpi-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.1s;
+      }
+      .kpi-table tbody tr:hover {
+        background: var(--bg3);
+      }
+      .kpi-table td {
+        padding: 10px 16px;
+        color: var(--text2);
+      }
+      .kpi-table td:first-child {
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+      .kpi-table .kpi-badge {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 12px;
+      }
+
+      /* ── OVERVIEW CARDS ── */
+      .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        align-content: start;
+      }
+
+      .overview-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: relative;
+      }
+      .overview-card:hover {
+        border-color: var(--purple);
+        background: var(--bg3);
+        transform: translateY(-2px);
+      }
+
+      .overview-card-id {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text3);
+      }
+
+      .overview-card-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.35;
+        padding-right: 50px;
+      }
+
+      .overview-card-hint {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text3);
+        margin-top: 4px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .overview-card:hover .overview-card-hint {
+        opacity: 1;
+      }
+
+      .overview-card-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      /* ── ATER DIGITAL VISUALS ── */
+      .ater-visual-panel {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .ater-visual-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .ater-visual-title {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text3);
+      }
+
+      .ater-shot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .ater-shot {
+        background: #f8faf9;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        min-height: 140px;
+        position: relative;
+      }
+
+      .ater-shot img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      .ater-shot.tall img {
+        object-position: top center;
+      }
+
+      .ater-shot.wide {
+        grid-column: 1 / -1;
+      }
+
+      .ater-shot.wide img {
+        height: 190px;
+      }
+
+      .ater-shot-caption {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(13, 17, 23, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        padding: 4px 6px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        color: var(--text2);
+      }
+
+      /* ── SCREENSHOT MODAL ── */
+      .ss-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .ss-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .ss-modal {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        width: 92%;
+        max-width: 1100px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(10px);
+        transition: transform 0.2s;
+      }
+      .ss-overlay.open .ss-modal {
+        transform: translateY(0);
+      }
+
+      .ss-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border);
+        gap: 12px;
+      }
+
+      .ss-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .ss-card-id {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--purple);
+        flex-shrink: 0;
+      }
+
+      .ss-title {
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ss-close {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text2);
+        font-size: 14px;
+        padding: 4px 12px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .ss-close:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .ss-body {
+        overflow: auto;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-height: 200px;
+      }
+
+      .ss-body img {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+
+      /* Modo "tall" — screenshots de celular muito altos:
+         largura travada (mimetiza viewport mobile), altura livre,
+         body rola verticalmente. Botões/contador passam a fixed
+         pra continuarem visíveis durante o scroll. */
+      .ss-body.tall {
+        align-items: flex-start;
+      }
+      .ss-body.tall img {
+        max-width: 380px;
+        max-height: none;
+        width: 100%;
+      }
+      .ss-body.tall .ss-carousel-btn {
+        position: fixed;
+        top: 50%;
+      }
+      .ss-body.tall .ss-carousel-btn.prev {
+        left: 30px;
+      }
+      .ss-body.tall .ss-carousel-btn.next {
+        right: 30px;
+      }
+      .ss-body.tall .ss-counter {
+        position: fixed;
+        bottom: 5vh;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .ss-carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--bg3);
+        border: 1px solid var(--border2);
+        color: var(--text);
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.2s ease,
+          background 0.15s,
+          border-color 0.15s;
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .ss-body:hover .ss-carousel-btn,
+      .ss-carousel-btn:focus-visible {
+        opacity: 0.8;
+        pointer-events: auto;
+      }
+      .ss-carousel-btn:hover {
+        background: var(--bg4);
+        border-color: var(--purple);
+        opacity: 1;
+      }
+      .ss-carousel-btn.prev {
+        left: 12px;
+      }
+      .ss-carousel-btn.next {
+        right: 12px;
+      }
+
+      .ss-counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text2);
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+      .ss-body:hover .ss-counter {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .ss-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border2);
+        transition: all 0.2s;
+      }
+      .ss-dot.active {
+        background: var(--purple);
+        transform: scale(1.4);
+      }
+
+      .ss-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 48px;
+        color: var(--text3);
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .ss-empty-icon {
+        font-size: 40px;
+        opacity: 0.5;
+      }
+
+      /* ── STATS FILTER ── */
+      .stats-filter {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        padding: 4px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: var(--bg3);
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .stats-filter:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .stats-filter.active {
+        background: var(--f-color, var(--purple-d));
+        border-color: var(--f-color, var(--purple-d));
+        color: #fff;
+      }
+
+      /* ── TERMINAL DEMO ── */
+      .term-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+      .term-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .term-window {
+        background: #0d1117;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        width: 90%;
+        max-width: 820px;
+        max-height: 82vh;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(12px) scale(0.97);
+        transition: transform 0.25s;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      }
+      .term-overlay.open .term-window {
+        transform: translateY(0) scale(1);
+      }
+
+      .term-titlebar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        border-radius: 10px 10px 0 0;
+      }
+      .term-titlebar .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .term-titlebar-text {
+        flex: 1;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text3);
+      }
+      .term-close-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text3);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 2px 10px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .term-close-btn:hover {
+        background: var(--bg4);
+        color: var(--text);
+      }
+
+      .term-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 20px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--text2);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .term-body .t-prompt {
+        color: var(--teal);
+      }
+      .term-body .t-cmd {
+        color: #e6edf3;
+        font-weight: 700;
+      }
+      .term-body .t-info {
+        color: var(--blue);
+      }
+      .term-body .t-header {
+        color: var(--amber);
+        font-weight: 700;
+      }
+      .term-body .t-label {
+        color: var(--purple);
+      }
+      .term-body .t-ok {
+        color: var(--teal);
+        font-weight: 700;
+      }
+      .term-body .t-h2 {
+        color: var(--amber);
+        font-weight: 700;
+      }
+      .term-body .t-check {
+        color: var(--text3);
+      }
+      .term-body .t-link {
+        color: var(--blue);
+        text-decoration: underline;
+      }
+      .term-body .t-dim {
+        color: var(--text3);
+      }
+      .term-body .t-sparkle {
+        color: #c15f3c;
+        font-weight: 700;
+      }
+      .term-body .t-step-pipe {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-spin-dot {
+        color: #e5a94e;
+        font-weight: 700;
+        display: inline;
+      }
+      .term-body .t-spin-text {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-done-dot {
+        color: var(--teal);
+        font-weight: 700;
+        display: inline;
+      }
+      .term-body .t-done-text {
+        color: var(--text3);
+        display: inline;
+      }
+      .term-body .t-cyan {
+        color: var(--blue);
+        font-weight: 700;
+      }
+      .term-body .t-bold {
+        color: #e6edf3;
+        font-weight: 700;
+      }
+      @keyframes termPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .term-body .t-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        background: var(--teal);
+        vertical-align: text-bottom;
+        animation: blink 0.8s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .term-play-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        color: var(--amber);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .term-play-btn:hover {
+        background: var(--amber-bg);
+        border-color: var(--amber);
+        color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TIMER WIDGET -->
+    <div
+      class="timer-widget"
+      id="timerBtn"
+      onclick="toggleTimer()"
+      title="Clique para iniciar (ou pressione T)"
+    >
+      <span class="timer-icon" id="timerIcon">▶</span>
+      <span class="timer-display" id="timerDisplay">00:00</span>
+    </div>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <a
+        href="../index.html"
+        class="topbar-logo"
+        style="text-decoration: none; color: var(--text2)"
+        title="Voltar ao índice"
+      >
+        <div class="dot dot-red"></div>
+        <div class="dot dot-amber"></div>
+        <div class="dot dot-green"></div>
+        &nbsp;⌂ hub
+      </a>
+      <div class="tabs-bar" id="tabsBar"></div>
+      <div class="topbar-right">
+        <span>UTF-8</span>
+        <span>TypeScript</span>
+        <span>Git: main</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-header">Explorer</div>
+
+          <div class="sidebar-item active" onclick="goTo(0)" id="si-0">
+            <span class="sidebar-icon">📋</span> README.md
+          </div>
+          <div class="sidebar-item" onclick="goTo(1)" id="si-1">
+            <span class="sidebar-icon">📅</span> runtime-budget.ts
+          </div>
+          <div class="sidebar-item" onclick="goTo(2)" id="si-2">
+            <span class="sidebar-icon">📊</span> work-profile.json
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Ronaldo</div>
+
+          <div class="sidebar-item" onclick="goTo(3)" id="si-3">
+            <span class="sidebar-icon">⚡</span> importacao-generica.service.ts
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Bruno</div>
+
+          <div class="sidebar-item" onclick="goTo(4)" id="si-4">
+            <span class="sidebar-icon">🔐</span> better-auth.guard.ts
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Thielson</div>
+
+          <div class="sidebar-item" onclick="goTo(5)" id="si-5">
+            <span class="sidebar-icon">🔁</span> reaproveitamento-respostas.sql
+          </div>
+
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-header">Wrap-up</div>
+
+          <div class="sidebar-item" onclick="goTo(6)" id="si-6">
+            <span class="sidebar-icon">🗺️</span> roadmap.todo
+          </div>
+          <div class="sidebar-item" onclick="goTo(7)" id="si-7">
+            <span class="sidebar-icon">👋</span> exit.ts
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-team">
+          <div class="sidebar-header" style="padding: 0 0 6px">Time Web</div>
+          <div class="member">
+            <div class="member-avatar av-r">RO</div>
+            Ronaldo
+            <div class="member-dot"></div>
+          </div>
+          <div class="member">
+            <div class="member-avatar av-b">BR</div>
+            Bruno
+            <div class="member-dot"></div>
+          </div>
+          <div class="member">
+            <div class="member-avatar av-t">TH</div>
+            Thielson
+            <div class="member-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="content">
+        <!-- ─── SLIDE 0: CAPA ─── -->
+        <div class="slide active" id="slide-0">
+          <div class="cover-grid">
+            <div>
+              <img
+                src="../assets/web-team.svg"
+                alt="Web Team"
+                class="cover-icon"
+              />
+              <div class="cover-tag">
+                // Tech Spotlight — Edition #05 · Web Team
+              </div>
+              <div class="cover-title">
+                3 histórias<br /><span class="accent">30 minutos</span>
+              </div>
+              <div class="cover-subtitle">
+                Web Engineering Team · 03 de julho de 2026
+              </div>
+
+              <div
+                style="
+                  margin-bottom: 18px;
+                  padding: 8px 14px;
+                  background: var(--amber-bg);
+                  border: 1px solid #78350f;
+                  border-radius: var(--radius);
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                  color: var(--amber);
+                  display: inline-block;
+                "
+              >
+                42 cards dão escala; 3 histórias explicam o trabalho do período
+              </div>
+
+              <div class="flex-row mb-20">
+                <span class="pill">🧑‍💻 Ronaldo</span>
+                <span class="pill">🧑‍💻 Bruno</span>
+                <span class="pill">🧑‍💻 Thielson</span>
+              </div>
+
+              <div class="tag-list">
+                <span class="badge badge-purple">NestJS</span>
+                <span class="badge badge-blue">Angular</span>
+                <span class="badge badge-teal">React</span>
+                <span class="badge badge-amber">FastAPI</span>
+                <span class="badge badge-coral">Mastra AI</span>
+                <span class="badge badge-green">PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="release-terminal">
+              <div class="cover-code-header">
+                ▣ release terminal — edition-05
+              </div>
+              <div class="release-terminal-body">
+                <div class="terminal-row">
+                  <span class="terminal-prompt">$</span>
+                  <span class="terminal-cmd"
+                    >npm run spotlight -- --edition=05 --target=30min</span
+                  >
+                </div>
+                <div class="terminal-row terminal-out">
+                  <span class="terminal-ok">✓</span>
+                  <span>42 cards analisados no período 01/06 - 02/07</span>
+                </div>
+                <div class="terminal-row terminal-out">
+                  <span class="terminal-ok">✓</span>
+                  <span
+                    >3 histórias selecionadas: performance, segurança e
+                    retrabalho operacional</span
+                  >
+                </div>
+                <div class="terminal-row terminal-out">
+                  <span class="terminal-ok">✓</span>
+                  <span>demo fallback preparada com screenshots locais</span>
+                </div>
+                <div class="terminal-row terminal-out">
+                  <span class="terminal-warn">!</span>
+                  <span
+                    >regra de execução: explicar impacto, não ler backlog</span
+                  >
+                </div>
+
+                <div class="cover-kpi-strip">
+                  <div class="cover-kpi">
+                    <div class="cover-kpi-num" style="color: var(--purple)">
+                      42
+                    </div>
+                    <div class="cover-kpi-label">cards</div>
+                  </div>
+                  <div class="cover-kpi">
+                    <div class="cover-kpi-num" style="color: var(--teal)">
+                      3
+                    </div>
+                    <div class="cover-kpi-label">histórias</div>
+                  </div>
+                  <div class="cover-kpi">
+                    <div class="cover-kpi-num" style="color: var(--amber)">
+                      30
+                    </div>
+                    <div class="cover-kpi-label">min target</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: auto;
+              padding-top: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+              font-family: var(--font-mono);
+              font-size: 11px;
+              color: var(--text3);
+            "
+          >
+            Use <kbd>←</kbd> <kbd>→</kbd> para navegar &nbsp;·&nbsp;
+            <kbd>F</kbd> tela cheia &nbsp;·&nbsp; <kbd>T</kbd> cronômetro
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 1: AGENDA ─── -->
+        <div class="slide" id="slide-1">
+          <div class="slide-title">// runtime-budget.ts</div>
+          <div class="slide-heading">Plano de <span>30 minutos</span></div>
+
+          <div class="run-guardrail">
+            <span>target: 30min · hardLimit: 40min</span>
+            <span>regra: 3 histórias, zero leitura de backlog</span>
+          </div>
+
+          <div class="run-pipeline">
+            <div class="run-step" style="--step-color: var(--text2)">
+              <div class="run-time">00:00 - 05:00</div>
+              <div class="run-label">boot</div>
+              <div class="run-title">Abertura + leitura</div>
+              <div class="run-desc">
+                Cards dão escala; a leitura mostra onde o trabalho pesou.
+              </div>
+            </div>
+            <div class="run-step" style="--step-color: var(--purple)">
+              <div class="run-time">05:00 - 11:00</div>
+              <div class="run-label">ronaldo</div>
+              <div class="run-title">Importação genérica</div>
+              <div class="run-desc">
+                Motor configurável com queda de ~27min para ~5s.
+              </div>
+            </div>
+            <div class="run-step" style="--step-color: var(--blue)">
+              <div class="run-time">11:00 - 17:00</div>
+              <div class="run-label">bruno</div>
+              <div class="run-title">Better-Auth / MFA</div>
+              <div class="run-desc">
+                Base nova para autenticação, token parcial e MFA.
+              </div>
+            </div>
+            <div class="run-step" style="--step-color: var(--teal)">
+              <div class="run-time">17:00 - 23:00</div>
+              <div class="run-label">thielson</div>
+              <div class="run-title">Reaproveitamento</div>
+              <div class="run-desc">
+                Menos redigitação e mais rastreabilidade entre diagnósticos.
+              </div>
+            </div>
+            <div class="run-step" style="--step-color: var(--text3)">
+              <div class="run-time">23:00 - 30:00</div>
+              <div class="run-label">roadmap</div>
+              <div class="run-title">Próximo ciclo</div>
+              <div class="run-desc">
+                Integrações, relatórios, ranking, i18n e ferramentas de
+                migração.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 2: STATS ─── -->
+        <div class="slide" id="slide-2">
+          <div class="slide-title">// work-profile.json</div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              margin-bottom: 20px;
+              flex-wrap: wrap;
+            "
+          >
+            <div class="slide-heading" style="margin-bottom: 0">
+              Métricas com <span>leitura</span>
+            </div>
+            <div
+              style="
+                font-family: var(--font-mono);
+                font-size: 18px;
+                color: var(--text2);
+                margin-bottom: 0;
+                letter-spacing: 0.03em;
+              "
+            >
+              01/06 – 02/07/2026 · Edition #05
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 6px;
+                margin-left: auto;
+                align-items: center;
+              "
+            >
+              <button
+                class="stats-filter active"
+                data-member="all"
+                onclick="filterStats('all')"
+              >
+                Todos
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Ronaldo"
+                onclick="filterStats('Ronaldo')"
+                style="--f-color: var(--purple)"
+              >
+                Ronaldo
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Bruno"
+                onclick="filterStats('Bruno')"
+                style="--f-color: var(--blue)"
+              >
+                Bruno
+              </button>
+              <button
+                class="stats-filter"
+                data-member="Thielson"
+                onclick="filterStats('Thielson')"
+                style="--f-color: var(--teal)"
+              >
+                Thielson
+              </button>
+              <span
+                id="statsCount"
+                style="
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                  color: var(--text3);
+                  margin-left: 8px;
+                "
+                >42 cards</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="grid-4 mb-24"
+            style="grid-template-columns: repeat(5, 1fr)"
+          >
+            <div
+              class="metric metric-click"
+              data-kpi="all"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-all" style="color: var(--purple)">
+                42
+              </div>
+              <div class="metric-lbl">cards únicos</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="feat"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-feat" style="color: var(--teal)">
+                29
+              </div>
+              <div class="metric-lbl">features</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="fix"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-fix" style="color: var(--coral)">
+                8
+              </div>
+              <div class="metric-lbl">bugs corrigidos</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="ref"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-ref" style="color: var(--blue)">
+                1
+              </div>
+              <div class="metric-lbl">refactors/migração</div>
+            </div>
+            <div
+              class="metric metric-click"
+              data-kpi="test"
+              title="Clique para ver os cards"
+            >
+              <div class="metric-val" id="mv-test" style="color: var(--amber)">
+                4
+              </div>
+              <div class="metric-lbl">outros</div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="gap: 20px">
+            <div>
+              <div class="section-label">sistemas / trilhas atendidas</div>
+              <div class="tag-list mb-16">
+                <span class="badge badge-purple">Agrotrace</span>
+                <span class="badge badge-blue">Checkmilk</span>
+                <span class="badge badge-teal">ATER Digital</span>
+                <span class="badge badge-amber">Form Dinâmico</span>
+                <span class="badge badge-coral">CMS</span>
+              </div>
+
+              <div class="section-label">linhas de trabalho</div>
+              <div class="tag-list mb-16">
+                <span class="chip">importação genérica</span>
+                <span class="chip">Better-Auth / MFA</span>
+                <span class="chip">reaproveitamento</span>
+                <span class="chip">relatórios dinâmicos</span>
+                <span class="chip">comunicação</span>
+                <span class="chip">PEC / Checkmilk</span>
+                <span class="chip">dashboard carbono</span>
+                <span class="chip">ranking</span>
+              </div>
+
+              <div class="section-label">cards por dev</div>
+              <div style="display: flex; gap: 10px">
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Ronaldo')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-ronaldo"
+                    style="
+                      color: var(--purple);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    14
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">ronaldo</div>
+                </div>
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Bruno')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-bruno"
+                    style="
+                      color: var(--blue);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    5
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">bruno</div>
+                </div>
+                <div
+                  class="metric"
+                  style="cursor: pointer; flex: 1; padding: 10px 12px"
+                  onclick="filterStats('Thielson')"
+                >
+                  <div
+                    class="metric-val"
+                    id="mv-thielson"
+                    style="
+                      color: var(--teal);
+                      font-size: 22px;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    23
+                  </div>
+                  <div class="metric-lbl" style="font-size: 12px">thielson</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <div class="code-block-header">work-profile.json</div>
+              <div class="code-body">
+                <div
+                  class="code-lines"
+                  style="padding: 14px 18px"
+                  id="statsDistribution"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Narrativa / tema da edição ── -->
+          <div style="margin-top: 22px">
+            <div
+              class="section-label"
+              style="color: var(--purple); margin-bottom: 10px"
+            >
+              o que os números não contam
+            </div>
+            <div class="grid-2" style="gap: 14px">
+              <div class="card card-accent-purple" style="padding: 14px 18px">
+                <div
+                  style="
+                    font-size: 16px;
+                    color: var(--text);
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                  "
+                >
+                  42 cards dão escala, mas não contam a história
+                </div>
+                <div
+                  style="font-size: 13px; color: var(--text2); line-height: 1.6"
+                >
+                  A edição anterior teve <strong>79 cards</strong>; esta tem
+                  <strong>42</strong>. A leitura não é queda de trabalho, é
+                  concentração:
+                  <strong style="color: var(--purple)"
+                    >performance em importação</strong
+                  >,
+                  <strong style="color: var(--blue)"
+                    >segurança em autenticação</strong
+                  >
+                  e
+                  <strong style="color: var(--teal)"
+                    >menos retrabalho operacional</strong
+                  >.
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <div class="card card-accent-teal" style="padding: 12px 14px">
+                  <div
+                    class="section-label"
+                    style="color: var(--teal); margin-bottom: 4px"
+                  >
+                    impacto mensurável
+                  </div>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: var(--text2);
+                      line-height: 1.5;
+                    "
+                  >
+                    A importação genérica não foi só padronização: um
+                    processamento que levava cerca de
+                    <strong style="color: var(--coral)">27 minutos</strong>
+                    passou para aproximadamente
+                    <strong style="color: var(--teal)">5 segundos</strong>.
+                  </div>
+                </div>
+
+                <div class="card card-accent-blue" style="padding: 12px 14px">
+                  <div
+                    class="section-label"
+                    style="color: var(--blue); margin-bottom: 4px"
+                  >
+                    trabalho concentrado
+                  </div>
+                  <div
+                    style="
+                      font-size: 13px;
+                      color: var(--text2);
+                      line-height: 1.5;
+                    "
+                  >
+                    Ronaldo concentrou em importação, relatórios e form
+                    dinâmico. Bruno puxou Better-Auth. Thielson avançou
+                    comunicação, PEC/Checkmilk e reaproveitamento de respostas.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SPOTLIGHT — Thielson ─── -->
+        <div class="slide" id="slide-3">
+          <div class="slide-title">// spotlight 3 — Thielson — 6 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-teal">⚡ feature</span>
+            <span class="badge badge-green">#12677</span>
+            <span class="badge badge-purple">procedure</span>
+            <span class="badge badge-blue">Form Dinâmico</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >reaproveitamento-respostas.sql</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Reaproveitamento de respostas — <span>menos retrabalho</span> entre
+            diagnósticos
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <div class="card card-accent-coral">
+                <div class="section-label" style="color: var(--coral)">
+                  ❌ problema
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  Quando um novo diagnóstico era criado, muitas respostas já
+                  existiam em diagnósticos ou safras anteriores. O usuário
+                  precisava refazer trabalho, mas uma cópia simples também era
+                  perigosa: podia duplicar respostas, reaproveitar perguntas
+                  erradas ou perder rastreabilidade.
+                </div>
+              </div>
+
+              <div class="card card-accent-teal">
+                <div class="section-label" style="color: var(--teal)">
+                  ✓ o que entregamos
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    font-size: 14px;
+                    color: var(--text2);
+                  "
+                >
+                  <div>
+                    → <strong>#12677</strong> Configuração de reaproveitamento
+                    no CMS
+                  </div>
+                  <div>
+                    → Controle de elegibilidade nos níveis do diagnóstico
+                  </div>
+                  <div>
+                    → Tela em Operações &gt; Diagnóstico para origem, destino,
+                    propriedades e nova data
+                  </div>
+                  <div>→ Endpoint backend para executar o reaproveitamento</div>
+                  <div>
+                    → Procedure + migration para copiar apenas respostas
+                    elegíveis
+                  </div>
+                  <div>→ Motivos detalhados para respostas ignoradas</div>
+                  <div>
+                    → Ajustes de performance, status dos atendimentos e cálculo
+                    de ranking
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-blue">
+                <div class="section-label" style="color: var(--blue)">
+                  🎯 destaque técnico
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  O reaproveitamento não copia tudo. Ele avalia elegibilidade,
+                  identifica respostas duplicadas, existentes ou sem
+                  correspondência, registra o motivo das ignoradas e atualiza o
+                  ranking para múltiplos atendimentos. O ganho é operacional sem
+                  abrir mão de consistência.
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                height: fit-content;
+              "
+            >
+              <div class="code-block">
+                <div class="code-block-header">
+                  reaproveitamento-respostas.sql
+                </div>
+                <div class="code-body">
+                  <div class="line-numbers">
+                    1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16
+                  </div>
+                  <div class="code-lines">
+                    <span class="cmt"
+                      >-- origem: diagnóstico/safra anterior</span
+                    ><br />
+                    <span class="cmt">-- destino: novo atendimento</span
+                    ><br /><br />
+                    <span class="kw">CALL</span> reaproveitar_respostas(<br />
+                    &nbsp;&nbsp;<span class="prop">diagnostico_origem_id</span
+                    >,<br />
+                    &nbsp;&nbsp;<span class="prop">diagnostico_destino_id</span
+                    >,<br />
+                    &nbsp;&nbsp;<span class="prop">propriedades</span>,<br />
+                    &nbsp;&nbsp;<span class="prop">nova_data_atendimento</span
+                    ><br />
+                    );<br /><br />
+                    <span class="cmt">-- copia somente respostas elegíveis</span
+                    ><br />
+                    <span class="cmt"
+                      >-- ignora duplicadas / existentes / sem
+                      correspondência</span
+                    ><br />
+                    <span class="cmt">-- registra motivos para auditoria</span
+                    ><br />
+                    <span class="cmt"
+                      >-- recalcula ranking dos atendimentos</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-amber" style="padding: 12px 16px">
+                <div class="section-label" style="color: var(--amber)">
+                  demo / fallback
+                </div>
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  Prints preparados para mostrar navegação, filtros, ações,
+                  simulação, execução do reaproveitamento e configuração no CMS.
+                </div>
+                <button
+                  onclick="
+                    openScreenshotGallery(
+                      '12677',
+                      'Reaproveitamento de respostas — telas da demo',
+                      THIELSON_REAPROVEITAMENTO_SHOTS,
+                    )
+                  "
+                  style="
+                    margin-top: 10px;
+                    width: 100%;
+                    cursor: pointer;
+                    border: 1px solid var(--border2);
+                    background: var(--bg3);
+                    color: var(--text);
+                    border-radius: var(--radius);
+                    padding: 9px 12px;
+                    font-family: var(--font-mono);
+                    font-size: 12px;
+                  "
+                >
+                  🖼️ abrir prints da demo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 4 (REMOVIDO NA SIMULAÇÃO): OVERVIEW THIELSON ─── -->
+        <div class="slide-removed" id="slide-4-removed" style="display: none">
+          <div class="slide-title">// overview — Thielson</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-teal">📸 overview</span>
+            <span class="badge badge-blue">PEC/Checkmilk</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >overview-thielson.md</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Entregas em <span>destaque</span> — Thielson
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-amber"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >ref</span
+                >
+              </div>
+              <div class="overview-card-id">#12393</div>
+              <div class="overview-card-title">
+                Refactor PEC — ManyToMany → entidades pivô (características,
+                categorias, certificadoras, justificativas)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#12228</div>
+              <div class="overview-card-title">
+                Duplicar Formulário entre safras — procedure + duplicação em
+                lote por propriedade
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#12391</div>
+              <div class="overview-card-title">
+                Gestão de partos no módulo PEC — fluxo backend + formulário +
+                abas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#12323</div>
+              <div class="overview-card-title">
+                PEC — novas regras de idade animal + cadastro de pesagem + lotes
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#12212</div>
+              <div class="overview-card-title">
+                PEC/Checkmilk — refactor de tabelas + fluxo de reprodução
+                genérico (bov → PEC)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#12424</div>
+              <div class="overview-card-title">
+                Form Dinâmico — nova regra de agrupamento de perguntas +
+                procedure ajustada
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-red"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >fix</span
+                >
+              </div>
+              <div class="overview-card-id">#12378</div>
+              <div class="overview-card-title">
+                Pergunta de referência desativada continua aparecendo —
+                procedure ajustada
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-amber"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >ref</span
+                >
+              </div>
+              <div class="overview-card-id">#12413</div>
+              <div class="overview-card-title">
+                Flexibilização de validações de pesagem e inseminação no PEC
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-red"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >fix</span
+                >
+              </div>
+              <div class="overview-card-id">#12403</div>
+              <div class="overview-card-title">
+                Erro para adicionar mais de um contato — soft-delete + envio
+                para aba de cadastro
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SPOTLIGHT — Ronaldo ─── -->
+        <div class="slide" id="slide-5">
+          <div class="slide-title">// spotlight 1 — Ronaldo — 6 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-purple">📊 feature</span>
+            <span class="badge badge-green">#12529</span>
+            <span class="badge badge-blue">performance</span>
+            <span class="badge badge-teal">procedure</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >importacao-generica.service.ts</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Importação <span>genérica</span> — de 27 minutos para 5 segundos
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <div class="card card-accent-coral">
+                <div class="section-label" style="color: var(--coral)">
+                  ❌ problema
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  A importação de produtores e propriedades estava dependente de
+                  fluxos muito específicos. Cada nova planilha exigia regra
+                  própria, normalização no serviço e pouca rastreabilidade do
+                  que aconteceu em cada linha. Além disso, o processamento era
+                  lento: em um cenário real, chegava perto de
+                  <strong>27 minutos</strong>.
+                </div>
+              </div>
+
+              <div class="card card-accent-purple">
+                <div class="section-label" style="color: var(--purple)">
+                  ✓ o que entregamos
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    font-size: 14px;
+                    color: var(--text2);
+                  "
+                >
+                  <div>
+                    → <strong>#12529</strong> Fluxo genérico de importação
+                    configurável por categoria
+                  </div>
+                  <div>
+                    → Normalização movida para o banco, usando staging +
+                    procedure
+                  </div>
+                  <div>
+                    → Tela genérica com download de modelo, parâmetros
+                    dinâmicos, upload e execução
+                  </div>
+                  <div>
+                    → Histórico de execução com linhas processadas e linhas com
+                    problema
+                  </div>
+                  <div>
+                    → Visibilidade por certificadora e permissão do usuário
+                  </div>
+                  <div>
+                    → Configuração no CMS para campos, parâmetros e categoria da
+                    importação
+                  </div>
+                  <div>
+                    → Resultado principal: processamento caiu de
+                    <strong>~27min para ~5s</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-blue">
+                <div class="section-label" style="color: var(--blue)">
+                  🎯 destaque técnico
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  A decisão foi tirar a normalização pesada do serviço dedicado
+                  e transformar importação em
+                  <strong>motor de execução</strong>: configuração define os
+                  campos, staging recebe os dados e a procedure resolve o
+                  trabalho pesado no banco. Menos código específico e muito mais
+                  performance.
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                height: fit-content;
+              "
+            >
+              <div
+                style="
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                  color: var(--text3);
+                  letter-spacing: 0.5px;
+                "
+              >
+                // pipeline da importação
+              </div>
+              <div class="grid-2" style="gap: 10px">
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--teal);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--teal);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    CONFIG
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    campos, parâmetros e categoria
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--coral);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--coral);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    UPLOAD
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    planilha + parâmetros dinâmicos
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--amber);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--amber);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    STAGING
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    linhas brutas e validação
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--red);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--red);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    PROCEDURE
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    normalização no banco
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--blue);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--blue);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    HISTÓRICO
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    execução, detalhe e erros por linha
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: var(--bg2);
+                    border: 1px solid var(--border);
+                    border-top: 3px solid var(--purple);
+                    border-radius: var(--radius);
+                    padding: 12px;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 12px;
+                      color: var(--purple);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    PERMISSÕES
+                  </div>
+                  <div style="font-size: 12px; color: var(--text2)">
+                    certificadora e perfil do usuário
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                  color: var(--text3);
+                  padding: 10px 14px;
+                  background: var(--purple-bg);
+                  border: 1px solid #4c1d95;
+                  border-radius: var(--radius);
+                "
+              >
+                resultado: <strong>~27min → ~5s</strong> em processamento de
+                importação
+              </div>
+
+              <div class="card card-accent-amber" style="padding: 12px 16px">
+                <div class="section-label" style="color: var(--amber)">
+                  impacto
+                </div>
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  "O ganho não foi só deixar a tela mais genérica. Foi
+                  transformar um fluxo lento e específico em um motor
+                  configurável, rastreável e rápido."
+                </div>
+                <button
+                  onclick="
+                    openScreenshotGallery(
+                      '12529',
+                      'Importação genérica — telas da demo',
+                      RONALDO_IMPORTACAO_SHOTS,
+                    )
+                  "
+                  style="
+                    margin-top: 10px;
+                    width: 100%;
+                    cursor: pointer;
+                    border: 1px solid var(--border2);
+                    background: var(--bg3);
+                    color: var(--text);
+                    border-radius: var(--radius);
+                    padding: 9px 12px;
+                    font-family: var(--font-mono);
+                    font-size: 12px;
+                  "
+                >
+                  🖼️ abrir prints da demo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 6 (REMOVIDO — NDVI DOBRADO NO SOCIOAMBIENTAL): LIGHTNING NDVI ─── -->
+        <div class="slide-removed" id="slide-6-removed" style="display: none">
+          <div class="slide-title">// lightning — Ronaldo — 2.5 min ⚡</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-amber">⚡ Lightning</span>
+            <span class="badge badge-green">#12348</span>
+            <span class="badge badge-purple">Sentinel-2</span>
+            <span class="badge badge-teal">NDVI</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >sicar-inspecao-vegetacao.service.ts</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Inspeção de vegetação em APP via <span>NDVI Sentinel-2</span>
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <div class="card card-accent-amber">
+                <div class="section-label" style="color: var(--amber)">
+                  o que entregamos
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    font-size: 14px;
+                    color: var(--text2);
+                  "
+                >
+                  <div>
+                    → <strong>SicarInspecaoVegetacaoService</strong> —
+                    orquestração da análise (selecionar cena, processar, gerar
+                    preview)
+                  </div>
+                  <div>
+                    → <strong>SentinelStacClient</strong> — busca cenas
+                    Sentinel-2 L2A no STAC
+                  </div>
+                  <div>
+                    → Cálculo de <strong>estatísticas NDVI</strong> sobre a
+                    geometria da APP
+                  </div>
+                  <div>
+                    → <strong>Preview PNG</strong> gerado server-side + cache
+                    via anexo da propriedade
+                  </div>
+                  <div>
+                    → <strong>html2canvas</strong> para relatórios contextuais
+                    com mapa + dados
+                  </div>
+                  <div>
+                    → Endpoints: solicitação, listagem, processamento, preview,
+                    histórico
+                  </div>
+                  <div>
+                    → <strong>SicarDataProcessorService</strong> — integridade
+                    de referências (temas/status/tipos)
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-purple">
+                <div class="section-label" style="color: var(--purple)">
+                  por que importa
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--text2);
+                    line-height: 1.55;
+                  "
+                >
+                  Quando uma propriedade declara APP preservada, agora dá pra
+                  <strong>auditar isso direto do satélite</strong>, sem ter ido
+                  no campo. O NDVI das cenas Sentinel-2 mostra cobertura vegetal
+                  na própria geometria da APP — e o histórico fica anexado à
+                  propriedade pra consulta futura.
+                </div>
+              </div>
+
+              <div class="tag-list">
+                <span class="chip">Sentinel-2 L2A</span>
+                <span class="chip">STAC API</span>
+                <span class="chip">NDVI</span>
+                <span class="chip">html2canvas</span>
+                <span class="chip">PNG cache</span>
+                <span class="chip">Geometria APP</span>
+              </div>
+            </div>
+
+            <div class="code-block" style="height: fit-content">
+              <div class="code-block-header">
+                ⚡ sicar-inspecao-vegetacao.service.ts
+              </div>
+              <div class="code-body">
+                <div class="line-numbers">
+                  1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18
+                </div>
+                <div class="code-lines">
+                  <span class="cmt">// 1. busca cenas Sentinel-2 L2A</span
+                  ><br />
+                  <span class="cmt">// 2. recorta sobre a geometria da APP</span
+                  ><br />
+                  <span class="cmt"
+                    >// 3. calcula NDVI = (NIR - RED) / (NIR + RED)</span
+                  ><br />
+                  <span class="cmt">// 4. gera PNG + estatísticas</span
+                  ><br /><br />
+                  <span class="kw">async</span>
+                  <span class="fn">inspect</span>(<span class="prop">carId</span
+                  >: <span class="prop">number</span>) {<br />
+                  &nbsp;&nbsp;<span class="kw">const</span>
+                  <span class="prop">geom</span> = <span class="kw">await</span>
+                  <span class="prop">this</span>.<span class="fn"
+                    >loadAppGeometry</span
+                  >(<span class="prop">carId</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span>
+                  <span class="prop">scenes</span> =
+                  <span class="kw">await</span>
+                  <span class="prop">stac</span>.<span class="fn"
+                    >searchL2A</span
+                  >(<span class="prop">geom</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span>
+                  <span class="prop">stats</span> =
+                  <span class="kw">await</span>
+                  <span class="prop">this</span>.<span class="fn"
+                    >computeNDVI</span
+                  >(<span class="prop">scenes</span>,
+                  <span class="prop">geom</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">const</span>
+                  <span class="prop">png</span> = <span class="kw">await</span>
+                  <span class="prop">this</span>.<span class="fn"
+                    >renderPreview</span
+                  >(<span class="prop">stats</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">await</span>
+                  <span class="prop">this</span>.<span class="fn"
+                    >cacheAsAttachment</span
+                  >(<span class="prop">carId</span>,
+                  <span class="prop">png</span>)<br />
+                  &nbsp;&nbsp;<span class="kw">return</span> {
+                  <span class="prop">stats</span>,
+                  <span class="prop">png</span> }<br />
+                  }<br /><br />
+                  <span class="cmt">// próximo passo: estender pra</span><br />
+                  <span class="cmt"
+                    >// Reserva Legal, Imóvel, Talhão, Croqui</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SPOTLIGHT — Bruno ─── -->
+        <div class="slide" id="slide-7">
+          <div class="slide-title">// spotlight 2 — Bruno — 6 min ⏱</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-blue">🔐 feature</span>
+            <span class="badge badge-green">#11404</span>
+            <span class="badge badge-purple">MFA</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >better-auth.bridge.ts</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Better-Auth — <span>Auth V2</span> com MFA e tokens parciais
+          </div>
+
+          <div class="grid-2" style="gap: 16px; flex: 1">
+            <div class="auth-brief-stack">
+              <div class="card card-accent-coral auth-brief-card">
+                <div class="section-label" style="color: var(--coral)">
+                  ❌ problema
+                </div>
+                <div class="auth-problem-grid">
+                  <div class="auth-lead">
+                    Modernizar autenticação sem quebrar clientes em produção.
+                  </div>
+                  <div class="auth-detail-list">
+                    <div class="auth-detail-item">
+                      <strong>Web/CMS:</strong> evoluir para sessão por cookie
+                      com Better Auth.
+                    </div>
+                    <div class="auth-detail-item">
+                      <strong>Mobile:</strong> manter JWT no JSON e endpoints
+                      atuais.
+                    </div>
+                    <div class="auth-detail-item">
+                      <strong>Risco:</strong> não emitir acesso completo antes
+                      do MFA.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-blue auth-brief-card">
+                <div class="section-label" style="color: var(--blue)">
+                  ✓ o que entregamos
+                </div>
+                <div class="auth-delivery-grid">
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Better Auth</div>
+                    <div class="auth-delivery-copy">
+                      Tabelas de sessão, verificação e duplo fator.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Bridges</div>
+                    <div class="auth-delivery-copy">
+                      Auth V2 consolidado sem quebrar contratos legados.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Web/CMS</div>
+                    <div class="auth-delivery-copy">
+                      Sessão moderna por cookie e trusted origins.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Mobile</div>
+                    <div class="auth-delivery-copy">
+                      Tokens JSON preservados no fluxo atual.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Token parcial</div>
+                    <div class="auth-delivery-copy">
+                      Bloqueia acesso completo antes do MFA.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">MFA</div>
+                    <div class="auth-delivery-copy">
+                      Email e TOTP/Google com UI compartilhada.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Reset</div>
+                    <div class="auth-delivery-copy">
+                      Fluxo Better Auth com cookies por ambiente.
+                    </div>
+                  </div>
+                  <div class="auth-delivery-item">
+                    <div class="auth-delivery-title">Arquitetura</div>
+                    <div class="auth-delivery-copy">
+                      Guards, extractors e services reorganizados.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-accent-teal auth-brief-card">
+                <div class="section-label" style="color: var(--teal)">
+                  🎯 destaque técnico
+                </div>
+                <div class="auth-stage-grid">
+                  <div class="auth-stage">
+                    <div class="auth-stage-label">antes do MFA</div>
+                    <div class="auth-stage-copy">
+                      <strong>Credenciais válidas</strong>, mas ainda sem acesso
+                      completo.
+                    </div>
+                  </div>
+                  <div class="auth-stage">
+                    <div class="auth-stage-label">depois do MFA</div>
+                    <div class="auth-stage-copy">
+                      <strong>Acesso liberado</strong> conforme a plataforma.
+                    </div>
+                  </div>
+                </div>
+                <div class="auth-stage-note">
+                  Web/CMS recebem sessão Better Auth por cookie. Mobile mantém
+                  tokens no JSON.
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                height: fit-content;
+              "
+            >
+              <div class="code-block">
+                <div class="code-block-header">auth-v2.flow.ts</div>
+                <div class="code-body">
+                  <div class="line-numbers">
+                    1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14
+                  </div>
+                  <div class="code-lines">
+                    <span class="cmt">// login com MFA</span><br />
+                    <span class="kw">const</span> login =
+                    <span class="kw">await</span> auth.<span class="fn"
+                      >validateCredentials</span
+                    >(email, password)<br />
+                    <span class="kw">if</span> (login.<span class="prop"
+                      >mfaRequired</span
+                    >) {<br />
+                    &nbsp;&nbsp;<span class="kw">return</span> auth.<span
+                      class="fn"
+                      >issuePartialToken</span
+                    >({<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">userId</span>:
+                    login.user.id,<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">mfaRequired</span
+                    >: <span class="kw">true</span><br />
+                    &nbsp;&nbsp;})<br />
+                    }<br /><br />
+                    <span class="kw">const</span> verified =
+                    <span class="kw">await</span> auth.<span class="fn"
+                      >verifyMfa</span
+                    >(partialToken, code)<br />
+                    <span class="kw">return</span> auth.<span class="fn"
+                      >completeAccess</span
+                    >(verified, platform)<br />
+                    <span class="cmt">// WEB/CMS: cookie de sessão</span><br />
+                    <span class="cmt">// MOBILE: tokens no JSON</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tag-list">
+                <span class="chip">Better-Auth</span>
+                <span class="chip">Auth V2</span>
+                <span class="chip">MFA</span>
+                <span class="chip">TOTP</span>
+                <span class="chip">partial token</span>
+                <span class="chip">session cookie</span>
+                <span class="chip">Mobile compatível</span>
+                <span class="chip">bridges legadas</span>
+              </div>
+
+              <button
+                onclick="
+                  openScreenshotGallery(
+                    '11404',
+                    'Better Auth — prints da demo',
+                    BRUNO_BETTER_AUTH_SHOTS,
+                  )
+                "
+                style="
+                  width: 100%;
+                  cursor: pointer;
+                  border: 1px solid var(--border2);
+                  background: var(--bg3);
+                  color: var(--text);
+                  border-radius: var(--radius);
+                  padding: 10px 12px;
+                  font-family: var(--font-mono);
+                  font-size: 12px;
+                "
+              >
+                🖼️ abrir prints da demo
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 8 (REMOVIDO NA SIMULAÇÃO): OVERVIEW BRUNO ─── -->
+        <div class="slide-removed" id="slide-8-removed" style="display: none">
+          <div class="slide-title">// overview — Bruno</div>
+          <div class="flex-row mb-8">
+            <span class="badge badge-blue">📸 overview</span>
+            <span class="badge badge-teal">ATER Digital</span>
+            <span
+              style="
+                font-size: 14px;
+                color: var(--text3);
+                font-family: var(--font-mono);
+              "
+              >overview-bruno.md</span
+            >
+          </div>
+          <div
+            class="slide-heading"
+            style="font-size: 28px; margin-bottom: 20px"
+          >
+            Entregas em <span>destaque</span> — Bruno
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-32</div>
+              <div class="overview-card-title">
+                B2B Real Billing — ledger + faturas + drilldown de parceiros
+                (API + UI admin)
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-27</div>
+              <div class="overview-card-title">
+                Offline-first — cache local, fila de sync, compressão via Web
+                Worker, migrations
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-29</div>
+              <div class="overview-card-title">
+                Visitas Técnicas Phygital — agendamento, diagnóstico inicial,
+                cotas, relatórios
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-22</div>
+              <div class="overview-card-title">
+                Origem Auditada — dossiê PDF + cliente RuralShape + alertas
+                WhatsApp opt-in
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-26</div>
+              <div class="overview-card-title">
+                Entitlements B2B — planos, limites de chat, check-ins mensais,
+                guardas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-40</div>
+              <div class="overview-card-title">
+                Gestão de Encontros Digitais — agendamento, recorrência,
+                presença, cancelamento
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-15</div>
+              <div class="overview-card-title">
+                Google Drive — importação de documentos via BullMQ + processor +
+                worker config
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-31</div>
+              <div class="overview-card-title">
+                Portal de grupo coletivo + dossiê do grupo + linkagem a
+                contratos
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-39</div>
+              <div class="overview-card-title">
+                Recompensas de Engajamento — medalhas configuráveis, ranking,
+                campanhas
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">ATER-28</div>
+              <div class="overview-card-title">
+                Coleta Guiada — validação de evidências + templates de IA +
+                medição
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">#11801</div>
+              <div class="overview-card-title">
+                Telas cadastro CMS — modais tiling, janelas arrastáveis,
+                multi-registro
+              </div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-card-badge">
+                <span
+                  class="badge badge-green"
+                  style="font-size: 11px; padding: 2px 8px"
+                  >feat</span
+                >
+              </div>
+              <div class="overview-card-id">LP/blog</div>
+              <div class="overview-card-title">
+                Landing Page — indicadores dinâmicos, Logo dinâmico, env vars
+                com Zod, Dockerfile Azure
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ─── SLIDE 9: ROADMAP ─── -->
+        <div class="slide" id="slide-9">
+          <div class="slide-title">// roadmap.todo — Edition #06 — 3 min ⏱</div>
+          <div class="slide-heading">Próximas <span>prioridades</span></div>
+
+          <div style="display: flex; flex-direction: column; gap: 0; flex: 1">
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">
+                  #12685 — Integração SharePoint Cargill
+                </div>
+                <div class="todo-desc">
+                  Coletar os resultados em campo pelo técnico, como já acontece
+                  hoje, e alimentar automaticamente uma planilha Excel no
+                  SharePoint da Cargill, com atualização via CRON e manutenção
+                  da planilha tradicional por filtros no Agrotrace.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span
+                  class="todo-who"
+                  style="background: var(--blue-bg); color: var(--blue)"
+                  >@time-web</span
+                >
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">
+                  #12412 — Relatório de evolução Agroplus
+                </div>
+                <div class="todo-desc">
+                  Finalizar o relatório em anexo para a Agroplus, conectando o
+                  que já foi iniciado com as procedures de pontuação e com a
+                  narrativa de evolução do desempenho da unidade produtiva.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span
+                  class="todo-who"
+                  style="background: var(--blue-bg); color: var(--blue)"
+                  >@time-web</span
+                >
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">
+                  #12330 / #12644 — Ranking com Acompanhamento
+                </div>
+                <div class="todo-desc">
+                  Rever gráficos e indicadores para considerar também os
+                  acompanhamentos, não só diagnóstico. Avançar nas procedures
+                  <code>procAtualizaRankingAC</code> e
+                  <code>procAtualizaRankingDG</code>
+                  e refletir isso nos relatórios.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span
+                  class="todo-who"
+                  style="background: var(--blue-bg); color: var(--blue)"
+                  >@time-web</span
+                >
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">
+                  Formulário Dinâmico — exportar/importar estrutura
+                </div>
+                <div class="todo-desc">
+                  Levar para o Formulário Dinâmico o mesmo padrão usado no
+                  Diagnóstico: exportar a estrutura para Excel e importar
+                  novamente para outro cliente ou banco. A base técnica
+                  reaproveita o processo já validado pelo Thielson na migração
+                  entre diagnósticos.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span
+                  class="todo-who"
+                  style="background: var(--blue-bg); color: var(--blue)"
+                  >@time-web</span
+                >
+              </div>
+            </div>
+
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <div class="todo-content">
+                <div class="todo-title">
+                  Internacionalização — ampliar cobertura
+                </div>
+                <div class="todo-desc">
+                  Dar continuidade ao i18n do sistema. Já temos telas principais
+                  com seleção de idioma (português, inglês e espanhol); o
+                  próximo passo é expandir a cobertura para fluxos internos,
+                  cadastros e componentes reutilizáveis.
+                </div>
+              </div>
+              <div class="flex-row">
+                <span
+                  class="todo-who"
+                  style="background: var(--blue-bg); color: var(--blue)"
+                  >@time-web</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: auto;
+              padding-top: 14px;
+              font-family: var(--font-mono);
+              font-size: 13px;
+              color: var(--text3);
+              text-align: center;
+            "
+          >
+            Próxima Web:
+            <span style="color: var(--purple)">ciclo seguinte</span> — foco em
+            integrações, relatórios, ranking, i18n e ferramentas de migração
+          </div>
+        </div>
+        <!-- ─── SLIDE 10: EXIT ─── -->
+        <div class="slide" id="slide-10">
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              gap: 24px;
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--text3);
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+              "
+            >
+              // exit.ts
+            </div>
+
+            <div style="font-size: 48px; font-weight: 700; line-height: 1.15">
+              Obrigado pela<br /><span style="color: var(--purple)"
+                >presença!</span
+              >
+            </div>
+
+            <div class="code-block" style="max-width: 720px; width: 100%">
+              <div class="code-block-header">👋 exit.ts</div>
+              <div class="code-body">
+                <div class="line-numbers">
+                  1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13
+                </div>
+                <div class="code-lines">
+                  <span class="cmt">// exit.ts</span><br />
+                  <span class="kw">import</span> {
+                  <span class="prop">team</span> } <span class="kw">from</span>
+                  <span class="str">'./web-engineering'</span><br /><br />
+                  <span class="prop">console</span>.<span class="fn">log</span
+                  >(<span class="str">"Obrigado pela presença!"</span>)<br />
+                  <span class="prop">console</span>.<span class="fn">log</span
+                  >(<span class="str"
+                    >`Próximo spotlight: ${team.nextDate}`</span
+                  >)<br /><br />
+                  <span class="cmt">// Dúvidas?</span><br />
+                  <span class="cmt">// → Ronaldo, Bruno ou Thielson</span><br />
+                  <span class="cmt">// → #web-engineering no Discord</span
+                  ><br /><br />
+                  <span class="prop">process</span>.<span class="fn">exit</span
+                  >(<span class="num">0</span>)
+                  <span class="cmt">// até a próxima! 👋</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row" style="justify-content: center; gap: 8px">
+              <span
+                class="pill"
+                style="border-color: var(--border2); color: var(--text3)"
+                >✓ Edition #05 — formato enxuto</span
+              >
+              <span
+                class="pill"
+                style="border-color: #4c1d95; color: var(--purple)"
+                >→ Edition #06 — ~19/06/2026</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /content -->
+    </div>
+    <!-- /main -->
+
+    <!-- NAV -->
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="prev()">← prev</button>
+      <div class="nav-dots" id="navDots"></div>
+      <span class="slide-counter" id="slideCounter">1 / 8</span>
+      <button class="nav-btn" onclick="next()">next →</button>
+    </div>
+
+    <!-- STATUSBAR -->
+    <div class="statusbar">
+      <div class="status-item">🌿 main</div>
+      <div class="status-item" id="statusFile">README.md</div>
+      <div class="status-item">Tech Spotlight — Web Team</div>
+      <div class="status-item" style="margin-left: auto">
+        Edition #05 · 30min target
+      </div>
+    </div>
+
+    <!-- KPI MODAL -->
+    <div
+      class="kpi-overlay"
+      id="kpiOverlay"
+      onclick="if (event.target === this) closeKpiModal();"
+    >
+      <div class="kpi-modal">
+        <div class="kpi-modal-header">
+          <div class="kpi-modal-title" id="kpiTitle">Cards</div>
+          <button class="kpi-modal-close" onclick="closeKpiModal()">
+            ✕ Fechar
+          </button>
+        </div>
+        <div class="kpi-modal-body">
+          <table class="kpi-table">
+            <thead>
+              <tr>
+                <th>#Card</th>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Responsável</th>
+              </tr>
+            </thead>
+            <tbody id="kpiBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOT MODAL -->
+    <div
+      class="ss-overlay"
+      id="ssOverlay"
+      onclick="if (event.target === this) closeScreenshot();"
+    >
+      <div class="ss-modal">
+        <div class="ss-header">
+          <div class="ss-header-left">
+            <span class="ss-card-id" id="ssCardId">#00000</span>
+            <span class="ss-title" id="ssTitle">Título</span>
+          </div>
+          <button class="ss-close" onclick="closeScreenshot()">✕ Fechar</button>
+        </div>
+        <div class="ss-body" id="ssBody"></div>
+      </div>
+    </div>
+
+    <!-- TERMINAL DEMO MODAL -->
+    <div
+      class="term-overlay"
+      id="termOverlay"
+      onclick="if (event.target === this) closeTermDemo();"
+    >
+      <div class="term-window">
+        <div class="term-titlebar">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-amber"></div>
+          <div class="dot dot-green"></div>
+          <div class="term-titlebar-text" id="termTitle">Terminal</div>
+          <button class="term-close-btn" onclick="closeTermDemo()">
+            ✕ Fechar
+          </button>
+        </div>
+        <div class="term-body" id="termBody"></div>
+      </div>
+    </div>
+
+    <script>
+      /* ── TERMINAL DEMO ANIMATION ── */
+      const TERM_SEQUENCES = {};
+
+      const TERM_CLASSES = {
+        prompt: "t-prompt",
+        cmd: "t-cmd",
+        info: "t-info",
+        header: "t-header",
+        label: "t-label",
+        ok: "t-ok",
+        h2: "t-h2",
+        check: "t-check",
+        link: "t-link",
+        dim: "t-dim",
+        text: "",
+        sparkle: "t-sparkle",
+        cyan: "t-cyan",
+        bold: "t-bold",
+      };
+
+      let termAnimId = 0;
+
+      async function openTermDemo(which) {
+        const overlay = document.getElementById("termOverlay");
+        const body = document.getElementById("termBody");
+        const title = document.getElementById("termTitle");
+        title.textContent = "Terminal — " + which;
+        body.innerHTML = "";
+        overlay.classList.add("open");
+
+        const seq = TERM_SEQUENCES[which];
+        if (!seq) return;
+        const runId = ++termAnimId;
+
+        for (const step of seq) {
+          if (runId !== termAnimId) return;
+
+          if (step.delay) {
+            await new Promise((r) => setTimeout(r, step.delay));
+            continue;
+          }
+
+          if (step.type === "spin") {
+            const line = document.createElement("div");
+            const pipe = document.createElement("span");
+            pipe.className = "t-step-pipe";
+            pipe.textContent = "  │ ";
+            const dot = document.createElement("span");
+            dot.className = "t-spin-dot";
+            dot.textContent = "●";
+            dot.style.animation = "termPulse .6s ease-in-out infinite";
+            const txt = document.createElement("span");
+            txt.className = "t-spin-text";
+            txt.textContent = " " + step.spinText;
+            line.append(pipe, dot, txt);
+            body.appendChild(line);
+            body.scrollTop = body.scrollHeight;
+
+            await new Promise((r) => setTimeout(r, step.spinDuration || 500));
+            if (runId !== termAnimId) return;
+
+            dot.style.animation = "";
+            dot.className = "t-done-dot";
+            dot.textContent = "✓";
+            txt.className = "t-done-text";
+            txt.textContent = " " + step.doneText;
+            body.scrollTop = body.scrollHeight;
+            await new Promise((r) => setTimeout(r, 80));
+          } else if (step.type === "cmd" && step.typeSpeed) {
+            const line = document.createElement("div");
+            const span = document.createElement("span");
+            span.className = TERM_CLASSES[step.type] || "";
+            line.appendChild(span);
+            body.appendChild(line);
+
+            for (let i = 0; i < step.text.length; i++) {
+              if (runId !== termAnimId) return;
+              span.textContent += step.text[i];
+              body.scrollTop = body.scrollHeight;
+              await new Promise((r) => setTimeout(r, step.typeSpeed));
+            }
+          } else {
+            const line = document.createElement("div");
+            const span = document.createElement("span");
+            span.className = TERM_CLASSES[step.type] || "";
+            span.textContent = step.text;
+            line.appendChild(span);
+            body.appendChild(line);
+            body.scrollTop = body.scrollHeight;
+            await new Promise((r) => setTimeout(r, 45));
+          }
+        }
+
+        if (runId === termAnimId) {
+          const cursor = document.createElement("div");
+          cursor.style.marginTop = "8px";
+          const prompt = document.createElement("span");
+          prompt.className = "t-prompt";
+          prompt.textContent = "~/agrotrace ";
+          cursor.appendChild(prompt);
+          const blk = document.createElement("span");
+          blk.className = "t-cursor";
+          cursor.appendChild(blk);
+          body.appendChild(cursor);
+          body.scrollTop = body.scrollHeight;
+        }
+      }
+
+      function closeTermDemo() {
+        termAnimId++;
+        document.getElementById("termOverlay").classList.remove("open");
+      }
+
+      // KPI_CARDS — periodo 01/06 a 02/07/2026
+      const KPI_CARDS = [
+        // === RONALDO ===
+        {
+          id: "#12502",
+          type: "feat",
+          title: "Padronizar relatórios HTML/PDF com cabeçalho e rodapé",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12504",
+          type: "feat",
+          title: "Cadastro via planilha de importação",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12529",
+          type: "ref",
+          title:
+            "Importação genérica de produtores/propriedades com normalização no banco",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12553",
+          type: "test",
+          title: "Ordenação - Página diagnóstico",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12563",
+          type: "feat",
+          title: "Bloco repetível vinculado à pergunta do formulário dinâmico",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12575",
+          type: "feat",
+          title: "Compartilhamento de formulário dinâmico entre certificadoras",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12577",
+          type: "feat",
+          title: "Relatório percentual dos perfis - Biodiesel Soja",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12607",
+          type: "feat",
+          title: "Criar aba Balanço no Dashboard Carbono",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12412",
+          type: "feat",
+          title: "Criação de relatório de evolução - Agroplus",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12644",
+          type: "feat",
+          title: "Procedures e funções para ranqueamento de Acompanhamentos",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12649",
+          type: "fix",
+          title:
+            "Corrigir fluxo de permissões e definição de senha no cadastro de usuários",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12634",
+          type: "fix",
+          title:
+            "Estrutura do formulário dinâmico - perguntas do relatório fora de ordem",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12679",
+          type: "feat",
+          title: "Filtro Relatório Formulário Dinâmico",
+          who: "Ronaldo",
+        },
+        {
+          id: "#12678",
+          type: "feat",
+          title: "Relatório de Respostas de Formulário Dinâmico",
+          who: "Ronaldo",
+        },
+
+        // === BRUNO ===
+        { id: "#12518", type: "feat", title: "Login automático", who: "Bruno" },
+        {
+          id: "#12516",
+          type: "fix",
+          title: "Ajuste agrupamento formulário",
+          who: "Bruno",
+        },
+        {
+          id: "#12515",
+          type: "feat",
+          title: "Novo procedimento Atualizar Ranking na tela de Procedimentos",
+          who: "Bruno",
+        },
+        {
+          id: "#12035",
+          type: "test",
+          title: "Verificar coluna preenchimento na tela de diagnóstico",
+          who: "Bruno",
+        },
+        {
+          id: "#11404",
+          type: "feat",
+          title: "Implementar Better-Auth / Auth V2 / MFA",
+          who: "Bruno",
+        },
+
+        // === THIELSON ===
+        {
+          id: "#12454",
+          type: "fix",
+          title: "Erro para salvar grupo em novo cadastro",
+          who: "Thielson",
+        },
+        {
+          id: "#12492",
+          type: "feat",
+          title: "Registrar aborto no fluxo de parto PEC",
+          who: "Thielson",
+        },
+        {
+          id: "#12240",
+          type: "test",
+          title: "Prazo por pergunta - Questionário",
+          who: "Thielson",
+        },
+        {
+          id: "#12440",
+          type: "feat",
+          title: "Análise de IA - Anexos - Atendimentos",
+          who: "Thielson",
+        },
+        {
+          id: "#12127",
+          type: "feat",
+          title:
+            "Cadastro de múltiplos proprietários com participação percentual por propriedade",
+          who: "Thielson",
+        },
+        {
+          id: "#12514",
+          type: "fix",
+          title:
+            "Erro de null ao abrir a aba Hortaliças no Cadastro de Propriedade",
+          who: "Thielson",
+        },
+        {
+          id: "#12489",
+          type: "fix",
+          title: "Itens de resposta do perfil não aparecem",
+          who: "Thielson",
+        },
+        {
+          id: "#12517",
+          type: "feat",
+          title: "Cadastro de Motivo de atendimento",
+          who: "Thielson",
+        },
+        {
+          id: "#12047",
+          type: "feat",
+          title: "Enviar Alertas - Gestão de Projetos",
+          who: "Thielson",
+        },
+        {
+          id: "#12521",
+          type: "feat",
+          title: "Reorganizar tela de cadastro da certificadora",
+          who: "Thielson",
+        },
+        {
+          id: "#12548",
+          type: "feat",
+          title: "Mudanças no cadastro de Descrição de atendimento PEC",
+          who: "Thielson",
+        },
+        {
+          id: "#12564",
+          type: "fix",
+          title: "Erro ao editar endereço de propriedade com foto",
+          who: "Thielson",
+        },
+        {
+          id: "#12571",
+          type: "test",
+          title: "Flag na rota de animais",
+          who: "Thielson",
+        },
+        {
+          id: "#12554",
+          type: "feat",
+          title: "Filtro de pergunta - Operações > Diagnóstico",
+          who: "Thielson",
+        },
+        {
+          id: "#12615",
+          type: "feat",
+          title: "Adicionar novos campos na entidade Pessoa",
+          who: "Thielson",
+        },
+        {
+          id: "#12635",
+          type: "feat",
+          title: "Implementar gestão de tipos e lançamentos financeiros",
+          who: "Thielson",
+        },
+        {
+          id: "#12614",
+          type: "feat",
+          title: "Cadastro Pessoa - Checkmilk",
+          who: "Thielson",
+        },
+        {
+          id: "#12592",
+          type: "feat",
+          title: "Movimentar ordem das perguntas referenciadas",
+          who: "Thielson",
+        },
+        {
+          id: "#12627",
+          type: "feat",
+          title: "Unidade de Medida - Form Dinâmico",
+          who: "Thielson",
+        },
+        {
+          id: "#12628",
+          type: "feat",
+          title: "Pergunta com resposta fixa - Form Dinâmico",
+          who: "Thielson",
+        },
+        {
+          id: "#12631",
+          type: "feat",
+          title: "Pergunta fora de agrupadores - Form Dinâmico",
+          who: "Thielson",
+        },
+        {
+          id: "#12661",
+          type: "fix",
+          title: "Corrigida edição de respostas padrão no form pergunta no CMS",
+          who: "Thielson",
+        },
+        {
+          id: "#12662",
+          type: "feat",
+          title:
+            "Adicionar agendamentos e relatórios na comunicação com produtores",
+          who: "Thielson",
+        },
+        {
+          id: "#12677",
+          type: "feat",
+          title: "Reaproveitamento de respostas entre diagnósticos",
+          who: "Thielson",
+        },
+      ];
+
+      const KPI_LABELS = {
+        all: "Todos os Cards",
+        feat: "Features",
+        fix: "Bugs Corrigidos",
+        ref: "Refactors/Migração",
+        test: "Outros",
+      };
+      const KPI_COLORS = {
+        feat: "var(--teal)",
+        fix: "var(--coral)",
+        ref: "var(--blue)",
+        test: "var(--amber)",
+      };
+      const KPI_BG = {
+        feat: "var(--teal-bg)",
+        fix: "var(--coral-bg)",
+        ref: "var(--blue-bg)",
+        test: "var(--amber-bg)",
+      };
+      const KPI_NAMES = {
+        feat: "feature",
+        fix: "fix",
+        ref: "refactor",
+        test: "outro",
+      };
+      const WORK_PROFILE = {
+        all: [
+          {
+            label: "plataforma e automação",
+            color: "var(--purple)",
+            text: "Importação genérica, relatórios, ranking e formulário dinâmico caminharam para componentes configuráveis.",
+          },
+          {
+            label: "menos retrabalho operacional",
+            color: "var(--teal)",
+            text: "Reaproveitamento de respostas, comunicação e rotinas de diagnóstico reduziram passos manuais do usuário.",
+          },
+          {
+            label: "base técnica mais forte",
+            color: "var(--blue)",
+            text: "Auth V2/MFA, procedures, permissões e integrações deram sustentação para os próximos ciclos.",
+          },
+        ],
+        ronaldo: [
+          {
+            label: "performance com padronização",
+            color: "var(--purple)",
+            text: "A importação deixou de ser fluxo específico e virou motor configurável, com queda de ~27min para ~5s.",
+          },
+          {
+            label: "formulário e relatórios",
+            color: "var(--amber)",
+            text: "Blocos repetíveis, compartilhamento entre certificadoras e relatórios dinâmicos avançaram como base reutilizável.",
+          },
+          {
+            label: "indicadores e acompanhamento",
+            color: "var(--blue)",
+            text: "Ranking, procedures e relatório de evolução puxaram a leitura de desempenho para além do diagnóstico inicial.",
+          },
+        ],
+        bruno: [
+          {
+            label: "segurança e autenticação",
+            color: "var(--blue)",
+            text: "Better-Auth/Auth V2 trouxe MFA, token parcial e base mais robusta para evolução do login.",
+          },
+          {
+            label: "procedimentos e automação",
+            color: "var(--teal)",
+            text: "A tela de procedimentos e ajustes de ranking aproximaram operação e execução técnica.",
+          },
+          {
+            label: "ajustes de fluxo",
+            color: "var(--coral)",
+            text: "Correções em agrupamento e preenchimento reduziram inconsistências em telas usadas no dia a dia.",
+          },
+        ],
+        thielson: [
+          {
+            label: "reaproveitamento de respostas",
+            color: "var(--teal)",
+            text: "O foco foi reduzir redigitação entre diagnósticos e safras, preservando regra, origem e rastreabilidade.",
+          },
+          {
+            label: "comunicação com produtores",
+            color: "var(--purple)",
+            text: "Email, WhatsApp e templates começaram a convergir para um módulo único de comunicação operacional.",
+          },
+          {
+            label: "diagnóstico e processos",
+            color: "var(--blue)",
+            text: "Ajustes em procedimentos, status e integrações melhoraram a sustentação dos fluxos de campo.",
+          },
+        ],
+      };
+
+      // ── Stats filter by member ──
+      let statsMember = "all";
+
+      function filterStats(member) {
+        statsMember = member;
+        document.querySelectorAll(".stats-filter").forEach((b) => {
+          b.classList.toggle("active", b.dataset.member === member);
+        });
+        const cards =
+          member === "all"
+            ? KPI_CARDS
+            : KPI_CARDS.filter((c) => c.who === member);
+        const total = cards.length;
+        const feat = cards.filter((c) => c.type === "feat").length;
+        const fix = cards.filter((c) => c.type === "fix").length;
+        const ref = cards.filter((c) => c.type === "ref").length;
+        const test = cards.filter((c) => c.type === "test").length;
+
+        document.getElementById("mv-all").textContent = total;
+        document.getElementById("mv-feat").textContent = feat;
+        document.getElementById("mv-fix").textContent = fix;
+        document.getElementById("mv-ref").textContent = ref;
+        document.getElementById("mv-test").textContent = test;
+        document.getElementById("statsCount").textContent = total + " cards";
+
+        // Update per-dev counts
+        const devR = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Ronaldo",
+        ).length;
+        const devB = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Bruno",
+        ).length;
+        const devT = (member === "all" ? KPI_CARDS : cards).filter(
+          (c) => c.who === "Thielson",
+        ).length;
+        document.getElementById("mv-ronaldo").textContent = devR;
+        document.getElementById("mv-bruno").textContent = devB;
+        document.getElementById("mv-thielson").textContent = devT;
+
+        // Update period reading
+        const dist = document.getElementById("statsDistribution");
+        const rows = WORK_PROFILE[member.toLowerCase()] || WORK_PROFILE.all;
+        dist.innerHTML =
+          `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:var(--text3);font-size:12px">
+            <span>leitura do período</span>
+            <span>${member === "all" ? "time web" : member.toLowerCase()}</span>
+          </div>` +
+          rows
+            .map((r, i) => {
+              return `<div style="margin-bottom:${i < rows.length - 1 ? "12px" : "0"}">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+          <span style="width:8px;height:8px;border-radius:50%;background:${r.color};display:inline-block"></span>
+          <span style="color:${r.color};font-weight:600">${r.label}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.45;padding-left:16px">
+          ${r.text}
+        </div>
+      </div>`;
+            })
+            .join("");
+      }
+
+      // Render initial stats
+      filterStats("all");
+
+      function openKpiModal(kpi) {
+        let base =
+          statsMember === "all"
+            ? KPI_CARDS
+            : KPI_CARDS.filter((c) => c.who === statsMember);
+        const filtered =
+          kpi === "all" ? base : base.filter((c) => c.type === kpi);
+        document.getElementById("kpiTitle").textContent = KPI_LABELS[kpi];
+        const tbody = document.getElementById("kpiBody");
+        tbody.innerHTML = filtered
+          .map((c) => {
+            const num = c.id.replace("#", "").replace("b", "");
+            return `<tr>
+      <td><a href="https://dev.azure.com/ibsbiosistemico/AGROTRACE/_workitems/edit/${num}" target="_blank" style="color:var(--text);text-decoration:none;transition:color 0.15s" onmouseover="this.style.color='var(--purple)'" onmouseout="this.style.color='var(--text)'">${c.id}</a></td>
+      <td>${c.title}</td>
+      <td><span class="kpi-badge" style="background:${KPI_BG[c.type]};color:${KPI_COLORS[c.type]}">${KPI_NAMES[c.type]}</span></td>
+      <td>${c.who}</td>
+    </tr>`;
+          })
+          .join("");
+        document.getElementById("kpiOverlay").classList.add("open");
+      }
+
+      function closeKpiModal() {
+        document.getElementById("kpiOverlay").classList.remove("open");
+      }
+
+      document.querySelectorAll(".metric-click").forEach((el) => {
+        el.addEventListener("click", () => openKpiModal(el.dataset.kpi));
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (
+            document.getElementById("termOverlay").classList.contains("open")
+          ) {
+            closeTermDemo();
+            e.stopPropagation();
+            return;
+          }
+          if (document.getElementById("ssOverlay").classList.contains("open")) {
+            closeScreenshot();
+            e.stopPropagation();
+            return;
+          }
+          if (
+            document.getElementById("kpiOverlay").classList.contains("open")
+          ) {
+            closeKpiModal();
+            e.stopPropagation();
+          }
+        }
+      });
+
+      // ── Screenshot carousel ──
+      const RONALDO_IMPORTACAO_SHOTS = [
+        "assets/ronaldo-importacao/01-menu.png",
+        "assets/ronaldo-importacao/02-config-importacao.png",
+        "assets/ronaldo-importacao/03-config-campos.png",
+        "assets/ronaldo-importacao/04-config-parametros.png",
+        "assets/ronaldo-importacao/05-agro-menu.png",
+        "assets/ronaldo-importacao/06-agro-download-importacao.png",
+        "assets/ronaldo-importacao/07-agro-importado.png",
+      ];
+
+      const BRUNO_BETTER_AUTH_SHOTS = [
+        "assets/bruno-better-auth/01-mfa-choice.png",
+        "assets/bruno-better-auth/02-login-google-authenticator.png",
+        "assets/bruno-better-auth/03-cms-google-authenticator.png",
+        "assets/bruno-better-auth/04-user-totp-enabled.png",
+        "assets/bruno-better-auth/05-user-password-confirmation.png",
+        "assets/bruno-better-auth/06-totp-setup-qrcode.png",
+        "assets/bruno-better-auth/07-user-password-confirmed.png",
+        "assets/bruno-better-auth/08-cms-google-authenticator-alt.png",
+      ];
+
+      const THIELSON_REAPROVEITAMENTO_SHOTS = [
+        "assets/thielson-reaproveitamento/01-navegacao.png",
+        "assets/thielson-reaproveitamento/02-filtros.png",
+        "assets/thielson-reaproveitamento/03-acoes.png",
+        "assets/thielson-reaproveitamento/04-simulacao.png",
+        "assets/thielson-reaproveitamento/05-reaproveitamento.png",
+        "assets/thielson-reaproveitamento/06-config-questionario.png",
+        "assets/thielson-reaproveitamento/07-config-pergunta.png",
+        "assets/thielson-reaproveitamento/08-config-pergunta-importancia.png",
+      ];
+
+      let ssImages = [];
+      let ssIndex = 0;
+      let ssCardId = "";
+
+      function openScreenshotGallery(cardId, title, images) {
+        ssCardId = cardId;
+        ssImages = images.slice();
+        ssIndex = 0;
+        document.getElementById("ssCardId").textContent = "#" + cardId;
+        document.getElementById("ssTitle").textContent = title;
+        document.getElementById("ssOverlay").classList.add("open");
+        renderCarousel();
+      }
+
+      function openScreenshot(cardId, title) {
+        ssCardId = cardId;
+        ssImages = [];
+        ssIndex = 0;
+        document.getElementById("ssCardId").textContent = "#" + cardId;
+        document.getElementById("ssTitle").textContent = title;
+        const body = document.getElementById("ssBody");
+        body.innerHTML =
+          '<div class="ss-empty"><div class="ss-empty-icon">⏳</div>Carregando...</div>';
+        document.getElementById("ssOverlay").classList.add("open");
+
+        const single = new Image();
+        single.src = "assets/" + cardId + ".png";
+        single.onload = () => {
+          ssImages = [single.src];
+          probeNext(cardId, 2, () => renderCarousel());
+        };
+        single.onerror = () => {
+          const first = new Image();
+          first.src = "assets/" + cardId + "-1.png";
+          first.onload = () => {
+            ssImages = [first.src];
+            probeNext(cardId, 2, () => renderCarousel());
+          };
+          first.onerror = () => {
+            body.innerHTML =
+              '<div class="ss-empty"><div class="ss-empty-icon">📷</div>Screenshot ainda não adicionado<br><span style="font-size:12px;color:var(--text3)">Salve em assets/' +
+              cardId +
+              ".png ou assets/" +
+              cardId +
+              "-1.png, -2.png, ...</span></div>";
+          };
+        };
+      }
+
+      function probeNext(cardId, n, done) {
+        const img = new Image();
+        img.src = "assets/" + cardId + "-" + n + ".png";
+        img.onload = () => {
+          ssImages.push(img.src);
+          probeNext(cardId, n + 1, done);
+        };
+        img.onerror = done;
+      }
+
+      function renderCarousel() {
+        const body = document.getElementById("ssBody");
+        body.classList.remove("tall");
+        body.scrollTop = 0;
+        const img = document.createElement("img");
+        img.src = ssImages[ssIndex];
+        img.alt = "#" + ssCardId + " — imagem " + (ssIndex + 1);
+        const applyTallIfNeeded = () => {
+          if (img.naturalWidth && img.naturalHeight) {
+            if (img.naturalHeight / img.naturalWidth > 1.5) {
+              body.classList.add("tall");
+            }
+          }
+        };
+        img.addEventListener("load", applyTallIfNeeded);
+        if (img.complete) applyTallIfNeeded();
+        body.innerHTML = "";
+        body.appendChild(img);
+
+        body
+          .querySelectorAll(".ss-carousel-btn, .ss-counter")
+          .forEach((el) => el.remove());
+
+        if (ssImages.length > 1) {
+          const prev = document.createElement("button");
+          prev.className = "ss-carousel-btn prev";
+          prev.innerHTML = "‹";
+          prev.onclick = (e) => {
+            e.stopPropagation();
+            ssNav(-1);
+          };
+
+          const next = document.createElement("button");
+          next.className = "ss-carousel-btn next";
+          next.innerHTML = "›";
+          next.onclick = (e) => {
+            e.stopPropagation();
+            ssNav(1);
+          };
+
+          const counter = document.createElement("div");
+          counter.className = "ss-counter";
+          counter.innerHTML =
+            ssImages
+              .map(
+                (_, i) =>
+                  '<div class="ss-dot' +
+                  (i === ssIndex ? " active" : "") +
+                  '"></div>',
+              )
+              .join("") +
+            "<span>" +
+            (ssIndex + 1) +
+            " / " +
+            ssImages.length +
+            "</span>";
+
+          body.appendChild(prev);
+          body.appendChild(next);
+          body.appendChild(counter);
+        }
+      }
+
+      function ssNav(dir) {
+        ssIndex = (ssIndex + dir + ssImages.length) % ssImages.length;
+        renderCarousel();
+      }
+
+      function closeScreenshot() {
+        document.getElementById("ssOverlay").classList.remove("open");
+        ssImages = [];
+        ssIndex = 0;
+      }
+
+      const contentEl = document.querySelector(".content");
+      [
+        "slide-0",
+        "slide-1",
+        "slide-2",
+        "slide-5",
+        "slide-7",
+        "slide-3",
+        "slide-9",
+        "slide-10",
+      ].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && contentEl) contentEl.appendChild(el);
+      });
+
+      const slides = document.querySelectorAll(".slide");
+      const sidebarItems = document.querySelectorAll('[id^="si-"]');
+      const total = slides.length;
+      let cur = 0;
+
+      const labels = [
+        "README.md",
+        "runtime-budget.ts",
+        "work-profile.json",
+        "importacao-generica.service.ts",
+        "better-auth.guard.ts",
+        "reaproveitamento-respostas.sql",
+        "roadmap.todo",
+        "exit.ts",
+      ];
+
+      // Build tabs
+      const tabsBar = document.getElementById("tabsBar");
+      const icons = ["📋", "📅", "📊", "⚡", "🔐", "🔁", "🗺️", "👋"];
+      labels.forEach((l, i) => {
+        const t = document.createElement("div");
+        t.className = "tab-item" + (i === 0 ? " active" : "");
+        t.innerHTML = `<span class="tab-icon">${icons[i]}</span>${l}`;
+        t.onclick = () => goTo(i);
+        t.id = "tab-" + i;
+        tabsBar.appendChild(t);
+      });
+
+      // Build dots
+      const dotsEl = document.getElementById("navDots");
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement("div");
+        d.className = "nav-dot" + (i === 0 ? " active" : "");
+        d.onclick = () => goTo(i);
+        d.id = "dot-" + i;
+        dotsEl.appendChild(d);
+      }
+
+      function goTo(n) {
+        slides[cur].classList.remove("active");
+        document.getElementById("tab-" + cur)?.classList.remove("active");
+        document.getElementById("dot-" + cur)?.classList.remove("active");
+        document.getElementById("si-" + cur)?.classList.remove("active");
+
+        cur = (n + total) % total;
+
+        slides[cur].classList.add("active");
+        document.getElementById("tab-" + cur)?.classList.add("active");
+        document.getElementById("dot-" + cur)?.classList.add("active");
+        document.getElementById("si-" + cur)?.classList.add("active");
+
+        document.getElementById("slideCounter").textContent =
+          cur + 1 + " / " + total;
+        document.getElementById("statusFile").textContent = labels[cur];
+
+        const tab = document.getElementById("tab-" + cur);
+        if (tab)
+          tab.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+      }
+
+      function next() {
+        goTo(cur + 1);
+      }
+      function prev() {
+        goTo(cur - 1);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (document.getElementById("ssOverlay").classList.contains("open")) {
+          if (ssImages.length > 1) {
+            if (e.key === "ArrowRight") {
+              ssNav(1);
+              e.stopPropagation();
+              return;
+            }
+            if (e.key === "ArrowLeft") {
+              ssNav(-1);
+              e.stopPropagation();
+              return;
+            }
+          }
+          return;
+        }
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next();
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") prev();
+        if (e.key === "f" || e.key === "F") {
+          if (!document.fullscreenElement)
+            document.documentElement.requestFullscreen();
+          else document.exitFullscreen();
+        }
+        if (e.key === "t" || e.key === "T") toggleTimer();
+        if (e.key === "r" || e.key === "R") toggleRemote();
+      });
+
+      // ── Timer / Cronômetro ──
+      let timerInterval = null;
+      let timerStart = null;
+      let timerElapsed = 0;
+      let timerRunning = false;
+
+      function toggleTimer() {
+        if (!timerRunning) {
+          timerStart = Date.now() - timerElapsed;
+          timerInterval = setInterval(updateTimer, 1000);
+          timerRunning = true;
+          document.getElementById("timerIcon").textContent = "⏸";
+          document.getElementById("timerBtn").classList.add("running");
+          document.getElementById("timerBtn").title =
+            "Clique para pausar (ou pressione T)";
+        } else {
+          clearInterval(timerInterval);
+          timerElapsed = Date.now() - timerStart;
+          timerRunning = false;
+          document.getElementById("timerIcon").textContent = "▶";
+          document.getElementById("timerBtn").classList.remove("running");
+          document.getElementById("timerBtn").title =
+            "Clique para retomar (ou pressione T)";
+        }
+      }
+
+      function updateTimer() {
+        timerElapsed = Date.now() - timerStart;
+        const totalSec = Math.floor(timerElapsed / 1000);
+        const min = Math.floor(totalSec / 60);
+        const sec = totalSec % 60;
+        const display =
+          String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+        document.getElementById("timerDisplay").textContent = display;
+
+        const btn = document.getElementById("timerBtn");
+        btn.classList.remove("warning", "overtime");
+        if (min >= 50) {
+          btn.classList.add("overtime");
+        } else if (min >= 40) {
+          btn.classList.add("warning");
+        }
+      }
+
+      // ── WebSocket Remote Control (host/guest com delegação) ──
+      // Protocolo novo: cada cliente entra com role=host|guest e name.
+      // Somente quem tem `controlOwnerId` pode navegar/disparar ações.
+      // O host (4=Ronaldo) pode delegar controle com as teclas 4/5/6.
+      // Se o guest com controle cai, volta pro host automaticamente.
+
+      const urlParams = new URLSearchParams(location.search);
+      const myRole =
+        (urlParams.get("role") || "host").toLowerCase() === "guest"
+          ? "guest"
+          : "host";
+      const myName =
+        urlParams.get("name") || (myRole === "host" ? "Ronaldo" : "Guest");
+
+      // Mapeamento das teclas de delegação (sem modificador, só o número)
+      const HANDOFF_KEYS = {
+        4: "Ronaldo",
+        5: "Bruno",
+        6: "Thielson",
+      };
+
+      let remoteWs = null;
+      let remoteConnected = false;
+      let applyingFromRemote = false;
+      let myId = null;
+      let hostId = null;
+      let controlOwnerId = null;
+      let peers = [];
+
+      function iHaveControl() {
+        return myId != null && myId === controlOwnerId;
+      }
+      function iAmHost() {
+        return myId != null && myId === hostId;
+      }
+      function canActLocally() {
+        // Antes de o handshake chegar, deixa agir normalmente (sessão ainda não conhecida).
+        if (applyingFromRemote) return true;
+        if (!remoteConnected) return true;
+        if (controlOwnerId == null) return true;
+        return iHaveControl();
+      }
+
+      function toggleRemote() {
+        if (remoteConnected) disconnectRemote();
+        else connectRemote();
+      }
+
+      function connectRemote(url) {
+        if (!url) {
+          if (location.protocol === "file:") return;
+          const wsProto = location.protocol === "https:" ? "wss:" : "ws:";
+          url = `${wsProto}//${location.host}`;
+        }
+        try {
+          remoteWs = new WebSocket(url);
+        } catch {
+          updatePeersUI();
+          return;
+        }
+
+        remoteWs.onopen = () => {
+          remoteWs.send(
+            JSON.stringify({
+              type: "join",
+              role: myRole,
+              name: myName,
+              totalSlides: total,
+              currentSlide: cur,
+            }),
+          );
+          remoteConnected = true;
+          updatePeersUI();
+        };
+
+        remoteWs.onmessage = (e) => {
+          let msg;
+          try {
+            msg = JSON.parse(e.data);
+          } catch {
+            return;
+          }
+
+          if (msg.type === "session") {
+            if (typeof msg.myId === "number") myId = msg.myId;
+            hostId = msg.hostId;
+            controlOwnerId = msg.controlOwnerId;
+            peers = Array.isArray(msg.clients) ? msg.clients : [];
+            // Guests recém-conectados: sincroniza pro slide atual do host.
+            if (
+              myRole === "guest" &&
+              typeof msg.currentSlide === "number" &&
+              msg.currentSlide !== cur
+            ) {
+              applyingFromRemote = true;
+              try {
+                goTo(msg.currentSlide);
+              } finally {
+                applyingFromRemote = false;
+              }
+            }
+            updatePeersUI();
+            return;
+          }
+
+          if (msg.type === "slide-update") {
+            if (
+              typeof msg.currentSlide === "number" &&
+              msg.currentSlide !== cur
+            ) {
+              applyingFromRemote = true;
+              try {
+                goTo(msg.currentSlide);
+              } finally {
+                applyingFromRemote = false;
+              }
+            }
+            return;
+          }
+
+          if (msg.type === "navigate") {
+            applyingFromRemote = true;
+            try {
+              if (msg.action === "next") next();
+              else if (msg.action === "prev") prev();
+              else if (msg.action === "goto" && typeof msg.slide === "number")
+                goTo(msg.slide);
+            } finally {
+              applyingFromRemote = false;
+            }
+            return;
+          }
+
+          if (msg.type === "action") {
+            applyingFromRemote = true;
+            try {
+              handleRemoteAction(msg.action, msg.params || {});
+            } finally {
+              applyingFromRemote = false;
+            }
+            return;
+          }
+
+          if (msg.type === "error") {
+            flashPeersStatus(msg.error || "erro");
+            return;
+          }
+        };
+
+        remoteWs.onerror = () => {};
+
+        remoteWs.onclose = () => {
+          remoteConnected = false;
+          myId = null;
+          hostId = null;
+          controlOwnerId = null;
+          peers = [];
+          updatePeersUI();
+          setTimeout(() => {
+            if (!remoteConnected)
+              try {
+                connectRemote(url);
+              } catch (e) {}
+          }, 5000);
+        };
+      }
+
+      function disconnectRemote() {
+        if (remoteWs) {
+          remoteWs.close();
+          remoteWs = null;
+        }
+        remoteConnected = false;
+        myId = null;
+        hostId = null;
+        controlOwnerId = null;
+        peers = [];
+        updatePeersUI();
+      }
+
+      // Map of actions available per slide
+      // SLIDE_ACTIONS vazio: adicionar screenshots conforme entregas avancam
+      const SLIDE_ACTIONS = {};
+
+      function getSlideActions() {
+        return SLIDE_ACTIONS[cur] || [];
+      }
+
+      function handleRemoteAction(action, params) {
+        switch (action) {
+          case "openScreenshot":
+            openScreenshot(params.cardId, params.title);
+            break;
+          case "closeModals":
+            if (document.getElementById("ssOverlay").classList.contains("open"))
+              closeScreenshot();
+            if (
+              document.getElementById("kpiOverlay").classList.contains("open")
+            )
+              closeKpiModal();
+            break;
+          case "ssNav":
+            if (ssImages.length > 1) ssNav(params.dir);
+            break;
+          case "toggleTimer":
+            toggleTimer();
+            break;
+          case "openKpiModal":
+            openKpiModal(params.kpi || "all");
+            break;
+          case "closeKpiModal":
+            closeKpiModal();
+            break;
+          case "filterStats":
+            filterStats(params.member || "all");
+            break;
+        }
+      }
+
+      function emitSlideUpdate() {
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        if (applyingFromRemote) return;
+        if (!iHaveControl()) return;
+        remoteWs.send(
+          JSON.stringify({
+            type: "slide-update",
+            currentSlide: cur,
+            slideLabel: labels[cur] || "",
+            slideActions: getSlideActions(),
+          }),
+        );
+      }
+
+      function emitAction(action, params) {
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        if (applyingFromRemote) return;
+        if (!iHaveControl()) return;
+        remoteWs.send(
+          JSON.stringify({
+            type: "action",
+            action,
+            params: params || {},
+          }),
+        );
+      }
+
+      // ── Wrap das funções locais para aplicar regras de controle + broadcast ──
+      const _origGoTo = goTo;
+      goTo = function (n) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle — aguarde handoff");
+          return;
+        }
+        _origGoTo(n);
+        emitSlideUpdate();
+      };
+
+      const _origOpenScreenshot = openScreenshot;
+      openScreenshot = function (cardId, title) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle");
+          return;
+        }
+        _origOpenScreenshot(cardId, title);
+        emitAction("openScreenshot", { cardId, title });
+      };
+
+      const _origCloseScreenshot = closeScreenshot;
+      closeScreenshot = function () {
+        if (!canActLocally()) return;
+        _origCloseScreenshot();
+        emitAction("closeModals");
+      };
+
+      const _origSsNav = ssNav;
+      ssNav = function (dir) {
+        if (!canActLocally()) return;
+        _origSsNav(dir);
+        emitAction("ssNav", { dir });
+      };
+
+      const _origToggleTimer = toggleTimer;
+      toggleTimer = function () {
+        // Timer pode ser sincronizado, mas não bloqueia guest (cada um vê o seu próprio)
+        _origToggleTimer();
+        emitAction("toggleTimer");
+      };
+
+      const _origOpenKpiModal = openKpiModal;
+      openKpiModal = function (kpi) {
+        _origOpenKpiModal(kpi);
+        emitAction("openKpiModal", { kpi });
+      };
+
+      const _origCloseKpiModal = closeKpiModal;
+      closeKpiModal = function () {
+        _origCloseKpiModal();
+        emitAction("closeModals");
+      };
+
+      const _origFilterStats = filterStats;
+      filterStats = function (member) {
+        if (!canActLocally()) {
+          flashPeersStatus("sem controle");
+          return;
+        }
+        _origFilterStats(member);
+        emitAction("filterStats", { member });
+      };
+
+      // ── Teclas de delegação (apenas host): 4=Ronaldo, 5=Bruno, 6=Thielson ──
+      document.addEventListener("keydown", (e) => {
+        if (!iAmHost()) return;
+        if (document.getElementById("ssOverlay")?.classList.contains("open"))
+          return;
+        if (document.getElementById("kpiOverlay")?.classList.contains("open"))
+          return;
+        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
+        const targetName = HANDOFF_KEYS[e.key];
+        if (!targetName) return;
+        if (!remoteWs || remoteWs.readyState !== 1) return;
+        const target = peers.find(
+          (p) => p.name.toLowerCase() === targetName.toLowerCase(),
+        );
+        if (!target) {
+          flashPeersStatus(`${targetName} nao esta conectado`);
+          e.preventDefault();
+          return;
+        }
+        if (target.id === controlOwnerId) {
+          flashPeersStatus(`${targetName} ja esta no controle`);
+          e.preventDefault();
+          return;
+        }
+        remoteWs.send(
+          JSON.stringify({
+            type: "control-handoff",
+            targetId: target.id,
+            targetName,
+          }),
+        );
+        flashPeersStatus(`controle → ${targetName}`);
+        e.preventDefault();
+      });
+
+      // ── UI: barra de peers/controle ──
+      function updatePeersUI() {
+        let el = document.getElementById("peersBar");
+        if (!el) {
+          el = document.createElement("div");
+          el.id = "peersBar";
+          el.style.cssText =
+            "position:fixed;bottom:32px;right:16px;font-family:JetBrains Mono,monospace;font-size:0.7rem;padding:6px 12px;border-radius:6px;z-index:9999;background:rgba(30,30,30,0.92);border:1px solid #3e3e42;color:#cccccc;display:flex;gap:10px;align-items:center;cursor:pointer;transition:opacity 0.3s";
+          el.onclick = toggleRemote;
+          el.title = "Clique para reconectar (ou pressione R)";
+          document.body.appendChild(el);
+        }
+        if (!remoteConnected) {
+          el.innerHTML = `<span style="color:#f87171">● offline</span> <span style="opacity:0.6">${myRole}:${myName}</span>`;
+          return;
+        }
+        const parts = [];
+        parts.push(
+          `<span style="color:#34d399">●</span> <span style="opacity:0.6">você:</span> <span>${myName}</span>`,
+        );
+        if (peers.length) {
+          parts.push(`<span style="opacity:0.3">│</span>`);
+          const tags = peers
+            .map((p) => {
+              const isHost = p.id === hostId;
+              const hasControl = p.id === controlOwnerId;
+              const isMe = p.id === myId;
+              let color = "#9ca3af";
+              if (hasControl) color = "#fbbf24";
+              else if (isMe) color = "#60a5fa";
+              const prefix = isHost ? "★" : "";
+              const suffix = hasControl ? "◉" : "";
+              return `<span style="color:${color}">${prefix}${p.name}${suffix}</span>`;
+            })
+            .join(" ");
+          parts.push(tags);
+        }
+        if (iAmHost()) {
+          parts.push(
+            '<span style="opacity:0.3">│</span>',
+            '<span style="opacity:0.5">[4/5/6]</span>',
+          );
+        } else if (!iHaveControl()) {
+          parts.push(
+            '<span style="opacity:0.3">│</span>',
+            '<span style="opacity:0.5">modo view</span>',
+          );
+        }
+        el.innerHTML = parts.join(" ");
+        el.style.opacity = "1";
+      }
+
+      let _peersFlashTimer = null;
+      function flashPeersStatus(text) {
+        const el = document.getElementById("peersBar");
+        if (!el) return;
+        el.innerHTML = `<span style="color:#fbbf24">⚠ ${text}</span>`;
+        if (_peersFlashTimer) clearTimeout(_peersFlashTimer);
+        _peersFlashTimer = setTimeout(() => updatePeersUI(), 2000);
+      }
+
+      // Auto-connect on load
+      const initialSlideFromHash = Number(
+        (location.hash.match(/\d+/) || [])[0],
+      );
+      if (
+        Number.isInteger(initialSlideFromHash) &&
+        initialSlideFromHash >= 0 &&
+        initialSlideFromHash < total
+      ) {
+        _origGoTo(initialSlideFromHash);
+      }
+      updatePeersUI();
+      try {
+        connectRemote();
+      } catch (e) {}
+    </script>
+  </body>
+</html>
