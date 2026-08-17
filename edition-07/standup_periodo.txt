@@ -1,0 +1,854 @@
+================================================================================
+TECH SPOTLIGHT #07 — STANDUPS DO PERIODO
+Periodo: 27/07/2026 - 12/08/2026
+Apresentacao: 14/08/2026
+================================================================================
+
+Standup (27/07/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (27/07/2026)
+Start of week meeting
+Follow up web com Ricardo
+
+Agrotrace
+
+In Progress:
+➜ #12737 - Exportação e importação em Excel da estrutura completa do Formulário Dinâmico
+➜ (progresso feito) Configurações avançadas de perguntas
+➜ adicionada exportação e importação de unidades de medida específicas por pergunta
+➜ criada aba de consulta com as unidades cadastradas no banco para apoiar o preenchimento da planilha
+➜ ajustada a importação para validar unidades informadas e normalizar a exibição de todas as unidades conforme os vínculos válidos
+➜ (progresso feito) Validações avançadas da planilha
+➜ adicionada validação de domínios para gráfico, agregação e máscara
+➜ adicionadas regras condicionais por tipo de pergunta para gráfico, lista, resposta padrão, limites e anexos/imagens
+➜ ajustada leitura de valores brutos da planilha para bloquear limites numéricos inválidos e limpar campos não aplicáveis com aviso
+
+Com Bruno sobre pergunta referenciada e acesso ao banco de prod (leitura)
+Com Bruno e Ronaldo sobre conflitos de merge e problemas de build
+Com Ronaldo sobre problemas de visibilidade no mapas de croqui (apresentando solução e aguardando retorno), sobre dump do banco de produção e duvidas sobre os bloco repetível
+
+BRUNO
+Standup (27/07/2026)
+(Start of week meeting)
+(Spotlight Web com Ricardo)
+
+agrotrace-v3
+
+Done:
+➜ #12734 - Captcha no login/cadastro habilitável por certificadora
+➜ Captcha no login/cadastro
+➜ Implementado gate de captcha baseado na seleção da certificadora, com alterações em serviços, componentes UI e testes.
+➜ Corrigido carregamento de login após erros e listagem de API keys da certificadora sem sessão de coordenador.
+➜ Atualizado vitest para v4.1.10 e lockfile.
+➜ Two-Factor Reconciliation
+➜ Two-Factor Reconciliation
+➜ Revertido código que removia reconciliação automática de two‑factor.
+➜ Criado BetterAuthTwoFactorFlagReconciliationService, adicionada migração de limpeza de flags obsoletas e cobertura de testes.
+
+Com Thielson sobre pergunta referenciada e acesso ao banco de prod (leitura)
+Com Carlos sobre problemas com usuario da Thayse ao baixar dados no app
+Com Ronaldo resolvendo bug de rodar migration no agrotrace e bug de MFA em usuários específicos de prod
+
+
+
+================================================================================
+
+Standup (28/07/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+Standup (28/07/2026)
+Agrotrace
+
+Done:
+➜ #12960 - [FIX] Aplicar semântica visual ao comparativo do Painel Sanitário
+    ➜ Foi implementado um estado de carregamento (answersExportLoading) para gerenciar a exportação de respostas no CitrosDashboardComponent.
+    ➜ Prevenção de múltiplas requisições de exportação simultâneas.
+    ➜ Utilização do operador finalize para resetar o estado de carregamento após a conclusão da exportação.
+    ➜ Foi implementado um novo relatório do extrato individual do atendimento baixando inclusive os anexos
+
+Com Iohan, testando e validando alterações do Citros em DEV
+Com Thielson, sobre importação do form dinamico e alinhando atividades
+Com Web e Devops, sobre deploy quebrando em produção
+Com Bruno e Iohan sobre o fechamento da sprint
+
+THIELSON
+Standup (28/07/2026)
+Agrotrace
+
+Done:
+➜ #12737 - Exportação e importação em Excel da estrutura completa do Formulário Dinâmico
+➜ Ajustado o suporte a colunas dinâmicas de unidades de medida e layout da planilha
+➜ Reforçadas as validações por tipo de pergunta, incluindo máscara, separadores, validação, resposta padrão e limites de anexos
+➜ Melhorado o preview de importação com avisos detalhados, tipo da pergunta e modal de detalhes no CMS
+➜ Corrigida a importação entre certificadoras para reaproveitar referências por nome quando IDs de origem não pertencem ao destino
+
+➜ #12934 - Criar a função de clonar diagnóstico de um produtor para outro
+➜ Implementado o fluxo com seleção única de protocolo, safra, propriedade origem e propriedade destino
+➜ Ajustado o backend para replicar respostas de diagnóstico concluído usando a procedure de reaproveitamento
+
+Com Ronaldo duvidas sobre importação do form dinamico e alinhando atividades
+Web Iohab e lucas sobre deploy quebrando em produção
+
+BRUNO
+Standup (28/07/2026)
+
+agrotrace-v3
+
+Done:
+➜ #12734 - [FEAT] Captcha no login/cadastro habilitável por certificadora (better-auth)
+➜ Sistema de Autenticação e Login
+➜ Implementei a integração com Cloudflare Turnstile CAPTCHA no fluxo de login do CMS e adicionei suporte a mudanças de contexto autenticado.
+➜ Refatorei o fluxo de seleção de certificadora e implementei a lógica de nextStep para gerenciar a transição entre seleção de contexto e conclusão do login.
+➜ Substituí as notificações do PrimeNG pelo SweetAlert2 para alertas de expiração de sessão e removi as dependências legadas do AuthModule.
+➜ Implementei o SessionUnauthorizedNotifier e o AuthInterceptor para detecção e tratamento de erros 401, melhorando a limpeza de sessões obsoletas.
+➜ Atualizei a configuração de build Docker e pipelines para incluir a TURNSTILE_SECRET_KEY e atualizei a chave de site em produção.
+➜ Coordenação de Autenticação
+➜ Implementei a normalização de hostnames e priorizei request.hostname para maior precisão em ambientes com proxy.
+➜ Adicionei suporte a prefixos de caminho base de API e boundaries de aplicação na mesma origem, permitindo resolução dinâmica de caminhos de cookies e endpoints.
+➜ Implementei o fallback para a origem da requisição na resolução de plataforma e adicionei testes unitários para validação de contexto e tratamento de erros.
+
+Com Thielson, Iohan, Ronaldo e Lucas corrigindo erros no Agrotrace depois do deploy para produção
+Com Ronaldo e Iohan sobre o fechamento da sprint
+
+
+
+================================================================================
+
+Standup (29/07/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+Standup (29/07/2026)
+(Planing Web)
+
+Agrotrace
+
+Done:
+➜ #12965 - [REFACTOR] Otimizar processamento do Dashboard de Citros
+    ➜ Aprimoramento do Dashboard de Sanidade dos Citros com indicadores visuais de comparação (melhor/pior/neutro) em relação à referência geral.
+    ➜ Adição de estado de loading no botão de exportação.
+    ➜ Inclusão de filtro para excluir propriedades desativadas nas consultas de propriedades.
+    ➜ Implementação de indexação de fatos (FactIndexes) para otimização de consultas no serviço de Citros, reduzindo buscas repetidas e melhorando a performance em operações críticas (inspeção, evidências, matriz, prioridades).
+    ➜ Atualização da terminologia de "Média estadual" para "Referência geral" nos relatórios e templates.
+    ➜ Implementação de ordenação hierárquica de colunas dentro de blocos repetíveis na procedure getFormDinamicoResposta.
+    ➜ Correção do contexto de blocos repetíveis na exportação de respostas de formulários dinâmicos.
+
+Com Iohan, sobre validações no Citros e novas demandas
+Com Breuno e Thielson validando correções do Agrotrace e alinhando atividades
+Com Gustavo, sobre alterações no projeto IHD - Bezerro Sustentável
+
+THIELSON
+Standup (29/07/2026)
+(Planning Web)
+
+Agrotrace
+
+Done:
+➜ #12934 - Criar a função de clonar diagnóstico de um produtor para outro
+➜ Complementado o fluxo de replicação de respostas entre diagnósticos
+➜ Ajustada a procedure de reaproveitamento para tratar corretamente a propriedade de origem
+➜ Refinados os dialogs e formulários usados na seleção e execução da clonagem
+➜ Ajuste da procedure de ranking por pontuação
+➜ Corrigido o nome de coluna usado na procedure de ranking por pontuação
+➜ Criada migration para atualizar a procedure e manter o SQL de rollback correspondente
+➜ #12970 - Tradução socioambiental
+➜ Adicionadas labels de Pessoa e Produtor em inglês e espanhol no registro
+➜ Criada migration para inserir as novas traduções do cadastro
+
+Com Bruno e Ronaldo validando correções do Agrotrace e alinhando atividades
+
+BRUNO
+Standup (29/07/2026)
+(Planning Web)
+
+agrotrace-v3
+
+Done:
+➜ SSE Authentication Enhancements
+➜ Adicionado contexto de aplicação obrigatório ao guard de SSE, implementado validação baseada em sessão, atualizados serviços e controladores.
+➜ Lógica de política de MFA centralizada, remoção de verificações redundantes, adicionado validação de email contextual, correção de tratamento no servidor e suporte sem MFA do usuário, com cobertura de testes completa.
+➜ Infrastructure
+➜ Adicionado suporte para URL pública do Pectrace, atualizados esquemas de env, Dockerfile, configurações de pipeline e serviços relacionados.
+
+➜ #12970 - Incluir traduções nas telas de 2fa
+➜ Traduções 2FA
+➜ Implementado tema de email para fluxo passwordless, componentes de login localizados, incluídos arquivos de i18n (EN, ES, PT) e atualizados testes e templates.
+➜ Troca de certificadora
+➜ Frontend passou a solicitar token parcial à API, removida criptografia no cliente, limpeza de dados condicionada à confirmação da API e novos testes automatizados.
+➜ Login com MFA exigido pela certificadora
+➜ API passou a consultar política da certificadora, reconhecendo MFA contextual para Web, CMS e Mobile, com resolução de e-mail via servidor e testes de proteção.
+➜ Criada variável PASSWORDLESS_PECTRACE_PUBLIC_URL, aplicando o host nas origens autorizadas, Turnstile, ConfigMaps, Dockerfile e pipeline.
+
+EditalFit
+
+Done:
+➜ Opportunities
+➜ Criada fachada, repositório e serviço para expor identidades operacionais com suite de testes completa.
+➜ Documents – source role and contract enhancements
+➜ Documents
+➜ Papéis de origem corrigidos, serialização e persistência de associações definidos, contratos
+
+Com Thielson e Ronaldo validando correções do Agrotrace
+Com Carlos sobre possibilidade de ter um build do app mobile do Agrotrace para dev
+
+
+
+================================================================================
+
+Standup (30/07/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+Agrotrace
+
+In Progress:
+➜ #12973 - [REFACTOR] Otimizar carregamento do painel sanitário de citros
+    ➜ Implementação da stored procedure getFormDinamicoResposta para lidar com respostas de formulários dinâmicos com base em parâmetros de entrada.
+    ➜ Criação de índices nas tabelas form_resposta e form_volume_ton_minerva para otimizar o desempenho das consultas.
+    ➜ Alteração da procedure getFormDinamicoResposta existente para usar STRAIGHT_JOIN visando melhorar a ordem dos joins.
+    ➜ Adição de scripts de migração para a criação dos índices e alterações na procedure.
+
+➜ #12976 - [FEAT] Adicionar filtro por variedade no Dashboard de Citros
+    ➜ Implementação da funcionalidade para adicionar um filtro de variedade no dashboard de citros.
+
+Com Carlos, sobre inclusão de novo tipo de pergunta no FormDinâmico
+Com Iohan, sobre Respostas Padrão - CACAU - Cargill
+Com Bruno, sobre alinhamento de atividade de autocadastro do Agrotrace e dúvidas sobre novo tipo de pergunta geometrica do formulario dinâmico
+Com Thielson, sobre procedure getRankingPorPontuacao sobre procedures de procAtualizaRanking relacionado ao relatório de evolução de diagnóstico no AgroPlus, sobre problemas em no pipeline de Dev, sobre problemas relatório PEC no jasper e sobre planilha cargill
+
+THIELSON
+Standup (30/07/2026)
+Agrotrace
+
+Done:
+➜ #12412 - Melhorias no relatório de evolução
+➜ Ajustadas as procedures de ranking para considerar respostas pendentes de auditoria
+➜ Criadas migrations para atualização das procedures e manutenção dos SQLs de rollback
+➜ Melhorados os filtros dinâmicos para tratar correlações e dependências de campos
+➜ Relatório PEC - Extrato de atendimento
+➜ Adicionado o parâmetro de técnicos na configuração de exportação
+➜ Criada migration para cadastrar a exportação do relatório de extrato de atendimento
+➜ Ajustados os componentes de configuração e filtros para suportar o novo parâmetro
+➜ Ajuste no controller de PEC Animal pra corrigir problema de pipeline em dev
+
+Com Ronaldo sobre procedure getRankingPorPontuacao sobre procedures de procAtualizaRanking relacionado ao relatório de evolução de diagnóstico no AgroPlus, sobre problemas em no pipeline de Dev, sobre problemas relatório PEC no jasper e sobre planilha cargill
+Com Matheus sobre relatórios PEC no jasper e no front
+
+BRUNO
+Standup (30/07/2026)
+
+agrotrace-v3
+
+Done:
+➜ Incluir traduções nas telas de 2fa
+➜ Autenticação
+➜ Estabilização do ciclo de vida do desafio de captcha
+➜ Fortalecimento dos fluxos de MFA
+
+(In Progress):
+➜ #12986 - Novo tipo de pergunta: Geometria no formulário dinâmico
+
+➜ Recuperação de chunks Angular
+
+---
+
+EditalFit
+
+Done:
+➜ Composição do dashboard operacional
+➜ Dashboard
+➜ Criação da página inicial operacional
+➜ Definição de resultados operacionais
+➜ Exposição de sinais de fontes operacionais
+➜ Documentos
+➜ Sumarização de fontes de licitação
+➜ Ciclo de vida de fontes de dossiê
+➜ Redação de rótulos de fontes operacionais
+➜ Classificação de fontes reassociadas
+➜ Finalização de papéis de URL com segurança
+➜ Retenção de papéis de fonte de URL
+➜ Retenção de papéis de upload de fonte
+➜ Projetar prontidão institucional
+➜ Base de Conhecimento
+➜ Projeto de prontidão institucional
+
+Com Matheus sobre problema em MFA no usuario dele.
+Com Ronaldo sobre alinhamento de atividade de autocadastro do Agrotrace e dúvidas sobre novo tipo de pergunta geometrica do formulario dinâmico
+
+
+
+================================================================================
+
+Standup (31/07/2026)
+--------------------------------------------------------------------------------
+
+RONALDO
+Agrotrace
+
+Done:
+➜ #12996 - Foto do cadastro da propriedade não está ficando salva
+    ➜ Correções Implementadas:
+        ➜ Implementada correção na lógica de exibição de imagens da propriedade e localização.
+
+Com Matheus, sobre logs do JasperServer
+Com Thielson, sobre planilha cargill e alinhando atividades
+Com Bruno, sobre error no endpoint de backup do mobile
+
+THIELSON
+Standup (31/07/2026)
+Spotlight Design e Devops
+
+Agrotrace
+
+Done:
+➜ Relatório de Inconformidade Qualidade
+➜ Atualizado endpoint da exportação do relatório de inconformidade qualidade
+➜ Ajustado idioma inicial conforme configuração do navegador
+➜ Melhorado tratamento de campos de data/ano no formulário dinâmico
+➜ #12933 - Ajuste de marcador no mapa/croqui
+➜ Atualizada a cor do ícone marcador no mapa de propriedades
+➜ Adicionado novo asset visual para o marcador usado no croqui
+
+In Progress:
+➜ #12685 - Planilha de integração Cargill
+➜ (progresso feito) Relatório de resultados Cargill
+➜ iniciada geração do relatório de resultados por ranking
+➜ criados DTOs, service de relatório e endpoint na API
+➜ adicionadas migrations para procedure e configuração de exportação
+
+Com Matheus sobre relatórios PEC no jasper e no front
+Com Ronaldo sobre planilha cargill e alinhando atividades
+
+BRUNO
+Standup (31/07/2026)
+(Spotlight - Devops & Design)
+
+agrotrace-v3
+
+(In Progress):
+➜ #12986 - [FEAT] Novo tipo de pergunta: Geometria no formulário dinâmico
+➜ Implementação de Mapa e Geometria
+➜ Implementação de suporte a múltiplos tipos de geometria, incluindo renderização, edição e salvamento imediato.
+➜ Criação de componentes de mapa com suporte a OpenStreetMap, marcadores customizados e modos de desenho.
+➜ Otimização de performance com lazy loading, requestAnimationFrame e melhorias na responsividade.
+➜ Integração de Backend e Dados
+➜ Criação de tabelas, migrações e DTOs para persistência de dados espaciais (MySQL).
+➜ Implementação de transformadores de coordenadas (long/lat) e lógica de duplicação de respostas entre safras.
+➜ Validação e CMS
+➜ Configuração de tipos de pergunta no CMS e validação de respostas no formulário dinâmico.
+
+---
+
+EditalFit
+
+Done:
+➜ Gestão de Licitações e Documentos
+➜ Implementação de guardas de segurança para escrita de licitações e exigência de roles de origem para uploads e URLs.
+➜ Refatoração da composição de listas de licitações e classificação de fontes reassociadas.
+➜ Dashboard e Base de Conhecimento
+➜ Exposição de endpoints para prontidão da base de conhecimento e home operacional.
+➜ Composição de serviços para dossiês de licitação, resumos operacionais e entradas da base de conhecimento no dashboard.
+
+Com Ronaldo, Lucas e Elias sobre error no endpoint de backup do mobile
+Com Brenda sobre design da pagina de auto-cadastro do agrotrace
+
+
+
+================================================================================
+
+Standup (03/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (03/08/2026)
+Agrotrace
+
+Done:
+➜ Exportação KML de propriedades
+➜ Adicionada opção de agrupamento de camadas na exportação KML
+➜ Ajustado o fluxo do mapa e do diálogo de exportação para considerar a nova configuração
+➜ Atualizadas traduções relacionadas à exportação
+➜ Relatório de Inconformidade Qualidade e Relatorio Extrato Atendimento (PEC)
+➜ Adicionado suporte ao parâmetro booleanCheckbox na configuração de exportação
+➜ Criada migrations para criar parametros e ajustar o cadastro desses relatorios
+➜ #13022 - Correção de anexos e metadados em resposta auditada
+➜ Integrado serviço de atualização de Blob URL após localizar uma resposta
+➜ Ajustado carregamento de metadados e anexos vinculados à resposta auditada
+
+Com Bruno sobre analise de camadas de SICAR para implementação de download em diferentes arquivos e problemas relacionados à autenticação de anexos nas respostas
+Com Matheus sobre relatórios PEC
+Iohan sobre demandas Biodiesel Cacau e problemas com anexos no acompanhamento
+
+BRUNO
+Standup (03/08/2026)
+
+agrotrace-v3
+
+Done:
+➜ #13003 - [FIX] Tratar duplicidade no registro de dispositivo (usuario_id + imei) com upsert
+➜ Registro de Dispositivos
+➜ Implementada lógica robusta de createOrUpdate com retry (p-retry) para tratar condições de corrida e duplicidade de chaves.
+➜ Adicionada lógica de preservação de dados e reativação automática de dispositivos inativos.
+➜ Infraestrutura e Dependências
+➜ Atualizada versão do pnpm para 10.32.1 em todos os Dockerfiles e migrada configuração de workspace.
+➜ Atualizada dependência flatted para 3.4.3.
+➜ Autenticação SSE
+➜ Implementada autenticação baseada em sessão e contexto obrigatório (x-agrotrace-application-context) para requisições SSE e API.
+➜ Refatorados serviços de notificação e Sicar para propagação de contexto e habilitada autenticação via sessão para plataformas AGRO/CMS.
+
+EditalFit
+
+Done:
+➜ Documentação e Validação Mastra
+➜ Framework Mastra
+➜ Criada documentação completa do framework Mastra para desenvolvimento de agentes e workflows, incluindo guias de erro e registro de provedores.
+➜ Finalizada validação da fundação Mastra com atualização de estados e tarefas do PRD-00g.
+
+Com Elias sobre problemas para rodar o agrotrace localmente e validação de teste em correção de tarefa envolvendo error de duplicidade na tabela dispositivo
+Com Thielson sobre analise de camadas de SICAR para implementação de download em diferentes arquivos e problemas relacionados à autenticação de anexos nas respostas
+
+
+
+================================================================================
+
+Standup (04/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (04/08/2026)
+Agrotrace
+
+Done:
+➜ #13036 - Escore no diagnóstico pecuário
+➜ Adicionado campo de escore no diagnóstico pecuário
+➜ Criada migration e ajustado o backend para persistir o novo campo
+➜ Atualizados os formulários de diagnóstico e IATF para exibir e preencher o escore
+➜ #13016 - Atualização da agenda com filtros
+➜ Ajustado o componente de agenda para atualizar os eventos ao mudar a data visualizada
+➜ Refinado o recarregamento da listagem de eventos conforme a navegação no calendário
+➜ #12769 - Melhorias de filtro e exibição no diagnóstico cadastro
+➜ Ajustada a tela para filtrar pelos textos de perguntas e respostas exibidos ao usuário
+➜ Removida a coluna de opcional da listagem de perguntas do diagnóstico
+➜ Ajustada a largura do formulário de resposta para ocupar 100% do espaço disponível
+
+Com Matheus sobre relatorios PEC em produção e task de escore no diagnostico PEC
+
+BRUNO
+Standup (04/08/2026)
+
+agrotrace-v3
+
+Done:
+➜ #13011 - Novo questionário DG abrindo um existente
+➜ Refatoração de Questionário
+➜ Aplicada formatação consistente em imports RxJS e métodos complexos.
+➜ Escopado o serviço de cadastro de formulário ao componente e adicionado PermissaoGuard à rota.
+
+(In Progress):
+➜ #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+➜ Configuração de Workspace
+➜ Isolamento de dependências por aplicação via manifestos de pacote.
+➜ Atualização de configurações Nx e Docker, com desativação de prebunding Angular para node_modules isolados.
+➜ Foram baixados os assets de imagens, fontes e vídeos relacionados às páginas a serem construídas.
+
+---
+
+Com Thielson sobre PRs do Azure Devops e dependencia de browser no Agrotrace
+Com Elias validando correção de gravamento de dispositivo na api.
+
+
+
+================================================================================
+
+Standup (05/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (05/08/2026)
+Agrotrace
+
+In Progress:
+➜ (stand by) #12330 - Indicadores de acompanhamento
+➜ (progresso feito) Ajustes no Painel da Propriedade. Adicionado melhoria do ranking com o acompanhamento
+➜ #12685 - Planilha de integração Cargill
+➜ (progresso feito) Ajutes para incluir novos campos mapeados da aba 'Perfil \_Status'
+➜ atualizado o DTO de resposta e o serviço do relatório para melhorar o tratamento dos dados
+➜ ajustada a procedure getRelResultadoCargill para refletir a nova estrutura de retorno
+➜ atualizadas as migrations relacionadas à procedure e à exportação
+➜ Incluindo restantes das abas ja mapeadas da planilha
+
+Com Iohan sobre atualização de indicadores de acompanhamento (ficou em stand by). Retorno dos campos mapeados da planilha cargil. Filtro de grupo no form dinamico
+
+
+
+================================================================================
+
+Standup (06/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (06/08/2026)
+Agrotrace
+
+In Progress:
+➜ #12685 - Planilha de integração Cargill
+➜ (progresso feito) Continuação da planilha de integração Cargill
+➜ adicionados mapeamentos das abas Laudo Produtivo, MON/HRDD e Treinamento
+➜ ajustada a procedure para retornar respostas e dados brutos necessários para a montagem da planilha
+➜ criados helpers e contexto de respostas para melhorar o tratamento dos dados exportados
+➜ otimizada a procedure para melhorar o processo de agregação dos resultados
+➜ (em andamento) Validação da planilha e de campos que ainda ficaram em duvidas
+
+Iohan sobre Demandas relatório Biodiesel cacau (Planilha de integração Cargill)
+Com Elias sobre melhorias no form dinâmico do aplicativo.
+
+BRUNO
+[WEB] Standup 06-08-2026:
+
+Agrotrace
+
+[Bruno] Done
+
+Landing Page & Seções
+
+➜ Implementou testimonials-section com animação de scroll-reveal e atualizou estilos de report-section e workflow-step.
+➜ Criou reviews-rating-section, closing-cta-section, Community e Signup CTA.
+➜ Adicionou faq-accordion com ícone customizado e integrou a seção FAQ.
+➜ Implementou time-savings-section, report-section e o ícone PageFacingUpIcon.
+
+Componentes & Estrutura
+
+➜ Implementou componente base default-layout e atualizou páginas de índice e registro para utilizá-lo.
+➜ Criou Accordion UI reutilizável com animações e exportações.
+➜ Criou FeatureCallout, FieldAppSection e refatorou PlatformSection para usar o novo componente.
+➜ Implementou platform-section com ícones reutilizáveis.
+➜ Extraiu PrimaryCta.
+
+Footer & Identidade
+
+➜ Desenvolveu componentes de footer com social icons e navegação.
+➜ Atualizou variáveis CSS globais e instalou simple-icons-astro.
+
+Animações & Header
+
+➜ Reescreveu animação de scroll-reveal e refinou a transição do header flutuante.
+➜ Corrigiu preservação da transição de entrada e retorno suave do header.
+
+Assets Cleanup
+
+➜ Removeu imagens e assets não utilizados, limpando o diretório público.
+[WEB] Standup 06-08-2026 — continuação
+
+Agrotrace
+
+[Bruno] In Progress #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+
+Onboarding Flow
+
+➜ Estruturação da página de registro usando default-layout.
+➜ Criação de formulário de autocadastro.
+➜ Integração com backend.
+
+[Thielson] In Progress #12685 - Planilha de integração Cargill
+
+Progresso feito
+
+➜ Continuação da planilha de integração Cargill.
+
+➜ adicionados mapeamentos das abas Laudo Produtivo, MON/HRDD e Treinamento
+➜ ajustada a procedure para retornar respostas e dados brutos necessários para a montagem da planilha
+➜ criados helpers e contexto de respostas para melhorar o tratamento dos dados exportados
+➜ otimizada a procedure para melhorar o processo de agregação dos resultados
+
+Em andamento
+
+➜ Validação da planilha e de campos que ainda ficaram em duvidas.
+
+[Bruno] Com Brenda sobre detalhes de textos da sessão de FAQ da landing page Agrotrace
+[Thielson] Iohan sobre Demandas relatório Biodiesel cacau (Planilha de integração Cargill)
+[Thielson] Com Elias sobre melhorias no form dinâmico do aplicativo.
+
+
+
+================================================================================
+
+Standup (07/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (07/08/2026)
+Spotlight Mobile
+
+Agrotrace, Checkmilk e Biodiesel
+Done:
+➜ View de atendimentos
+➜ Adicionado visualização de dados dos atendimento no Agrotrace, Checkmilk e Biodiesel
+
+Agrotrace
+In Progress:
+➜ #12685 - Planilha de integração Cargill
+➜ (progresso feito) Validação e correções da planilha de integração Cargill
+➜ ajustado o contexto de respostas e o processo de geração do relatório para melhorar o tratamento dos dados e corrigir erro na geração da planilha
+➜ revisados campos das abas Perfil Status, Laudo Produtivo e Mon. HRDD (alterado contexto de algumas abas, adicionado colunas, adicionado filtros, ajustado formatações)
+➜ (em andamento) Pendências restantes da validação
+➜ Perfil Status: validar campos de status final, motivo macro e motivo micro
+➜ Laudo Produtivo: validar o campo ESPAÇAMENTO UTILIZADO NO CACAU
+
+Iohan sobre Views de atendimentos Biodiesel e sobre planilha cargill
+Bruno e Ricardo sobre soluções para banimento whatsapp e telas de auto cadastro Agronomo
+
+BRUNO
+[WEB] Standup 07-08-2026:
+
+Spotlight - Mobile
+
+Agrotrace
+
+[Bruno] In Progress #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+
+Landing Page e UI
+➜ Implementação de carrosséis (embla-carousel) para depoimentos e fluxos, botão scroll-to-top e refinamentos responsivos.
+➜ Criação da página de registro com formulário multi-etapas (tanstack/react-form + zod), componente de stepper e integração de assets.
+➜ Atualização de rotas e estilos semânticos via Tailwind CSS.
+➜ Refinamento do conteúdo do FAQ para melhor conversão.
+
+Fluxo de Registro e Autenticação
+➜ Implementação do módulo de cadastro com persistência transacional, criação automática de certificadora e emissão de eventos (EventEmitter2).
+➜ Migração do módulo de cadastro para dentro do AuthModule e refatoração da estrutura de camadas.
+➜ Configuração de adapter Node.js para servidor standalone e ajustes de variáveis de ambiente.
+
+Infraestrutura e Migrações
+➜ Criação de utilitário para resolução de root do workspace e ajuste de caminhos para migrações TypeORM.
+Agrotrace, Checkmilk e Biodiesel
+
+[Thielson] Done
+
+View de atendimentos
+➜ Adicionado visualização de dados dos atendimento no Agrotrace, Checkmilk e Biodiesel.
+
+Agrotrace
+
+[Thielson] In Progress #12685 - Planilha de integração Cargill
+
+Progresso feito
+➜ Validação e correções da planilha de integração Cargill.
+➜ ajustado o contexto de respostas e o processo de geração do relatório para melhorar o tratamento dos dados e corrigir erro na geração da planilha
+➜ revisados campos das abas Perfil Status, Laudo Produtivo e Mon. HRDD (alterado contexto de algumas abas, adicionado colunas, adicionado filtros, ajustado formatações)
+
+Em andamento
+➜ Pendências restantes da validação:
+➜ Perfil Status: validar campos de status final, motivo macro e motivo micro
+➜ Laudo Produtivo: validar o campo ESPAÇAMENTO UTILIZADO NO CACAU
+
+[Bruno] Com Ricardo e Thielson sobre EditalFit e problemas do WhasApp do Agrotrace
+[Bruno] Com Ricardo e Iohan sobre dúvidas relacionadas ao fluxo de cadastro de agrônomos
+[Bruno] Com Brenda sobre layout mobile da landing page e informações do formulario de cadastro dos agrônomos
+[Thielson] Iohan sobre Views de atendimentos Biodiesel e sobre planilha cargill
+[Thielson] Bruno e Ricardo sobre soluções para banimento whatsapp e telas de auto cadastro Agronomo
+
+
+
+================================================================================
+
+Standup (10/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (10/08/2026)
+Agrotrace
+
+Done:
+➜ #12685 - Planilha de integração Cargill
+➜ Ajustados os campos de Status Final, Motivo Macro e Motivo Micro na aba Perfil Status
+➜ Ajustado o campo ESPAÇAMENTO UTILIZADO NO CACAU na aba Laudo Produtivo
+➜ #13076 - Correção da importação produtor-propriedade por filial
+➜ Melhorada a importação de filial
+➜ Adicionado o campo gênero no processo de importação de produtor-propriedade
+➜ #13075 - Data de agendamento na planilha de sucesso
+➜ Ajustada a procedure getAnaliseDiagnosticosIbs para considerar a data de agendamento
+➜ Envio de notificações WhatsApp
+➜ Adicionado atraso aleatório antes do envio de notificações por WhatsApp
+
+Com Bruno e Iohan sobre conflitos no fechamento da sprint
+Com Luciano sobre alterações na planilha de importação de produtor-propriedade
+Com Iohan sobre pendencias da planilha cargill
+
+BRUNO
+[WEB] Standup 10-08-2026:
+
+Start of week meeting
+
+Agrotrace
+
+[Bruno] In Progress #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+
+Agendamento de Demos
+
+Implementação do módulo, controller e service de agendamento, incluindo migration para a tabela "demo_agendamentos" e triggers de auditoria.,
+Criação do "DemoModal" e componente "DatePickerTime" para seleção de horários, com restrição de disponibilidade para horário comercial.,
+
+Sistema de E-mail e Onboarding
+
+Refatoração do "CadastroService" para injeção direta do "CadastroBoasVindasEmailService", garantindo execução após commit de transação.,
+Implementação de serviços de e-mail para boas-vindas e confirmação de agendamento com templates Handlebars e integração de QR code.,
+
+Interface e Responsividade
+
+Melhorias de responsividade mobile em todo o fluxo de cadastro e landing page, ajustando grids, flex layouts e espaçamentos.,
+Adição de animação de bounce no botão de scroll-to-top e refatoração de componentes de UI para melhor consistência visual.,
+
+EditalFit
+
+[Bruno] Done
+
+Implementação de Observabilidade e Autenticação
+
+Integração do evlog AI e Better Auth para monitoramento, incluindo atualização de esquemas de banco de dados via migration e configuração de clientes de autenticação.,
+[WEB] Standup 10-08-2026 — continuação
+
+Agrotrace
+
+[Thielson] Done
+
+#12685 - Planilha de integração Cargill
+
+Ajustados os campos de Status Final, Motivo Macro e Motivo Micro na aba Perfil Status.,
+Ajustado o campo ESPAÇAMENTO UTILIZADO NO CACAU na aba Laudo Produtivo.,
+
+#13076 - Correção da importação produtor-propriedade por filial
+
+Melhorada a importação de filial.,
+Adicionado o campo gênero no processo de importação de produtor-propriedade.,
+
+#13075 - Data de agendamento na planilha de sucesso
+
+Ajustada a procedure "getAnaliseDiagnosticosIbs" para considerar a data de agendamento.,
+
+Envio de notificações WhatsApp
+
+Adicionado atraso aleatório antes do envio de notificações por WhatsApp.,
+
+[Thielson] Com Bruno e Iohan sobre conflitos no fechamento da sprint
+
+[Thielson] Com Luciano sobre alterações na planilha de importação de produtor-propriedade
+[Thielson] Com Iohan sobre pendencias da planilha cargill
+[Bruno] Com Brenda sobre IA de criação de conteudo e video para o site do agrotrace [Bruno] Com Thielson sobre implementação de delay para o envio de mensagens de whatsapp no agrotrace
+[Bruno] Com Thielson e Iohan sobre resolução de conflitos para o fechamento da sprint 107
+
+
+
+================================================================================
+
+Standup (11/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (11/08/2026)
+Agrotrace
+
+Done:
+➜ #13090 - Correção da importação de produtor-propriedade
+➜ Ajustada a importação de produtor-propriedade para tratar campos ausentes
+➜ Adicionada rotina para inserir CAR da propriedade durante a importação
+➜ #13045 - Relacionamento de formulário com grupo e filial
+➜ Adicionado relacionamento entre formulário da safra e filial
+➜ Ajustada a estrutura do formulário para trabalhar com os novos campos de grupo e filial
+
+In Progress:
+➜ #13042 - FORMULÁRIO - RESPOSTAS DE ATENDIMENTO API
+➜ Investigando origem de duas respostas que ficaram duplicadas no formulario
+
+Devops sobre problemas na importação de produtor propriedade
+Luciano e Thayse sobre alterações na planilha de importação de produtor propriedade
+Thayse tirando duvidas sobre a task 13042
+
+BRUNO
+[WEB] Standup 11-08-2026:
+
+Agrotrace
+
+[Bruno] Done - #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+
+➜ Landing Page Agrotrace
+➜ Implementado módulo admin para gerenciamento dos cadastros e solicitações de agendamentos
+➜ Integração com Google Calendar e CMS para visualização de registros e gerenciamento de ciclo de vida de demonstrações.
+➜ Adicionado controle de áudio ao player de vídeo da landing page.
+➜ Atualizado branding e assets para emails de boas-vindas e demonstrações.
+
+[Bruno] In Progress - #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+➜ Realizar a autorização das permissões para criação de links do Google Meet através da conta de serviço do Google usada pelo Agrotrace.
+
+[Thielson] Done
+
+#13090 - Correção da importação de produtor-propriedade
+➜ Ajustada a importação de produtor-propriedade para tratar campos ausentes.
+➜ Adicionada rotina para inserir CAR da propriedade durante a importação.
+
+#13045 - Relacionamento de formulário com grupo e filial
+➜ Adicionado relacionamento entre formulário da safra e filial.
+➜ Ajustada a estrutura do formulário para trabalhar com os novos campos de grupo e filial.
+
+[Thielson] In Progress #13042 - FORMULÁRIO - RESPOSTAS DE ATENDIMENTO API
+➜ Investigando origem de duas respostas que ficaram duplicadas no formulario.
+
+[Bruno] Com Brenda sobre atualização do video de apresentação do site do Agrotrace
+[Bruno] Com Lucas sobre deploy do EditalFit e pipeline de build ao abrir novos pull requests
+[Bruno] Com Gustavo sobre upload de video de apresentação do site do Agrotrace para o Azure Storage
+[Thielson] Devops sobre problemas na importação de produtor propriedade
+[Thielson] Luciano e Thayse sobre alterações na planilha de importação de produtor propriedade
+[Thielson] Thayse tirando duvidas sobre a task 13042
+
+
+
+================================================================================
+
+Standup (12/08/2026)
+--------------------------------------------------------------------------------
+
+THIELSON
+Standup (12/08/2026)
+Agrotrace
+
+Done:
+➜ #13042 - Relatório de respostas do atendimento formulário dinamico
+➜ Ajustada a busca de respostas do formulário dinâmico para tratar respostas únicas
+➜ Removido coluna 'validado', exibindo apenas para o minerva
+➜ Ajustado endpoint de form resposta para retornar erro ao tentar criar resposta ja existente
+
+Com Elias para ajuda em debugando aplicativo para encontrar pontos de falha no formulário dinâmico.
+Com Iohan sobre Relatório de respostas do atendimento formulário dinamico, e problemas com perguntas de latitude e longitude no form dinamico
+
+BRUNO
+[WEB] Standup 12-08-2026:
+Planning Web
+
+Agrotrace
+
+[Bruno] In Progress #12983 - [FEAT] Onboarding do agrônomo via landing page de autocadastro no Agrotrace
+
+Configuração de Agendamento
+➜ Implementação do módulo de configuração para agendamento de demos, incluindo controle de integração com Google Meet e janelas de disponibilidade.
+➜ Criação da migration 68416-createAgrotraceAgendamentoConfiguracao.ts e novos componentes de UI para gestão de configurações.
+➜ Ajustes no serviço de demonstração para respeitar as novas configurações e preservação de proprietários de calendário.
+
+Comunicação e Notificações
+➜ Implementação de geradores de links para WhatsApp e e-mail com mensagens padronizadas.
+➜ Adição de botões de contato no dashboard e na dialog de detalhes do Agrotrace.
+➜ Criação do método de rejeição no DemoAgendamentoEmailService, incluindo template de e-mail e lógica de disparo via AgrotraceAdminService.
+
+[Thielson] Done #13042 - Relatório de respostas do atendimento formulário dinamico
+
+➜ Ajustada a busca de respostas do formulário dinâmico para tratar respostas únicas.
+➜ Removido coluna 'validado', exibindo apenas para o minerva.
+➜ Ajustado endpoint de form resposta para retornar erro ao tentar criar resposta ja existente.
+
+[Bruno] Com Lucas sobre deploy e configurações da landing page do Agrotrace
+[Thielson] Com Elias para ajuda em debugando aplicativo para encontrar pontos de falha no formulário dinâmico.
+[Thielson] Com Iohan sobre Relatório de respostas do atendimento formulário dinamico, e problemas com perguntas de latitude e longitude no form dinamico
+
+
+
+================================================================================
