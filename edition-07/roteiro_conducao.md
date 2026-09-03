@@ -6,21 +6,21 @@ Time: Ronaldo, Bruno e Thielson
 
 ## Tese
 
-**Do dado disperso ao fluxo operável.** A edição mostra quatro movimentos concretos e
-um aprendizado estrutural: o painel de Citros ganha velocidade, respostas ganham
-geometria, uma planilha ganha pipeline, um onboarding ganha caminho e o monorepo ganha
-autonomia por aplicação.
+**Do dado disperso ao fluxo operável.** A edição mostra movimentos concretos sem
+forçar temas diferentes em uma única história: o painel de Citros ganha velocidade,
+respostas ganham geometria, a planilha Cargill ganha pipeline, clonagem, KML e vínculo
+de formulário ganham sessões próprias, e o monorepo ganha autonomia por aplicação.
 
 ## Timebox — 30 minutos
 
 | Tempo | Slide | Dono |
 |---|---|---|
 | 0:00–3:00 | README + runtime + cards-balance | Ronaldo |
-| 3:00–9:00 | Performance do Citros | Ronaldo |
-| 9:00–14:00 | Geometria no formulário | Bruno |
-| 14:00–21:00 | Thielson: Cargill, diagnósticos, mapas e integridade | Thielson |
-| 18:00–22:00 | Onboarding do agrônomo | Bruno |
-| 22:00–26:00 | Lightning: monorepo independente | Ronaldo/time |
+| 3:00–8:00 | Performance do Citros | Ronaldo |
+| 8:00–12:00 | Geometria no formulário | Bruno |
+| 12:00–20:00 | Thielson: Cargill, clonagem, KML, grupo/filial e overview | Thielson |
+| 20:00–23:00 | Onboarding do agrônomo | Bruno |
+| 23:00–26:00 | Lightning: monorepo independente | Ronaldo/time |
 | 26:00–27:00 | Engineering Wins | Ronaldo/time |
 | 27:00–29:00 | Próximos passos | Ronaldo/time |
 | 29:00–30:00 | Encerramento + perguntas | Ronaldo |
@@ -40,8 +40,8 @@ a contagem por responsável.
 
 Ronaldo agora tem quatro mensagens no período, cobrindo cinco cards: #12960, #12965,
 #12973, #12976 e #12996. A história escolhida é a otimização do Citros; os demais
-entram como contexto. Thielson foi separado em quatro páginas consecutivas para
-mostrar a amplitude do trabalho sem comprimir temas diferentes em um único slide.
+entram como contexto. Na minha parte, os temas ficam separados em sessões menores:
+algumas com um único tema e uma página final de overview para o restante do período.
 
 ## Spotlight — Performance do Dashboard de Citros (Ronaldo, 6 min)
 
@@ -70,9 +70,9 @@ entre safras, lazy loading e `requestAnimationFrame`.
 **Resultado honesto:** nova capacidade de resposta espacial em construção; o card ainda
 está em progresso. Mostrar o fluxo técnico do slide e não anunciar como entrega final.
 
-## Spotlight — Thielson em quatro páginas (7 min)
+## Spotlight — sessões menores do Thielson (8 min)
 
-### 14:00–17:00 — `cargill.pipeline.sql`
+### 12:00–15:00 — `cargill.pipeline.sql`
 
 **Problema:** a planilha Cargill precisava reunir abas diferentes sem perder regras,
 contexto ou rastreabilidade.
@@ -84,28 +84,49 @@ campos Status Final, Motivo Macro/Micro e espaçamento do cacau.
 **Resultado:** quatro abas passaram a compartilhar uma mesma regra de exportação,
 com dados brutos e respostas tratados no mesmo contexto.
 
-### 17:00–19:00 — `diagnosticos-relatorios.sql`
+### 15:00–17:00 — `clonar-diagnostico.sql`
 
-Clonagem de diagnóstico por protocolo, safra e propriedades de origem/destino;
-correções de ranking por pontuação; filtros para respostas pendentes de auditoria;
-e novo escore persistido no diagnóstico pecuário e nos formulários IATF.
+Abrir pelo cenário: existe um diagnóstico pronto e ele precisa ser reaproveitado para
+outro produtor sem reconstruir respostas manualmente.
 
-**Mensagem:** a regra de negócio foi centralizada em procedures e reaproveitada por
-clonagem, ranking, evolução e diagnóstico.
+**Problema:** copiar um diagnóstico entre produtores exigia preservar protocolo,
+safra, propriedade de origem, propriedade de destino e respostas sem refazer tudo
+manualmente.
 
-### 19:00–20:00 — `mapas-exportacoes.ts`
+**Mensagem:** a clonagem vira uma operação controlada de backend. Não misturar com
+ranking, evolução ou escore neste slide; esses itens entram no overview.
 
-Mostrar o agrupamento de camadas na exportação KML, os parâmetros dos relatórios PEC,
-o marcador atualizado do croqui e o carregamento conjunto de Blob URL, metadados e
-anexos de respostas auditadas.
+### 17:00–18:00 — `kml-exportacao.ts`
 
-### 20:00–21:00 — `integridade-dados.api.ts`
+Mostrar somente a exportação KML de propriedades: agrupamento de camadas, ajuste no
+fluxo do mapa e do diálogo de exportação, e traduções relacionadas.
 
-Fechar com as bordas de entrada: importação de filial, gênero e CAR; relação de
-formulário com grupo/filial; e endpoint que rejeita respostas duplicadas.
+**Mensagem:** mapa/exportação deixa de ser uma aba ampla. Aqui o ponto é a saída KML
+mais legível.
 
-**Resultado:** validar, relacionar e rejeitar duplicatas antes que o dado contamine
-relatórios, telas ou integrações.
+### 18:00–19:00 — `formulario-grupo-filial.ts`
+
+Abrir pelo cenário: o formulário precisa nascer vinculado ao grupo e à filial corretos
+para controlar onde aquela estrutura de safra pode ser usada.
+
+**Problema:** a configuração do formulário precisava explicitar grupo e filial para
+evitar uso fora do contexto correto da safra.
+
+**Mensagem:** este recorte fica separado da antiga aba agregada. O slide deve falar de
+vínculo de formulário, grupo, filial e safra; o número do card fica só como referência.
+
+### 19:00–20:00 — `overview-thielson.md`
+
+Passar pelo restante em panorama, sem criar um tema agregado:
+
+- Form Dinâmico e Questionário: #12737 finalizado exportação/importação em Excel;
+  #12769 filtro de resposta no questionário; #13042 melhorada lógica de relatório de
+  respostas do atendimento;
+- Operação e suporte: #12933, #13016, #13022, #13075 coluna da Planilha de Sucesso
+  IBS, #13084, #13090.
+
+**Mensagem:** estes itens ajudam a explicar o volume do período, mas não precisam virar
+uma história única.
 
 ## Spotlight — Onboarding do agrônomo (Bruno, 5 min)
 
@@ -137,9 +158,9 @@ aplicações que compartilham código com autonomia.”
 
 ## Wins e roadmap
 
-Wins: Ronaldo deixou o Citros mais acionável; Thielson tornou a plataforma mais
-portátil entre Excel, Cargill, diagnósticos, mapas e relatórios; Bruno e Thielson
-fortaleceram as bordas de autenticação, geometria, anexos e unicidade.
+Wins: Ronaldo deixou o Citros mais acionável; Cargill, clonagem de diagnóstico, KML e
+vínculo de formulários ficaram mais operáveis; Bruno fortaleceu autenticação,
+geometria e onboarding.
 
 Reconhecer também a colaboração: validações em DEV/QA, conflitos de merge, deploy,
 Jasper, DevOps, Mobile, Checkmilk e Biodiesel apareceram como trabalho compartilhado.
