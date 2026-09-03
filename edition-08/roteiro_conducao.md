@@ -19,8 +19,9 @@ próximo passo.
 | 8:00–12:00 | Solo & Nutrição | Ronaldo |
 | 12:00–16:00 | Pergunta Talhão | Bruno |
 | 16:00–19:00 | Auditoria de autenticação | Bruno |
-| 19:00–21:00 | Lightning: escopos reutilizáveis | Bruno |
-| 21:00–24:00 | Integridade de relatórios | Thielson |
+| 19:00–20:00 | Lightning: escopos reutilizáveis | Bruno |
+| 20:00–22:00 | Lightning: readme-first e funcionalidades core | Time Web |
+| 22:00–24:00 | Integridade de relatórios | Thielson |
 | 24:00–26:00 | PEC, protocolo e identificadores | Thielson |
 | 26:00–28:00 | Contexto para análise IA | Thielson |
 | 28:00–30:00 | Engineering Wins + próximos passos + perguntas | Ronaldo/time |
@@ -104,7 +105,7 @@ de plataforma, além de painel CMS e templates Angular atualizados.
 **Resultado honesto:** #12735 continua `New` e em andamento. O foco é a decisão de
 observabilidade, não uma entrega encerrada.
 
-## Lightning — Escopos reutilizáveis (Bruno, 2 min)
+## Lightning — Escopos reutilizáveis (Bruno, 1 min)
 
 Uma regra de certificadora não deve ser copiada em cada métrica e exportação. O
 trabalho criou catálogo e pivot por migration, predicados normalizados, endpoints/DTOs,
@@ -125,7 +126,27 @@ Fala: “Se é regra de negócio, ganha nome, contrato e teste. O mesmo escopo p
 à métrica, à exportação e à tela de configuração.” O tema vem do standup e não possui
 um ID explícito no recorte; não somar um card novo.
 
-## Spotlight — Integridade dos relatórios (Thielson, 3 min)
+## Lightning — Contexto antes do código (Time Web, 2 min)
+
+O `agrotrace-v3` passou a ter a skill `readme-first`, READMEs locais nas pastas da API,
+guias em `apps/api/docs/funcionalidades-core` e `AGENTS.md` atualizados. A regra de
+leitura é simples: começar pelo README mais próximo, subir até três níveis se preciso,
+respeitar o AGENTS e abrir apenas a superfície de código necessária.
+
+O diretório de funcionalidades core não é um catálogo de CRUD. Seus **26 guias**
+descrevem o caminho **end-to-end** — entrada HTTP ou evento, serviços, persistência,
+procedures, efeitos assíncronos e consumidores — com diagramas de fluxo, sequência e
+estado, além de referências textuais para agentes que não renderizam Mermaid.
+
+**Propósito:** melhorar o entendimento de agentes de IA e devs, reduzir exploração cega
+e retrabalho e preservar invariantes e fronteiras do domínio antes de uma alteração.
+
+Fala: “A documentação virou contexto operacional: primeiro o agente entende como a
+funcionalidade atravessa o sistema; depois escolhe o menor conjunto de arquivos para
+trabalhar. Isso torna a colaboração mais previsível para a IA e para quem mantém o
+código.”
+
+## Spotlight — Integridade dos relatórios (Thielson, 2 min)
 
 **Problema:** blocos repetíveis sem resposta e imagens internas desapareciam dos
 relatórios; filtros booleanos também escondiam contas no CMS.
