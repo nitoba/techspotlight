@@ -15,8 +15,9 @@ próximo passo.
 | Tempo | Slide | Dono |
 |---|---|---|
 | 0:00–3:00 | README + runtime + cards-balance | Ronaldo |
-| 3:00–8:00 | Dashboard analítico JBS | Ronaldo |
-| 8:00–12:00 | Solo & Nutrição | Ronaldo |
+| 3:00–6:00 | Painel de Abates & Fornecedores | Ronaldo |
+| 6:00–10:00 | Solo & Nutrição | Ronaldo |
+| 10:00–12:00 | Painel de Diagnósticos JBS | Ronaldo |
 | 12:00–16:00 | Pergunta Talhão | Bruno |
 | 16:00–19:00 | Auditoria de autenticação | Bruno |
 | 19:00–20:00 | Lightning: escopos reutilizáveis | Bruno |
@@ -28,10 +29,11 @@ próximo passo.
 
 ## Abertura
 
-Fala: “O recorte tem **34 cards**. São **27 concluídos** quando `Done` e `Test QA`
-entram no balanço, e **7 em aberto**. O Azure mostra **25 melhorias, 4 bugs e 5
-incidentes**. Há 30 cards no recorte de área e quatro IDs preservados por evidência
-de standup: #12735, #13223, #13240 e #13263.”
+Fala: “Acompanhamos **34 entregas** no período: 30 vieram do quadro do time Web no
+Azure e 4 foram citadas nos standups. **30 já estão concluídas ou em teste de
+qualidade** e **4 seguem em andamento**. Por tipo, são **25 melhorias, 4 bugs e 5
+incidentes**.” Se perguntarem o critério: concluído é `Done` ou `Test QA`; os quatro
+incluídos manualmente são #12735, #13223, #13240 e #13263.
 
 No slide `cards-balance.md`, mostrar os filtros por estado, tipo e responsável.
 O responsável é a atribuição atual do Azure; colaborações dos standups entram na
@@ -45,41 +47,87 @@ narrativa, não na contagem.
   `AGROTRACE`, não em `AGROTRACE\\Web`.
 - #12735 foi citado no standup como em andamento, embora a alteração seja anterior
   ao intervalo consultado; continua `New`.
+- #13154 (painel JBS), #13198 (importação de abates ATER/Friboi) e #13231
+  (Dashboard de Abates ATER) receberam baixa no Azure em 03/09, depois do período
+  consultado; já entram como concluídos no balanço.
+- #13311 (BlobNotFound - 3S) foi reatribuído de Ronaldo para Thielson em 03/09;
+  continua `New`.
 - #13216 aparece como `Done` no Azure, mas o standup diz que os campos de PEC-lote
   foram desfeitos após revisão de negócio. Apresentar como rework, não como entrega
   final.
 
-## Spotlight — Dashboard analítico de diagnósticos JBS (Ronaldo, 5 min)
+## Regra dos spotlights do Ronaldo
 
-**Problema:** dados de atendimento, questionário, tema, pergunta, anexos e pontuação
-estavam dispersos; o negócio precisava de uma leitura comparável e priorizada.
+Por produto: um problema, um caminho de até três telas, um número que fica na cabeça
+e o estado honesto. Não percorrer menus. Telas nos slides; demo ao vivo só se
+pedirem no fecho.
 
-**Decisão/implementação:** procedure `getRespostasDiagnosticoAgrupadas`, endpoints de
-resumo e detalhe com cache, paginação e restrição à certificadora JBS; filtros, cards
-executivos, indicadores de maturidade, oportunidades por pontos perdidos, comparação
-entre safras, visão territorial e fila com score explicável. O relatório ganhou capa,
-medalhas, evidências fotográficas, extratos individuais e jobs assíncronos com
-progresso.
+## Spotlight — Painel de Abates & Fornecedores (Ronaldo, 3 min)
 
-**Resultado:** painel e relatório executivo passam a contar a mesma história do
-diagnóstico. Pesos da priorização e exportação CSV/XLSX ainda estavam em validação.
+**Problema:** a planilha mensal do frigorífico dizia quem entregou e quanto. Não
+respondia quem precisa de visita, de quem o volume depende e quem ainda não está no
+programa.
 
-**Evidência:** #13154. O standup registra entregas, mas o estado atual no Azure é
-`New`; não anunciar como encerrado.
+**O que mostrar (3 telas):**
+
+1. Cabeçalho de KPIs para situar: notas, cabeças, arrobas, produtores.
+2. Meta de atendimentos por contrato: 915 contratos vigentes, 34% no ritmo da meta JBS
+   de 4 visitas/ano, Top 15 fora da meta com barra de visitas, critério ano civil ou
+   ciclo contratual. É onde mora a decisão de campo.
+3. Concentração de fornecedores: Pareto e o card "45,1% do volume nos 10% maiores"
+   (74 produtores de 736). Número para o gestor repetir.
+
+Em uma linha: 55 contratos sem vínculo com propriedade e 15 produtores sem cadastro
+viram listas de ação (PDF e revinculação). Técnico vinculado e mapa acompanham a meta.
+
+**Pular:** ritmo semanal, distribuição de peso, carteira por safra, recorrência.
+
+**Resultado honesto:** #13198 e #13231 `Done` em 03/09. Retorno prévio do Hilário
+(via Sartori): aprovou o painel e vai colocar 3 coordenadores da ATER para acompanhar
+o projeto por ele. Encerrar dizendo que este painel é a base do painel de ROI.
 
 ## Spotlight — Solo & Nutrição (Ronaldo, 4 min)
 
 **Problema:** o laudo do laboratório precisava virar recomendação explicável, com
-rastreabilidade, escopo por certificadora e uma saída que o produtor pudesse abrir.
+rastreabilidade e uma saída que o produtor pudesse abrir sem o técnico ao lado.
 
-**Decisão/implementação:** importação de PDF multi-amostra via IA com checksum e
-prompts protegidos; CRUD de laboratórios e orçamentos; formulário em abas; semáforo;
-calagem calcítica/dolomítica, gessagem complementar, fontes NPK e memória de cálculo;
-PDF espelhado; dashboard com custo, funil e mapa; página pública com URL dinâmica e
-restrição por certificadora.
+**Contar como um caminho, não como quatro menus:**
 
-**Resultado:** a capacidade chegou a `Test QA` nos cards #13242 e #13293. Não há
-métrica de acurácia ou publicação final registrada.
+1. O PDF do laudo entra, a IA preenche os campos e o técnico só confere.
+2. Interpretação em semáforo por nutriente; SB, CTC, V% e m% recalculados.
+3. Recomendação de calagem (calcítico ou dolomítico), gesso complementar e adubação
+   com memória de cálculo visível.
+4. Registrar aplicação no campo; histórico entre coletas.
+5. Sai PDF com QR e link público mobile-first para o produtor.
+
+**Telas:** Interpretação, Recomendação com a memória de cálculo, link público no
+celular.
+
+Uma linha cada: Formulação NPK é uma calculadora de adubos simples para fechar a
+fórmula. Orçamentos de análises importa a nota do laboratório por IA, o usuário
+confirma, e essas notas alimentam o painel de ROI que o Sartori anunciou.
+
+**Pular:** CRUD de laboratórios, abas do formulário, Histórico (uma coleta só).
+
+**Resultado honesto:** #13242 e #13293 em `Test QA`. Não há métrica de acurácia da
+extração nem publicação final registrada.
+
+## Spotlight — Painel de Diagnósticos JBS (Ronaldo, 2 min)
+
+**Problema:** dados de atendimento, questionário, tema, pergunta, anexos e pontuação
+estavam dispersos; o negócio precisava de uma leitura comparável e priorizada.
+
+**Uma tela:** Cobertura (369 atendimentos, 73,8% de desempenho médio), Maturidade por
+eixo (Reprodução é o mais baixo, 46,7%) e Fila de priorização com score explicável de
+0 a 100 e pesos declarados; "Não se aplica" fora da criticidade.
+
+**Fala:** o card fechou, o Hilário vai pedir ajustes, e a arquitetura foi feita para
+isso: procedure única, cache, relatório assíncrono e score com pesos declarados.
+
+**Pular:** evolução entre safras, panorama territorial, carteiras técnicas, busca
+qualitativa, qualidade da coleta. Voltam na Edition #09 com o retorno do Hilário.
+
+**Evidência:** #13154, `Done` no Azure em 03/09 (após o período consultado).
 
 ## Spotlight — Pergunta Talhão (Bruno, 4 min)
 
@@ -180,35 +228,52 @@ seção.
 **Resultado honesto:** a base de rastreabilidade está em progresso; o standup não
 registra métrica de qualidade do modelo.
 
-## Engineering Wins
+## Engineering Wins (Ronaldo, ~1 min)
 
-1. **Decisão com evidência — Ronaldo:** JBS e Solo & Nutrição transformaram dados
-   brutos em painéis, recomendações, relatórios e links públicos (#13154, #13242,
-   #13293).
-2. **Contexto reutilizável — Bruno + Thielson:** talhão, escopo, protocolo e
-   identificador externo atravessam telas e exportações (#13223, #13230, #13234,
-   #13254).
-3. **Bordas confiáveis — time Web:** persistência de login, Blob, relatórios com
-   blocos repetíveis e filtros administrativos foram tratados (#13142, #13209, #13260,
-   #13280, #13281).
+O que este slide é: o "e daí?" da apresentação. Depois de nove histórias, a plateia
+precisa sair com três frases. Cada card é uma frase, o parágrafo é a prova e os
+números são onde conferir. Não reler os spotlights; só nomear o padrão que ficou.
 
-Reconhecer a colaboração de Brenda, Carlos, Gustavo, Iohan, Matheus, Ricardo, Sartori
-e Thayse em testes, regras de negócio, PRs, validações e deploys.
+Fala sugerida: "Se vocês lembrarem de três coisas desta edição, que sejam estas."
+
+1. **O dado passou a apontar ação — Ronaldo.** "Planilha de abates, laudo de solo e
+   diagnóstico JBS deixaram de ser tabela e viraram painel que diz quem visitar, o que
+   aplicar e onde agir primeiro." (#13198, #13231, #13242, #13293, #13154)
+2. **Cadastra uma vez, usa em todo lugar — Bruno + Thielson.** "Talhão, escopo de
+   certificadora, protocolo e identificador GEDAVE viraram uma definição só, que tela,
+   exportação e relatório consomem igual. Menos cópia de regra, menos divergência."
+   (#13223, #13230, #13234, #13254)
+3. **Menos erro silencioso — time Web.** "Login voltou a ser registrado, anexo voltou
+   a abrir, relatório parou de apagar bloco vazio e o filtro do CMS parou de esconder
+   conta. Nenhum desses erros avisava; agora não acontecem." (#13142, #13209, #13260,
+   #13280, #13281)
+
+Card **Colaboração**: reconhecer Brenda, Carlos, Gustavo, Iohan, Matheus, Ricardo,
+Sartori e Thayse em testes, regras de negócio, PRs, validações e deploys. Uma frase.
+
+Card **Leitura honesta**: só apontar. "30 concluídos, 4 em aberto, e os 4 estão
+listados." Não justificar cada um; isso já foi feito no balanço.
 
 ## Próximos passos
 
 Apresentar como direção, não promessa:
 
-1. validar pesos e exportação do painel JBS — @ronaldo / #13154;
-2. concluir dashboards de Abates ATER e filtro de Viveiros — @ronaldo / #13231,
-   #13146;
+1. novos painéis ATER — @ronaldo, direção sem card ainda: painel de ROI (reunião com
+   o Hilário para levantar dados e alinhar expectativas) e, após o módulo de Solo &
+   Pastagens, painel com indicadores comparativos já pedidos por ele; também alinhar
+   o painel de abates com os 3 coordenadores da ATER que vão passar a usá-lo;
+2. concluir filtro de Viveiros no dashboard Citros — @ronaldo / #13146;
 3. fechar auditoria de autenticação e pendências do Talhão — @bruno / #12735,
    #13223;
 4. transformar contexto em produto: análise IA, documentação e escopos reutilizáveis
    — @thielson + @bruno.
 
-Os sete cards abertos no fechamento são #12735, #12983, #13146, #13154, #13198,
-#13231 e #13311.
+Contexto do item 1: retorno prévio do Hilário, repassado pelo Sartori no Discord em
+03/09. Ele aprovou o painel de abates e vai colocar 3 coordenadores da ATER para
+acompanhar o projeto por ele. Vale citar na fala como validação do #13231 e #13198.
+
+Os quatro cards abertos no fechamento são #12735, #12983, #13146 e #13311 (este
+último agora com Thielson).
 
 Se o tempo apertar, cortar detalhes de implementação. Preservar sempre problema,
 decisão, resultado e estado honesto de cada história.
