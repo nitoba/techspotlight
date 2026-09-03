@@ -38,6 +38,7 @@ const AUTHOR_PATTERNS = [
 const DISCORD_DATE = new RegExp(
   `(?:${WEEKDAYS}),\\s*([A-Za-z]+\\s+\\d{1,2},\\s+\\d{4})\\s+at\\s+\\d{1,2}:\\d{2}\\s+[AP]M`,
 );
+const DISCORD_SHORT_DATE = /—\s*(\d{1,2})\/(\d{1,2})\/(\d{2,4}),\s*\d{1,2}:\d{2}\s+[AP]M/;
 const STANDUP_DATE = /^Standup \((\d{1,2})\/(\d{1,2})\/(\d{4})\)/i;
 const DAY_SEPARATOR = /^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/;
 const CONTINUATION = /^\[\d{1,2}:\d{2}\s+[AP]M\]/;
@@ -71,9 +72,15 @@ function isoDate(monthName, day, year) {
 
 function dateFromDiscordLine(line) {
   const match = line.match(DISCORD_DATE);
-  if (!match) return null;
-  const [, month, day, year] = match[1].match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/) ?? [];
-  return month ? isoDate(month, day, year) : null;
+  if (match) {
+    const [, month, day, year] = match[1].match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/) ?? [];
+    return month ? isoDate(month, day, year) : null;
+  }
+  const short = line.match(DISCORD_SHORT_DATE);
+  if (!short) return null;
+  const [, month, day, rawYear] = short;
+  const year = rawYear.length === 2 ? `20${rawYear}` : rawYear;
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 function dateFromStandupLine(line) {
@@ -131,6 +138,12 @@ function parseMessages(markdown, { initialAuthor = "Ronaldo" } = {}) {
       continue;
     }
 
+    if (author && line.includes("—")) {
+      flush();
+      currentAuthor = author;
+      continue;
+    }
+
     if (CONTINUATION.test(line)) {
       flush();
       currentDay = dateFromDiscordLine(line) ?? currentDay;
@@ -147,6 +160,7 @@ function parseMessages(markdown, { initialAuthor = "Ronaldo" } = {}) {
 
     const standupDay = dateFromStandupLine(line);
     if (standupDay) {
+      if (currentDay && standupDay !== currentDay && body.length && currentAuthor) flush();
       currentDay = standupDay;
       if (!seenMessageHeader) currentAuthor ??= initialAuthor;
     }
@@ -224,6 +238,23 @@ function selfCheck() {
       { initialAuthor: null },
     ).length,
     0,
+  );
+  const shortHeader = parseMessages(
+    [
+      "Ronaldo Pereira — 8/17/26, 9:09 PM",
+      "Standup (17/08/2026)",
+      "entrega",
+      "Ronaldo Pereira — Yesterday at 8:37 PM",
+      "Standup (02/09/2026)",
+      "outra entrega",
+    ].join("\n"),
+  );
+  assert.deepEqual(
+    shortHeader.map(({ author, day }) => ({ author, day })),
+    [
+      { author: "Ronaldo", day: "2026-08-17" },
+      { author: "Ronaldo", day: "2026-09-02" },
+    ],
   );
   console.log("✓ parser self-check");
 }
