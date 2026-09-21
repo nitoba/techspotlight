@@ -1,0 +1,18 @@
+{
+  "12099": [
+    {
+      "id": "cms",
+      "title": "CMS - Agrotrace",
+      "url": "https://cms.dev.biosistemico.internal",
+      "badge": "dev"
+    }
+  ],
+  "ater-digital": [
+    {
+      "id": "ater-digital-local",
+      "title": "ATER Digital — app local",
+      "url": "http://localhost:3000",
+      "badge": "local"
+    }
+  ]
+}
