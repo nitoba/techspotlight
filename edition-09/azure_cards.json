@@ -28,23 +28,23 @@
     "ledger_total": 39
   },
   "summary": {
-    "azure_retrieved": 38,
-    "done": 25,
+    "azure_retrieved": 29,
+    "done": 16,
     "test_qa": 9,
     "open_new": 4,
-    "presentation_concluded_done_plus_qa": 34,
+    "presentation_concluded_done_plus_qa": 25,
     "standup_open_but_not_retrieved": 1,
     "types": {
-      "Enhancement": 23,
-      "Production Issue": 5,
-      "Regression Bug": 6,
+      "Enhancement": 16,
+      "Production Issue": 4,
+      "Regression Bug": 5,
       "User Story": 2,
       "Request": 2
     },
     "owners": {
-      "Thielson": 18,
-      "ronaldo.pereira": 13,
-      "bruno.alves biosistemico.com.br": 6,
+      "Thielson": 13,
+      "ronaldo.pereira": 10,
+      "bruno.alves biosistemico.com.br": 5,
       "Não atribuído": 1
     }
   },
@@ -68,19 +68,6 @@
       "source": "standup-prior-snapshot"
     },
     {
-      "id": 12826,
-      "title": "[FIX] Mensagem de erro clara e log estruturado para requisições em rotas inexistentes (404",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "Thielson",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
       "id": 13146,
       "title": "Criar Filtro - Formulário - Dashboard Citros",
       "original_work_item_type": "Enhancement",
@@ -90,71 +77,6 @@
       "current_assignee": "ronaldo.pereira",
       "area_path": "AGROTRACE\\Web",
       "changed_date": "2026-09-17T16:29:46.61Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13223,
-      "title": "[FEAT] Novo tipo de pergunta: Talhão (vincular talhão existente ou cadastrar novo)",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "bruno.alves biosistemico.com.br",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13230,
-      "title": "[FEAT] Adicionar colunas de Identificador Externo (GEDAVE) do Produtor e da Propriedade na exportação XLSX do Citros",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "Thielson",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13231,
-      "title": "[FEAT] Dashboard de Abates ATER — arroba, meta por contrato com ciclo contratual, visão em mapa, técnico vinculado e saneamento de cadastros",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "ronaldo.pereira",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13234,
-      "title": "Trazer coluna PROTOCOLO nas telas de Atendimento",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "Thielson",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13242,
-      "title": "[FEAT] Solo & Nutrição — análise de solo, recomendação de calagem/adubação e página pública do produtor",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "ronaldo.pereira",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
       "project": "AGROTRACE",
       "source": "azure-area"
     },
@@ -187,45 +109,6 @@
     {
       "id": 13280,
       "title": "ERRO AO GERAR RELATÓRIO \"IMAGENS DO ATENDIMENTO\"",
-      "original_work_item_type": "Production Issue",
-      "presentation_label": "INCIDENTE",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "Thielson",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13281,
-      "title": "CMS - Não aparece contas dos usuários",
-      "original_work_item_type": "Regression Bug",
-      "presentation_label": "BUG",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "Thielson",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13293,
-      "title": "[FEAT] Escopo por certificadora e ajustes finais no módulo Solo e Nutrição",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "ronaldo.pereira",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13311,
-      "title": "Não abre anexos - BlobNotFound - 3S",
       "original_work_item_type": "Production Issue",
       "presentation_label": "INCIDENTE",
       "original_state": "Done",
@@ -561,5 +444,20 @@
       "project": "AGROTRACE",
       "source": "azure-area"
     }
-  ]
+  ],
+  "excluded_already_presented": {
+    "edition": "08",
+    "reason": "Apresentados na edição 08; ChangedDate 2026-09-08 16:34 por atualização em lote, sem trabalho novo no período.",
+    "ids": [
+      12826,
+      13223,
+      13230,
+      13231,
+      13234,
+      13242,
+      13281,
+      13293,
+      13311
+    ]
+  }
 }
