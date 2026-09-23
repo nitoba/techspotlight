@@ -12,17 +12,17 @@ Apresentadores: **Ronaldo, Bruno e Thielson**
 
 - Consulta WIQL em `AGROTRACE`, área `AGROTRACE\Web`, `ChangedDate >= 2026-09-08` e `< 2026-09-19`: **26** cards.
 - IDs únicos citados nos standups: **24**. Treze não apareceram na consulta por área/data; doze foram buscados por ID e um (#12735) não foi localizado pelo `az boards work-item show`.
-- Ledger resultante: **39 IDs** — 38 com dados Azure recuperados e #12735 mantido por evidência de standup/edição anterior.
+- Ledger resultante: **38 IDs** — 37 com dados Azure recuperados e #12735 mantido por evidência de standup/edição anterior.
 - Consulta ao projeto `CHECK-TENDERS`, sem filtro de área, para a mesma janela: **0 work items**. O standup descreve trabalho de produto/infra sem IDs de cards; esses tópicos aparecem como evidência de standup, sem inventar cards.
 - Projetos mencionados: `AGROTRACE` (inclui os repos Agrotrace e `agrotrace-v3`) e `CHECK-TENDERS`.
 
-Entre os 38 cards recuperados: **25 `Done`, 9 `Test QA` e 4 `New`**. Para a apresentação, `Done` e `Test QA` contam como concluídos, e QA permanece visível como **CONCLUÍDO · QA**. O #12735 consta como In Progress no standup, mas não pôde ser buscado no Azure; ele aparece como evidência de standup, não entra no saldo de assignees atuais.
+Entre os 37 cards recuperados: **24 `Done`, 9 `Test QA` e 4 `New`**. Para a apresentação, `Done` e `Test QA` contam como concluídos, e QA permanece visível como **CONCLUÍDO · QA**. O #12735 consta como In Progress no standup, mas não pôde ser buscado no Azure; ele aparece como evidência de standup, não entra no saldo de assignees atuais.
 
-Tipos Azure nos 38 cards recuperados: **23 Enhancements**, **6 Regression Bugs**, **5 Production Issues**, **2 Requests** e **2 User Stories**. `Request` e `User Story` foram mantidos com seus nomes originais porque o protocolo não define conversão para MELHORIA/BUG/INCIDENTE. O tipo atual do #12735 não foi recuperado; a edição anterior registrava Enhancement.
+Tipos Azure nos 37 cards recuperados: **22 Enhancements**, **6 Regression Bugs**, **5 Production Issues**, **2 Requests** e **2 User Stories**. `Request` e `User Story` foram mantidos com seus nomes originais porque o protocolo não define conversão para MELHORIA/BUG/INCIDENTE. O tipo atual do #12735 não foi recuperado; a edição anterior registrava Enhancement.
 
-Assignees Azure nos 38 cards recuperados (`System.AssignedTo.displayName`): **Thielson 18**, **ronaldo.pereira 13**, **bruno.alves biosistemico.com.br 6**, **Não atribuído 1**. No deck, os dois nomes de conta são apresentados como Ronaldo e Bruno para leitura; a contagem continua agrupada pelo valor de Azure. O #12735 tem responsável atual não verificado.
+Assignees Azure nos 37 cards recuperados (`System.AssignedTo.displayName`): **Thielson 18**, **ronaldo.pereira 13**, **bruno.alves biosistemico.com.br 5**, **Não atribuído 1**. No deck, os dois nomes de conta são apresentados como Ronaldo e Bruno para leitura; a contagem continua agrupada pelo valor de Azure. O #12735 tem responsável atual não verificado.
 
-Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web` (#13372, #13382, #13388, #13392, #13393, #13396, #13419); outros tiveram `ChangedDate` posterior ao fim do período (#13432, #13438, #13445, #13458, #13463). Foram incluídos porque seus IDs aparecem nos standups. Os dados de `edition-09/azure_cards.json` preservam área, data, estado, tipo, assignee e fonte.
+O card #13223 foi excluído do ledger por ser anterior ao período. Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web` (#13372, #13382, #13388, #13392, #13393, #13396, #13419); outros tiveram `ChangedDate` posterior ao fim do período (#13432, #13438, #13445, #13458, #13463). Foram incluídos porque seus IDs aparecem nos standups. Os dados de `edition-09/azure_cards.json` preservam área, data, estado, tipo, assignee e fonte.
 
 ### Divergências que não devem ser apagadas
 
@@ -37,24 +37,24 @@ Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web
 | Tempo | Slide | Responsável |
 |---|---|---|
 | 0:00–3:00 | README, runtime e cards-balance | Ronaldo |
-| 3:00–7:00 | Score e filtros do Citros | Ronaldo |
-| 7:00–9:00 | CPF e bordas de cálculo | Ronaldo |
-| 9:00–11:00 | Validade CAF → painel SICAR | Ronaldo + Bruno |
-| 11:00–14:00 | API keys, OTP e auditoria | Bruno |
-| 14:00–15:00 | Licenças CRMV/CFTA | Bruno |
-| 15:00–18:00 | Check-Tenders: captura e deploy | Bruno |
-| 18:00–19:00 | Landing localizada e documentação | Bruno |
-| 19:00–22:00 | Pipeline de análise IA | Thielson |
-| 22:00–24:00 | Respostas, relatórios e anexos | Thielson |
-| 24:00–25:00 | Regras PEC e vínculos | Thielson |
-| 25:00–27:00 | Timestamps e UUID | Thielson |
-| 27:00–28:00 | Lightning: idempotência | Thielson |
-| 28:00–29:00 | Engineering Wins | Ronaldo |
-| 29:00–30:00 | Próximos passos e perguntas | Time Web |
+| 3:00–6:00 | Score e filtros do Citros | Ronaldo |
+| 6:00–7:00 | CPF e bordas de cálculo | Ronaldo |
+| 7:00–9:00 | Validade CAF → painel SICAR | Ronaldo + Bruno |
+| 9:00–10:00 | Licenças CRMV/CFTA | Bruno |
+| 10:00–12:00 | Check-Tenders: captura e deploy | Bruno |
+| 12:00–13:00 | Landing localizada | Bruno |
+| 13:00–15:00 | Documentação Core + overview rápido de Bruno | Bruno |
+| 15:00–18:00 | Pipeline de análise IA | Thielson |
+| 18:00–20:00 | Respostas, relatórios e anexos | Thielson |
+| 20:00–21:00 | Regras PEC e vínculos | Thielson |
+| 21:00–23:00 | Timestamps e UUID | Thielson |
+| 23:00–25:00 | Lightning: idempotência | Thielson |
+| 25:00–28:00 | Engineering Wins | Ronaldo |
+| 28:00–30:00 | Próximos passos e perguntas | Time Web |
 
 ## Abertura e ledger — Ronaldo (3 min)
 
-“Consultamos 26 cards da área Web no Azure, somamos 12 cards encontrados por IDs de standup e mantivemos um ID que o Azure não localizou. São 39 IDs: 34 concluídos pela regra Done + Test QA, quatro em New e um reportado em andamento no standup sem confirmação atual. O trabalho também passou por Check-Tenders; ali há atividades nos standups, mas nenhuma work item retornou na janela consultada.”
+“Consultamos 26 cards da área Web no Azure, somamos 12 cards encontrados por IDs de standup e mantivemos um ID que o Azure não localizou. São 38 IDs: 33 concluídos pela regra Done + Test QA, quatro em New e um reportado em andamento no standup sem confirmação atual. O trabalho também passou por Check-Tenders; ali há atividades nos standups, mas nenhuma work item retornou na janela consultada.”
 
 Mostrar filtros por estado, tipo e assignee. Destacar que os cards #13355/#13358/#13403/#13474 estão em New; o #12735 não foi recuperado. Os dois tipos Request e os dois User Story ficam com o rótulo Azure original.
 
@@ -92,17 +92,6 @@ Mostrar filtros por estado, tipo e assignee. Destacar que os cards #13355/#13358
 
 **Resultado honesto:** campo concluído; a aba nova segue em aberto no Azure e sem assignee. Apresentar como trabalho compartilhado descrito nos standups, não como entrega final do painel.
 
-## Spotlight — API keys, OTP e auditoria (Bruno, 3 min)
-
-**Cards:** #13393 e #13419 em `Test QA`; #12735 não localizado agora.
-
-**Problema:** integrações precisam autenticar uma pessoa sem sessão interativa e as chaves globais devem respeitar certificadoras autorizadas.
-
-**Decisão/implementação:** endpoint por e-mail com filtro de certificadora e interceptor para escopos de API key; OTP com estado de desafio, fila, rate limit, serviço de auditoria, guards globais, validação DTO e filtros de integração. A auditoria adiciona IP, User Agent, sistema/navegador e eventos no CMS.
-
-**Resultado honesto:** #13393 e #13419 estão em Test QA, portanto contam como concluídos pela regra da edição. #12735 aparece em andamento no standup, mas não pôde ser localizado; não declarar conclusão nem assignee atual.
-
-**Colaboração:** standups citam Elias, Carlos e Ronaldo em endpoint, validação e PR.
 
 ## Spotlight — Licenças profissionais (Bruno, 1 min)
 
@@ -120,9 +109,32 @@ Entidade, serviço, módulo, migration, permissões e triggers para tipo de lice
 
 **Resultado honesto:** esses itens foram relatados nos standups de 08–10/09 como concluídos ou em andamento; sem work items Azure na janela não há estado por card nem métrica consolidada.
 
-## Spotlight — Landing localizada e documentação (Bruno, 1 min · standup-only)
+## Spotlight — Landing localizada (Bruno, 1 min · standup-only)
 
-`localizedAsset` seleciona variantes em inglês; carrosséis e hero aceitam vídeo PT/EN com preload por idioma e skeleton de carregamento. Em paralelo, READMEs foram adicionados aos frontends e diagramas/contexto de funcionalidades core foram atualizados. Mais de 20 fluxos receberam diagramas HTML/JSON e arquivos visual-check em 15/09. A documentação core ainda estava em progresso no standup.
+`localizedAsset` seleciona variantes em inglês; carrosséis e hero aceitam vídeo PT/EN com preload por idioma e skeleton de carregamento. Os standups também registram READMEs e fluxos Core, tratados no spotlight seguinte.
+
+## Featured — Documentação de Funcionalidades Core no CMS (Bruno, 2 min · standup-evidence)
+
+**Fonte:** standups de 09–15/09; trabalho sem ID de card específico.
+
+**Problema:** a documentação dos fluxos Core existia em READMEs, arquivos `.md` e diagramas, mas ainda não estava disponível para visualização no frontend usado pelo time.
+
+**Decisão/implementação:** a documentação funcional foi adicionada ao contexto de IA do CMS, com suporte a assets Markdown, tela cheia e rolagem customizada. O conjunto inclui diagramas HTML/JSON e arquivos de verificação visual para mais de 20 fluxos: identidade, bootstrap, cadastros, permissões, certificação, formulários, integrações, protocolos, IA e notificações.
+
+**Resultado:** as Funcionalidades Core agora podem ser visualizadas diretamente no frontend do CMS. Não há métrica de adoção registrada nos standups.
+
+**Demo:** abrir a view de documentação no CMS, selecionar um fluxo, ativar tela cheia e percorrer o diagrama.
+
+## Overview — Bruno (1 min · passagem rápida)
+
+O overview reúne os itens que não ganharam história própria. Passar por cada card em uma frase e não abrir uma explicação longa:
+
+- **#13320 — Abas de atividade:** refatoração das abas do modal de dados da propriedade; `Done` no Azure.
+- **#13393 — API keys globais:** filtro de certificadora e escopo validado no interceptor; `Test QA` no Azure.
+- **#13419 — Login via OTP:** estado de desafio, fila, rate limit e auditoria; `Test QA` no Azure, com implementação descrita como em andamento nos standups de 15–16/09.
+- **#13445 — Cadastro de documento CREA e CFTA:** atividade da Márcia; `Test QA` no Azure e concluída no standup.
+
+O OTP fica somente neste overview, sem uma página própria. O bloco é para dar contexto rápido e voltar ao roteiro.
 
 ## Spotlight — Pipeline de análise IA (Thielson, 3 min)
 
@@ -165,10 +177,10 @@ Categorias e tipo de criação controlam características de lote; reprodução 
 ## Engineering Wins (Ronaldo, 1 min)
 
 1. **Regra oficial aplicada — Ronaldo.** #13146, #13397 e #13408 levam pontuação, filtro e exportação a uma leitura coerente; Iohan e o Governo de SP ajudaram a validar critérios.
-2. **Integração com identidade — Bruno.** #13393, #13419 e #13445 avançam chave global, OTP e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
+2. **Integração com identidade — Bruno.** #13393 e #13445 avançam escopo de chave e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
 3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371 e #13373 cuidam de relatório, anexos e respostas repetíveis; Ronaldo, Thayse e Elias participaram da investigação.
 
-**Leitura honesta:** 34 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
+**Leitura honesta:** 33 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
 
 ## Próximos passos
 

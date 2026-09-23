@@ -25,17 +25,17 @@
     "not_retrieved": [
       12735
     ],
-    "ledger_total": 39
+    "ledger_total": 38
   },
   "summary": {
-    "azure_retrieved": 38,
-    "done": 25,
+    "azure_retrieved": 37,
+    "done": 24,
     "test_qa": 9,
     "open_new": 4,
-    "presentation_concluded_done_plus_qa": 34,
+    "presentation_concluded_done_plus_qa": 33,
     "standup_open_but_not_retrieved": 1,
     "types": {
-      "Enhancement": 23,
+      "Enhancement": 22,
       "Production Issue": 5,
       "Regression Bug": 6,
       "User Story": 2,
@@ -44,12 +44,13 @@
     "owners": {
       "Thielson": 18,
       "ronaldo.pereira": 13,
-      "bruno.alves biosistemico.com.br": 6,
+      "bruno.alves biosistemico.com.br": 5,
       "Não atribuído": 1
     }
   },
   "notes": [
     "Direct fetch includes cards outside AGROTRACE\\Web or with ChangedDate after the interval, because their IDs occur in standups.",
+    "#13223 was returned by the query but excluded from the presentation ledger because the work predates this edition period.",
     "CHECK-TENDERS has standup work but the Azure project query returned no work items.",
     "#12735 could not be fetched; earlier Edition 08 snapshot called it Enhancement/New assigned to Bruno, while this period standups report it in progress."
   ],
@@ -90,19 +91,6 @@
       "current_assignee": "ronaldo.pereira",
       "area_path": "AGROTRACE\\Web",
       "changed_date": "2026-09-17T16:29:46.61Z",
-      "project": "AGROTRACE",
-      "source": "azure-area"
-    },
-    {
-      "id": 13223,
-      "title": "[FEAT] Novo tipo de pergunta: Talhão (vincular talhão existente ou cadastrar novo)",
-      "original_work_item_type": "Enhancement",
-      "presentation_label": "MELHORIA",
-      "original_state": "Done",
-      "presentation_state": "CONCLUÍDO",
-      "current_assignee": "bruno.alves biosistemico.com.br",
-      "area_path": "AGROTRACE\\Web",
-      "changed_date": "2026-09-08T16:34:10.123Z",
       "project": "AGROTRACE",
       "source": "azure-area"
     },
