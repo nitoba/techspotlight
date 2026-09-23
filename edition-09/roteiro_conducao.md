@@ -10,19 +10,19 @@ Apresentadores: **Ronaldo, Bruno e Thielson**
 
 ## Escopo, consulta e reconciliação Azure
 
-- Consulta WIQL em `AGROTRACE`, área `AGROTRACE\Web`, `ChangedDate >= 2026-09-08` e `< 2026-09-19`: **26** cards.
+- Consulta WIQL em `AGROTRACE`, área `AGROTRACE\Web`, `ChangedDate >= 2026-09-08` e `< 2026-09-19`: **26** cards, dos quais **9 já foram apresentados na edição 08** (#12826, #13223, #13230, #13231, #13234, #13242, #13281, #13293, #13311) e só tiveram `ChangedDate` em 08/09 16:34 por atualização em lote; eles ficam fora desta edição, restando **17**.
 - IDs únicos citados nos standups: **24**. Treze não apareceram na consulta por área/data; doze foram buscados por ID e um (#12735) não foi localizado pelo `az boards work-item show`.
-- Ledger resultante: **38 IDs** — 37 com dados Azure recuperados e #12735 mantido por evidência de standup/edição anterior.
+- Ledger resultante: **30 IDs** — 29 com dados Azure recuperados e #12735 mantido por evidência de standup/edição anterior.
 - Consulta ao projeto `CHECK-TENDERS`, sem filtro de área, para a mesma janela: **0 work items**. O standup descreve trabalho de produto/infra sem IDs de cards; esses tópicos aparecem como evidência de standup, sem inventar cards.
 - Projetos mencionados: `AGROTRACE` (inclui os repos Agrotrace e `agrotrace-v3`) e `CHECK-TENDERS`.
 
-Entre os 37 cards recuperados: **24 `Done`, 9 `Test QA` e 4 `New`**. Para a apresentação, `Done` e `Test QA` contam como concluídos, e QA permanece visível como **CONCLUÍDO · QA**. O #12735 consta como In Progress no standup, mas não pôde ser buscado no Azure; ele aparece como evidência de standup, não entra no saldo de assignees atuais.
+Entre os 29 cards recuperados: **16 `Done`, 9 `Test QA` e 4 `New`**. Para a apresentação, `Done` e `Test QA` contam como concluídos, e QA permanece visível como **CONCLUÍDO · QA**. O #12735 consta como In Progress no standup, mas não pôde ser buscado no Azure; ele aparece como evidência de standup, não entra no saldo de assignees atuais.
 
-Tipos Azure nos 37 cards recuperados: **22 Enhancements**, **6 Regression Bugs**, **5 Production Issues**, **2 Requests** e **2 User Stories**. `Request` e `User Story` foram mantidos com seus nomes originais porque o protocolo não define conversão para MELHORIA/BUG/INCIDENTE. O tipo atual do #12735 não foi recuperado; a edição anterior registrava Enhancement.
+Tipos Azure nos 29 cards recuperados: **16 Enhancements**, **5 Regression Bugs**, **4 Production Issues**, **2 Requests** e **2 User Stories**. `Request` e `User Story` foram mantidos com seus nomes originais porque o protocolo não define conversão para MELHORIA/BUG/INCIDENTE. O tipo atual do #12735 não foi recuperado; a edição anterior registrava Enhancement.
 
-Assignees Azure nos 37 cards recuperados (`System.AssignedTo.displayName`): **Thielson 18**, **ronaldo.pereira 13**, **bruno.alves biosistemico.com.br 5**, **Não atribuído 1**. No deck, os dois nomes de conta são apresentados como Ronaldo e Bruno para leitura; a contagem continua agrupada pelo valor de Azure. O #12735 tem responsável atual não verificado.
+Assignees Azure nos 29 cards recuperados (`System.AssignedTo.displayName`): **Thielson 13**, **ronaldo.pereira 10**, **bruno.alves biosistemico.com.br 5**, **Não atribuído 1**. No deck, os dois nomes de conta são apresentados como Ronaldo e Bruno para leitura; a contagem continua agrupada pelo valor de Azure. O #12735 tem responsável atual não verificado.
 
-O card #13223 foi excluído do ledger por ser anterior ao período. Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web` (#13372, #13382, #13388, #13392, #13393, #13396, #13419); outros tiveram `ChangedDate` posterior ao fim do período (#13432, #13438, #13445, #13458, #13463). Foram incluídos porque seus IDs aparecem nos standups. Os dados de `edition-09/azure_cards.json` preservam área, data, estado, tipo, assignee e fonte.
+Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web` (#13372, #13382, #13388, #13392, #13393, #13396, #13419); outros tiveram `ChangedDate` posterior ao fim do período (#13432, #13438, #13445, #13458, #13463). Foram incluídos porque seus IDs aparecem nos standups. Os dados de `edition-09/azure_cards.json` preservam área, data, estado, tipo, assignee e fonte.
 
 ### Divergências que não devem ser apagadas
 
@@ -37,24 +37,24 @@ O card #13223 foi excluído do ledger por ser anterior ao período. Cards encont
 | Tempo | Slide | Responsável |
 |---|---|---|
 | 0:00–3:00 | README, runtime e cards-balance | Ronaldo |
-| 3:00–6:00 | Score e filtros do Citros | Ronaldo |
-| 6:00–7:00 | CPF e bordas de cálculo | Ronaldo |
-| 7:00–9:00 | Validade CAF → painel SICAR | Ronaldo + Bruno |
-| 9:00–10:00 | Licenças CRMV/CFTA | Bruno |
-| 10:00–12:00 | Check-Tenders: captura e deploy | Bruno |
-| 12:00–13:00 | Landing localizada | Bruno |
-| 13:00–15:00 | Documentação Core + overview rápido de Bruno | Bruno |
-| 15:00–18:00 | Pipeline de análise IA | Thielson |
-| 18:00–20:00 | Respostas, relatórios e anexos | Thielson |
-| 20:00–21:00 | Regras PEC e vínculos | Thielson |
-| 21:00–23:00 | Timestamps e UUID | Thielson |
-| 23:00–25:00 | Lightning: idempotência | Thielson |
-| 25:00–28:00 | Engineering Wins | Ronaldo |
+| 3:00–7:00 | Score e filtros do Citros | Ronaldo |
+| 7:00–9:00 | CPF e bordas de cálculo | Ronaldo |
+| 9:00–11:00 | Validade CAF → painel SICAR | Ronaldo + Bruno |
+| 11:00–12:00 | Licenças CREA/CRMV/CFTA | Bruno |
+| 12:00–15:00 | Check-Tenders: captura e deploy | Bruno |
+| 15:00–16:00 | Landing localizada | Bruno |
+| 16:00–18:00 | Documentação Core + overview rápido de Bruno | Bruno |
+| 18:00–21:00 | Pipeline de análise IA | Thielson |
+| 21:00–23:00 | Respostas, relatórios e anexos | Thielson |
+| 23:00–24:00 | Regras PEC e vínculos | Thielson |
+| 24:00–26:00 | Timestamps e UUID | Thielson |
+| 26:00–27:00 | Lightning: idempotência | Thielson |
+| 27:00–28:00 | Engineering Wins | Ronaldo |
 | 28:00–30:00 | Próximos passos e perguntas | Time Web |
 
 ## Abertura e ledger — Ronaldo (3 min)
 
-“Consultamos 26 cards da área Web no Azure, somamos 12 cards encontrados por IDs de standup e mantivemos um ID que o Azure não localizou. São 38 IDs: 33 concluídos pela regra Done + Test QA, quatro em New e um reportado em andamento no standup sem confirmação atual. O trabalho também passou por Check-Tenders; ali há atividades nos standups, mas nenhuma work item retornou na janela consultada.”
+“Consultamos a área Web no Azure e ficamos com 17 cards do período (outros 9 já tinham sido apresentados na edição 08), somamos 12 cards encontrados por IDs de standup e mantivemos um ID que o Azure não localizou. São 30 IDs: 25 concluídos pela regra Done + Test QA, quatro em New e um reportado em andamento no standup sem confirmação atual. O trabalho também passou por Check-Tenders; ali há atividades nos standups, mas nenhuma work item retornou na janela consultada.”
 
 Mostrar filtros por estado, tipo e assignee. Destacar que os cards #13355/#13358/#13403/#13474 estão em New; o #12735 não foi recuperado. Os dois tipos Request e os dois User Story ficam com o rótulo Azure original.
 
@@ -91,7 +91,6 @@ Mostrar filtros por estado, tipo e assignee. Destacar que os cards #13355/#13358
 **Decisão/implementação:** #13432 adiciona campo de validade, migration, trigger, entidades e PrimeNG datepicker. #13474 classifica seis situações (vencida, perto, médio prazo, regular, sem validade, sem CAF), organiza KPIs e gráficos e reutiliza o modal de investigação.
 
 **Resultado honesto:** campo concluído; a aba nova segue em aberto no Azure e sem assignee. Apresentar como trabalho compartilhado descrito nos standups, não como entrega final do painel.
-
 
 ## Spotlight — Licenças profissionais (Bruno, 1 min)
 
@@ -177,18 +176,18 @@ Categorias e tipo de criação controlam características de lote; reprodução 
 ## Engineering Wins (Ronaldo, 1 min)
 
 1. **Regra oficial aplicada — Ronaldo.** #13146, #13397 e #13408 levam pontuação, filtro e exportação a uma leitura coerente; Iohan e o Governo de SP ajudaram a validar critérios.
-2. **Integração com identidade — Bruno.** #13393 e #13445 avançam escopo de chave e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
+2. **Integração com identidade — Bruno.** #13393, #13419 e #13445 avançam chave global, OTP e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
 3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371 e #13373 cuidam de relatório, anexos e respostas repetíveis; Ronaldo, Thayse e Elias participaram da investigação.
 
-**Leitura honesta:** 33 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
+**Leitura honesta:** 25 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
 
 ## Próximos passos
 
-- [ ] #13355 e #13358 — completar sincronização/UUID; assignee Azure Thielson.
-- [ ] #13474 — terminar aba CAF SICAR e atribuir responsável.
-- [ ] #13403 — reconciliar New no Azure com Done no standup; assignee Azure Thielson.
-- [ ] #12735 — localizar o item ou confirmar renumeração/fechamento; standup diz In Progress.
-- [ ] Check-Tenders — associar os trabalhos do standup a cards caso exista outro projeto/área de Azure que não entrou na consulta.
+- [ ] Sincronização — completar a sincronização por etapas com UUID único por registro.
+- [ ] Relatórios PDF do CAF — exportar do painel CAF listas em PDF (vencidos, sem data de validade, perto de vencer). Na fala: o PDF sai do sistema para imprimir e enviar a quem precisa regularizar apenas aqueles CAFs.
+- [ ] Cache Redis — organizar o cache por dashboard no Redis: dados prontos ao abrir e opção de forçar a atualização quando preciso.
+- [ ] Dashboards por projeto — expandir os dashboards exclusivos de cada projeto para apoiar a tomada de decisão.
+- [ ] JBS — avançar no grau de relacionamento entre os produtores.
 
 ## Fecho
 
