@@ -45,12 +45,12 @@ Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web
 | 15:00–18:00 | Check-Tenders: captura e deploy | Bruno |
 | 18:00–19:00 | Landing localizada e documentação | Bruno |
 | 19:00–22:00 | Pipeline de análise IA | Thielson |
-| 22:00–24:00 | Respostas, relatórios e anexos | Thielson |
-| 24:00–25:00 | Regras PEC e vínculos | Thielson |
-| 25:00–27:00 | Timestamps e UUID | Thielson |
-| 27:00–28:00 | Lightning: idempotência | Thielson |
-| 28:00–29:00 | Engineering Wins | Ronaldo |
-| 29:00–30:00 | Próximos passos e perguntas | Time Web |
+| 22:00–23:00 | Regras PEC | Thielson |
+| 23:00–25:00 | Sincronizado_em | Thielson |
+| 25:00–26:00 | Overview Thielson: passagem rápida pelos quatro cards | Thielson |
+| 26:00–27:00 | Lightning: idempotência | Thielson |
+| 27:00–28:00 | Engineering Wins | Ronaldo |
+| 28:00–30:00 | Próximos passos e perguntas | Time Web |
 
 ## Abertura e ledger — Ronaldo (3 min)
 
@@ -134,29 +134,25 @@ Entidade, serviço, módulo, migration, permissões e triggers para tipo de lice
 
 **Resultado honesto:** funcionalidades aparecem descritas como entregues, mas o card Azure ainda está New. Confirmar com Thielson antes de declarar fechado. Não há medida de acurácia do modelo.
 
-## Spotlight — Respostas, relatórios e anexos (Thielson, 2 min)
+## Spotlight — Regras PEC (Thielson, 1 min)
 
-**Cards:** #13260 Done; #13280 Done; #13368 Test QA; #13371 Done; #13373 Test QA.
+**Cards:** #13254 Test QA; #13313 Regression Bug/Test QA; #13341 Test QA; #13392 Test QA.
 
-**Problema:** blocos repetíveis sem resposta/imagens podiam desaparecer, respostas duplicavam e alguns nomes/URLs impediam abrir anexos.
+Categorias e tipo de criação controlam características de lote; as regras por certificadora/programa restringem reprodutores e estoque de sêmen. Mostrar a regra contextual no CMS. Os quatro cards estão em Test QA e contam como concluídos pela regra da edição, mantendo o estado original visível.
 
-**Decisão/implementação:** preservar blocos vazios, coletar imagens aninhadas, organizar a criação de respostas e manter UUID ao editar; normalizar nomes e renovar links legados por formato de arquivo.
+## Spotlight — Sincronizado_em (Thielson, 2 min)
 
-**Resultado/evidência:** relatórios mantêm a estrutura do atendimento; #13368 e #13373 ficam visíveis como QA, e a equipe investigou com Ronaldo, Thayse e Elias. Sem contagem de erros/anexos no recorte.
+**Card:** #13355, `New` e atribuído a Thielson.
 
-## Spotlight — PEC e vínculos (Thielson, 1 min)
+Organizar migrations por lotes, criar `BaseEntityTimesStampsWithSync` e subscribers para sincronização/auditoria; PEC, Formulários Dinâmicos, changelog, propriedades, notificações e questionários aparecem como etapas já alteradas.
 
-**Cards:** #13254 Test QA; #13313 Regression Bug/Test QA; #13341 Test QA; #13392 Test QA; #13438 Done.
+**Resultado honesto:** a história permanece aberta no Azure; não afirmar cobertura completa das tabelas.
 
-Categorias e tipo de criação controlam características de lote; reprodução e estoque de sêmen ficam vinculados a certificadora/programa; trigger liga produtor ao técnico ao associar propriedade. Mostrar regra contextual no CMS e uma propriedade de demonstração. QA conta como concluído, com estado original visível.
+## Overview — Thielson (1 min)
 
-## Spotlight — Sincronização e UUID (Thielson, 2 min)
+**Cards:** #13368, #13371, #13373 e #13438.
 
-**Cards:** #13355 e #13358, ambos `New` e atribuídos a Thielson.
-
-#13355 organiza migrations por lotes, cria `BaseEntityTimesStampsWithSync` e subscribers para sincronização/auditoria; PEC, Formulários Dinâmicos, changelog, propriedades, notificações e questionários aparecem como etapas já alteradas. #13358 trata UUID único na API, alinhado à investigação de duplicatas descrita nos standups.
-
-**Resultado honesto:** as duas histórias permanecem abertas no Azure; não afirmar cobertura completa das tabelas.
+Fazer uma passagem rápida pelos quatro cards, mostrando badge, ID e título. Este slide é apenas um overview; seguir sem desenvolver narrativa técnica.
 
 ## Lightning — Escrita idempotente (Thielson, 1 min)
 
@@ -166,13 +162,13 @@ Categorias e tipo de criação controlam características de lote; reprodução 
 
 1. **Regra oficial aplicada — Ronaldo.** #13146, #13397 e #13408 levam pontuação, filtro e exportação a uma leitura coerente; Iohan e o Governo de SP ajudaram a validar critérios.
 2. **Integração com identidade — Bruno.** #13393, #13419 e #13445 avançam chave global, OTP e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
-3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371 e #13373 cuidam de relatório, anexos e respostas repetíveis; Ronaldo, Thayse e Elias participaram da investigação.
+3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371, #13373 e #13438 cobrem relatórios, respostas, anexos e vínculo entre produtor e técnico; Ronaldo, Thayse e Elias participaram da investigação das respostas e anexos.
 
 **Leitura honesta:** 25 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
 
 ## Próximos passos
 
-- [ ] Sincronização — completar a sincronização por etapas com UUID único por registro.
+- [ ] Sincronização — completar a inclusão de `sincronizado_em` por etapas.
 - [ ] Relatórios PDF do CAF — exportar do painel CAF listas em PDF (vencidos, sem data de validade, perto de vencer). Na fala: o PDF sai do sistema para imprimir e enviar a quem precisa regularizar apenas aqueles CAFs.
 - [ ] Cache Redis — organizar o cache por dashboard no Redis: dados prontos ao abrir e opção de forçar a atualização quando preciso.
 - [ ] Dashboards por projeto — expandir os dashboards exclusivos de cada projeto para apoiar a tomada de decisão.
