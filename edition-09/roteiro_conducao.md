@@ -32,7 +32,7 @@ Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web
 - **#13355 e #13474:** standup relata andamento; Azure mostra `New`. Ambos seguem abertos.
 - **#13146:** standup anterior o deixou em andamento; Azure alterou para `Done` em 17/09.
 
-## Timebox — 30 minutos
+## Timebox — 35 minutos
 
 | Tempo | Slide | Responsável |
 |---|---|---|
@@ -40,17 +40,20 @@ Cards encontrados por ID fora da consulta: alguns estavam fora de `AGROTRACE\Web
 | 3:00–7:00 | Score e filtros do Citros | Ronaldo |
 | 7:00–9:00 | CPF e bordas de cálculo | Ronaldo |
 | 9:00–11:00 | Validade CAF → painel SICAR | Ronaldo + Bruno |
-| 11:00–12:00 | Licenças CREA/CRMV/CFTA | Bruno |
-| 12:00–15:00 | Check-Tenders: captura e deploy | Bruno |
-| 15:00–16:00 | Landing localizada | Bruno |
-| 16:00–18:00 | Documentação Core + overview rápido de Bruno | Bruno |
-| 18:00–21:00 | Pipeline de análise IA | Thielson |
-| 21:00–23:00 | Respostas, relatórios e anexos | Thielson |
-| 23:00–24:00 | Regras PEC e vínculos | Thielson |
-| 24:00–26:00 | Timestamps e UUID | Thielson |
-| 26:00–27:00 | Lightning: idempotência | Thielson |
-| 27:00–28:00 | Engineering Wins | Ronaldo |
-| 28:00–30:00 | Próximos passos e perguntas | Time Web |
+| 11:00–14:00 | API keys, OTP e auditoria | Bruno |
+| 14:00–15:00 | Licenças CREA/CRMV/CFTA | Bruno |
+| 15:00–18:00 | Check-Tenders: captura e deploy | Bruno |
+| 18:00–19:00 | Landing localizada | Bruno |
+| 19:00–21:00 | Documentação Core no CMS | Bruno |
+| 21:00–22:00 | Overview rápido de Bruno | Bruno |
+| 22:00–25:00 | Pipeline de análise IA | Thielson |
+| 25:00–27:00 | Respostas, relatórios e anexos | Thielson |
+| 27:00–28:00 | Regras PEC e vínculos | Thielson |
+| 28:00–30:00 | `sincronizado_em` e UUID | Thielson |
+| 30:00–31:00 | Overview rápido de Thielson | Thielson |
+| 31:00–32:00 | Lightning: idempotência | Thielson |
+| 32:00–33:00 | Engineering Wins | Ronaldo |
+| 33:00–35:00 | Próximos passos e perguntas | Time Web |
 
 ## Abertura e ledger — Ronaldo (3 min)
 
@@ -92,6 +95,18 @@ Mostrar filtros por estado, tipo e assignee. Destacar que os cards #13355/#13358
 
 **Resultado honesto:** campo concluído; a aba nova segue em aberto no Azure e sem assignee. Apresentar como trabalho compartilhado descrito nos standups, não como entrega final do painel.
 
+## Spotlight — API keys, OTP e auditoria (Bruno, 3 min)
+
+**Cards:** #13393 e #13419 em `Test QA`; #12735 segue sem registro localizado no Azure.
+
+**Problema:** integrações precisam autenticar uma pessoa sem sessão interativa e as chaves globais devem respeitar certificadoras autorizadas.
+
+**Decisão/implementação:** endpoint por e-mail com filtro de certificadora e interceptor para escopos de API key; OTP com estado de desafio, fila, rate limit, serviço de auditoria, guards globais, validação DTO e filtros de integração. A auditoria adiciona IP, User Agent, sistema/navegador e eventos no CMS.
+
+**Resultado honesto:** #13393 e #13419 estão em Test QA, portanto contam como concluídos pela regra da edição. #12735 aparece em andamento no standup, mas não pôde ser localizado; não declarar conclusão nem assignee atual.
+
+**Colaboração:** standups citam Elias, Carlos e Ronaldo em endpoint, validação e PR.
+
 ## Spotlight — Licenças profissionais (Bruno, 1 min)
 
 **Card:** #13445, `Test QA` no Azure; Done no standup.
@@ -126,14 +141,14 @@ Entidade, serviço, módulo, migration, permissões e triggers para tipo de lice
 
 ## Overview — Bruno (1 min · passagem rápida)
 
-O overview reúne os itens que não ganharam história própria. Passar por cada card em uma frase e não abrir uma explicação longa:
+O overview reúne itens do Bruno para dar contexto e permitir uma passagem rápida. API keys, OTP e licenças também têm spotlights próprios; passar por cada card em uma frase, sem repetir a explicação:
 
 - **#13320 — Abas de atividade:** refatoração das abas do modal de dados da propriedade; `Done` no Azure.
 - **#13393 — API keys globais:** filtro de certificadora e escopo validado no interceptor; `Test QA` no Azure.
 - **#13419 — Login via OTP:** estado de desafio, fila, rate limit e auditoria; `Test QA` no Azure, com implementação descrita como em andamento nos standups de 15–16/09.
 - **#13445 — Cadastro de documento CREA e CFTA:** atividade da Márcia; `Test QA` no Azure e concluída no standup.
 
-O OTP fica somente neste overview, sem uma página própria. O bloco é para dar contexto rápido e voltar ao roteiro.
+O OTP também tem um spotlight próprio; aqui a passagem é apenas resumida, para dar contexto e voltar ao roteiro.
 
 ## Spotlight — Pipeline de análise IA (Thielson, 3 min)
 
@@ -155,19 +170,25 @@ O OTP fica somente neste overview, sem uma página própria. O bloco é para dar
 
 **Resultado/evidência:** relatórios mantêm a estrutura do atendimento; #13368 e #13373 ficam visíveis como QA, e a equipe investigou com Ronaldo, Thayse e Elias. Sem contagem de erros/anexos no recorte.
 
-## Spotlight — PEC e vínculos (Thielson, 1 min)
+## Spotlight — Regras PEC e vínculos (Thielson, 1 min)
 
 **Cards:** #13254 Test QA; #13313 Regression Bug/Test QA; #13341 Test QA; #13392 Test QA; #13438 Done.
 
-Categorias e tipo de criação controlam características de lote; reprodução e estoque de sêmen ficam vinculados a certificadora/programa; trigger liga produtor ao técnico ao associar propriedade. Mostrar regra contextual no CMS e uma propriedade de demonstração. QA conta como concluído, com estado original visível.
+Categorias e tipo de criação controlam características de lote; as regras por certificadora/programa restringem reprodutores e estoque de sêmen; trigger liga produtor ao técnico ao associar propriedade. Os cards #13254, #13313, #13341 e #13392 estão em Test QA; #13438 está Done. Mostrar regra contextual no CMS e uma propriedade de demonstração. QA conta como concluído, com estado original visível.
 
-## Spotlight — Sincronização e UUID (Thielson, 2 min)
+## Spotlight — `sincronizado_em`, sincronização e UUID (Thielson, 2 min)
 
 **Cards:** #13355 e #13358, ambos `New` e atribuídos a Thielson.
 
-#13355 organiza migrations por lotes, cria `BaseEntityTimesStampsWithSync` e subscribers para sincronização/auditoria; PEC, Formulários Dinâmicos, changelog, propriedades, notificações e questionários aparecem como etapas já alteradas. #13358 trata UUID único na API, alinhado à investigação de duplicatas descrita nos standups.
+#13355 organiza migrations por lotes, cria `BaseEntityTimesStampsWithSync` e subscribers para sincronização/auditoria; a inclusão de `sincronizado_em` avança por etapas em PEC, Formulários Dinâmicos, changelog, propriedades, notificações e questionários. #13358 trata UUID único na API, alinhado à investigação de duplicatas descrita nos standups.
 
 **Resultado honesto:** as duas histórias permanecem abertas no Azure; não afirmar cobertura completa das tabelas.
+
+## Overview — Thielson (1 min · passagem rápida)
+
+**Cards:** #13368, #13371, #13373 e #13438.
+
+Fazer uma passagem rápida pelos quatro cards, mostrando badge, ID e título. #13368 e #13373 seguem em Test QA; #13371 e #13438 estão Done no Azure. Este slide é apenas um overview; seguir sem desenvolver narrativa técnica.
 
 ## Lightning — Escrita idempotente (Thielson, 1 min)
 
@@ -177,13 +198,13 @@ Categorias e tipo de criação controlam características de lote; reprodução 
 
 1. **Regra oficial aplicada — Ronaldo.** #13146, #13397 e #13408 levam pontuação, filtro e exportação a uma leitura coerente; Iohan e o Governo de SP ajudaram a validar critérios.
 2. **Integração com identidade — Bruno.** #13393, #13419 e #13445 avançam chave global, OTP e licença profissional; Check-Tenders também ganhou pipeline e estados de erro mais claros. Reconhecer Elias, Carlos, Iohan e Brenda pelas validações citadas.
-3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371 e #13373 cuidam de relatório, anexos e respostas repetíveis; Ronaldo, Thayse e Elias participaram da investigação.
+3. **Evidência preservada — Thielson.** #13260, #13280, #13368, #13371, #13373 e #13438 cuidam de relatório, anexos, respostas repetíveis e vínculo entre produtor e técnico; Ronaldo, Thayse e Elias participaram da investigação.
 
 **Leitura honesta:** 25 concluídos pela regra Done + QA; quatro cards Azure permanecem New e #12735 requer localização. #13403 tem divergência New/Done.
 
 ## Próximos passos
 
-- [ ] Sincronização — completar a sincronização por etapas com UUID único por registro.
+- [ ] Sincronização — completar a inclusão de `sincronizado_em` por etapas, com UUID único por registro.
 - [ ] Relatórios PDF do CAF — exportar do painel CAF listas em PDF (vencidos, sem data de validade, perto de vencer). Na fala: o PDF sai do sistema para imprimir e enviar a quem precisa regularizar apenas aqueles CAFs.
 - [ ] Cache Redis — organizar o cache por dashboard no Redis: dados prontos ao abrir e opção de forçar a atualização quando preciso.
 - [ ] Dashboards por projeto — expandir os dashboards exclusivos de cada projeto para apoiar a tomada de decisão.
